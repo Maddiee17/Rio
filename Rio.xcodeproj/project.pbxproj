@@ -1,0 +1,753 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1556CFE164D1611576758AEA /* libPods-Rio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B19C227B51E175583427657 /* libPods-Rio.a */; };
+		9C22A3B21CB82A17009AC334 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C22A3B11CB82A17009AC334 /* UserProfileViewController.swift */; };
+		9C22A3B41CB839B3009AC334 /* RioUserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C22A3B31CB839B3009AC334 /* RioUserProfileModel.swift */; };
+		9C260A4A1CB443CE00CB42EE /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A491CB443CE00CB42EE /* PopoverViewController.swift */; };
+		9C260A601CB457B800CB42EE /* IndusSettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A4E1CB457B800CB42EE /* IndusSettingsInteractor.swift */; };
+		9C260A611CB457B800CB42EE /* IndusSettingsInteractorInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A4F1CB457B800CB42EE /* IndusSettingsInteractorInterface.swift */; };
+		9C260A621CB457B800CB42EE /* IndusSettingDetailPresenterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A511CB457B800CB42EE /* IndusSettingDetailPresenterInterface.swift */; };
+		9C260A631CB457B800CB42EE /* IndusSettingsPresenterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A521CB457B800CB42EE /* IndusSettingsPresenterInterface.swift */; };
+		9C260A641CB457B800CB42EE /* IndusSettingDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A551CB457B800CB42EE /* IndusSettingDetailPresenter.swift */; };
+		9C260A651CB457B800CB42EE /* IndusSettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A561CB457B800CB42EE /* IndusSettingsPresenter.swift */; };
+		9C260A661CB457B800CB42EE /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C260A581CB457B800CB42EE /* Setting.storyboard */; };
+		9C260A671CB457B800CB42EE /* IndusNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A5A1CB457B800CB42EE /* IndusNotificationCell.swift */; };
+		9C260A681CB457B800CB42EE /* IndusSettingsDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A5B1CB457B800CB42EE /* IndusSettingsDetailController.swift */; };
+		9C260A691CB457B800CB42EE /* IndusSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A5C1CB457B800CB42EE /* IndusSettingsTableViewController.swift */; };
+		9C260A6A1CB457B800CB42EE /* IndusSettingsDetailWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A5E1CB457B800CB42EE /* IndusSettingsDetailWireframe.swift */; };
+		9C260A6B1CB457B800CB42EE /* IndusSettingsWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A5F1CB457B800CB42EE /* IndusSettingsWireframe.swift */; };
+		9C260A741CB6C2C900CB42EE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A731CB6C2C900CB42EE /* LoginViewController.swift */; };
+		9C3C7F091C63E09B00E98DA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3C7F081C63E09B00E98DA6 /* AppDelegate.swift */; };
+		9C3C7F0B1C63E09B00E98DA6 /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3C7F0A1C63E09B00E98DA6 /* CategoryListViewController.swift */; };
+		9C3C7F0E1C63E09B00E98DA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C3C7F0C1C63E09B00E98DA6 /* Main.storyboard */; };
+		9C3C7F101C63E09B00E98DA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C3C7F0F1C63E09B00E98DA6 /* Assets.xcassets */; };
+		9C3C7F131C63E09B00E98DA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C3C7F111C63E09B00E98DA6 /* LaunchScreen.storyboard */; };
+		9C3C7F1B1C63E1EF00E98DA6 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C3C7F1A1C63E1EF00E98DA6 /* libsqlite3.tbd */; };
+		9C3C7F2A1C63E28900E98DA6 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3C7F211C63E28900E98DA6 /* FMDatabase.m */; };
+		9C3C7F2B1C63E28900E98DA6 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3C7F231C63E28900E98DA6 /* FMResultSet.m */; };
+		9C3C7F2C1C63E28900E98DA6 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3C7F251C63E28900E98DA6 /* FMDatabaseQueue.m */; };
+		9C3C7F2D1C63E28900E98DA6 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3C7F271C63E28900E98DA6 /* FMDatabaseAdditions.m */; };
+		9C3C7F2E1C63E28900E98DA6 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3C7F291C63E28900E98DA6 /* FMDatabasePool.m */; };
+		9C3C7F311C63EC2500E98DA6 /* Rio_DB.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 9C3C7F301C63EC2500E98DA6 /* Rio_DB.sqlite */; };
+		9C3C7F351C65E91E00E98DA6 /* RioDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3C7F341C65E91E00E98DA6 /* RioDatabaseManager.swift */; };
+		9C3C7F381C65FD5800E98DA6 /* RioCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3C7F371C65FD5800E98DA6 /* RioCategoryModel.swift */; };
+		9C3C7F3A1C65FE7C00E98DA6 /* RioResultSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3C7F391C65FE7C00E98DA6 /* RioResultSet.swift */; };
+		9C3C7F3C1C65FEFB00E98DA6 /* RioDatabaseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3C7F3B1C65FEFB00E98DA6 /* RioDatabaseInteractor.swift */; };
+		9C3C7F3E1C66475600E98DA6 /* RioEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3C7F3D1C66475600E98DA6 /* RioEventModel.swift */; };
+		9C6AAC271C947C1500BB0585 /* EventDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6AAC261C947C1500BB0585 /* EventDetailsTableViewController.swift */; };
+		9C6AAC2B1C9481B200BB0585 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6AAC2A1C9481B200BB0585 /* EventCell.swift */; };
+		9CBC43241C6CD56700A08437 /* CountdownTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBC43231C6CD56700A08437 /* CountdownTimerView.swift */; };
+		9CBC43261C6F117E00A08437 /* SubCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBC43251C6F117E00A08437 /* SubCategoryViewController.swift */; };
+		9CBC43281C6F1A4000A08437 /* RioSubCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBC43271C6F1A4000A08437 /* RioSubCategoryModel.swift */; };
+		9CC0784D1CBF78970010888D /* TwitterAppAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC0784C1CBF78970010888D /* TwitterAppAuth.swift */; };
+		9CC0784F1CBFA3F50010888D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC0784E1CBFA3F50010888D /* HomeViewController.swift */; };
+		9CC078511CBFA7AF0010888D /* TweetsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC078501CBFA7AF0010888D /* TweetsCell.swift */; };
+		9CC078531CBFAB6E0010888D /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CC078521CBFAB6E0010888D /* Twitter.framework */; };
+		9CC0785B1CC0CE1E0010888D /* page.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC0785A1CC0CE1E0010888D /* page.png */; };
+		9CC0785D1CC0D6370010888D /* stadium.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC0785C1CC0D6370010888D /* stadium.png */; };
+		9CD5459C1CBAB129007F6D8F /* WSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD5459B1CBAB129007F6D8F /* WSManager.swift */; };
+		9CFF12A21CB90DA400287147 /* olympic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9CFF12A11CB90DA400287147 /* olympic.jpg */; };
+		9CFF12A41CB9566000287147 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CFF12A31CB9566000287147 /* GoogleService-Info.plist */; };
+		9CFF12A81CBA1B2D00287147 /* RioColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF12A71CBA1B2D00287147 /* RioColor.swift */; };
+		9CFF12AA1CBA2F9B00287147 /* stripes.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9CFF12A91CBA2F9B00287147 /* stripes.jpg */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2B19C227B51E175583427657 /* libPods-Rio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Rio.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		56F6BCCD5CB43216D9391B2F /* Pods-Rio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Rio/Pods-Rio.debug.xcconfig"; sourceTree = "<group>"; };
+		68A67BE1B0016B64C37786DF /* Pods-Rio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rio.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rio/Pods-Rio.release.xcconfig"; sourceTree = "<group>"; };
+		9C22A3B11CB82A17009AC334 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		9C22A3B31CB839B3009AC334 /* RioUserProfileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioUserProfileModel.swift; sourceTree = "<group>"; };
+		9C260A491CB443CE00CB42EE /* PopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopoverViewController.swift; path = ../PopoverViewController.swift; sourceTree = "<group>"; };
+		9C260A4E1CB457B800CB42EE /* IndusSettingsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndusSettingsInteractor.swift; sourceTree = "<group>"; };
+		9C260A4F1CB457B800CB42EE /* IndusSettingsInteractorInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndusSettingsInteractorInterface.swift; sourceTree = "<group>"; };
+		9C260A511CB457B800CB42EE /* IndusSettingDetailPresenterInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndusSettingDetailPresenterInterface.swift; sourceTree = "<group>"; };
+		9C260A521CB457B800CB42EE /* IndusSettingsPresenterInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndusSettingsPresenterInterface.swift; sourceTree = "<group>"; };
+		9C260A551CB457B800CB42EE /* IndusSettingDetailPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndusSettingDetailPresenter.swift; sourceTree = "<group>"; };
+		9C260A561CB457B800CB42EE /* IndusSettingsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndusSettingsPresenter.swift; sourceTree = "<group>"; };
+		9C260A581CB457B800CB42EE /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
+		9C260A5A1CB457B800CB42EE /* IndusNotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndusNotificationCell.swift; sourceTree = "<group>"; };
+		9C260A5B1CB457B800CB42EE /* IndusSettingsDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndusSettingsDetailController.swift; sourceTree = "<group>"; };
+		9C260A5C1CB457B800CB42EE /* IndusSettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndusSettingsTableViewController.swift; sourceTree = "<group>"; };
+		9C260A5E1CB457B800CB42EE /* IndusSettingsDetailWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndusSettingsDetailWireframe.swift; sourceTree = "<group>"; };
+		9C260A5F1CB457B800CB42EE /* IndusSettingsWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndusSettingsWireframe.swift; sourceTree = "<group>"; };
+		9C260A731CB6C2C900CB42EE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
+		9C3C7F051C63E09B00E98DA6 /* Rio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C3C7F081C63E09B00E98DA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
+		9C3C7F0A1C63E09B00E98DA6 /* CategoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryListViewController.swift; path = ../CategoryListViewController.swift; sourceTree = "<group>"; };
+		9C3C7F0D1C63E09B00E98DA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9C3C7F0F1C63E09B00E98DA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
+		9C3C7F121C63E09B00E98DA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9C3C7F141C63E09B00E98DA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
+		9C3C7F1A1C63E1EF00E98DA6 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		9C3C7F1E1C63E28900E98DA6 /* Rio-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Rio-Bridging-Header.h"; path = "../Libraries/FMDB/Rio-Bridging-Header.h"; sourceTree = "<group>"; };
+		9C3C7F1F1C63E28900E98DA6 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		9C3C7F201C63E28900E98DA6 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		9C3C7F211C63E28900E98DA6 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		9C3C7F221C63E28900E98DA6 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		9C3C7F231C63E28900E98DA6 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		9C3C7F241C63E28900E98DA6 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		9C3C7F251C63E28900E98DA6 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		9C3C7F261C63E28900E98DA6 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		9C3C7F271C63E28900E98DA6 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		9C3C7F281C63E28900E98DA6 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		9C3C7F291C63E28900E98DA6 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		9C3C7F301C63EC2500E98DA6 /* Rio_DB.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Rio_DB.sqlite; sourceTree = "<group>"; };
+		9C3C7F341C65E91E00E98DA6 /* RioDatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioDatabaseManager.swift; sourceTree = "<group>"; };
+		9C3C7F371C65FD5800E98DA6 /* RioCategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioCategoryModel.swift; sourceTree = "<group>"; };
+		9C3C7F391C65FE7C00E98DA6 /* RioResultSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioResultSet.swift; sourceTree = "<group>"; };
+		9C3C7F3B1C65FEFB00E98DA6 /* RioDatabaseInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioDatabaseInteractor.swift; sourceTree = "<group>"; };
+		9C3C7F3D1C66475600E98DA6 /* RioEventModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioEventModel.swift; sourceTree = "<group>"; };
+		9C6AAC261C947C1500BB0585 /* EventDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventDetailsTableViewController.swift; path = ../EventDetailsTableViewController.swift; sourceTree = "<group>"; };
+		9C6AAC2A1C9481B200BB0585 /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		9CBC43231C6CD56700A08437 /* CountdownTimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownTimerView.swift; sourceTree = "<group>"; };
+		9CBC43251C6F117E00A08437 /* SubCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SubCategoryViewController.swift; path = ../../SubCategoryViewController.swift; sourceTree = "<group>"; };
+		9CBC43271C6F1A4000A08437 /* RioSubCategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioSubCategoryModel.swift; sourceTree = "<group>"; };
+		9CC0784C1CBF78970010888D /* TwitterAppAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterAppAuth.swift; sourceTree = "<group>"; };
+		9CC0784E1CBFA3F50010888D /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		9CC078501CBFA7AF0010888D /* TweetsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsCell.swift; sourceTree = "<group>"; };
+		9CC078521CBFAB6E0010888D /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		9CC0785A1CC0CE1E0010888D /* page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page.png; sourceTree = "<group>"; };
+		9CC0785C1CC0D6370010888D /* stadium.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stadium.png; sourceTree = "<group>"; };
+		9CD5459B1CBAB129007F6D8F /* WSManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WSManager.swift; sourceTree = "<group>"; };
+		9CFF12A11CB90DA400287147 /* olympic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = olympic.jpg; path = ../olympic.jpg; sourceTree = "<group>"; };
+		9CFF12A31CB9566000287147 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9CFF12A71CBA1B2D00287147 /* RioColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioColor.swift; sourceTree = "<group>"; };
+		9CFF12A91CBA2F9B00287147 /* stripes.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = stripes.jpg; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9C3C7F021C63E09B00E98DA6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CC078531CBFAB6E0010888D /* Twitter.framework in Frameworks */,
+				9C3C7F1B1C63E1EF00E98DA6 /* libsqlite3.tbd in Frameworks */,
+				1556CFE164D1611576758AEA /* libPods-Rio.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		14571FC318F8762193C35495 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9CC078521CBFAB6E0010888D /* Twitter.framework */,
+				2B19C227B51E175583427657 /* libPods-Rio.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		66D59471D56CA46661602BD4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				56F6BCCD5CB43216D9391B2F /* Pods-Rio.debug.xcconfig */,
+				68A67BE1B0016B64C37786DF /* Pods-Rio.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9C260A4B1CB457B800CB42EE /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				9C260A4C1CB457B800CB42EE /* Business Logic */,
+				9C260A501CB457B800CB42EE /* Module Interface */,
+				9C260A531CB457B800CB42EE /* User Interface */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		9C260A4C1CB457B800CB42EE /* Business Logic */ = {
+			isa = PBXGroup;
+			children = (
+				9C260A4D1CB457B800CB42EE /* Interactor */,
+			);
+			path = "Business Logic";
+			sourceTree = "<group>";
+		};
+		9C260A4D1CB457B800CB42EE /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				9C260A4E1CB457B800CB42EE /* IndusSettingsInteractor.swift */,
+				9C260A4F1CB457B800CB42EE /* IndusSettingsInteractorInterface.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		9C260A501CB457B800CB42EE /* Module Interface */ = {
+			isa = PBXGroup;
+			children = (
+				9C260A511CB457B800CB42EE /* IndusSettingDetailPresenterInterface.swift */,
+				9C260A521CB457B800CB42EE /* IndusSettingsPresenterInterface.swift */,
+			);
+			path = "Module Interface";
+			sourceTree = "<group>";
+		};
+		9C260A531CB457B800CB42EE /* User Interface */ = {
+			isa = PBXGroup;
+			children = (
+				9C260A541CB457B800CB42EE /* Presenter */,
+				9C260A571CB457B800CB42EE /* Storyboard */,
+				9C260A591CB457B800CB42EE /* View */,
+				9C260A5D1CB457B800CB42EE /* Wireframe */,
+			);
+			path = "User Interface";
+			sourceTree = "<group>";
+		};
+		9C260A541CB457B800CB42EE /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				9C260A551CB457B800CB42EE /* IndusSettingDetailPresenter.swift */,
+				9C260A561CB457B800CB42EE /* IndusSettingsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		9C260A571CB457B800CB42EE /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				9C260A581CB457B800CB42EE /* Setting.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		9C260A591CB457B800CB42EE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9C260A5A1CB457B800CB42EE /* IndusNotificationCell.swift */,
+				9C260A5B1CB457B800CB42EE /* IndusSettingsDetailController.swift */,
+				9C260A5C1CB457B800CB42EE /* IndusSettingsTableViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9C260A5D1CB457B800CB42EE /* Wireframe */ = {
+			isa = PBXGroup;
+			children = (
+				9C260A5E1CB457B800CB42EE /* IndusSettingsDetailWireframe.swift */,
+				9C260A5F1CB457B800CB42EE /* IndusSettingsWireframe.swift */,
+			);
+			path = Wireframe;
+			sourceTree = "<group>";
+		};
+		9C3C7EFC1C63E09B00E98DA6 = {
+			isa = PBXGroup;
+			children = (
+				9C3C7F071C63E09B00E98DA6 /* Rio */,
+				9C3C7F061C63E09B00E98DA6 /* Products */,
+				66D59471D56CA46661602BD4 /* Pods */,
+				14571FC318F8762193C35495 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9C3C7F061C63E09B00E98DA6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9C3C7F051C63E09B00E98DA6 /* Rio.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9C3C7F071C63E09B00E98DA6 /* Rio */ = {
+			isa = PBXGroup;
+			children = (
+				9CD5459A1CBAB08A007F6D8F /* WSManager */,
+				9CFF12A61CBA1A7900287147 /* SupportingFiles */,
+				9CFF12A51CBA1A5A00287147 /* Categories */,
+				9C260A4B1CB457B800CB42EE /* Settings */,
+				9C6AAC281C94819300BB0585 /* CustomCell */,
+				9C6AAC291C94819300BB0585 /* Screens */,
+				9CBC43221C6CD54000A08437 /* CustomView */,
+				9C3C7F361C65FD4600E98DA6 /* Model */,
+				9C3C7F2F1C63EC2500E98DA6 /* Database */,
+				9C3C7F1C1C63E24700E98DA6 /* Libraries */,
+			);
+			path = Rio;
+			sourceTree = "<group>";
+		};
+		9C3C7F1C1C63E24700E98DA6 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				9C3C7F1D1C63E27C00E98DA6 /* FMDB */,
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		9C3C7F1D1C63E27C00E98DA6 /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				9C3C7F1F1C63E28900E98DA6 /* FMDB.h */,
+				9C3C7F201C63E28900E98DA6 /* FMDatabase.h */,
+				9C3C7F211C63E28900E98DA6 /* FMDatabase.m */,
+				9C3C7F221C63E28900E98DA6 /* FMResultSet.h */,
+				9C3C7F231C63E28900E98DA6 /* FMResultSet.m */,
+				9C3C7F241C63E28900E98DA6 /* FMDatabaseQueue.h */,
+				9C3C7F251C63E28900E98DA6 /* FMDatabaseQueue.m */,
+				9C3C7F261C63E28900E98DA6 /* FMDatabaseAdditions.h */,
+				9C3C7F271C63E28900E98DA6 /* FMDatabaseAdditions.m */,
+				9C3C7F281C63E28900E98DA6 /* FMDatabasePool.h */,
+				9C3C7F291C63E28900E98DA6 /* FMDatabasePool.m */,
+			);
+			path = FMDB;
+			sourceTree = "<group>";
+		};
+		9C3C7F2F1C63EC2500E98DA6 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				9C3C7F391C65FE7C00E98DA6 /* RioResultSet.swift */,
+				9C3C7F341C65E91E00E98DA6 /* RioDatabaseManager.swift */,
+				9C3C7F301C63EC2500E98DA6 /* Rio_DB.sqlite */,
+				9C3C7F3B1C65FEFB00E98DA6 /* RioDatabaseInteractor.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		9C3C7F361C65FD4600E98DA6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9C3C7F371C65FD5800E98DA6 /* RioCategoryModel.swift */,
+				9C3C7F3D1C66475600E98DA6 /* RioEventModel.swift */,
+				9CBC43271C6F1A4000A08437 /* RioSubCategoryModel.swift */,
+				9C22A3B31CB839B3009AC334 /* RioUserProfileModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9C6AAC281C94819300BB0585 /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				9C6AAC2A1C9481B200BB0585 /* EventCell.swift */,
+				9CC078501CBFA7AF0010888D /* TweetsCell.swift */,
+			);
+			path = CustomCell;
+			sourceTree = "<group>";
+		};
+		9C6AAC291C94819300BB0585 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				9CBC43251C6F117E00A08437 /* SubCategoryViewController.swift */,
+				9C6AAC261C947C1500BB0585 /* EventDetailsTableViewController.swift */,
+				9C3C7F0A1C63E09B00E98DA6 /* CategoryListViewController.swift */,
+				9C260A491CB443CE00CB42EE /* PopoverViewController.swift */,
+				9C260A731CB6C2C900CB42EE /* LoginViewController.swift */,
+				9C22A3B11CB82A17009AC334 /* UserProfileViewController.swift */,
+				9CC0784E1CBFA3F50010888D /* HomeViewController.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		9CBC43221C6CD54000A08437 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				9CBC43231C6CD56700A08437 /* CountdownTimerView.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		9CD5459A1CBAB08A007F6D8F /* WSManager */ = {
+			isa = PBXGroup;
+			children = (
+				9CD5459B1CBAB129007F6D8F /* WSManager.swift */,
+				9CC0784C1CBF78970010888D /* TwitterAppAuth.swift */,
+			);
+			path = WSManager;
+			sourceTree = "<group>";
+		};
+		9CFF12A51CBA1A5A00287147 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				9CFF12A71CBA1B2D00287147 /* RioColor.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		9CFF12A61CBA1A7900287147 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				9CC0785A1CC0CE1E0010888D /* page.png */,
+				9CFF12A91CBA2F9B00287147 /* stripes.jpg */,
+				9C3C7F1A1C63E1EF00E98DA6 /* libsqlite3.tbd */,
+				9C3C7F1E1C63E28900E98DA6 /* Rio-Bridging-Header.h */,
+				9C3C7F081C63E09B00E98DA6 /* AppDelegate.swift */,
+				9CFF12A31CB9566000287147 /* GoogleService-Info.plist */,
+				9C3C7F0C1C63E09B00E98DA6 /* Main.storyboard */,
+				9CC0785C1CC0D6370010888D /* stadium.png */,
+				9CFF12A11CB90DA400287147 /* olympic.jpg */,
+				9C3C7F111C63E09B00E98DA6 /* LaunchScreen.storyboard */,
+				9C3C7F141C63E09B00E98DA6 /* Info.plist */,
+				9C3C7F0F1C63E09B00E98DA6 /* Assets.xcassets */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9C3C7F041C63E09B00E98DA6 /* Rio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C3C7F171C63E09B00E98DA6 /* Build configuration list for PBXNativeTarget "Rio" */;
+			buildPhases = (
+				B639523616703B8DFF0CD9EA /* Check Pods Manifest.lock */,
+				9C3C7F011C63E09B00E98DA6 /* Sources */,
+				9C3C7F021C63E09B00E98DA6 /* Frameworks */,
+				9C3C7F031C63E09B00E98DA6 /* Resources */,
+				F41CD5B961EAB9A281CAF8A6 /* Embed Pods Frameworks */,
+				32AE8DAE2945A2EB37FDCC2A /* Copy Pods Resources */,
+				9CC078541CBFAF950010888D /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Rio;
+			productName = Rio;
+			productReference = 9C3C7F051C63E09B00E98DA6 /* Rio.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9C3C7EFD1C63E09B00E98DA6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = Pearson_3;
+				TargetAttributes = {
+					9C3C7F041C63E09B00E98DA6 = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = JEWCC68TZJ;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 9C3C7F001C63E09B00E98DA6 /* Build configuration list for PBXProject "Rio" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9C3C7EFC1C63E09B00E98DA6;
+			productRefGroup = 9C3C7F061C63E09B00E98DA6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9C3C7F041C63E09B00E98DA6 /* Rio */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9C3C7F031C63E09B00E98DA6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CC0785D1CC0D6370010888D /* stadium.png in Resources */,
+				9C3C7F311C63EC2500E98DA6 /* Rio_DB.sqlite in Resources */,
+				9C3C7F131C63E09B00E98DA6 /* LaunchScreen.storyboard in Resources */,
+				9CC0785B1CC0CE1E0010888D /* page.png in Resources */,
+				9C260A661CB457B800CB42EE /* Setting.storyboard in Resources */,
+				9C3C7F101C63E09B00E98DA6 /* Assets.xcassets in Resources */,
+				9CFF12A21CB90DA400287147 /* olympic.jpg in Resources */,
+				9CFF12AA1CBA2F9B00287147 /* stripes.jpg in Resources */,
+				9C3C7F0E1C63E09B00E98DA6 /* Main.storyboard in Resources */,
+				9CFF12A41CB9566000287147 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		32AE8DAE2945A2EB37FDCC2A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Rio/Pods-Rio-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9CC078541CBFAF950010888D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 7116a89e8aceaffacd29dcbdee666aab4d0ed4d4 2112f6a96181a058380a0fdfac90110f1cddb9930ee7dd6fe14b4f1168ebe3e0";
+		};
+		B639523616703B8DFF0CD9EA /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F41CD5B961EAB9A281CAF8A6 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Rio/Pods-Rio-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9C3C7F011C63E09B00E98DA6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CC0784D1CBF78970010888D /* TwitterAppAuth.swift in Sources */,
+				9C3C7F351C65E91E00E98DA6 /* RioDatabaseManager.swift in Sources */,
+				9CBC43241C6CD56700A08437 /* CountdownTimerView.swift in Sources */,
+				9C260A6A1CB457B800CB42EE /* IndusSettingsDetailWireframe.swift in Sources */,
+				9C3C7F3A1C65FE7C00E98DA6 /* RioResultSet.swift in Sources */,
+				9C260A651CB457B800CB42EE /* IndusSettingsPresenter.swift in Sources */,
+				9C3C7F2C1C63E28900E98DA6 /* FMDatabaseQueue.m in Sources */,
+				9C260A4A1CB443CE00CB42EE /* PopoverViewController.swift in Sources */,
+				9C260A691CB457B800CB42EE /* IndusSettingsTableViewController.swift in Sources */,
+				9C260A6B1CB457B800CB42EE /* IndusSettingsWireframe.swift in Sources */,
+				9C3C7F3C1C65FEFB00E98DA6 /* RioDatabaseInteractor.swift in Sources */,
+				9C260A681CB457B800CB42EE /* IndusSettingsDetailController.swift in Sources */,
+				9C6AAC2B1C9481B200BB0585 /* EventCell.swift in Sources */,
+				9CBC43281C6F1A4000A08437 /* RioSubCategoryModel.swift in Sources */,
+				9C3C7F381C65FD5800E98DA6 /* RioCategoryModel.swift in Sources */,
+				9C260A611CB457B800CB42EE /* IndusSettingsInteractorInterface.swift in Sources */,
+				9C260A641CB457B800CB42EE /* IndusSettingDetailPresenter.swift in Sources */,
+				9CFF12A81CBA1B2D00287147 /* RioColor.swift in Sources */,
+				9CC078511CBFA7AF0010888D /* TweetsCell.swift in Sources */,
+				9C260A621CB457B800CB42EE /* IndusSettingDetailPresenterInterface.swift in Sources */,
+				9C3C7F2A1C63E28900E98DA6 /* FMDatabase.m in Sources */,
+				9C260A741CB6C2C900CB42EE /* LoginViewController.swift in Sources */,
+				9CBC43261C6F117E00A08437 /* SubCategoryViewController.swift in Sources */,
+				9C3C7F0B1C63E09B00E98DA6 /* CategoryListViewController.swift in Sources */,
+				9CC0784F1CBFA3F50010888D /* HomeViewController.swift in Sources */,
+				9C3C7F3E1C66475600E98DA6 /* RioEventModel.swift in Sources */,
+				9C22A3B21CB82A17009AC334 /* UserProfileViewController.swift in Sources */,
+				9C260A601CB457B800CB42EE /* IndusSettingsInteractor.swift in Sources */,
+				9CD5459C1CBAB129007F6D8F /* WSManager.swift in Sources */,
+				9C3C7F2B1C63E28900E98DA6 /* FMResultSet.m in Sources */,
+				9C3C7F2E1C63E28900E98DA6 /* FMDatabasePool.m in Sources */,
+				9C3C7F091C63E09B00E98DA6 /* AppDelegate.swift in Sources */,
+				9C3C7F2D1C63E28900E98DA6 /* FMDatabaseAdditions.m in Sources */,
+				9C260A671CB457B800CB42EE /* IndusNotificationCell.swift in Sources */,
+				9C6AAC271C947C1500BB0585 /* EventDetailsTableViewController.swift in Sources */,
+				9C260A631CB457B800CB42EE /* IndusSettingsPresenterInterface.swift in Sources */,
+				9C22A3B41CB839B3009AC334 /* RioUserProfileModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9C3C7F0C1C63E09B00E98DA6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9C3C7F0D1C63E09B00E98DA6 /* Base */,
+			);
+			name = Main.storyboard;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		9C3C7F111C63E09B00E98DA6 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9C3C7F121C63E09B00E98DA6 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			path = ..;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9C3C7F151C63E09B00E98DA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9C3C7F161C63E09B00E98DA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9C3C7F181C63E09B00E98DA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 56F6BCCD5CB43216D9391B2F /* Pods-Rio.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Rio/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.maddiee.Rio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Rio/Libraries/FMDB/Rio-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		9C3C7F191C63E09B00E98DA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68A67BE1B0016B64C37786DF /* Pods-Rio.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Rio/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.maddiee.Rio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Rio/Libraries/FMDB/Rio-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9C3C7F001C63E09B00E98DA6 /* Build configuration list for PBXProject "Rio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C3C7F151C63E09B00E98DA6 /* Debug */,
+				9C3C7F161C63E09B00E98DA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9C3C7F171C63E09B00E98DA6 /* Build configuration list for PBXNativeTarget "Rio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C3C7F181C63E09B00E98DA6 /* Debug */,
+				9C3C7F191C63E09B00E98DA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9C3C7EFD1C63E09B00E98DA6 /* Project object */;
+}
