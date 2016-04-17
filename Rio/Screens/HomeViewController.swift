@@ -121,12 +121,6 @@ class HomeViewController: UIViewController {
         return height
     }
     
-    @IBAction func menuButtonTapped(button:UIBarButtonItem)
-    {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate        
-        appDelegate.container?.toggleDrawerSide(.Left, animated: true, completion: nil)
-    }
-
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
