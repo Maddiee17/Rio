@@ -16,5 +16,6 @@ pod 'Fabric'
 pod 'TwitterKit'
 pod 'TwitterCore'
 pod 'KASlideShow'
+pod 'MMDrawerController', '~> 0.5.7'
 end
 

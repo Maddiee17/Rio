@@ -11,3 +11,6 @@
 #import <KVNProgress/KVNProgress.h>
 #import <Google/SignIn.h>
 #import "KASlideShow.h"
+#import <MMDrawerController/MMDrawerController.h>
+#import "MMDrawerBarButtonItem.h"
+#import "UIViewController+MMDrawerController.h"

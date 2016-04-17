@@ -24,6 +24,7 @@ class HomeViewController: UIViewController {
         
         self.title = "Live Feeds"
         KVNProgress.showWithStatus("Loading Live Feeds..")
+        setupLeftMenuButton()
         setUpSlideShow()
         setUpData()
         self.refreshControl = UIRefreshControl()
@@ -39,7 +40,15 @@ class HomeViewController: UIViewController {
         slideShow.imagesContentMode = .ScaleAspectFill
         slideShow.addImagesFromResources(["stripes.jpg","olympic.jpg","stadium.png"])
     }
-        
+    
+    func setupLeftMenuButton() {
+        let leftDrawerButton = MMDrawerBarButtonItem(target: self, action: #selector(HomeViewController.leftDrawerButtonPress(_:)))
+        self.navigationItem.leftBarButtonItem = leftDrawerButton
+    }
+    
+    func leftDrawerButtonPress(leftDrawerButtonPress: AnyObject) {
+        self.mm_drawerController.toggleDrawerSide(.Left, animated: true, completion: { _ in })
+    }
     
     func setUpData()
     {
@@ -112,19 +121,20 @@ class HomeViewController: UIViewController {
         return height
     }
     
-    @IBAction func menuButtonTapped(button:UIButton)
+    @IBAction func menuButtonTapped(button:UIBarButtonItem)
     {
-        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate        
+        appDelegate.container?.toggleDrawerSide(.Left, animated: true, completion: nil)
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+
     }
-    */
 
 }

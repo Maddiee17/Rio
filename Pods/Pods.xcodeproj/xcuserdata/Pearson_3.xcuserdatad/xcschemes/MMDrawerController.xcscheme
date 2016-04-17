@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'DD7B38B09F76DEB614FD76D2'
-               BlueprintName = 'FBSDKCoreKit'
+               BlueprintIdentifier = '654BC67F5B2BC6F64F612ECC'
+               BlueprintName = 'MMDrawerController'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libFBSDKCoreKit.a'>
+               BuildableName = 'libMMDrawerController.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

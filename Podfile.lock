@@ -39,6 +39,18 @@ PODS:
     - GoogleSymbolUtilities (~> 1.0)
   - KASlideShow (2.2)
   - KVNProgress (2.2.4)
+  - MMDrawerController (0.5.7):
+    - MMDrawerController/Core (= 0.5.7)
+    - MMDrawerController/MMDrawerBarButtonItem (= 0.5.7)
+    - MMDrawerController/MMDrawerVisualStates (= 0.5.7)
+    - MMDrawerController/Subclass (= 0.5.7)
+  - MMDrawerController/Core (0.5.7)
+  - MMDrawerController/MMDrawerBarButtonItem (0.5.7):
+    - MMDrawerController/Core
+  - MMDrawerController/MMDrawerVisualStates (0.5.7):
+    - MMDrawerController/Core
+  - MMDrawerController/Subclass (0.5.7):
+    - MMDrawerController/Core
   - MZTimerLabel (0.5.4)
   - TLYShyNavBar (1.0.0)
   - TwitterCore (2.0.2):
@@ -54,6 +66,7 @@ DEPENDENCIES:
   - Google/SignIn
   - KASlideShow
   - KVNProgress
+  - MMDrawerController (~> 0.5.7)
   - MZTimerLabel
   - TLYShyNavBar
   - TwitterCore
@@ -75,6 +88,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: 85f8ad6b251544286a97163133d042ec95f889c5
   KASlideShow: 380f5ecee5f14370c9435ecedccee5b35fb69c5f
   KVNProgress: 541edcea5a1fef592aceac8d791a410d38cb499d
+  MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
   MZTimerLabel: cd9bfb9304540ef2a9e163384fca9c978f0dbf83
   TLYShyNavBar: d313a1c50c58cb7af744829120eaa33ca8a998ce
   TwitterCore: 0f44d8980a6879d5205dcb4e010d15e643e56fa0

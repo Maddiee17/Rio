@@ -75,20 +75,24 @@ class UserProfileViewController: UIViewController {
         FBSDKLoginManager().logOut()
         GIDSignIn.sharedInstance().signOut()
         dataBaseInteractor.clearUserProfileTable()
-        print("viewController Stack", self.navigationController?.viewControllers)
         let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let loginVC = storyBoard.instantiateViewControllerWithIdentifier("LoginVC")
         self.navigationController?.presentViewController(loginVC, animated: true, completion: nil)
     }
-
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "DRAWER_SEGUE" {
+            let destinationVC = segue.destinationViewController as! MMDrawerController
+            let centrevVC = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController")
+            destinationVC.centerViewController = centrevVC
+            let leftVC = self.storyboard?.instantiateViewControllerWithIdentifier("LeftNavViewController")
+            destinationVC.leftDrawerViewController = leftVC
+        }
     }
-    */
-
 }
