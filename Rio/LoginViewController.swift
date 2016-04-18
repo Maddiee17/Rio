@@ -2,8 +2,8 @@
 //  LoginViewController.swift
 //  Rio
 //
-//  Created by Pearson_3 on 07/04/2016.
-//  Copyright © 2016 Pearson_3. All rights reserved.
+//  Created by Madhur Mohta on 07/04/2016.
+//  Copyright © 2016 Madhur Mohta. All rights reserved.
 //
 
 import UIKit

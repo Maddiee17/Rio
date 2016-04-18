@@ -2,8 +2,8 @@
 //  IndusSettingsWireframe.swift
 //  Indus
 //
-//  Created by Pearson_3 on 18/01/2016.
-//  Copyright © 2016 Pearson. All rights reserved.
+//  Created by Madhur Mohta on 18/01/2016.
+//  Copyright © 2016 Madhur Mohta. All rights reserved.
 //
 
 import UIKit

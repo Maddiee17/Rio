@@ -2,8 +2,8 @@
 //  IndusSettingsInteractor.swift
 //  Indus
 //
-//  Created by Pearson_2 on 1/25/16.
-//  Copyright © 2016 Pearson. All rights reserved.
+//  Created by Madhur Mohta_2 on 1/25/16.
+//  Copyright © 2016 Madhur Mohta. All rights reserved.
 //
 
 import Foundation

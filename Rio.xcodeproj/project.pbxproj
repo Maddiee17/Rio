@@ -43,6 +43,7 @@
 		9C3C7F3E1C66475600E98DA6 /* RioEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3C7F3D1C66475600E98DA6 /* RioEventModel.swift */; };
 		9C555E2C1CC214C5005F1F2D /* LeftNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C555E2B1CC214C5005F1F2D /* LeftNavViewController.swift */; };
 		9C555E2E1CC23D0B005F1F2D /* DrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C555E2D1CC23D0B005F1F2D /* DrawerViewController.swift */; };
+		9C555E301CC4D37C005F1F2D /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C555E2F1CC4D37C005F1F2D /* FavoritesViewController.swift */; };
 		9C6AAC271C947C1500BB0585 /* EventDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6AAC261C947C1500BB0585 /* EventDetailsTableViewController.swift */; };
 		9C6AAC2B1C9481B200BB0585 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6AAC2A1C9481B200BB0585 /* EventCell.swift */; };
 		9CBC43241C6CD56700A08437 /* CountdownTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBC43231C6CD56700A08437 /* CountdownTimerView.swift */; };
@@ -110,6 +111,7 @@
 		9C555E2A1CC16B0E005F1F2D /* Rio.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Rio.entitlements; sourceTree = "<group>"; };
 		9C555E2B1CC214C5005F1F2D /* LeftNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftNavViewController.swift; sourceTree = "<group>"; };
 		9C555E2D1CC23D0B005F1F2D /* DrawerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerViewController.swift; sourceTree = "<group>"; };
+		9C555E2F1CC4D37C005F1F2D /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		9C6AAC261C947C1500BB0585 /* EventDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventDetailsTableViewController.swift; path = ../EventDetailsTableViewController.swift; sourceTree = "<group>"; };
 		9C6AAC2A1C9481B200BB0585 /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		9CBC43231C6CD56700A08437 /* CountdownTimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownTimerView.swift; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 				9CC0784E1CBFA3F50010888D /* HomeViewController.swift */,
 				9C555E2B1CC214C5005F1F2D /* LeftNavViewController.swift */,
 				9C555E2D1CC23D0B005F1F2D /* DrawerViewController.swift */,
+				9C555E2F1CC4D37C005F1F2D /* FavoritesViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -569,6 +572,7 @@
 				9C260A611CB457B800CB42EE /* IndusSettingsInteractorInterface.swift in Sources */,
 				9C260A641CB457B800CB42EE /* IndusSettingDetailPresenter.swift in Sources */,
 				9CFF12A81CBA1B2D00287147 /* RioColor.swift in Sources */,
+				9C555E301CC4D37C005F1F2D /* FavoritesViewController.swift in Sources */,
 				9CC078511CBFA7AF0010888D /* TweetsCell.swift in Sources */,
 				9C555E2C1CC214C5005F1F2D /* LeftNavViewController.swift in Sources */,
 				9C260A621CB457B800CB42EE /* IndusSettingDetailPresenterInterface.swift in Sources */,

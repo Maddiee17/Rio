@@ -2,15 +2,13 @@
 //  LeftNavViewController.swift
 //  Rio
 //
-//  Created by Pearson_3 on 16/04/2016.
-//  Copyright © 2016 Pearson_3. All rights reserved.
+//  Created by Madhur Mohta on 16/04/2016.
+//  Copyright © 2016 Madhur Mohta. All rights reserved.
 //
 
 import UIKit
 
-class LeftNavViewController: UIViewController {
-
-    @IBOutlet weak var tableView: UITableView!
+class LeftNavViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +21,11 @@ class LeftNavViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        
+    }
     
-
     /*
     // MARK: - Navigation
 

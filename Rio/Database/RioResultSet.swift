@@ -2,8 +2,8 @@
 //  IndusResultSet.swift
 //  Indus
 //
-//  Created by Pearson_3 on 21/10/2015.
-//  Copyright © 2015 Pearson. All rights reserved.
+//  Created by Madhur Mohta on 21/10/2015.
+//  Copyright © 2015 Madhur Mohta. All rights reserved.
 //
 
 import UIKit

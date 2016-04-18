@@ -1,14 +1,14 @@
 //
-//  DrawerViewController.swift
+//  FavoritesViewController.swift
 //  Rio
 //
-//  Created by Madhur Mohta on 16/04/2016.
+//  Created by Madhur Mohta on 18/04/2016.
 //  Copyright © 2016 Madhur Mohta. All rights reserved.
 //
 
 import UIKit
 
-class DrawerViewController: MMDrawerController {
+class FavoritesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
