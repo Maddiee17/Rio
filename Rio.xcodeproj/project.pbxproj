@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		1556CFE164D1611576758AEA /* libPods-Rio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B19C227B51E175583427657 /* libPods-Rio.a */; };
+		396F46B51CC52902002270B7 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 396F46B31CC52902002270B7 /* Interface.storyboard */; };
+		396F46B71CC52902002270B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 396F46B61CC52902002270B7 /* Assets.xcassets */; };
+		396F46BE1CC52902002270B7 /* Rio_Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 396F46BD1CC52902002270B7 /* Rio_Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		396F46C31CC52902002270B7 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396F46C21CC52902002270B7 /* InterfaceController.swift */; };
+		396F46C51CC52902002270B7 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396F46C41CC52902002270B7 /* ExtensionDelegate.swift */; };
+		396F46C71CC52902002270B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 396F46C61CC52902002270B7 /* Assets.xcassets */; };
+		396F46CB1CC52902002270B7 /* Rio_Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 396F46B11CC52902002270B7 /* Rio_Watch.app */; };
+		525FC8DE14F7701A1933FCA4 /* libPods-Rio_Watch Extension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06963807D1D64D42A5EFAA0F /* libPods-Rio_Watch Extension.a */; };
 		9C22A3B21CB82A17009AC334 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C22A3B11CB82A17009AC334 /* UserProfileViewController.swift */; };
 		9C22A3B41CB839B3009AC334 /* RioUserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C22A3B31CB839B3009AC334 /* RioUserProfileModel.swift */; };
 		9C260A4A1CB443CE00CB42EE /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A491CB443CE00CB42EE /* PopoverViewController.swift */; };
@@ -62,8 +70,61 @@
 		9CFF12AA1CBA2F9B00287147 /* stripes.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9CFF12A91CBA2F9B00287147 /* stripes.jpg */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		396F46BF1CC52902002270B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9C3C7EFD1C63E09B00E98DA6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 396F46BC1CC52902002270B7;
+			remoteInfo = "Rio_Watch Extension";
+		};
+		396F46C91CC52902002270B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9C3C7EFD1C63E09B00E98DA6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 396F46B01CC52902002270B7;
+			remoteInfo = Rio_Watch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		396F46D11CC52902002270B7 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				396F46BE1CC52902002270B7 /* Rio_Watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		396F46D31CC52902002270B7 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				396F46CB1CC52902002270B7 /* Rio_Watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		06963807D1D64D42A5EFAA0F /* libPods-Rio_Watch Extension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Rio_Watch Extension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E00B4F6279F51B409A7D61F /* Pods-Rio_Watch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rio_Watch Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Rio_Watch Extension/Pods-Rio_Watch Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		2B19C227B51E175583427657 /* libPods-Rio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Rio.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		396F46B11CC52902002270B7 /* Rio_Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rio_Watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		396F46B41CC52902002270B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		396F46B61CC52902002270B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		396F46B81CC52902002270B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		396F46BD1CC52902002270B7 /* Rio_Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Rio_Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		396F46C21CC52902002270B7 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		396F46C41CC52902002270B7 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		396F46C61CC52902002270B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		396F46C81CC52902002270B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56F6BCCD5CB43216D9391B2F /* Pods-Rio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Rio/Pods-Rio.debug.xcconfig"; sourceTree = "<group>"; };
 		68A67BE1B0016B64C37786DF /* Pods-Rio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rio.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rio/Pods-Rio.release.xcconfig"; sourceTree = "<group>"; };
 		9C22A3B11CB82A17009AC334 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
@@ -128,9 +189,18 @@
 		9CFF12A31CB9566000287147 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9CFF12A71CBA1B2D00287147 /* RioColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioColor.swift; sourceTree = "<group>"; };
 		9CFF12A91CBA2F9B00287147 /* stripes.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = stripes.jpg; sourceTree = "<group>"; };
+		B2A77DAF25CDA2C895F088AE /* Pods-Rio_Watch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rio_Watch Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rio_Watch Extension/Pods-Rio_Watch Extension.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		396F46BA1CC52902002270B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				525FC8DE14F7701A1933FCA4 /* libPods-Rio_Watch Extension.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9C3C7F021C63E09B00E98DA6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -149,8 +219,30 @@
 			children = (
 				9CC078521CBFAB6E0010888D /* Twitter.framework */,
 				2B19C227B51E175583427657 /* libPods-Rio.a */,
+				06963807D1D64D42A5EFAA0F /* libPods-Rio_Watch Extension.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		396F46B21CC52902002270B7 /* Rio_Watch */ = {
+			isa = PBXGroup;
+			children = (
+				396F46B31CC52902002270B7 /* Interface.storyboard */,
+				396F46B61CC52902002270B7 /* Assets.xcassets */,
+				396F46B81CC52902002270B7 /* Info.plist */,
+			);
+			path = Rio_Watch;
+			sourceTree = "<group>";
+		};
+		396F46C11CC52902002270B7 /* Rio_Watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				396F46C21CC52902002270B7 /* InterfaceController.swift */,
+				396F46C41CC52902002270B7 /* ExtensionDelegate.swift */,
+				396F46C61CC52902002270B7 /* Assets.xcassets */,
+				396F46C81CC52902002270B7 /* Info.plist */,
+			);
+			path = "Rio_Watch Extension";
 			sourceTree = "<group>";
 		};
 		66D59471D56CA46661602BD4 /* Pods */ = {
@@ -158,6 +250,8 @@
 			children = (
 				56F6BCCD5CB43216D9391B2F /* Pods-Rio.debug.xcconfig */,
 				68A67BE1B0016B64C37786DF /* Pods-Rio.release.xcconfig */,
+				0E00B4F6279F51B409A7D61F /* Pods-Rio_Watch Extension.debug.xcconfig */,
+				B2A77DAF25CDA2C895F088AE /* Pods-Rio_Watch Extension.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -249,6 +343,8 @@
 			isa = PBXGroup;
 			children = (
 				9C3C7F071C63E09B00E98DA6 /* Rio */,
+				396F46B21CC52902002270B7 /* Rio_Watch */,
+				396F46C11CC52902002270B7 /* Rio_Watch Extension */,
 				9C3C7F061C63E09B00E98DA6 /* Products */,
 				66D59471D56CA46661602BD4 /* Pods */,
 				14571FC318F8762193C35495 /* Frameworks */,
@@ -259,6 +355,8 @@
 			isa = PBXGroup;
 			children = (
 				9C3C7F051C63E09B00E98DA6 /* Rio.app */,
+				396F46B11CC52902002270B7 /* Rio_Watch.app */,
+				396F46BD1CC52902002270B7 /* Rio_Watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -402,6 +500,43 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		396F46B01CC52902002270B7 /* Rio_Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 396F46D21CC52902002270B7 /* Build configuration list for PBXNativeTarget "Rio_Watch" */;
+			buildPhases = (
+				396F46AF1CC52902002270B7 /* Resources */,
+				396F46D11CC52902002270B7 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				396F46C01CC52902002270B7 /* PBXTargetDependency */,
+			);
+			name = Rio_Watch;
+			productName = Rio_Watch;
+			productReference = 396F46B11CC52902002270B7 /* Rio_Watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		396F46BC1CC52902002270B7 /* Rio_Watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 396F46D01CC52902002270B7 /* Build configuration list for PBXNativeTarget "Rio_Watch Extension" */;
+			buildPhases = (
+				1068492A854100282EB62424 /* Check Pods Manifest.lock */,
+				396F46B91CC52902002270B7 /* Sources */,
+				396F46BA1CC52902002270B7 /* Frameworks */,
+				396F46BB1CC52902002270B7 /* Resources */,
+				DC9DA2E001C3D4D74069288F /* Embed Pods Frameworks */,
+				F609114197B67808001A0A0A /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Rio_Watch Extension";
+			productName = "Rio_Watch Extension";
+			productReference = 396F46BD1CC52902002270B7 /* Rio_Watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		9C3C7F041C63E09B00E98DA6 /* Rio */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9C3C7F171C63E09B00E98DA6 /* Build configuration list for PBXNativeTarget "Rio" */;
@@ -413,10 +548,12 @@
 				F41CD5B961EAB9A281CAF8A6 /* Embed Pods Frameworks */,
 				32AE8DAE2945A2EB37FDCC2A /* Copy Pods Resources */,
 				9CC078541CBFAF950010888D /* ShellScript */,
+				396F46D31CC52902002270B7 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				396F46CA1CC52902002270B7 /* PBXTargetDependency */,
 			);
 			name = Rio;
 			productName = Rio;
@@ -433,6 +570,13 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Pearson_3;
 				TargetAttributes = {
+					396F46B01CC52902002270B7 = {
+						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = JEWCC68TZJ;
+					};
+					396F46BC1CC52902002270B7 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
 					9C3C7F041C63E09B00E98DA6 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = JEWCC68TZJ;
@@ -464,11 +608,30 @@
 			projectRoot = "";
 			targets = (
 				9C3C7F041C63E09B00E98DA6 /* Rio */,
+				396F46B01CC52902002270B7 /* Rio_Watch */,
+				396F46BC1CC52902002270B7 /* Rio_Watch Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		396F46AF1CC52902002270B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				396F46B71CC52902002270B7 /* Assets.xcassets in Resources */,
+				396F46B51CC52902002270B7 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		396F46BB1CC52902002270B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				396F46C71CC52902002270B7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9C3C7F031C63E09B00E98DA6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -489,6 +652,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1068492A854100282EB62424 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		32AE8DAE2945A2EB37FDCC2A /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
@@ -532,6 +710,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		DC9DA2E001C3D4D74069288F /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Rio_Watch Extension/Pods-Rio_Watch Extension-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F41CD5B961EAB9A281CAF8A6 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -547,9 +740,33 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Rio/Pods-Rio-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F609114197B67808001A0A0A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Rio_Watch Extension/Pods-Rio_Watch Extension-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		396F46B91CC52902002270B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				396F46C51CC52902002270B7 /* ExtensionDelegate.swift in Sources */,
+				396F46C31CC52902002270B7 /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9C3C7F011C63E09B00E98DA6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -599,7 +816,28 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		396F46C01CC52902002270B7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 396F46BC1CC52902002270B7 /* Rio_Watch Extension */;
+			targetProxy = 396F46BF1CC52902002270B7 /* PBXContainerItemProxy */;
+		};
+		396F46CA1CC52902002270B7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 396F46B01CC52902002270B7 /* Rio_Watch */;
+			targetProxy = 396F46C91CC52902002270B7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		396F46B31CC52902002270B7 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				396F46B41CC52902002270B7 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		9C3C7F0C1C63E09B00E98DA6 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -621,6 +859,72 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		396F46CC1CC52902002270B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = Rio_Watch_Extension;
+				INFOPLIST_FILE = Rio_Watch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maddiee.Rio.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.1;
+			};
+			name = Debug;
+		};
+		396F46CD1CC52902002270B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = Rio_Watch_Extension;
+				INFOPLIST_FILE = Rio_Watch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maddiee.Rio.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.1;
+			};
+			name = Release;
+		};
+		396F46CE1CC52902002270B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E00B4F6279F51B409A7D61F /* Pods-Rio_Watch Extension.debug.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = "Rio_Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.maddiee.Rio.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.1;
+			};
+			name = Debug;
+		};
+		396F46CF1CC52902002270B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B2A77DAF25CDA2C895F088AE /* Pods-Rio_Watch Extension.release.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = "Rio_Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.maddiee.Rio.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.1;
+			};
+			name = Release;
+		};
 		9C3C7F151C63E09B00E98DA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -748,6 +1052,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		396F46D01CC52902002270B7 /* Build configuration list for PBXNativeTarget "Rio_Watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				396F46CE1CC52902002270B7 /* Debug */,
+				396F46CF1CC52902002270B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		396F46D21CC52902002270B7 /* Build configuration list for PBXNativeTarget "Rio_Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				396F46CC1CC52902002270B7 /* Debug */,
+				396F46CD1CC52902002270B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9C3C7F001C63E09B00E98DA6 /* Build configuration list for PBXProject "Rio" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

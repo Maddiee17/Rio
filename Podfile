@@ -3,6 +3,10 @@
 # Uncomment this line if you're using Swift
 # use_frameworks!
 
+def shared_pods
+    pod 'MMWormhole', '~> 2.0.0'
+end
+
 target 'Rio' do
     
 pod 'TLYShyNavBar'
@@ -17,5 +21,11 @@ pod 'TwitterKit'
 pod 'TwitterCore'
 pod 'KASlideShow'
 pod 'MMDrawerController', '~> 0.5.7'
+shared_pods
+end
+
+target 'Rio_Watch Extension' do
+    platform :watchos, ‘2.0’
+    shared_pods
 end
 
