@@ -22,7 +22,7 @@ It shows the Setting Tableview controller, user can define their own setting
 
 class IndusSettingsTableViewController: UITableViewController,SettingsDetailDelegate {
 
-    var eventHandler : IndusSettingsPresenterInterface?
+    var performSegue = false
     var firstAlertLabel : String?
     var secondAlertLabel : String?
 //    var dataManager : IndusCourseDataManager! = IndusCourseDataManager()
@@ -42,6 +42,7 @@ class IndusSettingsTableViewController: UITableViewController,SettingsDetailDele
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.performSegue = false
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeActive", name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
     @IBAction func closeSettings(sender: AnyObject)
@@ -79,11 +80,13 @@ class IndusSettingsTableViewController: UITableViewController,SettingsDetailDele
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if(indexPath.section == 0 && indexPath.row == 1)
         {
-            eventHandler?.pushSettingDetailsVC("", withVC: self, isFirstAlert: true)
+            performSegue = true
+            self.performSegueWithIdentifier("settingSegue", sender: self)
         }
         else if(indexPath.section == 0 && indexPath.row == 2)
         {
-            eventHandler?.pushSettingDetailsVC("", withVC: self, isFirstAlert: false)
+            performSegue = true
+            self.performSegueWithIdentifier("settingSegue", sender: self)
         }
         else if(indexPath.section == 0 && indexPath.row == 0){
             showAlert()
@@ -106,7 +109,7 @@ class IndusSettingsTableViewController: UITableViewController,SettingsDetailDele
                 UIApplication.sharedApplication().openURL(NSURL(string:UIApplicationOpenSettingsURLString)!);
             })
         }
-        let viewAction: UIAlertAction = UIAlertAction(title: "CAPSOK", style: .Default) { action -> Void in
+        let viewAction: UIAlertAction = UIAlertAction(title: "OK", style: .Default) { action -> Void in
         }
         alertController.addAction(closeAction)
         alertController.addAction(viewAction)
@@ -146,6 +149,14 @@ class IndusSettingsTableViewController: UITableViewController,SettingsDetailDele
 
     }
     
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool
+    {
+        if performSegue {
+            return true
+        }
+        return false
+    }
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell")
         if(indexPath.section == 0){
@@ -168,22 +179,5 @@ class IndusSettingsTableViewController: UITableViewController,SettingsDetailDele
         }
         return cell!
     }
-    
-    func showAlertForDownloadOverCellular(downloadOverCellularSwitch: UISwitch)
-    {
-        let alertController: UIAlertController = UIAlertController(title: "Turn On Download Over Cellular?", message: "Additional fees may apply when downloading over cellular data.", preferredStyle: .Alert)
-        let noAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Default) { action -> Void in
-            downloadOverCellularSwitch.on = false
-            NSUserDefaults.standardUserDefaults().setBool(false, forKey: kDownloadOverCellular)
-        }
-        let yesAction: UIAlertAction = UIAlertAction(title: "CAPSOK", style: .Cancel) { action -> Void in
-            downloadOverCellularSwitch.on = true
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: kDownloadOverCellular)
-        }
-        alertController.addAction(noAction)
-        alertController.addAction(yesAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
-    }
-    
 
 }

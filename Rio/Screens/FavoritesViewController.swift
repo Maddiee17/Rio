@@ -10,10 +10,37 @@ import UIKit
 
 class FavoritesViewController: UIViewController {
 
+    @IBOutlet weak var tableView : UITableView!
+    let manager = WSManager.sharedInstance
+    var reminderArray = NSArray()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupLeftMenuButton()
+        KVNProgress.showWithStatus("Loading Favourites..")
+        manager.getReminders({ (model) in
+            print(model)
+            self.reminderArray = (model as? NSArray)!
+            dispatch_async(dispatch_get_main_queue(), { 
+                self.tableView.reloadData()
+                KVNProgress.dismiss()
+            })
+        }) { (error) in
+                print(error)
+            KVNProgress.showErrorWithStatus("Failed Loading Favourites..")
+        }
 
         // Do any additional setup after loading the view.
+    }
+    
+    func setupLeftMenuButton() {
+        let leftDrawerButton = MMDrawerBarButtonItem(target: self, action: #selector(HomeViewController.leftDrawerButtonPress(_:)))
+        self.navigationItem.leftBarButtonItem = leftDrawerButton
+    }
+    
+    func leftDrawerButtonPress(leftDrawerButtonPress: AnyObject) {
+        self.mm_drawerController.toggleDrawerSide(.Left, animated: true, completion: { _ in })
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,6 +48,31 @@ class FavoritesViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCellWithIdentifier("favCell") as? EventCell
+        
+        let localDict = self.reminderArray[indexPath.section]
+        cell?.eventVenue.text = localDict.objectForKey("eventVenue") as! String
+        
+        return cell!
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int // Default is 1 if not implemented
+    {
+        
+        return (reminderArray.count) > 0 ? (reminderArray.count) : 0
+    }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    {
+        return 105.0
+    }
 
     /*
     // MARK: - Navigation

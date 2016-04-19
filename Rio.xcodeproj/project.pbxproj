@@ -8,21 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		1556CFE164D1611576758AEA /* libPods-Rio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B19C227B51E175583427657 /* libPods-Rio.a */; };
+		9AEE10EA1CC6BD79003EB5AA /* AddReminderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE10E91CC6BD79003EB5AA /* AddReminderOperation.swift */; };
+		9AEE10EC1CC6BF37003EB5AA /* RioBaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE10EB1CC6BF37003EB5AA /* RioBaseOperation.swift */; };
 		9C22A3B21CB82A17009AC334 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C22A3B11CB82A17009AC334 /* UserProfileViewController.swift */; };
 		9C22A3B41CB839B3009AC334 /* RioUserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C22A3B31CB839B3009AC334 /* RioUserProfileModel.swift */; };
 		9C260A4A1CB443CE00CB42EE /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A491CB443CE00CB42EE /* PopoverViewController.swift */; };
-		9C260A601CB457B800CB42EE /* IndusSettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A4E1CB457B800CB42EE /* IndusSettingsInteractor.swift */; };
-		9C260A611CB457B800CB42EE /* IndusSettingsInteractorInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A4F1CB457B800CB42EE /* IndusSettingsInteractorInterface.swift */; };
-		9C260A621CB457B800CB42EE /* IndusSettingDetailPresenterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A511CB457B800CB42EE /* IndusSettingDetailPresenterInterface.swift */; };
-		9C260A631CB457B800CB42EE /* IndusSettingsPresenterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A521CB457B800CB42EE /* IndusSettingsPresenterInterface.swift */; };
-		9C260A641CB457B800CB42EE /* IndusSettingDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A551CB457B800CB42EE /* IndusSettingDetailPresenter.swift */; };
-		9C260A651CB457B800CB42EE /* IndusSettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A561CB457B800CB42EE /* IndusSettingsPresenter.swift */; };
-		9C260A661CB457B800CB42EE /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C260A581CB457B800CB42EE /* Setting.storyboard */; };
-		9C260A671CB457B800CB42EE /* IndusNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A5A1CB457B800CB42EE /* IndusNotificationCell.swift */; };
 		9C260A681CB457B800CB42EE /* IndusSettingsDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A5B1CB457B800CB42EE /* IndusSettingsDetailController.swift */; };
 		9C260A691CB457B800CB42EE /* IndusSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A5C1CB457B800CB42EE /* IndusSettingsTableViewController.swift */; };
-		9C260A6A1CB457B800CB42EE /* IndusSettingsDetailWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A5E1CB457B800CB42EE /* IndusSettingsDetailWireframe.swift */; };
-		9C260A6B1CB457B800CB42EE /* IndusSettingsWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A5F1CB457B800CB42EE /* IndusSettingsWireframe.swift */; };
 		9C260A741CB6C2C900CB42EE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C260A731CB6C2C900CB42EE /* LoginViewController.swift */; };
 		9C3C7F091C63E09B00E98DA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3C7F081C63E09B00E98DA6 /* AppDelegate.swift */; };
 		9C3C7F0B1C63E09B00E98DA6 /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3C7F0A1C63E09B00E98DA6 /* CategoryListViewController.swift */; };
@@ -66,21 +58,13 @@
 		2B19C227B51E175583427657 /* libPods-Rio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Rio.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56F6BCCD5CB43216D9391B2F /* Pods-Rio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Rio/Pods-Rio.debug.xcconfig"; sourceTree = "<group>"; };
 		68A67BE1B0016B64C37786DF /* Pods-Rio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rio.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rio/Pods-Rio.release.xcconfig"; sourceTree = "<group>"; };
+		9AEE10E91CC6BD79003EB5AA /* AddReminderOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReminderOperation.swift; sourceTree = "<group>"; };
+		9AEE10EB1CC6BF37003EB5AA /* RioBaseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioBaseOperation.swift; sourceTree = "<group>"; };
 		9C22A3B11CB82A17009AC334 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		9C22A3B31CB839B3009AC334 /* RioUserProfileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioUserProfileModel.swift; sourceTree = "<group>"; };
 		9C260A491CB443CE00CB42EE /* PopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopoverViewController.swift; path = ../PopoverViewController.swift; sourceTree = "<group>"; };
-		9C260A4E1CB457B800CB42EE /* IndusSettingsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndusSettingsInteractor.swift; sourceTree = "<group>"; };
-		9C260A4F1CB457B800CB42EE /* IndusSettingsInteractorInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndusSettingsInteractorInterface.swift; sourceTree = "<group>"; };
-		9C260A511CB457B800CB42EE /* IndusSettingDetailPresenterInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndusSettingDetailPresenterInterface.swift; sourceTree = "<group>"; };
-		9C260A521CB457B800CB42EE /* IndusSettingsPresenterInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndusSettingsPresenterInterface.swift; sourceTree = "<group>"; };
-		9C260A551CB457B800CB42EE /* IndusSettingDetailPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndusSettingDetailPresenter.swift; sourceTree = "<group>"; };
-		9C260A561CB457B800CB42EE /* IndusSettingsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndusSettingsPresenter.swift; sourceTree = "<group>"; };
-		9C260A581CB457B800CB42EE /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
-		9C260A5A1CB457B800CB42EE /* IndusNotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndusNotificationCell.swift; sourceTree = "<group>"; };
 		9C260A5B1CB457B800CB42EE /* IndusSettingsDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndusSettingsDetailController.swift; sourceTree = "<group>"; };
 		9C260A5C1CB457B800CB42EE /* IndusSettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndusSettingsTableViewController.swift; sourceTree = "<group>"; };
-		9C260A5E1CB457B800CB42EE /* IndusSettingsDetailWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndusSettingsDetailWireframe.swift; sourceTree = "<group>"; };
-		9C260A5F1CB457B800CB42EE /* IndusSettingsWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndusSettingsWireframe.swift; sourceTree = "<group>"; };
 		9C260A731CB6C2C900CB42EE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
 		9C3C7F051C63E09B00E98DA6 /* Rio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C3C7F081C63E09B00E98DA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
@@ -162,87 +146,38 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9AEE10E81CC6BD59003EB5AA /* Operation */ = {
+			isa = PBXGroup;
+			children = (
+				9AEE10E91CC6BD79003EB5AA /* AddReminderOperation.swift */,
+				9AEE10EB1CC6BF37003EB5AA /* RioBaseOperation.swift */,
+			);
+			path = Operation;
+			sourceTree = "<group>";
+		};
 		9C260A4B1CB457B800CB42EE /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				9C260A4C1CB457B800CB42EE /* Business Logic */,
-				9C260A501CB457B800CB42EE /* Module Interface */,
 				9C260A531CB457B800CB42EE /* User Interface */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		9C260A4C1CB457B800CB42EE /* Business Logic */ = {
-			isa = PBXGroup;
-			children = (
-				9C260A4D1CB457B800CB42EE /* Interactor */,
-			);
-			path = "Business Logic";
-			sourceTree = "<group>";
-		};
-		9C260A4D1CB457B800CB42EE /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-				9C260A4E1CB457B800CB42EE /* IndusSettingsInteractor.swift */,
-				9C260A4F1CB457B800CB42EE /* IndusSettingsInteractorInterface.swift */,
-			);
-			path = Interactor;
-			sourceTree = "<group>";
-		};
-		9C260A501CB457B800CB42EE /* Module Interface */ = {
-			isa = PBXGroup;
-			children = (
-				9C260A511CB457B800CB42EE /* IndusSettingDetailPresenterInterface.swift */,
-				9C260A521CB457B800CB42EE /* IndusSettingsPresenterInterface.swift */,
-			);
-			path = "Module Interface";
-			sourceTree = "<group>";
-		};
 		9C260A531CB457B800CB42EE /* User Interface */ = {
 			isa = PBXGroup;
 			children = (
-				9C260A541CB457B800CB42EE /* Presenter */,
-				9C260A571CB457B800CB42EE /* Storyboard */,
 				9C260A591CB457B800CB42EE /* View */,
-				9C260A5D1CB457B800CB42EE /* Wireframe */,
 			);
 			path = "User Interface";
-			sourceTree = "<group>";
-		};
-		9C260A541CB457B800CB42EE /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				9C260A551CB457B800CB42EE /* IndusSettingDetailPresenter.swift */,
-				9C260A561CB457B800CB42EE /* IndusSettingsPresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		9C260A571CB457B800CB42EE /* Storyboard */ = {
-			isa = PBXGroup;
-			children = (
-				9C260A581CB457B800CB42EE /* Setting.storyboard */,
-			);
-			path = Storyboard;
 			sourceTree = "<group>";
 		};
 		9C260A591CB457B800CB42EE /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9C260A5A1CB457B800CB42EE /* IndusNotificationCell.swift */,
 				9C260A5B1CB457B800CB42EE /* IndusSettingsDetailController.swift */,
 				9C260A5C1CB457B800CB42EE /* IndusSettingsTableViewController.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		9C260A5D1CB457B800CB42EE /* Wireframe */ = {
-			isa = PBXGroup;
-			children = (
-				9C260A5E1CB457B800CB42EE /* IndusSettingsDetailWireframe.swift */,
-				9C260A5F1CB457B800CB42EE /* IndusSettingsWireframe.swift */,
-			);
-			path = Wireframe;
 			sourceTree = "<group>";
 		};
 		9C3C7EFC1C63E09B00E98DA6 = {
@@ -366,6 +301,7 @@
 		9CD5459A1CBAB08A007F6D8F /* WSManager */ = {
 			isa = PBXGroup;
 			children = (
+				9AEE10E81CC6BD59003EB5AA /* Operation */,
 				9CD5459B1CBAB129007F6D8F /* WSManager.swift */,
 				9CC0784C1CBF78970010888D /* TwitterAppAuth.swift */,
 			);
@@ -477,7 +413,6 @@
 				9C3C7F311C63EC2500E98DA6 /* Rio_DB.sqlite in Resources */,
 				9C3C7F131C63E09B00E98DA6 /* LaunchScreen.storyboard in Resources */,
 				9CC0785B1CC0CE1E0010888D /* page.png in Resources */,
-				9C260A661CB457B800CB42EE /* Setting.storyboard in Resources */,
 				9C3C7F101C63E09B00E98DA6 /* Assets.xcassets in Resources */,
 				9CFF12A21CB90DA400287147 /* olympic.jpg in Resources */,
 				9CFF12AA1CBA2F9B00287147 /* stripes.jpg in Resources */,
@@ -557,25 +492,20 @@
 				9CC0784D1CBF78970010888D /* TwitterAppAuth.swift in Sources */,
 				9C3C7F351C65E91E00E98DA6 /* RioDatabaseManager.swift in Sources */,
 				9CBC43241C6CD56700A08437 /* CountdownTimerView.swift in Sources */,
-				9C260A6A1CB457B800CB42EE /* IndusSettingsDetailWireframe.swift in Sources */,
 				9C3C7F3A1C65FE7C00E98DA6 /* RioResultSet.swift in Sources */,
-				9C260A651CB457B800CB42EE /* IndusSettingsPresenter.swift in Sources */,
 				9C3C7F2C1C63E28900E98DA6 /* FMDatabaseQueue.m in Sources */,
+				9AEE10EA1CC6BD79003EB5AA /* AddReminderOperation.swift in Sources */,
 				9C260A4A1CB443CE00CB42EE /* PopoverViewController.swift in Sources */,
 				9C260A691CB457B800CB42EE /* IndusSettingsTableViewController.swift in Sources */,
-				9C260A6B1CB457B800CB42EE /* IndusSettingsWireframe.swift in Sources */,
 				9C3C7F3C1C65FEFB00E98DA6 /* RioDatabaseInteractor.swift in Sources */,
 				9C260A681CB457B800CB42EE /* IndusSettingsDetailController.swift in Sources */,
 				9C6AAC2B1C9481B200BB0585 /* EventCell.swift in Sources */,
 				9CBC43281C6F1A4000A08437 /* RioSubCategoryModel.swift in Sources */,
 				9C3C7F381C65FD5800E98DA6 /* RioCategoryModel.swift in Sources */,
-				9C260A611CB457B800CB42EE /* IndusSettingsInteractorInterface.swift in Sources */,
-				9C260A641CB457B800CB42EE /* IndusSettingDetailPresenter.swift in Sources */,
 				9CFF12A81CBA1B2D00287147 /* RioColor.swift in Sources */,
 				9C555E301CC4D37C005F1F2D /* FavoritesViewController.swift in Sources */,
 				9CC078511CBFA7AF0010888D /* TweetsCell.swift in Sources */,
 				9C555E2C1CC214C5005F1F2D /* LeftNavViewController.swift in Sources */,
-				9C260A621CB457B800CB42EE /* IndusSettingDetailPresenterInterface.swift in Sources */,
 				9C3C7F2A1C63E28900E98DA6 /* FMDatabase.m in Sources */,
 				9C260A741CB6C2C900CB42EE /* LoginViewController.swift in Sources */,
 				9CBC43261C6F117E00A08437 /* SubCategoryViewController.swift in Sources */,
@@ -583,17 +513,15 @@
 				9CC0784F1CBFA3F50010888D /* HomeViewController.swift in Sources */,
 				9C3C7F3E1C66475600E98DA6 /* RioEventModel.swift in Sources */,
 				9C22A3B21CB82A17009AC334 /* UserProfileViewController.swift in Sources */,
-				9C260A601CB457B800CB42EE /* IndusSettingsInteractor.swift in Sources */,
 				9CD5459C1CBAB129007F6D8F /* WSManager.swift in Sources */,
 				9C3C7F2B1C63E28900E98DA6 /* FMResultSet.m in Sources */,
 				9C3C7F2E1C63E28900E98DA6 /* FMDatabasePool.m in Sources */,
 				9C555E2E1CC23D0B005F1F2D /* DrawerViewController.swift in Sources */,
 				9C3C7F091C63E09B00E98DA6 /* AppDelegate.swift in Sources */,
 				9C3C7F2D1C63E28900E98DA6 /* FMDatabaseAdditions.m in Sources */,
-				9C260A671CB457B800CB42EE /* IndusNotificationCell.swift in Sources */,
 				9C6AAC271C947C1500BB0585 /* EventDetailsTableViewController.swift in Sources */,
-				9C260A631CB457B800CB42EE /* IndusSettingsPresenterInterface.swift in Sources */,
 				9C22A3B41CB839B3009AC334 /* RioUserProfileModel.swift in Sources */,
+				9AEE10EC1CC6BF37003EB5AA /* RioBaseOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

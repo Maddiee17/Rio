@@ -23,7 +23,41 @@ class LeftNavViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
+        self.mm_drawerController.toggleDrawerSide(.Left, animated: true, completion: nil)
         
+        if indexPath.section == 0 {
+            switch indexPath.row {
+                
+            case 0:
+                self.mm_drawerController.centerViewController = self.storyboard!.instantiateViewControllerWithIdentifier("HomeViewController")
+            case 1:
+                self.mm_drawerController.centerViewController = self.storyboard?.instantiateViewControllerWithIdentifier("favViewController")
+            case 2:
+                self.mm_drawerController.centerViewController = self.storyboard?.instantiateViewControllerWithIdentifier("IndusSettingsViewController")
+                
+            default:
+                break
+            }
+        }
+        else {
+            switch indexPath.row {
+            case 0:
+                self.mm_drawerController.toggleDrawerSide(.Left, animated: true, completion: nil)
+                self.logoutUser()
+            default:
+                break
+            }
+            
+        }
+        
+    }
+    
+    func logoutUser()  {
+        FBSDKLoginManager().logOut()
+        GIDSignIn.sharedInstance().signOut()
+        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let loginVC = storyBoard.instantiateViewControllerWithIdentifier("LoginVC")
+        self.navigationController?.presentViewController(loginVC, animated: true, completion: nil)
     }
     
     /*

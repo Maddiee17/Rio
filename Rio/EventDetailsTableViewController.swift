@@ -83,7 +83,7 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
 //        self.presentViewController(popVC, animated: true, completion: nil)
         let indexPath = self.tableView.indexPathForCell(forCell)
         notificationButtonTappedCellModel = self.eventsFilteredArray[(indexPath?.section)!] as? RioEventModel
-        WSManager.sharedInstance.notificationButtonTappedModel = notificationButtonTappedCellModel
+        WSManager.sharedInstance.notificationButtonTappedModel?.append(notificationButtonTappedCellModel)
         self.performSegueWithIdentifier("popoverSegue", sender: self)
     }
     

@@ -30,10 +30,8 @@ class CategoryListViewController: UIViewController {
     }
     @IBAction func launchSettings(sender: AnyObject)
     {
-        let settingsWF = IndusSettingsWireframe()
-        let settingsPresenter = IndusSettingsPresenter()
-        settingsWF.settingsPresenter = settingsPresenter
-        settingsWF.presentSettingsInterfaceFromViewController(self)
+//        settingsWF.settingsPresenter = settingsPresenter
+//        settingsWF.presentSettingsInterfaceFromViewController(self)
     }
 
     override func didReceiveMemoryWarning() {

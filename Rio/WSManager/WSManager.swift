@@ -17,11 +17,14 @@ var kTwitterAuthAPI: String = "https://api.twitter.com/oauth2/token"
 var kTweetsAPI : String = "https://api.twitter.com/1.1/search/tweets.json?q=Olympics%2C"
 
 let kAddReminderURL = "http://ec2-52-37-90-104.us-west-2.compute.amazonaws.com/olympics-scheduler/notifyScheduler/addReminder"
+
+let kGetReminderURL = "http://ec2-52-37-90-104.us-west-2.compute.amazonaws.com/olympics-scheduler/notifyScheduler/getReminders?userId=%@"
+
 let kRequestTimeOutInterval = 30.0
 
 class WSManager: NSObject {
     
-    var notificationButtonTappedModel : RioEventModel?
+    var notificationButtonTappedModel : [RioEventModel]?
     
     class var sharedInstance : WSManager{
         
@@ -70,15 +73,45 @@ class WSManager: NSObject {
     {
         let request = NSMutableURLRequest(URL: NSURL(string: kTweetsAPI)!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 1)
         request.HTTPMethod = "GET"
-        request.setValue("Bearer " + NSUserDefaults.standardUserDefaults().stringForKey("twitterBearerToken")! , forHTTPHeaderField: "Authorization")
-        
-        self.performURLSessionForTaskForRequest(request, successBlock: { (responseData) -> Void in
-            print(responseData)
-            sucessBlock(responseData)
+        if let twitterTokenValue = NSUserDefaults.standardUserDefaults().stringForKey("twitterBearerToken"){
+            request.setValue("Bearer " + twitterTokenValue , forHTTPHeaderField: "Authorization")
+            
+            self.performURLSessionForTaskForRequest(request, successBlock: { (responseData) -> Void in
+                print(responseData)
+                sucessBlock(responseData)
             }) { (responseError) -> Void in
                 print(responseError)
                 errorBlock(responseError)
+            }
         }
+        
+    }
+    
+    func getReminders(successBlock:((AnyObject) -> Void), errorBlock:((AnyObject) -> Void))
+    {
+        let request = NSMutableURLRequest(URL: NSURL(string: String(format: kGetReminderURL, NSUserDefaults.standardUserDefaults().stringForKey("userId")!))!)
+        
+        request.HTTPMethod = "GET"
+//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        self.performURLSessionForTaskForRequest(request, successBlock: { (response) -> Void in
+            
+            print(response)
+            do{
+                let results: NSDictionary  = try NSJSONSerialization.JSONObjectWithData(response as! NSData, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
+                print(results)
+                if let reminders = results["reminderList"] as? NSArray{
+                    successBlock(reminders)
+                }
+            }
+            catch{
+                print("JSON error")
+            }
+
+        }) { (error) -> Void in
+            print(error)
+        }
+
         
     }
     

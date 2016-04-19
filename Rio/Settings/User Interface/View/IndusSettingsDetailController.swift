@@ -35,7 +35,6 @@ class IndusSettingsDetailController: UITableViewController {
     var checkedIndexPath : NSIndexPath?
     var delegate:SettingsDetailDelegate?
     var isFirstAlert : Bool?
-    var eventHandler : IndusSettingDetailPresenterInterface?
 
     var indexOfCheckMarkForFirstAlert : Int?
     var indexOfCheckMarkForSecondAlert : Int?
@@ -176,10 +175,10 @@ class IndusSettingsDetailController: UITableViewController {
     {
         if(indexOfCheckMarkForFirstAlert != 0)
         {
-            eventHandler?.fetchAssetModelForNotifications()
+           // eventHandler?.fetchAssetModelForNotifications()
         }
         else{
-            eventHandler?.cancelAllNotifications()
+            //eventHandler?.cancelAllNotifications()
         }
     }
 }
