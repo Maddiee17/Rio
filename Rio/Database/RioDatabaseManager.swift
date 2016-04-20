@@ -176,4 +176,18 @@ class RioDatabaseManager {
             }
         }
     }
+    
+    func updateReminderIdInDB(sqlStmt:String, reminderId:String, serialNo:String){
+        
+        queue?.inDatabase(){ database in
+            
+            let result = database.executeUpdate(sqlStmt, withArgumentsInArray: [reminderId,serialNo])
+            if(!result)
+            {
+                print("Error: Updating Record:  \(database.lastErrorMessage())")
+            }
+        }
+
+        
+    }
 }

@@ -8,15 +8,22 @@
 
 import UIKit
 
+protocol reminderCellDelegate{
+    
+    func reminderAdded(forCell:EventCell)
+}
+
 class PopoverViewController: UIViewController {
 
     @IBOutlet weak var reminderSwitch: UISwitch!
     var manager = WSManager.sharedInstance
     var selectedEventModel : RioEventModel?
+    var sourceView : EventCell? = nil
+    var delegate : reminderCellDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       sourceView = self.popoverPresentationController?.sourceView as! EventCell
         // Do any additional setup after loading the view.
     }
 
@@ -27,8 +34,16 @@ class PopoverViewController: UIViewController {
     
     @IBAction func addReminderSwitch(sender: AnyObject)
     {
-        manager.addReminderForEvent()
+        sourceView?.notificationButton.setImage(UIImage(named: "ico-bell-selected"), forState: .Normal)
+        let selectedEventModel = manager.notificationButtonTappedModel
+        let operation = AddReminderOperation(eventModel: selectedEventModel!)
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { 
+            RioBaseOperation(addReminderOperation: operation)
+        }
+        self.delegate?.reminderAdded(sourceView!)
     }
+    
+    
 
     /*
     // MARK: - Navigation

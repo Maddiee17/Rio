@@ -98,4 +98,11 @@ class RioDatabaseInteractor: NSObject
         let sqlStmt = "DELETE from UserProfile"
         dataBaseManager.clearUserProfileTable(sqlStmt)
     }
+    
+    func updateReminderIdInDB(reminderId:String, serialNo:String){
+        
+        let sqlStmt = "UPDATE Event set Notification = ? where Sno = ?"
+        dataBaseManager.updateReminderIdInDB(sqlStmt, reminderId: reminderId, serialNo: serialNo)
+    }
+
 }

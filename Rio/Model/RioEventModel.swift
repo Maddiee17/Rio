@@ -10,6 +10,7 @@ import UIKit
 
 class RioEventModel: NSObject
 {
+    var Sno : String?
     var type : String?
     var DisciplineCode : String?
     var SessionCode : String?
@@ -24,10 +25,11 @@ class RioEventModel: NSObject
     var Demand : String?
     var VenueName : String?
     var Level : String?
+    var Notification : String?
 
-
-    func initWithValues(type:String, DisciplineCode:String, SessionCode:String, Date:String, StartTime:String, EndTime: String, Discipline:String, Gender:String, Description:String, DescriptionLong:String, Medal:String, Demand:String, VenueName:String, Level:String)
+    func initWithValues(Sno:String, type:String, DisciplineCode:String, SessionCode:String, Date:String, StartTime:String, EndTime: String, Discipline:String, Gender:String, Description:String, DescriptionLong:String, Medal:String, Demand:String, VenueName:String, Level:String, Notification:String)
     {
+        self.Sno = Sno
         self.type = type
         self.DisciplineCode = DisciplineCode
         self.SessionCode = SessionCode
@@ -42,5 +44,6 @@ class RioEventModel: NSObject
         self.Demand = Demand
         self.VenueName = VenueName
         self.Level = Level
+        self.Notification = Notification
     }
 }

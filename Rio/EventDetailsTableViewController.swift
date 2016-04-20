@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPopoverPresentationControllerDelegate {
+class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPopoverPresentationControllerDelegate,reminderCellDelegate {
 
     var eventsFilteredArray = []
     var selectedEvent : String?
@@ -53,9 +53,28 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         cell.eventVenue.text = localObj.VenueName
         cell.eventMedals.text = localObj.Medal
         cell.eventName.text = filterDescription(localObj.DescriptionLong!)
+        let isReminderAdded = self.isReminderAddedForEvent(localObj)
+        if isReminderAdded {
+            cell.notificationButton.setImage(UIImage(named: "ico-bell-selected"), forState: .Normal)
+        }
         cell.delegate = self
         cell.eventImage.image = UIImage(named: "ico-wrestle")
         return cell
+    }
+    
+    func isReminderAddedForEvent(localObj : RioEventModel) -> Bool
+    {
+        if let notificationId = localObj.Notification{
+            
+            let splitArray = notificationId.componentsSeparatedByString("+")
+            let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")
+            
+            if ((splitArray[1] as String) == userId) {
+                return true
+            }
+        }
+        
+        return false
     }
     
     func filterDescription(actualString:String) -> String{
@@ -83,7 +102,7 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
 //        self.presentViewController(popVC, animated: true, completion: nil)
         let indexPath = self.tableView.indexPathForCell(forCell)
         notificationButtonTappedCellModel = self.eventsFilteredArray[(indexPath?.section)!] as? RioEventModel
-        WSManager.sharedInstance.notificationButtonTappedModel?.append(notificationButtonTappedCellModel)
+        WSManager.sharedInstance.notificationButtonTappedModel = notificationButtonTappedCellModel!
         self.performSegueWithIdentifier("popoverSegue", sender: self)
     }
     
@@ -125,6 +144,12 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.None
+    }
+    
+    func reminderAdded(forCell:EventCell)
+    {
+        let indexPath = self.tableView.indexPathForCell(forCell)
+        self.tableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
     }
     
     // MARK: - Navigation

@@ -22,9 +22,12 @@ let kGetReminderURL = "http://ec2-52-37-90-104.us-west-2.compute.amazonaws.com/o
 
 let kRequestTimeOutInterval = 30.0
 
+
+
 class WSManager: NSObject {
     
-    var notificationButtonTappedModel : [RioEventModel]?
+    var dataBaseManager = RioDatabaseInteractor()
+    var notificationButtonTappedModel : RioEventModel?
     
     class var sharedInstance : WSManager{
         
@@ -115,16 +118,15 @@ class WSManager: NSObject {
         
     }
     
-    func addReminderForEvent()
+    func addReminderForEvent(eventModel:RioEventModel)
     {
-        let eventModel = self.notificationButtonTappedModel
         let request = NSMutableURLRequest(URL: NSURL(string: kAddReminderURL)!)
         let calendar = NSCalendar.currentCalendar()
         let date = calendar.dateByAddingUnit(.Minute, value: 2, toDate: NSDate(), options: [])
-        let epochFireDate = String(format: "%.0f",(self.calculateFireDate(eventModel!).timeIntervalSince1970) * 1000)
+        let epochFireDate = String(format: "%.0f",(self.calculateFireDate(eventModel).timeIntervalSince1970) * 1000)
         let userId = NSUserDefaults.standardUserDefaults().objectForKey("userId")
         
-        let paramsForCall = ["userId": userId!, "language": "en", "eventName":eventModel!.Discipline!, "eventVenue": eventModel!.VenueName!, "eventDetails":eventModel!.Description!, "scheduledDateTime":epochFireDate, "isMedalAvailable": ((eventModel!.Medal!) as NSString).boolValue] as NSDictionary
+        let paramsForCall = ["userId": userId!, "language": "en", "eventName":eventModel.Discipline!, "eventVenue": eventModel.VenueName!, "eventDetails":eventModel.Description!, "scheduledDateTime":epochFireDate, "isMedalAvailable": ((eventModel.Medal!) as NSString).boolValue] as NSDictionary
         var data : NSData?
         do{
             data = try NSJSONSerialization.dataWithJSONObject(paramsForCall, options: NSJSONWritingOptions.PrettyPrinted)
@@ -139,6 +141,17 @@ class WSManager: NSObject {
         self.performURLSessionForTaskForRequest(request, successBlock: { (response) -> Void in
             
             print(response)
+            do{
+                let results: NSDictionary  = try NSJSONSerialization.JSONObjectWithData(response as! NSData, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
+                print(results)
+                let reminderId = results.objectForKey("reminderId") as! String
+                let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")
+                self.dataBaseManager.updateReminderIdInDB(reminderId + "+" + userId!, serialNo: eventModel.Sno!)
+            }
+            catch{
+                print("JSON error")
+            }
+
             }) { (error) -> Void in
                 print(error)
         }

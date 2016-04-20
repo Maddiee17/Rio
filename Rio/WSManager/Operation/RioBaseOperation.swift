@@ -11,27 +11,25 @@ import UIKit
 class RioBaseOperation: NSOperation {
 
     var syncQueue : NSOperationQueue?
-    var syncModules : [AddReminderOperation]?
+    var syncModules : AddReminderOperation?
     
-    class var sharedInstance: RioBaseOperation {
-        struct Singleton {
-            static let instance = RioBaseOperation()
-        }
-        
-        return Singleton.instance
-    }
-    
-    override init(){
+    init(addReminderOperation: AddReminderOperation){
         
         super.init()
         
         syncQueue = NSOperationQueue()
         syncQueue!.maxConcurrentOperationCount = 1
+        self.syncModules = addReminderOperation
         startSync()
     }
     
     func startSync(){
-        stopSync()
+        
+//        for(_,element) in syncModules!.enumerate(){
+        
+            syncQueue!.addOperation(syncModules!)
+  //      }
+        
     }
 
     func stopSync() {

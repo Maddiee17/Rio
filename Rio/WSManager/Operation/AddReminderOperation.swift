@@ -10,12 +10,12 @@ import UIKit
 
 class AddReminderOperation: NSOperation {
 
+    var evenModel : RioEventModel?
     var manager = WSManager.sharedInstance
-
     
-    override init(){
+    init(eventModel : RioEventModel){
         
-        
+        self.evenModel = eventModel
         super.init()
         
     }
@@ -33,8 +33,13 @@ class AddReminderOperation: NSOperation {
     
     func sync(){
         
-        manager.addReminderForEvent()
+        manager.addReminderForEvent(self.evenModel!)
         
     }
+    
+    override func cancel() {
+        super.cancel()
+    }
+    
 
 }
