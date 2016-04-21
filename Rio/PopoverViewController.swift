@@ -11,6 +11,7 @@ import UIKit
 protocol reminderCellDelegate{
     
     func reminderAdded(forCell:EventCell)
+    func reloadTableView()
 }
 
 class PopoverViewController: UIViewController {
@@ -20,10 +21,17 @@ class PopoverViewController: UIViewController {
     var selectedEventModel : RioEventModel?
     var sourceView : EventCell? = nil
     var delegate : reminderCellDelegate?
+    @IBOutlet weak var titleLabel : UILabel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       sourceView = self.popoverPresentationController?.sourceView as! EventCell
+       sourceView = self.popoverPresentationController?.sourceView as? EventCell
+        if sourceView?.notificationButton.tag == 1 {
+            self.titleLabel?.text = "Add Reminder"
+        }
+        else{
+            self.titleLabel?.text = "Remove Reminder"
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -34,13 +42,24 @@ class PopoverViewController: UIViewController {
     
     @IBAction func addReminderSwitch(sender: AnyObject)
     {
-        sourceView?.notificationButton.setImage(UIImage(named: "ico-bell-selected"), forState: .Normal)
-        let selectedEventModel = manager.notificationButtonTappedModel
-        let operation = AddReminderOperation(eventModel: selectedEventModel!)
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { 
-            RioBaseOperation(addReminderOperation: operation)
+        if self.sourceView?.notificationButton.tag == 1 {
+            
+            sourceView?.notificationButton.setImage(UIImage(named: "ico-bell-selected"), forState: .Normal)
+            let selectedEventModel = manager.notificationButtonTappedModel
+            let operation = AddReminderOperation(eventModel: selectedEventModel!)
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                RioBaseOperation(addReminderOperation: operation)
+            }
+//            self.delegate?.reminderAdded(sourceView!)
         }
-        self.delegate?.reminderAdded(sourceView!)
+        else{
+            sourceView?.notificationButton.setImage(UIImage(named: "ico-bell"), forState: .Normal)
+            let selectedEventModel = manager.notificationButtonTappedModel
+            let reminderId = selectedEventModel?.Notification?.componentsSeparatedByString("+")[1]
+            print(reminderId)
+        }
+        let userInfoDict = ["cell":self.sourceView as! AnyObject]
+        NSNotificationCenter.defaultCenter().postNotificationName("refreshTable", object: nil, userInfo:userInfoDict)
     }
     
     

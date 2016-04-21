@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1556CFE164D1611576758AEA /* libPods-Rio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B19C227B51E175583427657 /* libPods-Rio.a */; };
+		9A64BD2C1CC95F5000C9703F /* RemoveReminderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A64BD2B1CC95F5000C9703F /* RemoveReminderOperation.swift */; };
 		9AEE10EA1CC6BD79003EB5AA /* AddReminderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE10E91CC6BD79003EB5AA /* AddReminderOperation.swift */; };
 		9AEE10EC1CC6BF37003EB5AA /* RioBaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE10EB1CC6BF37003EB5AA /* RioBaseOperation.swift */; };
 		9C22A3B21CB82A17009AC334 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C22A3B11CB82A17009AC334 /* UserProfileViewController.swift */; };
@@ -58,6 +59,7 @@
 		2B19C227B51E175583427657 /* libPods-Rio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Rio.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56F6BCCD5CB43216D9391B2F /* Pods-Rio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Rio/Pods-Rio.debug.xcconfig"; sourceTree = "<group>"; };
 		68A67BE1B0016B64C37786DF /* Pods-Rio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rio.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rio/Pods-Rio.release.xcconfig"; sourceTree = "<group>"; };
+		9A64BD2B1CC95F5000C9703F /* RemoveReminderOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveReminderOperation.swift; sourceTree = "<group>"; };
 		9AEE10E91CC6BD79003EB5AA /* AddReminderOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReminderOperation.swift; sourceTree = "<group>"; };
 		9AEE10EB1CC6BF37003EB5AA /* RioBaseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioBaseOperation.swift; sourceTree = "<group>"; };
 		9C22A3B11CB82A17009AC334 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			children = (
 				9AEE10E91CC6BD79003EB5AA /* AddReminderOperation.swift */,
 				9AEE10EB1CC6BF37003EB5AA /* RioBaseOperation.swift */,
+				9A64BD2B1CC95F5000C9703F /* RemoveReminderOperation.swift */,
 			);
 			path = Operation;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				9C3C7F2C1C63E28900E98DA6 /* FMDatabaseQueue.m in Sources */,
 				9AEE10EA1CC6BD79003EB5AA /* AddReminderOperation.swift in Sources */,
 				9C260A4A1CB443CE00CB42EE /* PopoverViewController.swift in Sources */,
+				9A64BD2C1CC95F5000C9703F /* RemoveReminderOperation.swift in Sources */,
 				9C260A691CB457B800CB42EE /* IndusSettingsTableViewController.swift in Sources */,
 				9C3C7F3C1C65FEFB00E98DA6 /* RioDatabaseInteractor.swift in Sources */,
 				9C260A681CB457B800CB42EE /* IndusSettingsDetailController.swift in Sources */,

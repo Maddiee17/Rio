@@ -8,29 +8,33 @@
 
 import UIKit
 
-class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPopoverPresentationControllerDelegate,reminderCellDelegate {
+class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPopoverPresentationControllerDelegate {
 
     var eventsFilteredArray = []
     var selectedEvent : String?
     var frameForButton : CGRect?
     var cellView : UITableViewCell?
     var notificationButtonTappedCellModel : RioEventModel?
+    var notificationEnabledCells = [NSIndexPath]()
     
     @IBOutlet weak var tableView : UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadData:", name: "refreshTable", object: nil)
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "refreshTable", object: nil)
     }
 
     // MARK: - Table view data source
@@ -48,6 +52,15 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
     
      func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("eventCell", forIndexPath: indexPath) as! EventCell
+        if (notificationEnabledCells.contains(indexPath)) {
+            cell.notificationButton.setImage(UIImage(named: "ico-bell-selected"), forState: .Normal)
+            cell.notificationButton.tag = 2
+        }
+        else{
+            cell.notificationButton.setImage(UIImage(named: "ico-bell"), forState: .Normal)
+            cell.notificationButton.tag = 1
+        }
+        
         let localObj = self.eventsFilteredArray[indexPath.section] as! RioEventModel
         cell.eventTime.text = localObj.StartTime
         cell.eventVenue.text = localObj.VenueName
@@ -56,6 +69,8 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         let isReminderAdded = self.isReminderAddedForEvent(localObj)
         if isReminderAdded {
             cell.notificationButton.setImage(UIImage(named: "ico-bell-selected"), forState: .Normal)
+            self.notificationEnabledCells.append(indexPath)
+            cell.notificationButton.tag = 2
         }
         cell.delegate = self
         cell.eventImage.image = UIImage(named: "ico-wrestle")
@@ -146,12 +161,14 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         return UIModalPresentationStyle.None
     }
     
-    func reminderAdded(forCell:EventCell)
+    func reloadData(notification:NSNotification)
     {
-        let indexPath = self.tableView.indexPathForCell(forCell)
-        self.tableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
+        let cellView = (notification.userInfo! as NSDictionary).objectForKey("cell") as! EventCell
+        let indexPathOfCell = self.tableView.indexPathForCell(cellView)
+        self.notificationEnabledCells.append(indexPathOfCell!)
+        self.tableView.reloadRowsAtIndexPaths([indexPathOfCell!], withRowAnimation: .Automatic)
     }
-    
+        
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
