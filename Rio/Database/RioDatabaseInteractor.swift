@@ -105,4 +105,13 @@ class RioDatabaseInteractor: NSObject
         dataBaseManager.updateReminderIdInDB(sqlStmt, reminderId: reminderId, serialNo: serialNo)
     }
 
+    func getReminderId(serialNo:String, successBlock :((String) -> Void)){
+        
+        let sqlStmt = "SELECT Notification from Event where Sno = ?"
+        dataBaseManager.getReminderId(sqlStmt, sno: serialNo) { (reminderId) in
+            successBlock(reminderId)
+        }
+    }
+
+
 }

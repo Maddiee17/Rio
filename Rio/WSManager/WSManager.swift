@@ -20,6 +20,8 @@ let kAddReminderURL = "http://ec2-52-37-90-104.us-west-2.compute.amazonaws.com/o
 
 let kGetReminderURL = "http://ec2-52-37-90-104.us-west-2.compute.amazonaws.com/olympics-scheduler/notifyScheduler/getReminders?userId=%@"
 
+let kRemoveReminderURL = "http://ec2-52-37-90-104.us-west-2.compute.amazonaws.com/olympics-scheduler/notifyScheduler/removeReminder?reminderId=%@"
+
 let kRequestTimeOutInterval = 30.0
 
 
@@ -147,6 +149,9 @@ class WSManager: NSObject {
                 let reminderId = results.objectForKey("reminderId") as! String
                 let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")
                 self.dataBaseManager.updateReminderIdInDB(reminderId + "+" + userId!, serialNo: eventModel.Sno!)
+//                dispatch_async(dispatch_get_main_queue(), { 
+//                    NSNotificationCenter.defaultCenter().postNotificationName("refreshTable", object: nil, userInfo:nil)
+//                })
             }
             catch{
                 print("JSON error")
@@ -156,6 +161,25 @@ class WSManager: NSObject {
                 print(error)
         }
         
+    }
+    
+    func removeReminder(reminderId:String,serialNo:String)
+    {
+        let removeReminderURL = String(format: kRemoveReminderURL, reminderId)
+        let request = NSMutableURLRequest(URL: NSURL(string: removeReminderURL)!)
+        request.HTTPMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        self.performURLSessionForTaskForRequest(request, successBlock: { (response) in
+            print(response)
+            self.dataBaseManager.updateReminderIdInDB("", serialNo:serialNo)
+//            dispatch_async(dispatch_get_main_queue(), {
+//                NSNotificationCenter.defaultCenter().postNotificationName("refreshTable", object: nil, userInfo:nil)
+//            })
+        }) { (error) in
+            print(error)
+        }
     }
     
     

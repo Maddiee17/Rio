@@ -21,7 +21,9 @@ class PopoverViewController: UIViewController {
     var selectedEventModel : RioEventModel?
     var sourceView : EventCell? = nil
     var delegate : reminderCellDelegate?
+    var dataBaseInteractor = RioDatabaseInteractor()
     @IBOutlet weak var titleLabel : UILabel?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,19 +49,22 @@ class PopoverViewController: UIViewController {
             sourceView?.notificationButton.setImage(UIImage(named: "ico-bell-selected"), forState: .Normal)
             let selectedEventModel = manager.notificationButtonTappedModel
             let operation = AddReminderOperation(eventModel: selectedEventModel!)
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-                RioBaseOperation(addReminderOperation: operation)
-            }
-//            self.delegate?.reminderAdded(sourceView!)
+            (UIApplication.sharedApplication().delegate as! AppDelegate).backgroundQueue.addOperation(operation)
         }
         else{
             sourceView?.notificationButton.setImage(UIImage(named: "ico-bell"), forState: .Normal)
             let selectedEventModel = manager.notificationButtonTappedModel
-            let reminderId = selectedEventModel?.Notification?.componentsSeparatedByString("+")[1]
-            print(reminderId)
+            dataBaseInteractor.getReminderId((selectedEventModel?.Sno)!, successBlock: { (reminderId) in
+                let reminderId = reminderId.componentsSeparatedByString("+")[0]
+                print(reminderId)
+                let operation = RemoveReminderOperation(reminderId: reminderId, serialNo: (selectedEventModel?.Sno)!)
+                (UIApplication.sharedApplication().delegate as! AppDelegate).backgroundQueue.addOperation(operation)
+            })
+
         }
-        let userInfoDict = ["cell":self.sourceView as! AnyObject]
+        let userInfoDict = ["cell":self.sourceView as! AnyObject, "type": String(format : "%d",(sourceView?.notificationButton.tag)!)]
         NSNotificationCenter.defaultCenter().postNotificationName("refreshTable", object: nil, userInfo:userInfoDict)
+        self.removeFromParentViewController()
     }
     
     

@@ -190,4 +190,19 @@ class RioDatabaseManager {
 
         
     }
+    
+    func getReminderId(sqlStmt:String, sno:String, successBlock :((String) -> Void)) {
+        
+        queue?.inDatabase(){
+            database in
+            
+            let results:FMResultSet? = database.executeQuery(sqlStmt, withArgumentsInArray: [sno])
+            while((results!.next()) != false){
+                let reminderId = results!.stringForColumn("Notification") as String
+                successBlock(reminderId)
+            }
+            results!.close()
+
+        }
+    }
 }

@@ -22,6 +22,7 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        findAddedReminders()
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadData:", name: "refreshTable", object: nil)
 
     }
@@ -66,30 +67,29 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         cell.eventVenue.text = localObj.VenueName
         cell.eventMedals.text = localObj.Medal
         cell.eventName.text = filterDescription(localObj.DescriptionLong!)
-        let isReminderAdded = self.isReminderAddedForEvent(localObj)
-        if isReminderAdded {
-            cell.notificationButton.setImage(UIImage(named: "ico-bell-selected"), forState: .Normal)
-            self.notificationEnabledCells.append(indexPath)
-            cell.notificationButton.tag = 2
-        }
         cell.delegate = self
         cell.eventImage.image = UIImage(named: "ico-wrestle")
         return cell
     }
     
-    func isReminderAddedForEvent(localObj : RioEventModel) -> Bool
+    func findAddedReminders()
     {
-        if let notificationId = localObj.Notification{
+        for(index,eventModel) in eventsFilteredArray.enumerate(){
             
-            let splitArray = notificationId.componentsSeparatedByString("+")
-            let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")
-            
-            if ((splitArray[1] as String) == userId) {
-                return true
+            if let notificationId = (eventModel as! RioEventModel).Notification{
+                
+                if (eventModel.Notification != ""){
+                    
+                    let splitArray = notificationId.componentsSeparatedByString("+")
+                    let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")
+                    
+                    if ((splitArray[1] as String) == userId) {
+                        self.notificationEnabledCells.append(NSIndexPath(forRow: 0, inSection: index))
+                    }
+                }
             }
         }
         
-        return false
     }
     
     func filterDescription(actualString:String) -> String{
@@ -121,42 +121,6 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         self.performSegueWithIdentifier("popoverSegue", sender: self)
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-    
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.None
     }
@@ -164,8 +128,15 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
     func reloadData(notification:NSNotification)
     {
         let cellView = (notification.userInfo! as NSDictionary).objectForKey("cell") as! EventCell
+        let cellTag = (notification.userInfo! as NSDictionary).objectForKey("type") as! String
         let indexPathOfCell = self.tableView.indexPathForCell(cellView)
-        self.notificationEnabledCells.append(indexPathOfCell!)
+        if cellTag == "1" {
+            self.notificationEnabledCells.append(indexPathOfCell!)
+        }
+        else{
+            let index = self.notificationEnabledCells.indexOf(indexPathOfCell!)
+            self.notificationEnabledCells.removeAtIndex(index!)
+        }
         self.tableView.reloadRowsAtIndexPaths([indexPathOfCell!], withRowAnimation: .Automatic)
     }
         

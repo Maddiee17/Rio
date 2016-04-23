@@ -71,7 +71,7 @@ class SubCategoryViewController: UIViewController {
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("subcategorycell")
         if(subCategoryArray?.count > 0){
-            cell?.textLabel?.text = subCategoryArray![indexPath.row]
+            cell?.textLabel?.text = (subCategoryArray![indexPath.row] as String).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
             cell?.accessoryType = .DisclosureIndicator
         }
         return cell!
@@ -81,20 +81,21 @@ class SubCategoryViewController: UIViewController {
     {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let eventSelected = (tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text)!
+        let eventSplitted = eventSelected.componentsSeparatedByString(" ")
         
                 let sqlStmt = "SELECT * from Event WHERE Discipline = ?"
         
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
                     self.dataManager.fetchEventsFromDB(sqlStmt, categorySelected: self.categorySelected!) { (results) -> Void in
                         self.eventArray = results
-                        let predicate = NSPredicate(format: "DescriptionLong CONTAINS[cd] %@", eventSelected.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()))
+                        let predicate = NSPredicate(format: "DescriptionLong CONTAINS[d] %@", eventSplitted[0].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()))
                         let newArray = (self.eventArray! as NSArray).filteredArrayUsingPredicate(predicate)
                         NSLog("Event array count %d",(newArray.count))
                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
                             let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
                             let eventDetailsVC = storyBoard.instantiateViewControllerWithIdentifier("EventDetailVC") as! EventDetailsTableViewController
                             eventDetailsVC.eventsFilteredArray = newArray
-                            eventDetailsVC.selectedEvent = eventSelected
+                            eventDetailsVC.selectedEvent = eventSplitted[0]
                             self.navigationController?.pushViewController(eventDetailsVC, animated: true)
                         })
                     }
