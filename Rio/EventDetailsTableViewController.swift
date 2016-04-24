@@ -15,7 +15,7 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
     var frameForButton : CGRect?
     var cellView : UITableViewCell?
     var notificationButtonTappedCellModel : RioEventModel?
-    var notificationEnabledCells = [NSIndexPath]()
+    var notificationEnabledCells = [String]()
     
     @IBOutlet weak var tableView : UITableView!
     
@@ -53,7 +53,13 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
     
      func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("eventCell", forIndexPath: indexPath) as! EventCell
-        if (notificationEnabledCells.contains(indexPath)) {
+        
+        let localObj = self.eventsFilteredArray[indexPath.section] as! RioEventModel
+        cell.eventTime.text = localObj.StartTime
+        cell.eventVenue.text = localObj.VenueName
+        cell.eventMedals.text = localObj.Medal
+        cell.eventName.text = filterDescription(localObj.DescriptionLong!)
+        if (notificationEnabledCells.contains(localObj.Sno!)) {
             cell.notificationButton.setImage(UIImage(named: "ico-bell-selected"), forState: .Normal)
             cell.notificationButton.tag = 2
         }
@@ -61,12 +67,7 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
             cell.notificationButton.setImage(UIImage(named: "ico-bell"), forState: .Normal)
             cell.notificationButton.tag = 1
         }
-        
-        let localObj = self.eventsFilteredArray[indexPath.section] as! RioEventModel
-        cell.eventTime.text = localObj.StartTime
-        cell.eventVenue.text = localObj.VenueName
-        cell.eventMedals.text = localObj.Medal
-        cell.eventName.text = filterDescription(localObj.DescriptionLong!)
+
         cell.delegate = self
         cell.eventImage.image = UIImage(named: "ico-wrestle")
         return cell
@@ -74,22 +75,7 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
     
     func findAddedReminders()
     {
-        for(index,eventModel) in eventsFilteredArray.enumerate(){
-            
-            if let notificationId = (eventModel as! RioEventModel).Notification{
-                
-                if (eventModel.Notification != ""){
-                    
-                    let splitArray = notificationId.componentsSeparatedByString("+")
-                    let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")
-                    
-                    if ((splitArray[1] as String) == userId) {
-                        self.notificationEnabledCells.append(NSIndexPath(forRow: 0, inSection: index))
-                    }
-                }
-            }
-        }
-        
+        self.notificationEnabledCells = RioRootModel.sharedInstance.addedReminderArray! 
     }
     
     func filterDescription(actualString:String) -> String{
@@ -97,7 +83,7 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         var croppedString = ""
         let array = actualString.componentsSeparatedByString("|")
         var i = 0
-        for (i = 0; i<array.count; i++) {
+        for (i = 0; i<array.count; i += 1) {
             
             if(array[i].containsString(selectedEvent!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()))){
                 croppedString += array[i]
@@ -130,12 +116,12 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         let cellView = (notification.userInfo! as NSDictionary).objectForKey("cell") as! EventCell
         let cellTag = (notification.userInfo! as NSDictionary).objectForKey("type") as! String
         let indexPathOfCell = self.tableView.indexPathForCell(cellView)
+        let eventObj = self.eventsFilteredArray.objectAtIndex((indexPathOfCell?.section)!) as! RioEventModel
         if cellTag == "1" {
-            self.notificationEnabledCells.append(indexPathOfCell!)
+            self.notificationEnabledCells = RioRootModel.sharedInstance.appendSnoToNotificationEnabledArray(eventObj.Sno!)
         }
         else{
-            let index = self.notificationEnabledCells.indexOf(indexPathOfCell!)
-            self.notificationEnabledCells.removeAtIndex(index!)
+            self.notificationEnabledCells = RioRootModel.sharedInstance.removeSnoFromNotificationEnabledArray(eventObj.Sno!)
         }
         self.tableView.reloadRowsAtIndexPaths([indexPathOfCell!], withRowAnimation: .Automatic)
     }

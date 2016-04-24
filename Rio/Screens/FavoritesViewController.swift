@@ -21,8 +21,8 @@ class FavoritesViewController: UIViewController {
         KVNProgress.showWithStatus("Loading Favourites..")
         manager.getReminders({ (model) in
             print(model)
-            self.reminderArray = (model as? NSArray)!
-            dispatch_async(dispatch_get_main_queue(), { 
+            self.reminderArray = self.sortArray(RioRootModel.sharedInstance.favoritesArray!)
+            dispatch_async(dispatch_get_main_queue(), {
                 self.tableView.reloadData()
                 KVNProgress.dismiss()
             })
@@ -32,6 +32,12 @@ class FavoritesViewController: UIViewController {
         }
 
         // Do any additional setup after loading the view.
+    }
+    
+    func sortArray(reminderArray:NSArray) -> NSArray{
+        let descriptor: NSSortDescriptor = NSSortDescriptor(key: "eventName", ascending: true)
+        let sortedResults: NSArray = reminderArray.sortedArrayUsingDescriptors([descriptor])
+        return sortedResults
     }
     
     func setupLeftMenuButton() {
@@ -53,8 +59,9 @@ class FavoritesViewController: UIViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("favCell") as? EventCell
         
         let localDict = self.reminderArray[indexPath.section]
-        cell?.eventVenue.text = localDict.objectForKey("eventVenue") as! String
-        
+        cell?.eventVenue.text = localDict.objectForKey("eventVenue") as? String
+        cell?.eventName.text = localDict.objectForKey("eventName") as? String
+        cell?.notificationButton.setImage(UIImage(named: "ico-bell-selected"), forState: .Normal)
         return cell!
     }
     

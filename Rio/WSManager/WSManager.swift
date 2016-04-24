@@ -94,8 +94,9 @@ class WSManager: NSObject {
     
     func getReminders(successBlock:((AnyObject) -> Void), errorBlock:((AnyObject) -> Void))
     {
+        print(NSUserDefaults.standardUserDefaults().stringForKey("userId"))
         let request = NSMutableURLRequest(URL: NSURL(string: String(format: kGetReminderURL, NSUserDefaults.standardUserDefaults().stringForKey("userId")!))!)
-        
+        print("GET Reminders URL *****************",request.URL)
         request.HTTPMethod = "GET"
 //        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -105,8 +106,21 @@ class WSManager: NSObject {
             do{
                 let results: NSDictionary  = try NSJSONSerialization.JSONObjectWithData(response as! NSData, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
                 print(results)
+                var serialNosArray : [String]?
                 if let reminders = results["reminderList"] as? NSArray{
-                    successBlock(reminders)
+                    
+                    RioRootModel.sharedInstance.favoritesArray = reminders
+                    for reminderDict in reminders {
+                        if let reminderIdValue = (reminderDict as! NSDictionary)["reminderId"]{
+                            if let serialNo = (reminderDict as! NSDictionary)["eventId"]{
+                                
+                                self.dataBaseManager.updateReminderIdInDB(reminderIdValue as! String, serialNo: serialNo as! String)
+                            }
+                        }
+                        
+                    }
+                    serialNosArray = RioUtilities.sharedInstance.filterSerialNoFromAddedReminders(reminders)
+                    successBlock(serialNosArray!)
                 }
             }
             catch{
@@ -123,12 +137,12 @@ class WSManager: NSObject {
     func addReminderForEvent(eventModel:RioEventModel)
     {
         let request = NSMutableURLRequest(URL: NSURL(string: kAddReminderURL)!)
-        let calendar = NSCalendar.currentCalendar()
-        let date = calendar.dateByAddingUnit(.Minute, value: 2, toDate: NSDate(), options: [])
+        //let calendar = NSCalendar.currentCalendar()
+//        let date = calendar.dateByAddingUnit(.Minute, value: 2, toDate: NSDate(), options: [])
         let epochFireDate = String(format: "%.0f",(self.calculateFireDate(eventModel).timeIntervalSince1970) * 1000)
         let userId = NSUserDefaults.standardUserDefaults().objectForKey("userId")
         
-        let paramsForCall = ["userId": userId!, "language": "en", "eventName":eventModel.Discipline!, "eventVenue": eventModel.VenueName!, "eventDetails":eventModel.Description!, "scheduledDateTime":epochFireDate, "isMedalAvailable": ((eventModel.Medal!) as NSString).boolValue] as NSDictionary
+        let paramsForCall = ["userId": userId!, "language": "en", "eventName":eventModel.Discipline!, "eventVenue": eventModel.VenueName!, "eventDetails":eventModel.Description!, "scheduledDateTime":epochFireDate, "isMedalAvailable": ((eventModel.Medal!) as NSString).boolValue, "eventId": eventModel.Sno!] as NSDictionary
         var data : NSData?
         do{
             data = try NSJSONSerialization.dataWithJSONObject(paramsForCall, options: NSJSONWritingOptions.PrettyPrinted)
@@ -147,8 +161,7 @@ class WSManager: NSObject {
                 let results: NSDictionary  = try NSJSONSerialization.JSONObjectWithData(response as! NSData, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
                 print(results)
                 let reminderId = results.objectForKey("reminderId") as! String
-                let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")
-                self.dataBaseManager.updateReminderIdInDB(reminderId + "+" + userId!, serialNo: eventModel.Sno!)
+                self.dataBaseManager.updateReminderIdInDB(reminderId, serialNo: eventModel.Sno!)
 //                dispatch_async(dispatch_get_main_queue(), { 
 //                    NSNotificationCenter.defaultCenter().postNotificationName("refreshTable", object: nil, userInfo:nil)
 //                })
@@ -183,32 +196,60 @@ class WSManager: NSObject {
     }
     
     
+//    func calculateFireDate(rioEventModel:RioEventModel) -> NSDate
+//    {
+//        let date = "15-4-2016"
+//        let startTime = "19:20"
+//        let arrayForTime = startTime.componentsSeparatedByString(":")
+//        let arrayForDates = date.componentsSeparatedByString("-")
+//        
+//        let calender = NSCalendar(identifier:NSCalendarIdentifierGregorian)
+//        let year = Int(arrayForDates[2])
+//        let month = Int(arrayForDates[1])
+//        let day = Int(arrayForDates[0])
+//        let hour = Int(arrayForTime[0])!
+//        let minutes = Int(arrayForTime[1])! + 2
+//        
+//        let dateComponents = NSDateComponents()
+//        dateComponents.day = day!
+//        dateComponents.month = month!
+//        dateComponents.year = year!
+//        dateComponents.hour = hour
+//        dateComponents.minute = minutes
+//        dateComponents.timeZone = NSTimeZone.localTimeZone()
+//        let UTCDate = calender!.dateFromComponents(dateComponents)
+//       // let dateLocal = self.getLocalDate(UTCDate!)
+//        
+//        return UTCDate!
+//    }
+    
     func calculateFireDate(rioEventModel:RioEventModel) -> NSDate
     {
-        let date = "15-4-2016"
-        let startTime = "19:20"
-        let arrayForTime = startTime.componentsSeparatedByString(":")
-        let arrayForDates = date.componentsSeparatedByString("-")
+        let date = rioEventModel.Date
+        let startTime = rioEventModel.StartTime
+        let arrayForTime = startTime?.componentsSeparatedByString(":")
+        let arrayForDates = date?.componentsSeparatedByString("-")
         
         let calender = NSCalendar(identifier:NSCalendarIdentifierGregorian)
-        let year = Int(arrayForDates[2])
-        let month = Int(arrayForDates[1])
-        let day = Int(arrayForDates[0])
-        let hour = Int(arrayForTime[0])!
-        let minutes = Int(arrayForTime[1])! + 2
+        let year = Int(arrayForDates![2])
+        let month = Int(arrayForDates![1])
+        let day = Int(arrayForDates![0])
+        let hour = Int(arrayForTime![0])! + 2
+        let minutes = Int(arrayForTime![1])
         
         let dateComponents = NSDateComponents()
         dateComponents.day = day!
         dateComponents.month = month!
         dateComponents.year = year!
         dateComponents.hour = hour
-        dateComponents.minute = minutes
-        dateComponents.timeZone = NSTimeZone.localTimeZone()
+        dateComponents.minute = minutes!
+        dateComponents.timeZone = NSTimeZone(name: "UTC")
         let UTCDate = calender!.dateFromComponents(dateComponents)
-       // let dateLocal = self.getLocalDate(UTCDate!)
+        let dateLocal = self.getLocalDate(UTCDate!)
         
-        return UTCDate!
+        return dateLocal
     }
+
     
     func getLocalDate(utcDate:NSDate) -> NSDate
     {

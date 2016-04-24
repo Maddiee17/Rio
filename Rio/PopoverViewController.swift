@@ -34,7 +34,6 @@ class PopoverViewController: UIViewController {
         else{
             self.titleLabel?.text = "Remove Reminder"
         }
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,8 +54,6 @@ class PopoverViewController: UIViewController {
             sourceView?.notificationButton.setImage(UIImage(named: "ico-bell"), forState: .Normal)
             let selectedEventModel = manager.notificationButtonTappedModel
             dataBaseInteractor.getReminderId((selectedEventModel?.Sno)!, successBlock: { (reminderId) in
-                let reminderId = reminderId.componentsSeparatedByString("+")[0]
-                print(reminderId)
                 let operation = RemoveReminderOperation(reminderId: reminderId, serialNo: (selectedEventModel?.Sno)!)
                 (UIApplication.sharedApplication().delegate as! AppDelegate).backgroundQueue.addOperation(operation)
             })
@@ -64,7 +61,6 @@ class PopoverViewController: UIViewController {
         }
         let userInfoDict = ["cell":self.sourceView as! AnyObject, "type": String(format : "%d",(sourceView?.notificationButton.tag)!)]
         NSNotificationCenter.defaultCenter().postNotificationName("refreshTable", object: nil, userInfo:userInfoDict)
-        self.removeFromParentViewController()
     }
     
     

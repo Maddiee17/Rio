@@ -51,6 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
                 let userProfileVC = storyBoard.instantiateViewControllerWithIdentifier("UserProfileVC")
                 self.window?.rootViewController = userProfileVC
+                self.fetchReminderInBackground()
             }
         }
 
@@ -89,6 +90,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as? String,
 //                annotation: options[UIApplicationOpenURLOptionsAnnotationKey])
 //    }
+    func fetchReminderInBackground()
+    {
+        let getReminderOperation = GetReminderOperation()
+        backgroundQueue.addOperation(getReminderOperation)
+    }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         let deviceTokenStr = convertDeviceTokenToString(deviceToken)

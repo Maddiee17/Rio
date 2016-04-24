@@ -174,6 +174,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
     {
         do{
             userDataDict = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? NSDictionary
+            NSUserDefaults.standardUserDefaults().setObject(userDataDict!.objectForKey("userId"), forKey: "userId")
+            NSUserDefaults.standardUserDefaults().synchronize()
+
         }
         catch{
             let strData = String(data: data, encoding: NSUTF8StringEncoding)

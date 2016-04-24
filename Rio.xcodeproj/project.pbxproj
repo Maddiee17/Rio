@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1556CFE164D1611576758AEA /* libPods-Rio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B19C227B51E175583427657 /* libPods-Rio.a */; };
 		9A64BD2C1CC95F5000C9703F /* RemoveReminderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A64BD2B1CC95F5000C9703F /* RemoveReminderOperation.swift */; };
+		9ABE7F831CCCA90E00CE3E72 /* RioRootModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABE7F821CCCA90E00CE3E72 /* RioRootModel.swift */; };
+		9ABE7F851CCCAD1600CE3E72 /* GetReminderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABE7F841CCCAD1600CE3E72 /* GetReminderOperation.swift */; };
+		9ADB1AE21CCCB3AC00D0973C /* RioUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADB1AE11CCCB3AC00D0973C /* RioUtilities.swift */; };
+		9ADB1AE41CCCCFC000D0973C /* RioModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADB1AE31CCCCFC000D0973C /* RioModelMapper.swift */; };
 		9AEE10EA1CC6BD79003EB5AA /* AddReminderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE10E91CC6BD79003EB5AA /* AddReminderOperation.swift */; };
 		9C22A3B21CB82A17009AC334 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C22A3B11CB82A17009AC334 /* UserProfileViewController.swift */; };
 		9C22A3B41CB839B3009AC334 /* RioUserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C22A3B31CB839B3009AC334 /* RioUserProfileModel.swift */; };
@@ -52,13 +55,18 @@
 		9CFF12A41CB9566000287147 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CFF12A31CB9566000287147 /* GoogleService-Info.plist */; };
 		9CFF12A81CBA1B2D00287147 /* RioColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF12A71CBA1B2D00287147 /* RioColor.swift */; };
 		9CFF12AA1CBA2F9B00287147 /* stripes.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9CFF12A91CBA2F9B00287147 /* stripes.jpg */; };
+		C2FD6468E556FD260C2FFC0C /* Pods_Rio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ECF716C0F747C76B88290D1 /* Pods_Rio.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2B19C227B51E175583427657 /* libPods-Rio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Rio.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0ECF716C0F747C76B88290D1 /* Pods_Rio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56F6BCCD5CB43216D9391B2F /* Pods-Rio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Rio/Pods-Rio.debug.xcconfig"; sourceTree = "<group>"; };
 		68A67BE1B0016B64C37786DF /* Pods-Rio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rio.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rio/Pods-Rio.release.xcconfig"; sourceTree = "<group>"; };
 		9A64BD2B1CC95F5000C9703F /* RemoveReminderOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveReminderOperation.swift; sourceTree = "<group>"; };
+		9ABE7F821CCCA90E00CE3E72 /* RioRootModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioRootModel.swift; sourceTree = "<group>"; };
+		9ABE7F841CCCAD1600CE3E72 /* GetReminderOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetReminderOperation.swift; sourceTree = "<group>"; };
+		9ADB1AE11CCCB3AC00D0973C /* RioUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioUtilities.swift; sourceTree = "<group>"; };
+		9ADB1AE31CCCCFC000D0973C /* RioModelMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioModelMapper.swift; sourceTree = "<group>"; };
 		9AEE10E91CC6BD79003EB5AA /* AddReminderOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReminderOperation.swift; sourceTree = "<group>"; };
 		9C22A3B11CB82A17009AC334 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		9C22A3B31CB839B3009AC334 /* RioUserProfileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioUserProfileModel.swift; sourceTree = "<group>"; };
@@ -121,7 +129,7 @@
 			files = (
 				9CC078531CBFAB6E0010888D /* Twitter.framework in Frameworks */,
 				9C3C7F1B1C63E1EF00E98DA6 /* libsqlite3.tbd in Frameworks */,
-				1556CFE164D1611576758AEA /* libPods-Rio.a in Frameworks */,
+				C2FD6468E556FD260C2FFC0C /* Pods_Rio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,7 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				9CC078521CBFAB6E0010888D /* Twitter.framework */,
-				2B19C227B51E175583427657 /* libPods-Rio.a */,
+				0ECF716C0F747C76B88290D1 /* Pods_Rio.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -146,11 +154,20 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9ADB1AE01CCCB39300D0973C /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				9ADB1AE11CCCB3AC00D0973C /* RioUtilities.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		9AEE10E81CC6BD59003EB5AA /* Operation */ = {
 			isa = PBXGroup;
 			children = (
 				9AEE10E91CC6BD79003EB5AA /* AddReminderOperation.swift */,
 				9A64BD2B1CC95F5000C9703F /* RemoveReminderOperation.swift */,
+				9ABE7F841CCCAD1600CE3E72 /* GetReminderOperation.swift */,
 			);
 			path = Operation;
 			sourceTree = "<group>";
@@ -201,6 +218,7 @@
 		9C3C7F071C63E09B00E98DA6 /* Rio */ = {
 			isa = PBXGroup;
 			children = (
+				9ADB1AE01CCCB39300D0973C /* Utilities */,
 				9C555E2A1CC16B0E005F1F2D /* Rio.entitlements */,
 				9CD5459A1CBAB08A007F6D8F /* WSManager */,
 				9CFF12A61CBA1A7900287147 /* SupportingFiles */,
@@ -246,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				9C3C7F391C65FE7C00E98DA6 /* RioResultSet.swift */,
+				9ADB1AE31CCCCFC000D0973C /* RioModelMapper.swift */,
 				9C3C7F341C65E91E00E98DA6 /* RioDatabaseManager.swift */,
 				9C3C7F301C63EC2500E98DA6 /* Rio_DB.sqlite */,
 				9C3C7F3B1C65FEFB00E98DA6 /* RioDatabaseInteractor.swift */,
@@ -260,6 +279,7 @@
 				9C3C7F3D1C66475600E98DA6 /* RioEventModel.swift */,
 				9CBC43271C6F1A4000A08437 /* RioSubCategoryModel.swift */,
 				9C22A3B31CB839B3009AC334 /* RioUserProfileModel.swift */,
+				9ABE7F821CCCA90E00CE3E72 /* RioRootModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -492,9 +512,11 @@
 				9CC0784D1CBF78970010888D /* TwitterAppAuth.swift in Sources */,
 				9C3C7F351C65E91E00E98DA6 /* RioDatabaseManager.swift in Sources */,
 				9CBC43241C6CD56700A08437 /* CountdownTimerView.swift in Sources */,
+				9ABE7F851CCCAD1600CE3E72 /* GetReminderOperation.swift in Sources */,
 				9C3C7F3A1C65FE7C00E98DA6 /* RioResultSet.swift in Sources */,
 				9C3C7F2C1C63E28900E98DA6 /* FMDatabaseQueue.m in Sources */,
 				9AEE10EA1CC6BD79003EB5AA /* AddReminderOperation.swift in Sources */,
+				9ADB1AE41CCCCFC000D0973C /* RioModelMapper.swift in Sources */,
 				9C260A4A1CB443CE00CB42EE /* PopoverViewController.swift in Sources */,
 				9A64BD2C1CC95F5000C9703F /* RemoveReminderOperation.swift in Sources */,
 				9C260A691CB457B800CB42EE /* IndusSettingsTableViewController.swift in Sources */,
@@ -505,11 +527,13 @@
 				9C3C7F381C65FD5800E98DA6 /* RioCategoryModel.swift in Sources */,
 				9CFF12A81CBA1B2D00287147 /* RioColor.swift in Sources */,
 				9C555E301CC4D37C005F1F2D /* FavoritesViewController.swift in Sources */,
+				9ABE7F831CCCA90E00CE3E72 /* RioRootModel.swift in Sources */,
 				9CC078511CBFA7AF0010888D /* TweetsCell.swift in Sources */,
 				9C555E2C1CC214C5005F1F2D /* LeftNavViewController.swift in Sources */,
 				9C3C7F2A1C63E28900E98DA6 /* FMDatabase.m in Sources */,
 				9C260A741CB6C2C900CB42EE /* LoginViewController.swift in Sources */,
 				9CBC43261C6F117E00A08437 /* SubCategoryViewController.swift in Sources */,
+				9ADB1AE21CCCB3AC00D0973C /* RioUtilities.swift in Sources */,
 				9C3C7F0B1C63E09B00E98DA6 /* CategoryListViewController.swift in Sources */,
 				9CC0784F1CBFA3F50010888D /* HomeViewController.swift in Sources */,
 				9C3C7F3E1C66475600E98DA6 /* RioEventModel.swift in Sources */,

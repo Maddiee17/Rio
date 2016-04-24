@@ -75,6 +75,8 @@ class UserProfileViewController: UIViewController {
         FBSDKLoginManager().logOut()
         GIDSignIn.sharedInstance().signOut()
         dataBaseInteractor.clearUserProfileTable()
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("userId")
+        NSUserDefaults.standardUserDefaults().synchronize()
         let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let loginVC = storyBoard.instantiateViewControllerWithIdentifier("LoginVC")
         self.navigationController?.presentViewController(loginVC, animated: true, completion: nil)
