@@ -1,6 +1,6 @@
 //
-//  IndusSettingsDetailController.swift
-//  Indus
+//  SettingsDetailController.swift
+//  Rio
 //
 //  Created by Madhur Mohta on 19/01/2016.
 //  Copyright © 2016 Madhur Mohta. All rights reserved.
@@ -9,16 +9,16 @@
 import UIKit
 
 let kAlertFirstDate = "AlertFirstDate"
-let kAlertSecondDate = "AlertSecondDate"
 let kNone = "None"
-let kOneDayBeforeDue = "1 Day Before Due"
+let kOneHrBeforeDue = "1 Hour Before"
 let kSettingsDetails = "Settings Detail"
 
 let dayValueDict = ["None":"0", "1 Hour Before": "1", "2 Hours Before": "2", "3 Hours Before":"3"]
+let epochValues = [1 : "3600000" , 2 : "7200000" , 3 : "1080000"]
 
 protocol SettingsDetailDelegate{
     
-    func selectedValueForAlert(value:String, isFirstAlert:Bool)
+    func selectedValueForAlert(value:String)
 }
 
 /**
@@ -28,16 +28,14 @@ Popoulate the setting detail view controller
  */
 
 
-class IndusSettingsDetailController: UITableViewController {
+class SettingsDetailController: UITableViewController {
     
     var firstAlertValue : String?
     var secondAlertValue : String?
     var checkedIndexPath : NSIndexPath?
     var delegate:SettingsDetailDelegate?
-    var isFirstAlert : Bool?
 
     var indexOfCheckMarkForFirstAlert : Int?
-    var indexOfCheckMarkForSecondAlert : Int?
     
     var selectedIndexPath: NSIndexPath?
     
@@ -79,12 +77,7 @@ class IndusSettingsDetailController: UITableViewController {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         let cellLabel = cell?.textLabel?.text!
         
-        if(isFirstAlert == true){
             indexOfCheckMarkForFirstAlert = Int((dayValueDict as NSDictionary).valueForKey(cellLabel!)! as! String)
-        }
-        else {
-            indexOfCheckMarkForSecondAlert = Int((dayValueDict as NSDictionary).valueForKey(cellLabel!)! as! String)
-        }
         
         if selectedIndexPath != nil {
             removeCheckmark(selectedIndexPath!)
@@ -92,46 +85,28 @@ class IndusSettingsDetailController: UITableViewController {
         
         placeCheckmark(indexPath)
         selectedIndexPath = indexPath
-        delegate?.selectedValueForAlert(cellLabel!, isFirstAlert: isFirstAlert!)
+        delegate?.selectedValueForAlert(cellLabel!)
         rescheduleNotification()
         self.navigationController?.popViewControllerAnimated(true)
     }
     
     func setUpIndexPath()
     {
-        if(isFirstAlert == true){
-            firstAlertValue = NSUserDefaults.standardUserDefaults().stringForKey(kAlertFirstDate)
-            if(firstAlertValue != nil){
-                indexOfCheckMarkForFirstAlert = Int(dayValueDict[firstAlertValue!]!)
-            }
-            else {
-                indexOfCheckMarkForFirstAlert = 1
-            }
+        firstAlertValue = NSUserDefaults.standardUserDefaults().stringForKey(kAlertFirstDate)
+        if(firstAlertValue != nil){
+            indexOfCheckMarkForFirstAlert = Int(dayValueDict[firstAlertValue!]!)
         }
-        else {
-            secondAlertValue = NSUserDefaults.standardUserDefaults().stringForKey(kAlertSecondDate)
-            
-            if(secondAlertValue != nil){
-                indexOfCheckMarkForSecondAlert = Int(dayValueDict[secondAlertValue!]!)
-            }
-            else {
-                indexOfCheckMarkForSecondAlert = 0
-            }
+        else{
+            indexOfCheckMarkForFirstAlert = 0
         }
     }
     
     func setUpData()
-    {        
-        if(isFirstAlert == true){
+    {
             self.title = "Alert"
-        }
-        else {
-            self.title = "Second Alert"
-        }
 
         var indexPathForCell : NSIndexPath?
 
-        if(isFirstAlert == true){
 
             if(indexOfCheckMarkForFirstAlert != 0)
             {
@@ -141,18 +116,6 @@ class IndusSettingsDetailController: UITableViewController {
             {
                 indexPathForCell = NSIndexPath(forRow: indexOfCheckMarkForFirstAlert!, inSection: 0)
             }
-        }
-        else {
-            if(indexOfCheckMarkForSecondAlert != 0)
-            {
-                indexPathForCell = NSIndexPath(forRow: indexOfCheckMarkForSecondAlert!-1, inSection: 1)
-            }
-            else{
-                indexPathForCell = NSIndexPath(forRow: indexOfCheckMarkForSecondAlert!, inSection: 0)
-            }
-
-        }
-        
         selectedIndexPath = indexPathForCell
         placeCheckmark(selectedIndexPath!)
 

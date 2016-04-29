@@ -1,6 +1,6 @@
 //
-//  IndusSettingsTableViewController.swift
-//  Indus
+//  SettingsTableViewController.swift
+//  Rio
 //
 //  Created by Madhur Mohta on 19/01/2016.
 //  Copyright © 2016 Madhur Mohta. All rights reserved.
@@ -24,8 +24,7 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
 
     var performSegue = false
     var firstAlertLabel : String?
-    var secondAlertLabel : String?
-//    var dataManager : IndusCourseDataManager! = IndusCourseDataManager()
+    var oldHrs : String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,8 +43,36 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.performSegue = false
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeActive", name: UIApplicationWillEnterForegroundNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsTableViewController.didBecomeActive), name: UIApplicationWillEnterForegroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsTableViewController.resetToOldTime), name: "updateNotificationError", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsTableViewController.resetToNewTime), name: "updateNotificationSuccess", object: nil)
+        
+        
+        if let alertHrs =  NSUserDefaults.standardUserDefaults().stringForKey(kAlertFirstDate){
+            oldHrs = alertHrs
+        }
+        else{
+            oldHrs = "1 Hour Before"
+        }
     }
+    
+    func resetToOldTime()
+    {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.firstAlertLabel = self.oldHrs
+            self.tableView.reloadData()
+        }
+    }
+    
+    func resetToNewTime()
+    {
+        dispatch_async(dispatch_get_main_queue()) { 
+            self.oldHrs = self.firstAlertLabel
+            self.tableView.reloadData()
+        }
+    }
+
     
     func setupLeftMenuButton() {
         let leftDrawerButton = MMDrawerBarButtonItem(target: self, action: #selector(HomeViewController.leftDrawerButtonPress(_:)))
@@ -60,34 +87,27 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
         super.viewWillDisappear(animated)
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationWillEnterForegroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "updateNotificationSuccess", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "updateNotificationError", object: nil)
+
     }
     
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        let stringFromUserDefaultsForFirstAlert = NSUserDefaults.standardUserDefaults().stringForKey(kAlertFirstDate)
-        
-        if(section == 0) {
-            return 2
-        }
-        return 1
+        return 2
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if(indexPath.section == 0 && indexPath.row == 1)
-        {
-            performSegue = true
-            self.performSegueWithIdentifier("settingSegue", sender: self)
-        }
-        else if(indexPath.section == 0 && indexPath.row == 2)
         {
             performSegue = true
             self.performSegueWithIdentifier("settingSegue", sender: self)
@@ -138,19 +158,24 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
         return kNo
     }
 
-    func selectedValueForAlert(value:String, isFirstAlert:Bool)
+    func selectedValueForAlert(value:String)
     {
-        if(isFirstAlert == true)
-        {
-            firstAlertLabel = value
-            NSUserDefaults.standardUserDefaults().setObject(firstAlertLabel, forKey: kAlertFirstDate)
-        }
-        else{
-            secondAlertLabel = value
-            NSUserDefaults.standardUserDefaults().setObject(secondAlertLabel, forKey: kAlertSecondDate)
-        }
+        
+        firstAlertLabel = value
+        NSUserDefaults.standardUserDefaults().setObject(firstAlertLabel, forKey: kAlertFirstDate)
+        NSUserDefaults.standardUserDefaults().synchronize()
+        updateReminderTimeForUser(value)
         self.tableView.reloadData()
-
+        
+    }
+    
+    func updateReminderTimeForUser(timeForReminder : String)
+    {
+        let hoursBefore = Int(dayValueDict[timeForReminder]!)
+        let epochTimestamp = epochValues[hoursBefore!]
+        
+        let operation = UpdateReminderOperation(epochTS: epochTimestamp!)
+        RioRootModel.sharedInstance.backgroundQueue.addOperation(operation)
     }
     
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool
@@ -171,7 +196,7 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
                 cell!.detailTextLabel?.text = notificationStatus()
             case 1:
                 cell!.textLabel?.text = "Alert"
-                cell!.detailTextLabel?.text = NSUserDefaults.standardUserDefaults().stringForKey(kAlertFirstDate) ?? kOneDayBeforeDue
+                cell!.detailTextLabel?.text = NSUserDefaults.standardUserDefaults().stringForKey(kAlertFirstDate) ?? kOneHrBeforeDue
                 cell!.accessoryType = .DisclosureIndicator
             default:
                 cell!.textLabel?.text = ""
@@ -179,5 +204,14 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
         }
         return cell!
     }
-
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "settingSegue"
+        {
+            let settingsDetails = segue.destinationViewController as! SettingsDetailController
+            settingsDetails.delegate = self
+        }
+    }
+    
 }

@@ -44,12 +44,15 @@ class UserProfileViewController: UIViewController {
                 self.nameLabel.text = self.userProfileArray?.first?.name
                 let photo = self.userProfileArray?.first?.photoUrl
                 let photoURL = NSURL(string: photo!)
-                self.avatarImage!.image = UIImage(data: NSData(contentsOfURL: photoURL!)!)
+                if (Reachability.isConnectedToNetwork()){
+                    self.avatarImage!.image = UIImage(data: NSData(contentsOfURL: photoURL!)!)
+                }
             })
         }
-        
-        fetchUserProfilePic()
-        
+        if (Reachability.isConnectedToNetwork()){
+            
+            fetchUserProfilePic()
+        }
     }
 
     func fetchUserProfilePic() {

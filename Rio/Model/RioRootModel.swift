@@ -3,14 +3,13 @@
 //  Rio
 //
 //  Created by Guesst on 24/04/2016.
-//  Copyright © 2016 Pearson_3. All rights reserved.
+//  Copyright © 2016 Madhur. All rights reserved.
 //
 
 import UIKit
 
 class RioRootModel: NSObject {
-    
-    
+
     
     class var sharedInstance: RioRootModel {
         struct Singleton {
@@ -21,7 +20,7 @@ class RioRootModel: NSObject {
     
     var favoritesArray : NSArray?
     var addedReminderArray : [String]?
-    
+    var backgroundQueue = NSOperationQueue()    
     
     func appendSnoToNotificationEnabledArray(sno:String) -> [String] {
         

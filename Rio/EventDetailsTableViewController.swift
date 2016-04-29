@@ -88,7 +88,9 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
     
     func findAddedReminders()
     {
-        self.notificationEnabledCells = RioRootModel.sharedInstance.addedReminderArray! 
+        if let remidersArray =  RioRootModel.sharedInstance.addedReminderArray{
+            self.notificationEnabledCells = remidersArray
+        }
     }
     
     func filterDescription(actualString:String) -> String{

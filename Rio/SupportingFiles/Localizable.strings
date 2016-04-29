@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  Rio
+
+  Created by Madhur Mohta on 30/04/2016.
+  Copyright © 2016 Madhur. All rights reserved.
+*/
+
+
+// Internet Error
+
+"Network Error" = "Network Error";
+"Network Error Message" = "No internet connection available. Check your internet connection and try again.";

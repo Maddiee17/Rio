@@ -1,21 +1,23 @@
 //
-//  GetReminderOperation.swift
+//  UpdateReminderOperation.swift
 //  Rio
 //
-//  Created by Guesst on 24/04/2016.
+//  Created by Madhur Mohta on 29/04/2016.
 //  Copyright © 2016 Madhur. All rights reserved.
 //
 
 import UIKit
 
-class GetReminderOperation: NSOperation {
+class UpdateReminderOperation: NSOperation {
 
-    var manager = WSManager.sharedInstance
     
-    override init(){
+    var manager = WSManager.sharedInstance
+    var epochTS : String?
+    
+    init(epochTS:String){
         
+        self.epochTS = epochTS
         super.init()
-        
     }
     
     override func main() {
@@ -30,13 +32,7 @@ class GetReminderOperation: NSOperation {
     
     func sync(){
         
-        manager.getReminders({ (response) in
-            
-            RioRootModel.sharedInstance.addedReminderArray = response as? [String]
-            
-            }) { (error) in
-                print("got get reminder error")
-        }
+        manager.updateReminderTime(epochTS!)
     }
     
     override func cancel() {

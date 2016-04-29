@@ -18,20 +18,29 @@ class FavoritesViewController: UIViewController {
         super.viewDidLoad()
         
         setupLeftMenuButton()
-        KVNProgress.showWithStatus("Loading Favourites..")
-        manager.getReminders({ (model) in
-            print(model)
-            self.reminderArray = self.sortArray(RioRootModel.sharedInstance.favoritesArray!)
-            dispatch_async(dispatch_get_main_queue(), {
-                self.tableView.reloadData()
-                KVNProgress.dismiss()
-            })
-        }) { (error) in
-                print(error)
-            KVNProgress.showErrorWithStatus("Failed Loading Favourites..")
-        }
-
+       
         // Do any additional setup after loading the view.
+    }
+    
+    func setUp() {
+        if Reachability.isConnectedToNetwork() {
+            
+            KVNProgress.showWithStatus("Loading Favourites..")
+            manager.getReminders({ (model) in
+                print(model)
+                self.reminderArray = self.sortArray(RioRootModel.sharedInstance.favoritesArray!)
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.tableView.reloadData()
+                    KVNProgress.dismiss()
+                })
+            }) { (error) in
+                print(error)
+                KVNProgress.showErrorWithStatus("Failed Loading Favourites..")
+            }
+        }
+        else{
+            RioUtilities.sharedInstance.displayAlertView("Network Error".localized, messageString: "Network Error Message".localized)
+        }
     }
     
     func sortArray(reminderArray:NSArray) -> NSArray{

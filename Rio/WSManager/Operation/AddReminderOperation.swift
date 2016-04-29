@@ -3,7 +3,7 @@
 //  Rio
 //
 //  Created by Guesst on 20/04/2016.
-//  Copyright © 2016 Pearson_3. All rights reserved.
+//  Copyright © 2016 Madhur. All rights reserved.
 //
 
 import UIKit

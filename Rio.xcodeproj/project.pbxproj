@@ -56,6 +56,10 @@
 		9CFF12A41CB9566000287147 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CFF12A31CB9566000287147 /* GoogleService-Info.plist */; };
 		9CFF12A81CBA1B2D00287147 /* RioColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF12A71CBA1B2D00287147 /* RioColor.swift */; };
 		9CFF12AA1CBA2F9B00287147 /* stripes.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9CFF12A91CBA2F9B00287147 /* stripes.jpg */; };
+		F60982E11CD3901A004D8B4B /* UpdateReminderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60982E01CD3901A004D8B4B /* UpdateReminderOperation.swift */; };
+		F60982E31CD3EE9F004D8B4B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60982E21CD3EE9F004D8B4B /* Reachability.swift */; };
+		F60982E51CD3F3D0004D8B4B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F60982E41CD3F3D0004D8B4B /* Localizable.strings */; };
+		F60982E71CD3F45F004D8B4B /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60982E61CD3F45F004D8B4B /* String+Localization.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +124,10 @@
 		9CFF12A71CBA1B2D00287147 /* RioColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioColor.swift; sourceTree = "<group>"; };
 		9CFF12A91CBA2F9B00287147 /* stripes.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = stripes.jpg; sourceTree = "<group>"; };
 		D28A1B99929314AF130632D3 /* libPods-Rio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Rio.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F60982E01CD3901A004D8B4B /* UpdateReminderOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateReminderOperation.swift; sourceTree = "<group>"; };
+		F60982E21CD3EE9F004D8B4B /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		F60982E41CD3F3D0004D8B4B /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		F60982E61CD3F45F004D8B4B /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +176,7 @@
 				9AEE10E91CC6BD79003EB5AA /* AddReminderOperation.swift */,
 				9A64BD2B1CC95F5000C9703F /* RemoveReminderOperation.swift */,
 				9ABE7F841CCCAD1600CE3E72 /* GetReminderOperation.swift */,
+				F60982E01CD3901A004D8B4B /* UpdateReminderOperation.swift */,
 			);
 			path = Operation;
 			sourceTree = "<group>";
@@ -324,6 +333,7 @@
 				9AEE10E81CC6BD59003EB5AA /* Operation */,
 				9CD5459B1CBAB129007F6D8F /* WSManager.swift */,
 				9CC0784C1CBF78970010888D /* TwitterAppAuth.swift */,
+				F60982E21CD3EE9F004D8B4B /* Reachability.swift */,
 			);
 			path = WSManager;
 			sourceTree = "<group>";
@@ -351,6 +361,8 @@
 				9C3C7F111C63E09B00E98DA6 /* LaunchScreen.storyboard */,
 				9C3C7F141C63E09B00E98DA6 /* Info.plist */,
 				9C3C7F0F1C63E09B00E98DA6 /* Assets.xcassets */,
+				F60982E61CD3F45F004D8B4B /* String+Localization.swift */,
+				F60982E41CD3F3D0004D8B4B /* Localizable.strings */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -434,6 +446,7 @@
 				9C3C7F131C63E09B00E98DA6 /* LaunchScreen.storyboard in Resources */,
 				9CC0785B1CC0CE1E0010888D /* page.png in Resources */,
 				9C3C7F101C63E09B00E98DA6 /* Assets.xcassets in Resources */,
+				F60982E51CD3F3D0004D8B4B /* Localizable.strings in Resources */,
 				9CFF12A21CB90DA400287147 /* olympic.jpg in Resources */,
 				9CFF12AA1CBA2F9B00287147 /* stripes.jpg in Resources */,
 				9C3C7F0E1C63E09B00E98DA6 /* Main.storyboard in Resources */,
@@ -525,6 +538,7 @@
 				9C6AAC2B1C9481B200BB0585 /* EventCell.swift in Sources */,
 				9CBC43281C6F1A4000A08437 /* RioSubCategoryModel.swift in Sources */,
 				9C3C7F381C65FD5800E98DA6 /* RioCategoryModel.swift in Sources */,
+				F60982E11CD3901A004D8B4B /* UpdateReminderOperation.swift in Sources */,
 				9CFF12A81CBA1B2D00287147 /* RioColor.swift in Sources */,
 				9C555E301CC4D37C005F1F2D /* FavoritesViewController.swift in Sources */,
 				9ABE7F831CCCA90E00CE3E72 /* RioRootModel.swift in Sources */,
@@ -546,6 +560,8 @@
 				9C3C7F2D1C63E28900E98DA6 /* FMDatabaseAdditions.m in Sources */,
 				9C6AAC271C947C1500BB0585 /* EventDetailsTableViewController.swift in Sources */,
 				9C22A3B41CB839B3009AC334 /* RioUserProfileModel.swift in Sources */,
+				F60982E31CD3EE9F004D8B4B /* Reachability.swift in Sources */,
+				F60982E71CD3F45F004D8B4B /* String+Localization.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

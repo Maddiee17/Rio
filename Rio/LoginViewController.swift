@@ -42,6 +42,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
     }
     // MARK: - FB Delegates
 
+
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         
         if (FBSDKAccessToken.currentAccessToken() != nil) {
@@ -50,16 +51,30 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
             FBSDKGraphRequest(graphPath: "\(result.token.userID)", parameters: ["fields" : "id,first_name,last_name,email,gender,picture,timezone"], HTTPMethod: "GET").startWithCompletionHandler({ (connection, result, error) -> Void in
                 
                 if (error == nil) {
-                    self.completeLoginCalls(result as! Dictionary<String, AnyObject>, isFacebookLogin: true)
+                    if(Reachability.isConnectedToNetwork()){
+                        self.completeLoginCalls(result as! Dictionary<String, AnyObject>, isFacebookLogin: true)
+                    }
+                    else{
+                        RioUtilities.sharedInstance.displayAlertView("Network Error".localized, messageString: "Network Error Message".localized)
+                    }
                 }
             })
         }
     }
     
+//    func loginButtonWillLogin(loginButton: FBSDKLoginButton!) -> Bool {
+//        if Reachability.isConnectedToNetwork() {
+//            return true
+//        }
+//        else{
+//            //RioUtilities.sharedInstance.displayAlertView("Network Error".localized, messageString: "Network Error Message".localized)
+//            return false
+//        }
+//    }
     
     
     // MARK: - Google Delegates
-
+    
     func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
         withError error: NSError!) {
             if (error == nil) {

@@ -23,7 +23,6 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = "Live Feeds"
-        KVNProgress.showWithStatus("Loading Live Feeds..")
         setupLeftMenuButton()
         setUpSlideShow()
         setUpData()
@@ -52,31 +51,36 @@ class HomeViewController: UIViewController {
     
     func setUpData()
     {
-        wsManager.getRecentTweets("en", sucessBlock: { (tweets) -> Void in
-            
-            do{
-                let results: NSDictionary  = try NSJSONSerialization.JSONObjectWithData(tweets as! NSData, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
-                print(results)
-                let statusArray = results.objectForKey("statuses") as! [AnyObject]
-                self.tweetData = TWTRTweet.tweetsWithJSONArray(statusArray)
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    KVNProgress.dismiss()
-                    self.refreshControl?.endRefreshing()
-                    self.slideShow.start()
-                    self.tableView.hidden = false
-                    self.tableView.reloadData()
-                })
-            }
-            catch {
-                KVNProgress.showErrorWithStatus("Error fetching Tweets")
-                print(error)
-            }
-            
+        if Reachability.isConnectedToNetwork() {
+            KVNProgress.showWithStatus("Loading Live Feeds..")
+            wsManager.getRecentTweets("en", sucessBlock: { (tweets) -> Void in
+                
+                do{
+                    let results: NSDictionary  = try NSJSONSerialization.JSONObjectWithData(tweets as! NSData, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
+                    print(results)
+                    let statusArray = results.objectForKey("statuses") as! [AnyObject]
+                    self.tweetData = TWTRTweet.tweetsWithJSONArray(statusArray)
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        KVNProgress.dismiss()
+                        self.refreshControl?.endRefreshing()
+                        self.slideShow.start()
+                        self.tableView.hidden = false
+                        self.tableView.reloadData()
+                    })
+                }
+                catch {
+                    KVNProgress.showErrorWithStatus("Error fetching Tweets")
+                    print(error)
+                }
+                
             }) { (error) -> Void in
                 KVNProgress.showErrorWithStatus("Error fetching Tweets")
                 print(error)
+            }
         }
-
+        else {
+            RioUtilities.sharedInstance.displayAlertView("Network Error".localized, messageString: "Network Error Message".localized)
+        }
     }
 
     override func didReceiveMemoryWarning() {

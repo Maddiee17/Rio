@@ -16,11 +16,15 @@ var kTwitterAuthAPI: String = "https://api.twitter.com/oauth2/token"
 
 var kTweetsAPI : String = "https://api.twitter.com/1.1/search/tweets.json?q=Olympics%2C"
 
-let kAddReminderURL = "http://ec2-52-37-90-104.us-west-2.compute.amazonaws.com/olympics-scheduler/notifyScheduler/addReminder"
+let kAddReminderURL = "notifyScheduler/addReminder"
 
-let kGetReminderURL = "http://ec2-52-37-90-104.us-west-2.compute.amazonaws.com/olympics-scheduler/notifyScheduler/getReminders?userId=%@"
+let kGetReminderURL = "notifyScheduler/getReminders?userId=%@"
 
-let kRemoveReminderURL = "http://ec2-52-37-90-104.us-west-2.compute.amazonaws.com/olympics-scheduler/notifyScheduler/removeReminder?reminderId=%@"
+let kRemoveReminderURL = "notifyScheduler/removeReminder?reminderId=%@"
+
+let kUpdateReminderURL = "user/updateAdvanceNotificationTime"
+
+let kBaseURL = "http://ec2-52-37-90-104.us-west-2.compute.amazonaws.com/olympics-scheduler/%@"
 
 let kRequestTimeOutInterval = 30.0
 
@@ -95,16 +99,16 @@ class WSManager: NSObject {
     func getReminders(successBlock:((AnyObject) -> Void), errorBlock:((AnyObject) -> Void))
     {
         print(NSUserDefaults.standardUserDefaults().stringForKey("userId"))
-        let request = NSMutableURLRequest(URL: NSURL(string: String(format: kGetReminderURL, NSUserDefaults.standardUserDefaults().stringForKey("userId")!))!)
+        let getReminderURL = String(format: kBaseURL, kGetReminderURL)
+        let request = NSMutableURLRequest(URL: NSURL(string: String(format: getReminderURL, NSUserDefaults.standardUserDefaults().stringForKey("userId")!))!)
         print("GET Reminders URL *****************",request.URL)
         request.HTTPMethod = "GET"
-//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         self.performURLSessionForTaskForRequest(request, successBlock: { (response) -> Void in
             
             print(response)
-            do{
-                let results: NSDictionary  = try NSJSONSerialization.JSONObjectWithData(response as! NSData, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
+                let results: NSDictionary = RioUtilities.sharedInstance.convertDataToDict(response as! NSData)
                 print(results)
                 var serialNosArray : [String]?
                 if let reminders = results["reminderList"] as? NSArray{
@@ -122,10 +126,6 @@ class WSManager: NSObject {
                     serialNosArray = RioUtilities.sharedInstance.filterSerialNoFromAddedReminders(reminders)
                     successBlock(serialNosArray!)
                 }
-            }
-            catch{
-                print("JSON error")
-            }
 
         }) { (error) -> Void in
             print(error)
@@ -134,12 +134,49 @@ class WSManager: NSObject {
         
     }
     
+    
+    func updateReminderTime(timestamp : String)
+    {
+        let updateReminderURL = String(format: kBaseURL, kUpdateReminderURL)
+        var data : NSData?
+        let userId = NSUserDefaults.standardUserDefaults().objectForKey("userId")
+        
+        let paramsDict = ["userId" : userId!, "advanceNotificationTime" : timestamp] as NSDictionary
+        do{
+            data = try NSJSONSerialization.dataWithJSONObject(paramsDict, options: NSJSONWritingOptions.PrettyPrinted)
+        }
+        catch{
+            print("JSON error")
+        }
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: updateReminderURL)!)
+        request.HTTPMethod = "POST"
+        request.HTTPBody = data!
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        self.performURLSessionForTaskForRequest(request, successBlock: { (response) in
+            let results: NSDictionary = RioUtilities.sharedInstance.convertDataToDict(response as! NSData)
+            print(results)
+            NSNotificationCenter.defaultCenter().postNotificationName("updateNotificationSuccess", object: nil, userInfo:paramsDict as [NSObject : AnyObject])
+            
+        }) { (error) in
+            print(error)
+            dispatch_async(dispatch_get_main_queue(), {
+                NSNotificationCenter.defaultCenter().postNotificationName("updateNotificationError", object: nil, userInfo:paramsDict as [NSObject : AnyObject])
+            })
+        }
+        
+    }
+    
     func addReminderForEvent(eventModel:RioEventModel)
     {
-        let request = NSMutableURLRequest(URL: NSURL(string: kAddReminderURL)!)
+        let addReminderURL = String(format: kBaseURL, kAddReminderURL)
+
+        let request = NSMutableURLRequest(URL: NSURL(string: addReminderURL)!)
         //let calendar = NSCalendar.currentCalendar()
 //        let date = calendar.dateByAddingUnit(.Minute, value: 2, toDate: NSDate(), options: [])
-        let epochFireDate = String(format: "%.0f",(self.calculateFireDate(eventModel).timeIntervalSince1970) * 1000)
+        let epochFireDate = String(format: "%.0f",(RioUtilities.sharedInstance.calculateFireDate(eventModel).timeIntervalSince1970) * 1000)
         let userId = NSUserDefaults.standardUserDefaults().objectForKey("userId")
         
         let paramsForCall = ["userId": userId!, "language": "en", "eventName":eventModel.Discipline!, "eventVenue": eventModel.VenueName!, "eventDetails":eventModel.Description!, "scheduledDateTime":epochFireDate, "isMedalAvailable": ((eventModel.Medal!) as NSString).boolValue, "eventId": eventModel.Sno!] as NSDictionary
@@ -156,21 +193,12 @@ class WSManager: NSObject {
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         self.performURLSessionForTaskForRequest(request, successBlock: { (response) -> Void in
             
-            print(response)
-            do{
-                let results: NSDictionary  = try NSJSONSerialization.JSONObjectWithData(response as! NSData, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
-                print(results)
-                let reminderId = results.objectForKey("reminderId") as! String
-                self.dataBaseManager.updateReminderIdInDB(reminderId, serialNo: eventModel.Sno!)
-//                dispatch_async(dispatch_get_main_queue(), { 
-//                    NSNotificationCenter.defaultCenter().postNotificationName("refreshTable", object: nil, userInfo:nil)
-//                })
-            }
-            catch{
-                print("JSON error")
-            }
-
-            }) { (error) -> Void in
+            let results: NSDictionary = RioUtilities.sharedInstance.convertDataToDict(response as! NSData)
+            print(results)
+            let reminderId = results.objectForKey("reminderId") as! String
+            self.dataBaseManager.updateReminderIdInDB(reminderId, serialNo: eventModel.Sno!)
+            
+        }) { (error) -> Void in
                 print(error)
         }
         
@@ -178,7 +206,8 @@ class WSManager: NSObject {
     
     func removeReminder(reminderId:String,serialNo:String)
     {
-        let removeReminderURL = String(format: kRemoveReminderURL, reminderId)
+        let rmReminderURL = String(format: kBaseURL, kRemoveReminderURL)
+        let removeReminderURL = String(format: rmReminderURL, reminderId)
         let request = NSMutableURLRequest(URL: NSURL(string: removeReminderURL)!)
         request.HTTPMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -196,76 +225,6 @@ class WSManager: NSObject {
     }
     
     
-//    func calculateFireDate(rioEventModel:RioEventModel) -> NSDate
-//    {
-//        let date = "15-4-2016"
-//        let startTime = "19:20"
-//        let arrayForTime = startTime.componentsSeparatedByString(":")
-//        let arrayForDates = date.componentsSeparatedByString("-")
-//        
-//        let calender = NSCalendar(identifier:NSCalendarIdentifierGregorian)
-//        let year = Int(arrayForDates[2])
-//        let month = Int(arrayForDates[1])
-//        let day = Int(arrayForDates[0])
-//        let hour = Int(arrayForTime[0])!
-//        let minutes = Int(arrayForTime[1])! + 2
-//        
-//        let dateComponents = NSDateComponents()
-//        dateComponents.day = day!
-//        dateComponents.month = month!
-//        dateComponents.year = year!
-//        dateComponents.hour = hour
-//        dateComponents.minute = minutes
-//        dateComponents.timeZone = NSTimeZone.localTimeZone()
-//        let UTCDate = calender!.dateFromComponents(dateComponents)
-//       // let dateLocal = self.getLocalDate(UTCDate!)
-//        
-//        return UTCDate!
-//    }
-    
-    func calculateFireDate(rioEventModel:RioEventModel) -> NSDate
-    {
-        let date = rioEventModel.Date
-        let startTime = rioEventModel.StartTime
-        let arrayForTime = startTime?.componentsSeparatedByString(":")
-        let arrayForDates = date?.componentsSeparatedByString("-")
-        
-        let calender = NSCalendar(identifier:NSCalendarIdentifierGregorian)
-        let year = Int(arrayForDates![2])
-        let month = Int(arrayForDates![1])
-        let day = Int(arrayForDates![0])
-        let hour = Int(arrayForTime![0])! + 2
-        let minutes = Int(arrayForTime![1])
-        
-        let dateComponents = NSDateComponents()
-        dateComponents.day = day!
-        dateComponents.month = month!
-        dateComponents.year = year!
-        dateComponents.hour = hour
-        dateComponents.minute = minutes!
-        dateComponents.timeZone = NSTimeZone(name: "UTC")
-        let UTCDate = calender!.dateFromComponents(dateComponents)
-        let dateLocal = self.getLocalDate(UTCDate!)
-        
-        return dateLocal
-    }
-
-    
-    func getLocalDate(utcDate:NSDate) -> NSDate
-    {
-        var timeInterval = NSTimeInterval(NSTimeZone.localTimeZone().secondsFromGMT)
-        let timeZoneObj = NSTimeZone.localTimeZone()
-        let isDayLightSavingOn = timeZoneObj.isDaylightSavingTimeForDate(utcDate)
-        if(isDayLightSavingOn == true)
-        {
-            let dayLightTimeInterval = timeZoneObj.daylightSavingTimeOffsetForDate(utcDate)
-            timeInterval -= dayLightTimeInterval
-        }
-        let localdate = utcDate.dateByAddingTimeInterval(timeInterval)
-        return localdate
-    }
-
-    
     func verifyCredentialsAndGetAccessToken(block: (accessToken: String, error: NSError) -> Void)
     {
         let request: NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: kTwitterAuthAPI)!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: kRequestTimeOutInterval)
@@ -277,20 +236,14 @@ class WSManager: NSObject {
         self.performURLSessionForTaskForRequest(request, successBlock: { (response) -> Void in
             
             print(response)
-            do{
-                let results: NSDictionary  = try NSJSONSerialization.JSONObjectWithData(response as! NSData, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
-                print(results)
-                if let tokenValue = results["access_token"] as? String{
-                    NSUserDefaults.standardUserDefaults().setObject(tokenValue, forKey: "twitterBearerToken")
-                    NSUserDefaults.standardUserDefaults().synchronize()
-                }
+            let results: NSDictionary = RioUtilities.sharedInstance.convertDataToDict(response as! NSData)
+            print(results)
+            if let tokenValue = results["access_token"] as? String{
+                NSUserDefaults.standardUserDefaults().setObject(tokenValue, forKey: "twitterBearerToken")
+                NSUserDefaults.standardUserDefaults().synchronize()
             }
-            catch{
-                print("JSON error")
-            }
-            
-            }) { (response) -> Void in
-                print((response as! NSError).localizedDescription)
+        }) { (response) -> Void in
+            print((response as! NSError).localizedDescription)
         }
     }
     
@@ -316,20 +269,24 @@ class WSManager: NSObject {
     
     func performURLSessionForTaskForRequest(urlRequest: NSURLRequest, successBlock : ((AnyObject) -> Void), errorBlock: ((AnyObject) -> Void))
     {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(urlRequest) { (data, response , error) -> Void in
-            if(error == nil){
-                print(response)
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                successBlock(data!)
+        if Reachability.isConnectedToNetwork() {
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+            let session = NSURLSession.sharedSession()
+            let task = session.dataTaskWithRequest(urlRequest) { (data, response , error) -> Void in
+                if(error == nil){
+                    print(response)
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    successBlock(data!)
+                }
+                else {
+                    print("got Error",error)
+                    errorBlock(error!)
+                }
             }
-            else {
-                print("got Error",error)
-                errorBlock(error!)
-            }
+            task.resume()
         }
-        task.resume()
-
+        else{
+            RioUtilities.sharedInstance.displayAlertView("Network Error".localized, messageString: "Network Error Message".localized)
+        }
     }
 }

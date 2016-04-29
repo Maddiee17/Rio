@@ -1,6 +1,6 @@
 //
-//  IndusResultSet.swift
-//  Indus
+//  ResultSet.swift
+//  Rio
 //
 //  Created by Madhur Mohta on 21/10/2015.
 //  Copyright © 2015 Madhur Mohta. All rights reserved.

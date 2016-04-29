@@ -38,12 +38,6 @@ class CategoryListViewController: UIViewController {
         self.mm_drawerController.toggleDrawerSide(.Left, animated: true, completion: { _ in })
     }
 
-    @IBAction func launchSettings(sender: AnyObject)
-    {
-//        settingsWF.settingsPresenter = settingsPresenter
-//        settingsWF.presentSettingsInterfaceFromViewController(self)
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

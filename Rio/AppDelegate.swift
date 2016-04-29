@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var dataBaseInteractor = RioDatabaseInteractor()
     var userProfile : [RioUserProfileModel]?
     var wsManager = WSManager.sharedInstance
-    var backgroundQueue = NSOperationQueue()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -93,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func fetchReminderInBackground()
     {
         let getReminderOperation = GetReminderOperation()
-        backgroundQueue.addOperation(getReminderOperation)
+        RioRootModel.sharedInstance.backgroundQueue.addOperation(getReminderOperation)
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {

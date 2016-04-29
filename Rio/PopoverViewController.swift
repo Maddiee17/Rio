@@ -48,14 +48,14 @@ class PopoverViewController: UIViewController {
             sourceView?.notificationButton.setImage(UIImage(named: "ico-bell-selected"), forState: .Normal)
             let selectedEventModel = manager.notificationButtonTappedModel
             let operation = AddReminderOperation(eventModel: selectedEventModel!)
-            (UIApplication.sharedApplication().delegate as! AppDelegate).backgroundQueue.addOperation(operation)
+            RioRootModel.sharedInstance.backgroundQueue.addOperation(operation)
         }
         else{
             sourceView?.notificationButton.setImage(UIImage(named: "ico-bell"), forState: .Normal)
             let selectedEventModel = manager.notificationButtonTappedModel
             dataBaseInteractor.getReminderId((selectedEventModel?.Sno)!, successBlock: { (reminderId) in
                 let operation = RemoveReminderOperation(reminderId: reminderId, serialNo: (selectedEventModel?.Sno)!)
-                (UIApplication.sharedApplication().delegate as! AppDelegate).backgroundQueue.addOperation(operation)
+                RioRootModel.sharedInstance.backgroundQueue.addOperation(operation)
             })
 
         }
