@@ -24,8 +24,8 @@ class RioUtilities: NSObject {
         
         for (_,element) in remindersArray.enumerate() {
             
-            if let elementValue = (element as! NSDictionary).objectForKey("eventId"){
-                remindersIndex.append(elementValue as! String)
+            if let elementValue = (element as! NSDictionary).objectForKey("eventId") as? String{
+                remindersIndex.append(elementValue )
             }
             
         }

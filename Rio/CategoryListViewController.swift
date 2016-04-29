@@ -24,10 +24,20 @@ class CategoryListViewController: UIViewController {
         self.shyNavBarManager.scrollView = self.categoryTableView;
         self.shyNavBarManager.extensionView = timerView
         self.shyNavBarManager.stickyExtensionView = true
-
+        setupLeftMenuButton()
         fetchCategoryModel()
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    func setupLeftMenuButton() {
+        let leftDrawerButton = MMDrawerBarButtonItem(target: self, action: #selector(HomeViewController.leftDrawerButtonPress(_:)))
+        self.navigationItem.leftBarButtonItem = leftDrawerButton
+    }
+    
+    func leftDrawerButtonPress(leftDrawerButtonPress: AnyObject) {
+        self.mm_drawerController.toggleDrawerSide(.Left, animated: true, completion: { _ in })
+    }
+
     @IBAction func launchSettings(sender: AnyObject)
     {
 //        settingsWF.settingsPresenter = settingsPresenter
@@ -94,6 +104,12 @@ class CategoryListViewController: UIViewController {
 //        }
         
     }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
+        
+        return 70
+    }
+
     
     
     // MARK: - Navigation

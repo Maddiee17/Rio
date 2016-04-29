@@ -20,7 +20,7 @@ It shows the Setting Tableview controller, user can define their own setting
  */
 
 
-class IndusSettingsTableViewController: UITableViewController,SettingsDetailDelegate {
+class SettingsTableViewController: UITableViewController,SettingsDetailDelegate {
 
     var performSegue = false
     var firstAlertLabel : String?
@@ -29,6 +29,7 @@ class IndusSettingsTableViewController: UITableViewController,SettingsDetailDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupLeftMenuButton()
     }
 
     func didBecomeActive() {
@@ -45,11 +46,16 @@ class IndusSettingsTableViewController: UITableViewController,SettingsDetailDele
         self.performSegue = false
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBecomeActive", name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
-    @IBAction func closeSettings(sender: AnyObject)
-    {
-        self .dismissViewControllerAnimated(true, completion: nil)
+    
+    func setupLeftMenuButton() {
+        let leftDrawerButton = MMDrawerBarButtonItem(target: self, action: #selector(HomeViewController.leftDrawerButtonPress(_:)))
+        self.navigationItem.leftBarButtonItem = leftDrawerButton
     }
     
+    func leftDrawerButtonPress(leftDrawerButtonPress: AnyObject) {
+        self.mm_drawerController.toggleDrawerSide(.Left, animated: true, completion: { _ in })
+    }
+
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -60,7 +66,7 @@ class IndusSettingsTableViewController: UITableViewController,SettingsDetailDele
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -68,9 +74,7 @@ class IndusSettingsTableViewController: UITableViewController,SettingsDetailDele
         let stringFromUserDefaultsForFirstAlert = NSUserDefaults.standardUserDefaults().stringForKey(kAlertFirstDate)
         
         if(section == 0) {
-            if(notificationStatus() == kYes) {
-                return (stringFromUserDefaultsForFirstAlert != kNone) ? 3 : 2
-            }
+            return 2
         }
         return 1
     }
@@ -168,10 +172,6 @@ class IndusSettingsTableViewController: UITableViewController,SettingsDetailDele
             case 1:
                 cell!.textLabel?.text = "Alert"
                 cell!.detailTextLabel?.text = NSUserDefaults.standardUserDefaults().stringForKey(kAlertFirstDate) ?? kOneDayBeforeDue
-                cell!.accessoryType = .DisclosureIndicator
-            case 2:
-                cell!.textLabel?.text = "Second Alert"
-                cell!.detailTextLabel?.text = NSUserDefaults.standardUserDefaults().stringForKey(kAlertSecondDate) ?? kNone
                 cell!.accessoryType = .DisclosureIndicator
             default:
                 cell!.textLabel?.text = ""

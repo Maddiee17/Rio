@@ -33,7 +33,9 @@ class LeftNavViewController: UITableViewController {
             case 1:
                 self.mm_drawerController.centerViewController = self.storyboard?.instantiateViewControllerWithIdentifier("favViewController")
             case 2:
-                self.mm_drawerController.centerViewController = self.storyboard?.instantiateViewControllerWithIdentifier("IndusSettingsViewController")
+                self.mm_drawerController.centerViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SettingsViewController")
+            case 3:
+                self.mm_drawerController.centerViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CategoryListViewController")
                 
             default:
                 break

@@ -111,10 +111,10 @@ class WSManager: NSObject {
                     
                     RioRootModel.sharedInstance.favoritesArray = reminders
                     for reminderDict in reminders {
-                        if let reminderIdValue = (reminderDict as! NSDictionary)["reminderId"]{
-                            if let serialNo = (reminderDict as! NSDictionary)["eventId"]{
+                        if let reminderIdValue = (reminderDict as! NSDictionary)["reminderId"] as? String{
+                            if let serialNo = (reminderDict as! NSDictionary)["eventId"] as? String{
                                 
-                                self.dataBaseManager.updateReminderIdInDB(reminderIdValue as! String, serialNo: serialNo as! String)
+                                self.dataBaseManager.updateReminderIdInDB(reminderIdValue, serialNo: serialNo )
                             }
                         }
                         

@@ -21,11 +21,24 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setUpLeftBarButton()
         findAddedReminders()
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadData:", name: "refreshTable", object: nil)
 
     }
+    
+    func setUpLeftBarButton() {
+        
+        let btnBackImage = UIImage(named: "ico-left-arrow")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        let btnBack = UIBarButtonItem(image: btnBackImage, style: .Plain, target: self, action: #selector(EventDetailsTableViewController.backButtonTapped(_:)))
+        self.navigationItem.leftBarButtonItem = btnBack
+    }
+    
+    func backButtonTapped(sender:AnyObject)
+    {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

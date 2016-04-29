@@ -25,6 +25,8 @@ class SubCategoryViewController: UIViewController {
         let view = UIView(frame: CGRectZero)
         self.tableView.tableHeaderView = view
         // Do any additional setup after loading the view.
+        
+        self.setUpLeftBarButton()
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,6 +34,18 @@ class SubCategoryViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func setUpLeftBarButton() {
+        
+        let btnBackImage = UIImage(named: "ico-left-arrow")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        let btnBack = UIBarButtonItem(image: btnBackImage, style: .Plain, target: self, action: #selector(SubCategoryViewController.backButtonTapped(_:)))
+        self.navigationItem.leftBarButtonItem = btnBack
+    }
+    
+    func backButtonTapped(sender:AnyObject)
+    {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+
     // MARK: - DB Fetch
     
     func fetchCategoryModel()
@@ -102,6 +116,11 @@ class SubCategoryViewController: UIViewController {
         
                 }
         
+    }
+
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
+        
+        return 70
     }
 
 

@@ -14,7 +14,7 @@ let kNone = "None"
 let kOneDayBeforeDue = "1 Day Before Due"
 let kSettingsDetails = "Settings Detail"
 
-let dayValueDict = ["None":"0", "1 Day Before Due": "1", "2 Days Before Due": "2", "3 Days Before Due":"3", "4 Days Before Due":"4", "5 Days Before Due" : "5"]
+let dayValueDict = ["None":"0", "1 Hour Before": "1", "2 Hours Before": "2", "3 Hours Before":"3"]
 
 protocol SettingsDetailDelegate{
     
@@ -70,7 +70,7 @@ class IndusSettingsDetailController: UITableViewController {
             return 1
         }
         else {
-            return 5
+            return 3
         }
     }
     
