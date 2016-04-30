@@ -16,10 +16,12 @@ class FavoritesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setUp()
         setupLeftMenuButton()
        
-        // Do any additional setup after loading the view.
+        tableView.sectionHeaderHeight = 5.0;
+        tableView.sectionFooterHeight = 5.0;
+        self.title = "Added Reminders"
     }
     
     func setUp() {
@@ -69,7 +71,9 @@ class FavoritesViewController: UIViewController {
         
         let localDict = self.reminderArray[indexPath.section]
         cell?.eventVenue.text = localDict.objectForKey("eventVenue") as? String
-        cell?.eventName.text = localDict.objectForKey("eventName") as? String
+        cell?.eventName.text = localDict.objectForKey("eventDetails") as? String
+        cell?.eventTime.text = localDict.objectForKey("scheduledDateTime") as? String
+        cell?.eventMedals.text = localDict.objectForKey("isMedalAvailable") as? String
         cell?.notificationButton.setImage(UIImage(named: "ico-bell-selected"), forState: .Normal)
         return cell!
     }

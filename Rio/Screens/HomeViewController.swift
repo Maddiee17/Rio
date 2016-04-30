@@ -51,6 +51,7 @@ class HomeViewController: UIViewController {
     
     func setUpData()
     {
+        var retryCount = 0
         if Reachability.isConnectedToNetwork() {
             KVNProgress.showWithStatus("Loading Live Feeds..")
             wsManager.getRecentTweets("en", sucessBlock: { (tweets) -> Void in
@@ -74,7 +75,14 @@ class HomeViewController: UIViewController {
                 }
                 
             }) { (error) -> Void in
-                KVNProgress.showErrorWithStatus("Error fetching Tweets")
+                retryCount += 1
+                if retryCount < 4 {
+                    KVNProgress.showWithStatus("Retrying fetching Tweets")
+                    self.setUpData()
+                }
+                else {
+                    KVNProgress.showErrorWithStatus("Error fetching Tweets")
+                }
                 print(error)
             }
         }
@@ -129,9 +137,8 @@ class HomeViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
         
+        self.mm_drawerController.centerViewController = segue.destinationViewController
 
     }
 

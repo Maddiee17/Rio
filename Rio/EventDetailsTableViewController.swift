@@ -16,6 +16,7 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
     var cellView : UITableViewCell?
     var notificationButtonTappedCellModel : RioEventModel?
     var notificationEnabledCells = [String]()
+    var popoverController : UIViewController?
     
     @IBOutlet weak var tableView : UITableView!
     
@@ -23,8 +24,12 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         super.viewDidLoad()
         setUpLeftBarButton()
         findAddedReminders()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"reloadData:", name: "refreshTable", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(EventDetailsTableViewController.reloadData(_:)), name: "refreshTable", object: nil)
 
+        tableView.sectionHeaderHeight = 5.0;
+        tableView.sectionFooterHeight = 5.0;
+    
+        self.title = "Event Details"
     }
     
     func setUpLeftBarButton() {
@@ -71,6 +76,8 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         cell.eventTime.text = localObj.StartTime
         cell.eventVenue.text = localObj.VenueName
         cell.eventMedals.text = localObj.Medal
+        cell.eventDate.text = localObj.Date
+    
         cell.eventName.text = filterDescription(localObj.DescriptionLong!)
         if (notificationEnabledCells.contains(localObj.Sno!)) {
             cell.notificationButton.setImage(UIImage(named: "ico-bell-selected"), forState: .Normal)
@@ -108,6 +115,7 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         return croppedString
     }
     
+    
     func notificationButtonTapped(forCell:EventCell)
     {
         cellView = forCell
@@ -139,6 +147,7 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
             self.notificationEnabledCells = RioRootModel.sharedInstance.removeSnoFromNotificationEnabledArray(eventObj.Sno!)
         }
         self.tableView.reloadRowsAtIndexPaths([indexPathOfCell!], withRowAnimation: .Automatic)
+        self.popoverController?.dismissViewControllerAnimated(true, completion: nil)
     }
         
     // MARK: - Navigation
@@ -147,6 +156,7 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "popoverSegue"
         {
+            self.popoverController = segue.destinationViewController
             let popoverPresentationController = segue.destinationViewController.popoverPresentationController
             popoverPresentationController!.sourceView = self.cellView
             popoverPresentationController!.sourceRect = self.frameForButton!

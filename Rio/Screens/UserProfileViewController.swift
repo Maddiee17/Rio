@@ -13,39 +13,39 @@ class UserProfileViewController: UIViewController {
     var userDataDict : NSDictionary?
     var dataBaseInteractor = RioDatabaseInteractor()
     var userProfileArray : [RioUserProfileModel]?
+    let manager = WSManager.sharedInstance
     
     @IBOutlet weak var nameLabel: UILabel!
-    var avatarImage: UIImageView?
+    @IBOutlet weak var avatarImage: UIImageView?
     @IBOutlet weak var goAheadButton : UIButton!
     @IBOutlet weak var profileImageBackgroundView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.avatarImage = UIImageView(frame: CGRectMake(self.profileImageBackgroundView.center.x + 50 ,self.profileImageBackgroundView.center.y - 50, 50, 50))
-        self.avatarImage!.layer.cornerRadius = 25.0
+        //self.avatarImage = UIImageView(frame: CGRectMake((self.profileImageBackgroundView.frame.width)/2 ,(self.profileImageBackgroundView.frame.height)/2, 50, 50))
+        self.avatarImage!.layer.cornerRadius = 5.0
         self.avatarImage?.clipsToBounds = true
         self.navigationController?.navigationBarHidden = true
         self.goAheadButton.layer.cornerRadius = 20.0
         self.goAheadButton.layer.borderColor = UIColor.orangeColor().CGColor
         self.goAheadButton.layer.borderWidth = 1.0
-        self.avatarImage?.layer.borderWidth = 2.0
-        self.avatarImage?.layer.borderColor = UIColor.orangeColor().CGColor
-        self.profileImageBackgroundView.addSubview(self.avatarImage!)
+//        self.avatarImage?.layer.borderWidth = 2.0
+//        self.avatarImage?.layer.borderColor = UIColor.orangeColor().CGColor
+        //self.profileImageBackgroundView.addSubview(self.avatarImage!)
         
         if(userDataDict != nil){
             self.nameLabel.text = userDataDict?.valueForKey("name") as? String
             let photo = userDataDict?.valueForKey("photoUrl") as? String
-            let photoURL = NSURL(string: photo!)
-            self.avatarImage!.image = UIImage(data: NSData(contentsOfURL: photoURL!)!)
+            fetchImage(photo!)
         }
         else {
             self.dataBaseInteractor.fetchUserProfile({ (results) -> Void in
                 self.userProfileArray = results
                 self.nameLabel.text = self.userProfileArray?.first?.name
                 let photo = self.userProfileArray?.first?.photoUrl
-                let photoURL = NSURL(string: photo!)
+//                let photoURL = NSURL(string: photo!)
                 if (Reachability.isConnectedToNetwork()){
-                    self.avatarImage!.image = UIImage(data: NSData(contentsOfURL: photoURL!)!)
+                    self.fetchImage(photo!)
                 }
             })
         }
@@ -53,6 +53,17 @@ class UserProfileViewController: UIViewController {
             
             fetchUserProfilePic()
         }
+    }
+    
+    func fetchImage(url:String) {
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+            self.manager.fetchImageFromURL(url, successBlock: { (data) in
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.avatarImage!.image = UIImage(data: data)
+                })
+            })
+        })
     }
 
     func fetchUserProfilePic() {

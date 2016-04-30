@@ -25,7 +25,7 @@ class SubCategoryViewController: UIViewController {
         let view = UIView(frame: CGRectZero)
         self.tableView.tableHeaderView = view
         // Do any additional setup after loading the view.
-        
+        self.title = "Teams"
         self.setUpLeftBarButton()
     }
 

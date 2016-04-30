@@ -32,6 +32,7 @@ let kRequestTimeOutInterval = 30.0
 
 class WSManager: NSObject {
     
+    
     var dataBaseManager = RioDatabaseInteractor()
     var notificationButtonTappedModel : RioEventModel?
     
@@ -41,6 +42,15 @@ class WSManager: NSObject {
             static let instance = WSManager()
         }
         return Singleton.instance
+    }
+    
+    func fetchImageFromURL(URL:String, successBlock:((NSData)-> Void))
+    {
+        let finalURL = NSURL(string: URL)
+        let imageData = NSData(contentsOfURL: finalURL!)
+        if imageData != nil {
+            successBlock(imageData!)
+        }
     }
     
     func updateDeviceToken(deviceToken:String, email:String) {
@@ -77,7 +87,7 @@ class WSManager: NSObject {
         }
         task.resume()
     }
-    
+
     func getRecentTweets(lang:String, sucessBlock:((AnyObject) ->Void), errorBlock:((AnyObject) -> Void))
     {
         let request = NSMutableURLRequest(URL: NSURL(string: kTweetsAPI)!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 1)
@@ -158,7 +168,10 @@ class WSManager: NSObject {
         self.performURLSessionForTaskForRequest(request, successBlock: { (response) in
             let results: NSDictionary = RioUtilities.sharedInstance.convertDataToDict(response as! NSData)
             print(results)
+            dispatch_async(dispatch_get_main_queue(), {
+
             NSNotificationCenter.defaultCenter().postNotificationName("updateNotificationSuccess", object: nil, userInfo:paramsDict as [NSObject : AnyObject])
+            })
             
         }) { (error) in
             print(error)
@@ -279,7 +292,6 @@ class WSManager: NSObject {
                     successBlock(data!)
                 }
                 else {
-                    print("got Error",error)
                     errorBlock(error!)
                 }
             }
