@@ -10,11 +10,11 @@ import UIKit
 
 let kAlertFirstDate = "AlertFirstDate"
 let kNone = "None"
-let kOneHrBeforeDue = "1 Hour Before"
+let kEventStart = "Event Start"
 let kSettingsDetails = "Settings Detail"
 
-let dayValueDict = ["None":"0", "1 Hour Before": "1", "2 Hours Before": "2", "3 Hours Before":"3"]
-let epochValues = [1 : "3600000" , 2 : "7200000" , 3 : "1080000"]
+let dayValueDict = ["Event Start":"0", "1 Hour Before": "1", "2 Hours Before": "2", "3 Hours Before":"3"]
+let epochValues = [0 : "0000000" , 1 : "3600000" , 2 : "7200000" , 3 : "1080000"]
 
 protocol SettingsDetailDelegate{
     
@@ -42,7 +42,7 @@ class SettingsDetailController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpIndexPath()
-        
+        setUpLeftBarButton()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -50,6 +50,18 @@ class SettingsDetailController: UITableViewController {
         setUpData()
  }
     
+    func setUpLeftBarButton() {
+        
+        let btnBackImage = UIImage(named: "ico-left-arrow")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        let btnBack = UIBarButtonItem(image: btnBackImage, style: .Plain, target: self, action: #selector(SubCategoryViewController.backButtonTapped(_:)))
+        self.navigationItem.leftBarButtonItem = btnBack
+    }
+    
+    func backButtonTapped(sender:AnyObject)
+    {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

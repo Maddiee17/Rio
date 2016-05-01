@@ -13,12 +13,14 @@ class FavoritesViewController: UIViewController {
     @IBOutlet weak var tableView : UITableView!
     let manager = WSManager.sharedInstance
     var reminderArray = NSArray()
+    var centreLabel: UILabel?
+    var disciplineArray = [String]()
+    var splittedDict = Dictionary<String , Array<AnyObject>>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
         setupLeftMenuButton()
-       
         tableView.sectionHeaderHeight = 5.0;
         tableView.sectionFooterHeight = 5.0;
         self.title = "Added Reminders"
@@ -32,17 +34,35 @@ class FavoritesViewController: UIViewController {
                 print(model)
                 self.reminderArray = self.sortArray(RioRootModel.sharedInstance.favoritesArray!)
                 dispatch_async(dispatch_get_main_queue(), {
+                    self.sortDataBasedOnDate()
+                    self.centreLabel?.hidden = true
+                    self.tableView.hidden = false
                     self.tableView.reloadData()
                     KVNProgress.dismiss()
                 })
             }) { (error) in
                 print(error)
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.noDataLabel()
+                    })
                 KVNProgress.showErrorWithStatus("Failed Loading Favourites..")
             }
         }
         else{
             RioUtilities.sharedInstance.displayAlertView("Network Error".localized, messageString: "Network Error Message".localized)
         }
+    }
+    
+    func noDataLabel()  {
+        centreLabel?.removeFromSuperview()
+        centreLabel = UILabel(frame: CGRectMake(0, 0, 300, 50))
+        centreLabel!.translatesAutoresizingMaskIntoConstraints = true
+        centreLabel!.numberOfLines = 2
+        centreLabel!.text = "No Reminders Added"
+        self.view.addSubview(centreLabel!)
+        
+        centreLabel!.center = CGPointMake(self.tableView.bounds.midX, self.tableView.bounds.midY)
+        centreLabel!.autoresizingMask = [UIViewAutoresizing.FlexibleLeftMargin, UIViewAutoresizing.FlexibleRightMargin, UIViewAutoresizing.FlexibleTopMargin, UIViewAutoresizing.FlexibleBottomMargin]
     }
     
     func sortArray(reminderArray:NSArray) -> NSArray{
@@ -69,11 +89,14 @@ class FavoritesViewController: UIViewController {
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("favCell") as? EventCell
         
-        let localDict = self.reminderArray[indexPath.section]
-        cell?.eventVenue.text = localDict.objectForKey("eventVenue") as? String
-        cell?.eventName.text = localDict.objectForKey("eventDetails") as? String
-        cell?.eventTime.text = localDict.objectForKey("scheduledDateTime") as? String
-        cell?.eventMedals.text = localDict.objectForKey("isMedalAvailable") as? String
+        let key = self.disciplineArray[indexPath.section]
+        let localDict = self.splittedDict[key] as! [NSDictionary]
+ 
+//        let localDict = self.reminderArray[indexPath.section]
+        cell?.eventVenue.text = localDict[indexPath.row].objectForKey("eventVenue") as? String
+        cell?.eventName.text =  localDict[indexPath.row].objectForKey("eventDetails") as? String
+        cell?.eventTime.text =  localDict[indexPath.row].objectForKey("scheduledDateTime") as? String
+        cell?.eventMedals.text =  localDict[indexPath.row].objectForKey("isMedalAvailable") as? String
         cell?.notificationButton.setImage(UIImage(named: "ico-bell-selected"), forState: .Normal)
         return cell!
     }
@@ -81,18 +104,47 @@ class FavoritesViewController: UIViewController {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int // Default is 1 if not implemented
     {
         
-        return (reminderArray.count) > 0 ? (reminderArray.count) : 0
+        return self.splittedDict.keys.count ?? 0
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 1
+        let key = self.disciplineArray[section]
+        return (self.splittedDict[key]?.count) ?? 0
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
+    {
+        return 50
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? // fixed font style. use custom view (UILabel) if you want something different
+    {
+        return self.disciplineArray[section]
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
         return 105.0
     }
+    
+    func sortDataBasedOnDate()
+    {
+        for reminderDict in self.reminderArray
+        {
+            if self.disciplineArray.contains(reminderDict.valueForKey("eventName") as! String) == false {
+                self.disciplineArray.append(reminderDict.valueForKey("eventName") as! String)
+            }
+        }
+        for discipline in self.disciplineArray {
+            let predicate = NSPredicate(format: "eventName CONTAINS[cd] %@", discipline)
+             let valuesDict = self.reminderArray.filteredArrayUsingPredicate(predicate)
+                print(valuesDict)
+                splittedDict.updateValue(valuesDict, forKey: discipline)
+        }
+//        print(self.datesArray)
+    }
+
 
     /*
     // MARK: - Navigation

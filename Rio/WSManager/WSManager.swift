@@ -53,20 +53,12 @@ class WSManager: NSObject {
         }
     }
     
-    func updateDeviceToken(deviceToken:String, email:String) {
+    func updateDeviceToken(deviceToken:String, email:String, successBlock : ((AnyObject) -> Void), errorBlock:((AnyObject) ->Void)) {
         
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-
-        var data : NSData?
         
         let paramsDict = ["emailId" : email, "notificationId" : deviceToken] as NSDictionary
-        
-        do{
-            data = try NSJSONSerialization.dataWithJSONObject(paramsDict, options: NSJSONWritingOptions.PrettyPrinted)
-        }
-        catch{
-            print("JSON error")
-        }
+        let data = RioUtilities.sharedInstance.convertDictToData(paramsDict)
         
         let endPointUrl : String = String(format: kBaseLoginURL, "updateNotificationDeviceId")
         let url = NSURL(string: endPointUrl)
@@ -74,19 +66,28 @@ class WSManager: NSObject {
         urlRequest.HTTPMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
-        urlRequest.HTTPBody = data!
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(urlRequest) { (data, response , error) -> Void in
-            if(error == nil){
-                print(response)
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-            }
-            else {
-                print("got Error",error)
-            }
+        urlRequest.HTTPBody = data
+        
+        self.performURLSessionForTaskForRequest(urlRequest, successBlock: { (responseData) -> Void in
+            print(responseData)
+            successBlock(responseData)
+        }) { (responseError) -> Void in
+            print(responseError)
+            errorBlock(responseError)
         }
-        task.resume()
     }
+
+//        let session = NSURLSession.sharedSession()
+//        let task = session.dataTaskWithRequest(urlRequest) { (data, response , error) -> Void in
+//            if(error == nil){
+//                print(response)
+//                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+//            }
+//            else {
+//                print("got Error",error)
+//            }
+//        }
+ //       task.resume()
 
     func getRecentTweets(lang:String, sucessBlock:((AnyObject) ->Void), errorBlock:((AnyObject) -> Void))
     {
@@ -111,7 +112,6 @@ class WSManager: NSObject {
         print(NSUserDefaults.standardUserDefaults().stringForKey("userId"))
         let getReminderURL = String(format: kBaseURL, kGetReminderURL)
         let request = NSMutableURLRequest(URL: NSURL(string: String(format: getReminderURL, NSUserDefaults.standardUserDefaults().stringForKey("userId")!))!)
-        print("GET Reminders URL *****************",request.URL)
         request.HTTPMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -152,12 +152,7 @@ class WSManager: NSObject {
         let userId = NSUserDefaults.standardUserDefaults().objectForKey("userId")
         
         let paramsDict = ["userId" : userId!, "advanceNotificationTime" : timestamp] as NSDictionary
-        do{
-            data = try NSJSONSerialization.dataWithJSONObject(paramsDict, options: NSJSONWritingOptions.PrettyPrinted)
-        }
-        catch{
-            print("JSON error")
-        }
+        data = RioUtilities.sharedInstance.convertDictToData(paramsDict)
         
         let request = NSMutableURLRequest(URL: NSURL(string: updateReminderURL)!)
         request.HTTPMethod = "POST"
@@ -169,8 +164,7 @@ class WSManager: NSObject {
             let results: NSDictionary = RioUtilities.sharedInstance.convertDataToDict(response as! NSData)
             print(results)
             dispatch_async(dispatch_get_main_queue(), {
-
-            NSNotificationCenter.defaultCenter().postNotificationName("updateNotificationSuccess", object: nil, userInfo:paramsDict as [NSObject : AnyObject])
+                NSNotificationCenter.defaultCenter().postNotificationName("updateNotificationSuccess", object: nil, userInfo:paramsDict as [NSObject : AnyObject])
             })
             
         }) { (error) in
@@ -192,15 +186,10 @@ class WSManager: NSObject {
         let epochFireDate = String(format: "%.0f",(RioUtilities.sharedInstance.calculateFireDate(eventModel).timeIntervalSince1970) * 1000)
         let userId = NSUserDefaults.standardUserDefaults().objectForKey("userId")
         
-        let paramsForCall = ["userId": userId!, "language": "en", "eventName":eventModel.Discipline!, "eventVenue": eventModel.VenueName!, "eventDetails":eventModel.Description!, "scheduledDateTime":epochFireDate, "isMedalAvailable": ((eventModel.Medal!) as NSString).boolValue, "eventId": eventModel.Sno!] as NSDictionary
-        var data : NSData?
-        do{
-            data = try NSJSONSerialization.dataWithJSONObject(paramsForCall, options: NSJSONWritingOptions.PrettyPrinted)
-        }
-        catch{
-            print("JSON error")
-        }
-        request.HTTPBody = data!
+        let paramsDict = ["userId": userId!, "language": "en", "eventName":eventModel.Discipline!, "eventVenue": eventModel.VenueName!, "eventDetails":eventModel.Description!, "scheduledDateTime":epochFireDate, "isMedalAvailable": ((eventModel.Medal!) as NSString).boolValue, "eventId": eventModel.Sno!] as NSDictionary
+        let data = RioUtilities.sharedInstance.convertDictToData(paramsDict)
+
+        request.HTTPBody = data
         request.HTTPMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")

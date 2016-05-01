@@ -14,7 +14,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var slideShow: KASlideShow!
     @IBOutlet weak var categoriesButton : UIButton!
-    
+    var retryCount = 0
+
     var wsManager = WSManager.sharedInstance
     var tweetData : NSArray?
     var refreshControl : UIRefreshControl?
@@ -51,7 +52,6 @@ class HomeViewController: UIViewController {
     
     func setUpData()
     {
-        var retryCount = 0
         if Reachability.isConnectedToNetwork() {
             KVNProgress.showWithStatus("Loading Live Feeds..")
             wsManager.getRecentTweets("en", sucessBlock: { (tweets) -> Void in
@@ -75,8 +75,8 @@ class HomeViewController: UIViewController {
                 }
                 
             }) { (error) -> Void in
-                retryCount += 1
-                if retryCount < 4 {
+                self.retryCount += 1
+                if self.retryCount < 4 {
                     KVNProgress.showWithStatus("Retrying fetching Tweets")
                     self.setUpData()
                 }

@@ -23,9 +23,12 @@ class RioRootModel: NSObject {
     var backgroundQueue = NSOperationQueue()    
     
     func appendSnoToNotificationEnabledArray(sno:String) -> [String] {
+        if let _ =  RioRootModel.sharedInstance.addedReminderArray{
+            self.addedReminderArray?.append(sno)
+            return self.addedReminderArray!
+        }
         
-        self.addedReminderArray?.append(sno)
-        return self.addedReminderArray!
+        return [String]()
     }
     
     func removeSnoFromNotificationEnabledArray(sno:String) -> [String] {

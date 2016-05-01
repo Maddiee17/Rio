@@ -44,7 +44,7 @@ class RioUtilities: NSObject {
         let year = Int(arrayForDates![2])
         let month = Int(arrayForDates![1])
         let day = Int(arrayForDates![0])
-        let hour = Int(arrayForTime![0])! + 2
+        let hour = Int(arrayForTime![0])! + 3  //UTC - 3 is Rio Time, Default notification is 1Hr before
         let minutes = Int(arrayForTime![1])
         
         let dateComponents = NSDateComponents()
@@ -65,13 +65,14 @@ class RioUtilities: NSObject {
     {
         var timeInterval = NSTimeInterval(NSTimeZone.localTimeZone().secondsFromGMT)
         let timeZoneObj = NSTimeZone.localTimeZone()
-        let isDayLightSavingOn = timeZoneObj.isDaylightSavingTimeForDate(utcDate)
+        var localdate = utcDate.dateByAddingTimeInterval(timeInterval)
+        let isDayLightSavingOn = timeZoneObj.isDaylightSavingTimeForDate(localdate)
         if(isDayLightSavingOn == true)
         {
-            let dayLightTimeInterval = timeZoneObj.daylightSavingTimeOffsetForDate(utcDate)
+            let dayLightTimeInterval = timeZoneObj.daylightSavingTimeOffsetForDate(localdate)
             timeInterval -= dayLightTimeInterval
         }
-        let localdate = utcDate.dateByAddingTimeInterval(timeInterval)
+        localdate = utcDate.dateByAddingTimeInterval(timeInterval)
         return localdate
     }
 
@@ -114,9 +115,21 @@ class RioUtilities: NSObject {
             print("JSON error")
         }
         
-        return results! ?? [:]
+        return results ?? [:]
     }
 
+    func convertDictToData(paramsDict : NSDictionary) -> NSData
+    {
+        var data : NSData?
+        do{
+            data = try NSJSONSerialization.dataWithJSONObject(paramsDict, options: NSJSONWritingOptions.PrettyPrinted)
+        }
+        catch{
+            print("JSON error")
+        }
+        return data!
+    }
+    
     func displayAlertView(titleString: String, messageString: String) {
         let alert: UIAlertView = UIAlertView(title: titleString, message: messageString, delegate: nil, cancelButtonTitle: "OK")
         alert.show()

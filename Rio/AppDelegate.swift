@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var dataBaseInteractor = RioDatabaseInteractor()
     var userProfile : [RioUserProfileModel]?
     var wsManager = WSManager.sharedInstance
+    var retryCount = 0
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -96,19 +97,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        
         let deviceTokenStr = convertDeviceTokenToString(deviceToken)
         
         NSUserDefaults.standardUserDefaults().setObject(deviceTokenStr, forKey: "notificationId")
         NSUserDefaults.standardUserDefaults().synchronize()
         
-        if let emailIdValue = self.userProfile?.first?.emailId  {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
-                self.wsManager.updateDeviceToken(deviceTokenStr, email: emailIdValue)
-            }
-
-        }
+        let emailIdValue = self.userProfile?.first?.emailId // {
+//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
+//                self.wsManager.updateDeviceToken(deviceTokenStr, email: emailIdValue, successBlock: { (response) in
+//                    print(response)
+//                    }, errorBlock: { (error) in
+//                        print(error)
+//                })
+//            }
+//
+//        }
+        self.updateDeviceToken(deviceTokenStr, emailId: emailIdValue!)
         
         print(deviceTokenStr)
+    }
+    
+    func updateDeviceToken(deviceToken : String, emailId : String)
+    {
+        
+        NSUserDefaults.standardUserDefaults().setObject(deviceToken, forKey: "notificationId")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
+                self.wsManager.updateDeviceToken(deviceToken, email: emailId, successBlock: { (response) in
+                    print(response)
+                    }, errorBlock: { (error) in
+                        print(error)
+                        self.retryCount += 1
+                        if(self.retryCount < 4){
+                            self.updateDeviceToken(deviceToken, emailId: emailId)
+                        }
+                })
+            }
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {

@@ -196,7 +196,7 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
                 cell!.detailTextLabel?.text = notificationStatus()
             case 1:
                 cell!.textLabel?.text = "Alert"
-                cell!.detailTextLabel?.text = NSUserDefaults.standardUserDefaults().stringForKey(kAlertFirstDate) ?? kOneHrBeforeDue
+                cell!.detailTextLabel?.text = NSUserDefaults.standardUserDefaults().stringForKey(kAlertFirstDate) ?? kEventStart
                 cell!.accessoryType = .DisclosureIndicator
             default:
                 cell!.textLabel?.text = ""
