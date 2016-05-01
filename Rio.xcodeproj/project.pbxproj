@@ -60,6 +60,7 @@
 		F60982E31CD3EE9F004D8B4B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60982E21CD3EE9F004D8B4B /* Reachability.swift */; };
 		F60982E51CD3F3D0004D8B4B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F60982E41CD3F3D0004D8B4B /* Localizable.strings */; };
 		F60982E71CD3F45F004D8B4B /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60982E61CD3F45F004D8B4B /* String+Localization.swift */; };
+		F61A5A751CD68183008F5413 /* GetImagesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61A5A741CD68183008F5413 /* GetImagesOperation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,6 +129,7 @@
 		F60982E21CD3EE9F004D8B4B /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		F60982E41CD3F3D0004D8B4B /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		F60982E61CD3F45F004D8B4B /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
+		F61A5A741CD68183008F5413 /* GetImagesOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetImagesOperation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +179,7 @@
 				9A64BD2B1CC95F5000C9703F /* RemoveReminderOperation.swift */,
 				9ABE7F841CCCAD1600CE3E72 /* GetReminderOperation.swift */,
 				F60982E01CD3901A004D8B4B /* UpdateReminderOperation.swift */,
+				F61A5A741CD68183008F5413 /* GetImagesOperation.swift */,
 			);
 			path = Operation;
 			sourceTree = "<group>";
@@ -556,6 +559,7 @@
 				9C3C7F2B1C63E28900E98DA6 /* FMResultSet.m in Sources */,
 				9C3C7F2E1C63E28900E98DA6 /* FMDatabasePool.m in Sources */,
 				9C555E2E1CC23D0B005F1F2D /* DrawerViewController.swift in Sources */,
+				F61A5A751CD68183008F5413 /* GetImagesOperation.swift in Sources */,
 				9C3C7F091C63E09B00E98DA6 /* AppDelegate.swift in Sources */,
 				9C3C7F2D1C63E28900E98DA6 /* FMDatabaseAdditions.m in Sources */,
 				9C6AAC271C947C1500BB0585 /* EventDetailsTableViewController.swift in Sources */,

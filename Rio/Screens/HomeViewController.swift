@@ -25,20 +25,33 @@ class HomeViewController: UIViewController {
         
         self.title = "Live Feeds"
         setupLeftMenuButton()
-        setUpSlideShow()
+//        setUpSlideShow()
         setUpData()
         self.refreshControl = UIRefreshControl()
         self.refreshControl!.addTarget(self, action: "setUpData", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(self.refreshControl!)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        setUpSlideShow()
+    }
+    
     func setUpSlideShow(){
 
-        slideShow.delay = 3
+        slideShow.delay = 2
         slideShow.transitionDuration = 1
-        slideShow.transitionType = .Slide
+        slideShow.transitionType = .Fade
         slideShow.imagesContentMode = .ScaleAspectFill
-        slideShow.addImagesFromResources(["stripes.jpg","olympic.jpg","stadium.png"])
+        let dataArray = RioRootModel.sharedInstance.imagesURLArray
+        if dataArray.count > 0
+        {
+            for data in dataArray {
+                let image = UIImage(data: data)
+                slideShow.addImage(image)
+            }
+        }
+        slideShow.start()
     }
     
     func setupLeftMenuButton() {
@@ -64,7 +77,6 @@ class HomeViewController: UIViewController {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         KVNProgress.dismiss()
                         self.refreshControl?.endRefreshing()
-                        self.slideShow.start()
                         self.tableView.hidden = false
                         self.tableView.reloadData()
                     })

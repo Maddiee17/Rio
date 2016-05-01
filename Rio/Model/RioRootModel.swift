@@ -20,7 +20,8 @@ class RioRootModel: NSObject {
     
     var favoritesArray : NSArray?
     var addedReminderArray : [String]?
-    var backgroundQueue = NSOperationQueue()    
+    var backgroundQueue = NSOperationQueue()
+    var imagesURLArray = [NSData]()
     
     func appendSnoToNotificationEnabledArray(sno:String) -> [String] {
         if let _ =  RioRootModel.sharedInstance.addedReminderArray{

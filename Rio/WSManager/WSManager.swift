@@ -26,6 +26,8 @@ let kUpdateReminderURL = "user/updateAdvanceNotificationTime"
 
 let kBaseURL = "http://ec2-52-37-90-104.us-west-2.compute.amazonaws.com/olympics-scheduler/%@"
 
+let kTopFiveImages = "image/getTopFiveImages"
+
 let kRequestTimeOutInterval = 30.0
 
 
@@ -105,6 +107,32 @@ class WSManager: NSObject {
             }
         }
         
+    }
+    
+    func getImagesURL()
+    {
+        let getImagesURL = String(format: kBaseURL, kTopFiveImages)
+        let request = NSMutableURLRequest(URL: NSURL(string: String(format: getImagesURL, NSUserDefaults.standardUserDefaults().stringForKey("userId")!))!)
+        request.HTTPMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        self.performURLSessionForTaskForRequest(request, successBlock: { (response) -> Void in
+            
+            let results: NSDictionary = RioUtilities.sharedInstance.convertDataToDict(response as! NSData)
+            let urlArray = results["imageVOs"] as! NSArray
+            var imagesDataArray = [NSData]()
+            for imagesDict in urlArray{
+                let imageURL = (imagesDict as! NSDictionary).objectForKey("imageSelfLink") as! String
+                self.fetchImageFromURL(imageURL, successBlock: { (responseData) in
+                    print(responseData)
+                    imagesDataArray.append(responseData)
+                })
+            }
+            RioRootModel.sharedInstance.imagesURLArray = imagesDataArray
+        }) { (error) in
+            RioRootModel.sharedInstance.imagesURLArray = []
+            print(error)
+        }
     }
     
     func getReminders(successBlock:((AnyObject) -> Void), errorBlock:((AnyObject) -> Void))

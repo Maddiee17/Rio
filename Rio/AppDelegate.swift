@@ -65,14 +65,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print(error)
         }
         
-//        let twitter = STTwitterAPI(appOnlyWithConsumerKey: kConsumerKey, consumerSecret: kConsumerSecretKey)
-//        twitter.verifyCredentialsWithUserSuccessBlock({ (response) -> Void in
-//            print(response)
-//            }) { (error) -> Void in
-//                print(error)
-//        }
         Fabric.with([Twitter.self])
         customizeNavigationBar()
+        getImagesURL()
         return true
     }
     
@@ -90,6 +85,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as? String,
 //                annotation: options[UIApplicationOpenURLOptionsAnnotationKey])
 //    }
+    
+    func getImagesURL() {
+        let operation = GetImagesOperation()
+        RioRootModel.sharedInstance.backgroundQueue.addOperation(operation)
+    }
+    
     func fetchReminderInBackground()
     {
         let getReminderOperation = GetReminderOperation()
