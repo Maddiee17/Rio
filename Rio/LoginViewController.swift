@@ -116,14 +116,14 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
             let photoDict = (result as NSDictionary).objectForKey("picture") as! NSDictionary
             let dataDict = photoDict.objectForKey("data") as! NSDictionary
             let finalUrl = dataDict.objectForKey("url")
-            paramsDict = ["emailId" : email!, "name" : name!, "facebookId" :id!, "photoUrl" : finalUrl!, "notificationId" :notificationId] as NSDictionary
+            paramsDict = ["emailId" : email!, "name" : name!, "facebookId" :id!, "photoUrl" : finalUrl!, "notificationId" :notificationId, "advanceNotificationTime" : "0000000"] as NSDictionary
         }
         else {
             email = (result as NSDictionary).objectForKey("emailId") as? String
             let name = (result as NSDictionary).objectForKey("name")
             let id = (result as NSDictionary).objectForKey("id")
             let photoURL = (result as NSDictionary).objectForKey("photoUrl")
-            paramsDict = ["emailId" : email!, "name" : name!, "googleId" :id!, "photoUrl" : photoURL!, "notificationId" :notificationId] as NSDictionary
+            paramsDict = ["emailId" : email!, "name" : name!, "googleId" :id!, "photoUrl" : photoURL!, "notificationId" :notificationId, "advanceNotificationTime" : "0000000"] as NSDictionary
         }
         do{
             data = try NSJSONSerialization.dataWithJSONObject(paramsDict!, options: NSJSONWritingOptions.PrettyPrinted)

@@ -34,17 +34,20 @@ class FavoritesViewController: UIViewController {
                 print(model)
                 self.reminderArray = self.sortArray(RioRootModel.sharedInstance.favoritesArray!)
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.sortDataBasedOnDate()
-                    self.centreLabel?.hidden = true
-                    self.tableView.hidden = false
-                    self.tableView.reloadData()
-                    KVNProgress.dismiss()
+                    if(self.reminderArray.count == 0){
+                        KVNProgress.dismiss()
+                        self.noDataLabel()
+                        self.centreLabel?.hidden = false
+                    }
+                    else {
+                        self.sortDataBasedOnDate()
+                        self.centreLabel?.hidden = true
+                        self.tableView.hidden = false
+                        self.tableView.reloadData()
+                        KVNProgress.dismiss()
+                    }
                 })
             }) { (error) in
-                print(error)
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.noDataLabel()
-                    })
                 KVNProgress.showErrorWithStatus("Failed Loading Favourites..")
             }
         }
@@ -61,7 +64,7 @@ class FavoritesViewController: UIViewController {
         centreLabel!.text = "No Reminders Added"
         self.view.addSubview(centreLabel!)
         
-        centreLabel!.center = CGPointMake(self.tableView.bounds.midX, self.tableView.bounds.midY)
+        centreLabel!.center = CGPointMake(self.view.bounds.midX, self.view.bounds.midY)
         centreLabel!.autoresizingMask = [UIViewAutoresizing.FlexibleLeftMargin, UIViewAutoresizing.FlexibleRightMargin, UIViewAutoresizing.FlexibleTopMargin, UIViewAutoresizing.FlexibleBottomMargin]
     }
     

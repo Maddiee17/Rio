@@ -112,7 +112,7 @@ class WSManager: NSObject {
     func getImagesURL()
     {
         let getImagesURL = String(format: kBaseURL, kTopFiveImages)
-        let request = NSMutableURLRequest(URL: NSURL(string: String(format: getImagesURL, NSUserDefaults.standardUserDefaults().stringForKey("userId")!))!)
+        let request = NSMutableURLRequest(URL: NSURL(string:getImagesURL)!)
         request.HTTPMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")

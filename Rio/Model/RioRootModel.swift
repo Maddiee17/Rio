@@ -22,6 +22,7 @@ class RioRootModel: NSObject {
     var addedReminderArray : [String]?
     var backgroundQueue = NSOperationQueue()
     var imagesURLArray = [NSData]()
+    var emergencyTweetData : NSArray?
     
     func appendSnoToNotificationEnabledArray(sno:String) -> [String] {
         if let _ =  RioRootModel.sharedInstance.addedReminderArray{

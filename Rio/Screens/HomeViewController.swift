@@ -72,6 +72,7 @@ class HomeViewController: UIViewController {
                     print(results)
                     let statusArray = results.objectForKey("statuses") as! [AnyObject]
                     self.tweetData = TWTRTweet.tweetsWithJSONArray(statusArray)
+                    RioRootModel.sharedInstance.emergencyTweetData = self.tweetData
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         KVNProgress.dismiss()
                         self.refreshControl?.endRefreshing()
@@ -88,9 +89,19 @@ class HomeViewController: UIViewController {
                 
             }) { (error) -> Void in
                 self.retryCount += 1
-                if self.retryCount < 5 {
+                if self.retryCount < 4 {
                     KVNProgress.showWithStatus("Retrying fetching Tweets")
                     self.setUpData()
+                }
+                else if(RioRootModel.sharedInstance.emergencyTweetData?.count > 0 && RioRootModel.sharedInstance.emergencyTweetData != nil)
+                {
+                    self.tweetData = RioRootModel.sharedInstance.emergencyTweetData
+                    dispatch_async(dispatch_get_main_queue(), {
+                        KVNProgress.dismiss()
+                        self.tableView.reloadData()
+                        self.setUpSlideShow()
+                        self.slideShow.start()
+                    })
                 }
                 else {
                     KVNProgress.showErrorWithStatus("Error fetching Tweets")

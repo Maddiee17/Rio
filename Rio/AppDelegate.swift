@@ -104,7 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSUserDefaults.standardUserDefaults().setObject(deviceTokenStr, forKey: "notificationId")
         NSUserDefaults.standardUserDefaults().synchronize()
         
-        let emailIdValue = self.userProfile?.first?.emailId // {
+        if let emailIdValue = self.userProfile?.first?.emailId {// {
 //            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
 //                self.wsManager.updateDeviceToken(deviceTokenStr, email: emailIdValue, successBlock: { (response) in
 //                    print(response)
@@ -114,7 +114,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            }
 //
 //        }
-        self.updateDeviceToken(deviceTokenStr, emailId: emailIdValue!)
+        self.updateDeviceToken(deviceTokenStr, emailId: emailIdValue)
+        }
         
         print(deviceTokenStr)
     }

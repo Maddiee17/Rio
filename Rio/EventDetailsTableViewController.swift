@@ -97,10 +97,13 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         
         let localObj = self.splittedDict[key]
         
-        cell.eventTime.text = localObj![indexPath.row].StartTime
+//        cell.eventTime.text = localObj![indexPath.row].StartTime
         cell.eventVenue.text = localObj![indexPath.row].VenueName
         cell.eventMedals.text = localObj![indexPath.row].Medal
-        cell.eventDate.text = localObj![indexPath.row].Date
+        let localDate = RioUtilities.sharedInstance.calculateFireDate(localObj![indexPath.row]).description
+        let splitArray = localDate.componentsSeparatedByString(" ")
+        cell.eventDate.text = splitArray[0]
+        cell.eventTime.text = splitArray[1]
         
         cell.eventName.text = filterDescription(localObj![indexPath.row].DescriptionLong!)
         if (notificationEnabledCells.contains(localObj![indexPath.row].Sno!)) {
