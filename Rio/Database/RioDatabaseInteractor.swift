@@ -88,8 +88,10 @@ class RioDatabaseInteractor: NSObject
         }
     }
     
-    func insertUserProfileValues(sqlStmt:String, dataDict:NSDictionary)
+    func insertUserProfileValues(dataDict:NSDictionary)
     {
+        let sqlStmt = "INSERT OR REPLACE INTO UserProfile(userId,emailId, avatar, name, googleId, facebookId, notificationId, photoUrl, createdDate,modifiedDate) VALUES (?,?,?,?,?,?,?,?,?,?)"
+
         dataBaseManager.insertUserProfileValues(sqlStmt, dataDict: dataDict)
     }
     

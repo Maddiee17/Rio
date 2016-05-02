@@ -180,9 +180,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
     
     func updateDBWithData()
     {
-        let insertSQL = "INSERT OR REPLACE INTO UserProfile(userId,emailId, avatar, name, googleId, facebookId, notificationId, photoUrl, createdDate,modifiedDate) VALUES (?,?,?,?,?,?,?,?,?,?)"
 
-        dataBaseManager.insertUserProfileValues(insertSQL, dataDict: userDataDict!)
+        dataBaseManager.insertUserProfileValues(userDataDict!)
     }
     
     func getDictFromData(data:NSData)

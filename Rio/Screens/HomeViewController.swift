@@ -19,6 +19,7 @@ class HomeViewController: UIViewController {
     var wsManager = WSManager.sharedInstance
     var tweetData : NSArray?
     var refreshControl : UIRefreshControl?
+    var hideLoadingIndicator = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,7 @@ class HomeViewController: UIViewController {
 //        setUpSlideShow()
         setUpData()
         self.refreshControl = UIRefreshControl()
-        self.refreshControl!.addTarget(self, action: #selector(HomeViewController.setUpData), forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl!.addTarget(self, action: #selector(HomeViewController.refreshData), forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(self.refreshControl!)
     }
     
@@ -61,10 +62,18 @@ class HomeViewController: UIViewController {
         self.mm_drawerController.toggleDrawerSide(.Left, animated: true, completion: { _ in })
     }
     
+    func refreshData()  {
+        
+        hideLoadingIndicator = true
+        setUpData()
+    }
+    
     func setUpData()
     {
         if Reachability.isConnectedToNetwork() {
-            KVNProgress.showWithStatus("Loading Live Feeds..")
+            if !hideLoadingIndicator {
+                KVNProgress.showWithStatus("Loading Live Feeds..")
+            }
             wsManager.getRecentTweets("en", sucessBlock: { (tweets) -> Void in
                 
                 do{
@@ -83,14 +92,20 @@ class HomeViewController: UIViewController {
                     })
                 }
                 catch {
-                    KVNProgress.showErrorWithStatus("Error fetching Tweets")
+                    if !self.hideLoadingIndicator {
+                        KVNProgress.showErrorWithStatus("Error fetching Tweets")
+                    }
+                    self.refreshControl?.endRefreshing()
                     print(error)
                 }
                 
             }) { (error) -> Void in
+                self.refreshControl?.endRefreshing()
                 self.retryCount += 1
                 if self.retryCount < 4 {
-                    KVNProgress.showWithStatus("Retrying fetching Tweets")
+                    if !self.hideLoadingIndicator {
+                        KVNProgress.showWithStatus("Retrying fetching Tweets")
+                    }
                     self.setUpData()
                 }
                 else if(RioRootModel.sharedInstance.emergencyTweetData?.count > 0 && RioRootModel.sharedInstance.emergencyTweetData != nil)
