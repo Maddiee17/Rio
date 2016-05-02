@@ -28,13 +28,12 @@ class HomeViewController: UIViewController {
 //        setUpSlideShow()
         setUpData()
         self.refreshControl = UIRefreshControl()
-        self.refreshControl!.addTarget(self, action: "setUpData", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl!.addTarget(self, action: #selector(HomeViewController.setUpData), forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(self.refreshControl!)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        setUpSlideShow()
     }
     
     func setUpSlideShow(){
@@ -51,7 +50,6 @@ class HomeViewController: UIViewController {
                 slideShow.addImage(image)
             }
         }
-        slideShow.start()
     }
     
     func setupLeftMenuButton() {
@@ -77,6 +75,8 @@ class HomeViewController: UIViewController {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         KVNProgress.dismiss()
                         self.refreshControl?.endRefreshing()
+                        self.setUpSlideShow()
+                        self.slideShow.start()
                         self.tableView.hidden = false
                         self.tableView.reloadData()
                     })
@@ -88,7 +88,7 @@ class HomeViewController: UIViewController {
                 
             }) { (error) -> Void in
                 self.retryCount += 1
-                if self.retryCount < 4 {
+                if self.retryCount < 5 {
                     KVNProgress.showWithStatus("Retrying fetching Tweets")
                     self.setUpData()
                 }
