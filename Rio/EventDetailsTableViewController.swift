@@ -32,7 +32,17 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         tableView.sectionFooterHeight = 5.0;
         
         self.title = "Event Details"
+        replaceWithLocalDate()
         sortDataBasedOnDate()
+    }
+    func replaceWithLocalDate()
+    {
+        for model in self.eventsFilteredArray
+        {
+            let localDateNTime = RioUtilities.sharedInstance.calculateFireDate(model as! RioEventModel).description
+            (model as! RioEventModel).Date = localDateNTime.componentsSeparatedByString(" ")[0]
+            (model as! RioEventModel).StartTime = localDateNTime.componentsSeparatedByString(" ")[1]
+        }
     }
     
     func setUpLeftBarButton() {
@@ -97,13 +107,10 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         
         let localObj = self.splittedDict[key]
         
-//        cell.eventTime.text = localObj![indexPath.row].StartTime
+        cell.eventTime.text = localObj![indexPath.row].StartTime
         cell.eventVenue.text = localObj![indexPath.row].VenueName
         cell.eventMedals.text = localObj![indexPath.row].Medal
-        let localDate = RioUtilities.sharedInstance.calculateFireDate(localObj![indexPath.row]).description
-        let splitArray = localDate.componentsSeparatedByString(" ")
-        cell.eventDate.text = splitArray[0]
-        cell.eventTime.text = splitArray[1]
+        cell.eventDate.text = localObj![indexPath.row].Date
         
         cell.eventName.text = filterDescription(localObj![indexPath.row].DescriptionLong!)
         if (notificationEnabledCells.contains(localObj![indexPath.row].Sno!)) {

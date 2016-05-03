@@ -9,24 +9,29 @@
 import UIKit
 import TwitterKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var slideShow: KASlideShow!
-    @IBOutlet weak var categoriesButton : UIButton!
+//    @IBOutlet weak var categoriesButton : UIButton!
+    var categoriesButton : UIButton!
     var retryCount = 0
 
     var wsManager = WSManager.sharedInstance
     var tweetData : NSArray?
     var refreshControl : UIRefreshControl?
     var hideLoadingIndicator = false
+    var lastOffset : CGPoint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "Live Feeds"
         setupLeftMenuButton()
-//        setUpSlideShow()
+//        self.shyNavBarManager.scrollView = self.tableView;
+//        self.shyNavBarManager.extensionView = slideShow
+//        self.shyNavBarManager.stickyExtensionView = false
+//        self.shyNavBarManager.extensionView.frame = CGRectMake(0, 0, self.view.frame.size.width, 100)
         setUpData()
         self.refreshControl = UIRefreshControl()
         self.refreshControl!.addTarget(self, action: #selector(HomeViewController.refreshData), forControlEvents: UIControlEvents.ValueChanged)
@@ -35,6 +40,30 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        addButton()
+    }
+    
+    func addButton() {
+        
+        categoriesButton = UIButton(frame: CGRectMake(0, self.view.frame.size.height + 20 , self.view.frame.size.width, 44))
+        categoriesButton.backgroundColor = UIColor.orangeColor()
+        categoriesButton.setTitle("Categories", forState: .Normal)
+        categoriesButton.addTarget(self, action: #selector(HomeViewController.categoriesButtonTapped), forControlEvents: .TouchUpInside)
+        categoriesButton.tag = 1
+        categoriesButton.userInteractionEnabled = false
+        UIApplication.sharedApplication().keyWindow?.addSubview(categoriesButton)
+    }
+    
+    //
+    
+    
+    func categoriesButtonTapped()
+    {
+        UIApplication.sharedApplication().keyWindow?.viewWithTag(1)?.removeFromSuperview()
+        let categoriesVC = self.storyboard?.instantiateViewControllerWithIdentifier("CategoryListViewController")
+        self.mm_drawerController.centerViewController = categoriesVC
+        self.navigationController?.pushViewController(categoriesVC!, animated: true)
+
     }
     
     func setUpSlideShow(){
@@ -76,6 +105,7 @@ class HomeViewController: UIViewController {
             }
             wsManager.getRecentTweets("en", sucessBlock: { (tweets) -> Void in
                 
+                self.categoriesButton.userInteractionEnabled = true
                 do{
                     let results: NSDictionary  = try NSJSONSerialization.JSONObjectWithData(tweets as! NSData, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
                     print(results)
@@ -176,8 +206,36 @@ class HomeViewController: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        self.mm_drawerController.centerViewController = segue.destinationViewController
 
     }
+    
+
+     func scrollViewWillBeginDragging(scrollView: UIScrollView)
+     {
+//        UIApplication.sharedApplication().keyWindow?.viewWithTag(1)?.hidden = true
+        UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: { 
+            self.categoriesButton.frame = CGRectMake(0, self.view.frame.size.height + 20 + 44 , self.view.frame.size.width, 44)
+            }, completion: nil)
+
+        
+    }
+
+     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool)
+     {
+        if !decelerate {
+            UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                self.categoriesButton.frame = CGRectMake(0, self.view.frame.size.height + 20 , self.view.frame.size.width, 44)
+                }, completion: nil)
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) // called when scroll view grinds to a halt
+    {
+        UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            self.categoriesButton.frame = CGRectMake(0, self.view.frame.size.height + 20 , self.view.frame.size.width, 44)
+            }, completion: nil)
+    }
+
+
 
 }

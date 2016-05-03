@@ -14,7 +14,7 @@ var kConsumerSecretKey: String = "TBKNx1I6I8x6PECYu2oMOwyPlB6NFt0EWJe76XnBXh3r41
 
 var kTwitterAuthAPI: String = "https://api.twitter.com/oauth2/token"
 
-var kTweetsAPI : String = "https://api.twitter.com/1.1/search/tweets.json?q=Olympics%2C"
+var kTweetsAPI : String = "https://api.twitter.com/1.1/search/tweets.json?q=Olympics&result_type=popular&count=20"
 
 let kAddReminderURL = "notifyScheduler/addReminder"
 
@@ -207,11 +207,11 @@ class WSManager: NSObject {
     func addReminderForEvent(eventModel:RioEventModel)
     {
         let addReminderURL = String(format: kBaseURL, kAddReminderURL)
-
         let request = NSMutableURLRequest(URL: NSURL(string: addReminderURL)!)
-        //let calendar = NSCalendar.currentCalendar()
-//        let date = calendar.dateByAddingUnit(.Minute, value: 2, toDate: NSDate(), options: [])
-        let epochFireDate = String(format: "%.0f",(RioUtilities.sharedInstance.calculateFireDate(eventModel).timeIntervalSince1970) * 1000)
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:MM"
+        let dateFromString = dateFormatter.dateFromString(eventModel.Date!)
+        let epochFireDate = String(format: "%.0f",dateFromString!.timeIntervalSince1970 * 1000)
         let userId = NSUserDefaults.standardUserDefaults().objectForKey("userId")
         
         let paramsDict = ["userId": userId!, "language": "en", "eventName":eventModel.Discipline!, "eventVenue": eventModel.VenueName!, "eventDetails":eventModel.Description!, "scheduledDateTime":epochFireDate, "isMedalAvailable": ((eventModel.Medal!) as NSString).boolValue, "eventId": eventModel.Sno!] as NSDictionary
