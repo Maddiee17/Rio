@@ -92,7 +92,14 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func leftDrawerButtonPress(leftDrawerButtonPress: AnyObject) {
-        self.mm_drawerController.toggleDrawerSide(.Left, animated: true, completion: { _ in })
+        self.mm_drawerController.toggleDrawerSide(.Left, animated: true, completion: { _ in
+            if self.mm_drawerController.openSide == .None{
+                self.showCategoriesButton()
+            }
+            else{
+                self.hideCategoriesButton()
+            }
+        })
     }
     
     func refreshData()  {
@@ -216,30 +223,34 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
 
      func scrollViewWillBeginDragging(scrollView: UIScrollView)
      {
-//        UIApplication.sharedApplication().keyWindow?.viewWithTag(1)?.hidden = true
-        UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: { 
-            self.categoriesButton.frame = CGRectMake(0, self.view.frame.size.height + 20 + 44 , self.view.frame.size.width, 44)
-            }, completion: nil)
-
-        
+        hideCategoriesButton()
     }
 
      func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool)
      {
         if !decelerate {
-            UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-                self.categoriesButton.frame = CGRectMake(0, self.view.frame.size.height + 20 , self.view.frame.size.width, 44)
-                }, completion: nil)
+            showCategoriesButton()
         }
     }
     
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) // called when scroll view grinds to a halt
     {
+       showCategoriesButton()
+    }
+
+
+    func hideCategoriesButton()
+    {
+        UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            self.categoriesButton.frame = CGRectMake(0, self.view.frame.size.height + 20 + 44 , self.view.frame.size.width, 44)
+            }, completion: nil)
+
+    }
+    
+    func showCategoriesButton()
+    {
         UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             self.categoriesButton.frame = CGRectMake(0, self.view.frame.size.height + 20 , self.view.frame.size.width, 44)
             }, completion: nil)
     }
-
-
-
 }

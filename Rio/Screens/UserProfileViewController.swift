@@ -91,6 +91,8 @@ class UserProfileViewController: UIViewController {
         dataBaseInteractor.clearUserProfileTable()
         NSUserDefaults.standardUserDefaults().removeObjectForKey("userId")
         NSUserDefaults.standardUserDefaults().synchronize()
+        RioRootModel.sharedInstance.addedReminderArray?.removeAll()
+        RioRootModel.sharedInstance.favoritesArray = NSArray()
         let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let loginVC = storyBoard.instantiateViewControllerWithIdentifier("LoginVC")
         self.navigationController?.presentViewController(loginVC, animated: true, completion: nil)

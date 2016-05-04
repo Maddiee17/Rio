@@ -97,7 +97,7 @@ class SubCategoryViewController: UIViewController {
         let eventSelected = (tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text)!
         let eventSplitted = eventSelected.componentsSeparatedByString(" ")
         
-                let sqlStmt = "SELECT * from Event WHERE Discipline = ?"
+                let sqlStmt = "SELECT * from Event WHERE Discipline = ? GROUP BY SessionCode"
         
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
                     self.dataManager.fetchEventsFromDB(sqlStmt, categorySelected: self.categorySelected!) { (results) -> Void in
