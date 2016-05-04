@@ -75,7 +75,34 @@ class RioUtilities: NSObject {
         localdate = utcDate.dateByAddingTimeInterval(timeInterval)
         return localdate
     }
-
+    
+    
+    func getDateFromComponents(startTime:String, date:String) -> NSDate
+    {
+        let date = date
+        let startTime = startTime
+        let arrayForTime = startTime.componentsSeparatedByString(":")
+        let arrayForDates = date.componentsSeparatedByString("-")
+        
+        let calender = NSCalendar(identifier:NSCalendarIdentifierGregorian)
+        let year = Int(arrayForDates[0])
+        let month = Int(arrayForDates[1])
+        let day = Int(arrayForDates[2])
+        let hour = Int(arrayForTime[0])!
+        let minutes = Int(arrayForTime[1])
+        
+        let dateComponents = NSDateComponents()
+        dateComponents.day = day!
+        dateComponents.month = month!
+        dateComponents.year = year!
+        dateComponents.hour = hour
+        dateComponents.minute = minutes!
+        dateComponents.timeZone = NSTimeZone.localTimeZone()
+        let UTCDate = calender!.dateFromComponents(dateComponents)
+        
+        return UTCDate!
+    }
+    
     //    func calculateFireDate(rioEventModel:RioEventModel) -> NSDate
     //    {
     //        let date = "15-4-2016"

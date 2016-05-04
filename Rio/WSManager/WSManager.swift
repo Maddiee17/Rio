@@ -208,15 +208,13 @@ class WSManager: NSObject {
     {
         let addReminderURL = String(format: kBaseURL, kAddReminderURL)
         let request = NSMutableURLRequest(URL: NSURL(string: addReminderURL)!)
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:MM"
-        let dateFromString = dateFormatter.dateFromString(eventModel.Date!)
-        let epochFireDate = String(format: "%.0f",dateFromString!.timeIntervalSince1970 * 1000)
+        let localDateObj = RioUtilities.sharedInstance.getDateFromComponents(eventModel.StartTime!, date: eventModel.Date!)
+        let epochFireDate = String(format: "%.0f",localDateObj.timeIntervalSince1970)
         let userId = NSUserDefaults.standardUserDefaults().objectForKey("userId")
         
         let paramsDict = ["userId": userId!, "language": "en", "eventName":eventModel.Discipline!, "eventVenue": eventModel.VenueName!, "eventDetails":eventModel.Description!, "scheduledDateTime":epochFireDate, "isMedalAvailable": ((eventModel.Medal!) as NSString).boolValue, "eventId": eventModel.Sno!] as NSDictionary
         let data = RioUtilities.sharedInstance.convertDictToData(paramsDict)
-
+        
         request.HTTPBody = data
         request.HTTPMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -229,7 +227,7 @@ class WSManager: NSObject {
             self.dataBaseManager.updateReminderIdInDB(reminderId, serialNo: eventModel.Sno!)
             
         }) { (error) -> Void in
-                print(error)
+            print(error)
         }
         
     }

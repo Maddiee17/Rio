@@ -161,7 +161,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func customizeNavigationBar() {
-        UINavigationBar.appearance().barTintColor = UIColor(hex: 0xe67e22)
+        UINavigationBar.appearance().barTintColor = UIColor.orangeColor()//UIColor(hex: 0xe67e22)
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor(), NSFontAttributeName: UIFont.systemFontOfSize(18)]
         UINavigationBar.appearance().translucent = false
     }

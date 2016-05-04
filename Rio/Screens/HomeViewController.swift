@@ -56,6 +56,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     //
     
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        UIApplication.sharedApplication().keyWindow?.viewWithTag(1)?.removeFromSuperview()
+    }
     
     func categoriesButtonTapped()
     {
