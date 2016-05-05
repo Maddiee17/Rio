@@ -96,7 +96,9 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? // fixed font style. use custom view (UILabel) if you want something different
     {
-        return self.datesArray[section]
+        let date = self.datesArray[section].componentsSeparatedByString("-")
+        let finalString =  (Int(date[2])?.ordinal)! + " August"
+        return finalString
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -107,10 +109,16 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         
         let localObj = self.splittedDict[key]
         
-        cell.eventTime.text = localObj![indexPath.row].StartTime
-        cell.eventVenue.text = localObj![indexPath.row].VenueName
+        cell.eventTime.text = getTrimmedTime(localObj![indexPath.row].StartTime!)
+        cell.eventVenue.text = getVenueName(localObj![indexPath.row].VenueName!)
         cell.eventMedals.text = localObj![indexPath.row].Medal
-        cell.eventDate.text = localObj![indexPath.row].Date
+        if cell.eventMedals.text == "Yes" {
+            cell.medalImageView.image = UIImage(named: "ico-medal")
+        }
+        else{
+            cell.medalImageView.image = UIImage(named: "ico-nomedal")
+        }
+        cell.eventDate.text = getTrimmedDate(localObj![indexPath.row].Date!)
         
         cell.eventName.text = filterDescription(localObj![indexPath.row].DescriptionLong!)
         if (notificationEnabledCells.contains(localObj![indexPath.row].Sno!)) {
@@ -123,9 +131,39 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         }
         
         cell.delegate = self
-        cell.eventImage.image = UIImage(named: "ico-wrestle")
+//        cell.eventImage.image = UIImage(named: "ico-wrestle")
         return cell
     }
+    
+    func getTrimmedTime(startTime:String) -> String
+    {
+        let rangeOfLast = Range(start: startTime.startIndex, end: startTime.endIndex.advancedBy(-3))
+        return startTime[rangeOfLast]
+        
+    }
+    
+    func getTrimmedDate(date:String) -> String
+    {
+        let rangeOfLast = Range(start: date.startIndex.advancedBy(5), end: date.endIndex)
+        return date[rangeOfLast]
+        
+    }
+    
+    func getVenueName(venue : String) -> String
+    {
+        let range = Range(start: venue.startIndex, end: venue.startIndex.advancedBy(4))
+        let venueName = venue[range]
+        if venueName == "Samb" {
+            return "Sambódromo"
+        }
+        else if venueName == "Mara"{
+            return "Maracanãzinho"
+        }
+        else{
+            return venue
+        }
+    }
+
     
     func findAddedReminders()
     {
@@ -222,3 +260,4 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
     }
     
 }
+

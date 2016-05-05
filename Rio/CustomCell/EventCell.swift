@@ -17,12 +17,12 @@ class EventCell: UITableViewCell {
 
     var delegate : EventCellDelegate?
     @IBOutlet weak var eventName: UILabel!
-    @IBOutlet weak var eventImage: UIImageView!
     @IBOutlet weak var eventDate: UILabel!
     @IBOutlet weak var eventTime: UILabel!
     @IBOutlet weak var eventMedals: UILabel!
     @IBOutlet weak var eventVenue: UILabel!
     @IBOutlet weak var notificationButton: UIButton!
+    @IBOutlet weak var medalImageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

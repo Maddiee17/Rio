@@ -223,8 +223,8 @@ class WSManager: NSObject {
             
             let results: NSDictionary = RioUtilities.sharedInstance.convertDataToDict(response as! NSData)
             print(results)
-            let reminderId = results.objectForKey("reminderId") as! String
-            self.dataBaseManager.updateReminderIdInDB(reminderId, serialNo: eventModel.Sno!)
+            //let reminderId = results.objectForKey("reminderId") as! String
+            //zself.dataBaseManager.updateReminderIdInDB(reminderId, serialNo: eventModel.Sno!)
             
         }) { (error) -> Void in
             print(error)

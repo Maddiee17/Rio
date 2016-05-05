@@ -178,6 +178,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="105" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mDT-fZ-Trd">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.81176470590000005" green="0.81176470590000005" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="eventCell" rowHeight="105" id="Bc8-w7-r0J" customClass="EventCell" customModule="Rio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="105"/>
@@ -192,7 +193,7 @@
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="UcL-8C-G6Z"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
@@ -223,8 +224,9 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="We6-17-Lew">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico-medal" translatesAutoresizingMaskIntoConstraints="NO" id="We6-17-Lew">
                                                     <rect key="frame" x="8" y="24" width="16" height="16"/>
+                                                    <color key="tintColor" red="0.89411764709999997" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="16" id="auA-IN-gW5"/>
                                                     </constraints>
@@ -241,7 +243,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="14" id="R5R-NV-mU0"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -250,20 +252,20 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="43" id="9q6-tv-ItC"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stadium" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04b-kS-zEG">
                                                     <rect key="frame" x="155" y="76" width="43" height="14"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6rI-uY-3XW">
                                                     <rect key="frame" x="57" y="76" width="19" height="14"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OHe-Z0-gcl">
@@ -271,10 +273,8 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="lNB-ft-57m"/>
                                                     </constraints>
+                                                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <state key="normal" backgroundImage="ico-bell"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="372" y="21" width="20" height="25"/>
-                                                    </variation>
                                                     <connections>
                                                         <action selector="notificationButtonTapped:" destination="Bc8-w7-r0J" eventType="touchUpInside" id="Ozb-0B-fNz"/>
                                                     </connections>
@@ -379,11 +379,11 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="eventDate" destination="jts-1G-cD3" id="OXJ-Vn-0vM"/>
-                                            <outlet property="eventImage" destination="We6-17-Lew" id="kYM-Re-Kgi"/>
                                             <outlet property="eventMedals" destination="6rI-uY-3XW" id="krt-Xh-vpn"/>
                                             <outlet property="eventName" destination="aLn-vl-FtB" id="s7l-7x-LNb"/>
                                             <outlet property="eventTime" destination="giO-0o-1fx" id="7iY-sa-vjn"/>
                                             <outlet property="eventVenue" destination="04b-kS-zEG" id="Jny-WC-Swx"/>
+                                            <outlet property="medalImageView" destination="We6-17-Lew" id="s8I-Ow-G0f"/>
                                             <outlet property="notificationButton" destination="OHe-Z0-gcl" id="kTQ-Cj-jmP"/>
                                         </connections>
                                     </tableViewCell>
@@ -1613,6 +1613,7 @@
     </scenes>
     <resources>
         <image name="ico-bell" width="20" height="20"/>
+        <image name="ico-medal" width="20" height="20"/>
         <image name="ico-profile" width="150" height="150"/>
         <image name="stripes.jpg" width="960" height="639"/>
     </resources>
