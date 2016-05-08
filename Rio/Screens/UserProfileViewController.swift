@@ -73,8 +73,6 @@ class UserProfileViewController: UIViewController {
             let fbId = userDataDict?.objectForKey("facebookId") ?? ((userProfileArray?.first)! as RioUserProfileModel).facebookId
          let request = FBSDKGraphRequest.init(graphPath: String(format: "http://graph.facebook.com/%@/picture?type=large",fbId as! String), parameters: nil, HTTPMethod: "GET")
             request.startWithCompletionHandler({ (connection, result, error) in
-                
-                print(result)
             })
         }
     }

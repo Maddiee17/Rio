@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "switch.png",
+      "filename" : "ico-assignment-pastdue-16.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "switch-1.png",
+      "filename" : "ico-assignment-pastdue-16-3.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "switch-2.png",
+      "filename" : "ico-assignment-pastdue-16-4.png",
       "scale" : "3x"
     }
   ],

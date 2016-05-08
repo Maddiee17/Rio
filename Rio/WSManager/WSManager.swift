@@ -209,10 +209,10 @@ class WSManager: NSObject {
         let addReminderURL = String(format: kBaseURL, kAddReminderURL)
         let request = NSMutableURLRequest(URL: NSURL(string: addReminderURL)!)
         let localDateObj = RioUtilities.sharedInstance.getDateFromComponents(eventModel.StartTime!, date: eventModel.Date!)
-        let epochFireDate = String(format: "%.0f",localDateObj.timeIntervalSince1970)
+        let epochFireDate = String(format: "%.0f",localDateObj.timeIntervalSince1970 * 1000)
         let userId = NSUserDefaults.standardUserDefaults().objectForKey("userId")
         
-        let paramsDict = ["userId": userId!, "language": "en", "eventName":eventModel.Discipline!, "eventVenue": eventModel.VenueName!, "eventDetails":eventModel.Description!, "scheduledDateTime":epochFireDate, "isMedalAvailable": ((eventModel.Medal!) as NSString).boolValue, "eventId": eventModel.Sno!] as NSDictionary
+        let paramsDict = ["userId": userId!, "language": "en", "eventName":eventModel.Discipline!, "eventVenue": eventModel.VenueName!, "eventDetails":eventModel.DescriptionLong!, "scheduledDateTime":epochFireDate, "isMedalAvailable": ((eventModel.Medal!) as NSString).boolValue, "eventId": eventModel.Sno!] as NSDictionary
         let data = RioUtilities.sharedInstance.convertDictToData(paramsDict)
         
         request.HTTPBody = data

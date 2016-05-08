@@ -15,7 +15,8 @@ class SubCategoryViewController: UIViewController {
     var subCategoryModelLocal : RioSubCategoryModel?
     var subCategoryArray : [String]?
     var eventArray : [RioEventModel]?
-
+    var selectedEvent : String?
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -27,6 +28,12 @@ class SubCategoryViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.title = "Teams"
         self.setUpLeftBarButton()
+        
+        
+        
+        let tblView =  UIView(frame: CGRectZero)
+        self.tableView.tableFooterView = tblView
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -102,20 +109,40 @@ class SubCategoryViewController: UIViewController {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
                     self.dataManager.fetchEventsFromDB(sqlStmt, categorySelected: self.categorySelected!) { (results) -> Void in
                         self.eventArray = results
-                        let predicate = NSPredicate(format: "DescriptionLong CONTAINS[d] %@", eventSplitted[0].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()))
-                        let newArray = (self.eventArray! as NSArray).filteredArrayUsingPredicate(predicate)
+//                        let predicate = NSPredicate(format: "DescriptionLong CONTAINS[d] %@", eventSplitted[0].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()))
+                        let newArray = self.filterArrayBasedOnCategory(eventSelected)
                         NSLog("Event array count %d",(newArray.count))
                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
                             let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
                             let eventDetailsVC = storyBoard.instantiateViewControllerWithIdentifier("EventDetailVC") as! EventDetailsTableViewController
                             eventDetailsVC.eventsFilteredArray = newArray
-                            eventDetailsVC.selectedEvent = eventSplitted[0]
+                            eventDetailsVC.selectedEvent = self.selectedEvent!
                             self.navigationController?.pushViewController(eventDetailsVC, animated: true)
                         })
                     }
         
                 }
         
+    }
+    
+    
+    func filterArrayBasedOnCategory(eventSelected:String) -> NSArray
+    {
+        var predicate : NSPredicate?
+        let eventSplitted = eventSelected.componentsSeparatedByString(" ")
+
+        switch categorySelected! {
+        case "Boxing", "Athletics", "Canoe slalom", "Canoe sprint", "Cycling track", "Cycling road", "Diving", "Fencing", "Judo", "Rowing", "Archery", "Synchronised swimming":
+            predicate = NSPredicate(format: "DescriptionLong CONTAINS[d] %@", eventSelected)
+            selectedEvent = eventSelected
+            
+        default:
+            predicate = NSPredicate(format: "DescriptionLong CONTAINS[d] %@", eventSplitted[0].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()))
+            selectedEvent = eventSplitted[0]
+
+        }
+        
+        return (self.eventArray! as NSArray).filteredArrayUsingPredicate(predicate!)
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{

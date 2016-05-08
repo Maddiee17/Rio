@@ -68,6 +68,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Twitter.self])
         customizeNavigationBar()
         getImagesURL()
+        
+        if let notification:UILocalNotification = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? UILocalNotification {
+            RioRootModel.sharedInstance.userInfoDict = notification.userInfo as? Dictionary<String, String>
+            RioRootModel.sharedInstance.applicationBecameActiveBecauseOfNotification = true
+        }
         return true
     }
     
@@ -77,6 +82,87 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             sourceApplication: sourceApplication,
             annotation: annotation)
         
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]){
+    
+            let userInfoDict = userInfo as? Dictionary<String, String>
+            let message = userInfo["alert"]
+            
+            if (UIApplication.sharedApplication().applicationState == .Active) {
+                let alertController = UIAlertController(title: "Reminder Alert", message: message, preferredStyle: .Alert)
+                let closeAction: UIAlertAction = UIAlertAction(title: "Close", style: .Cancel) { action -> Void in
+                }
+                alertController.addAction(closeAction)
+                let viewController: UIViewController = (self.window?.rootViewController)!
+                viewController.presentViewController(alertController, animated: true, completion: nil)
+            }
+            else {
+               // self.handleLocalNotifictionForForegroundState(userInfoDict)
+            }
+        }
+
+    func getTopViewController() -> UIViewController {
+        let signInVC =  self.window?.rootViewController as! LoginViewController
+        
+        var viewController: UIViewController = signInVC
+        
+        while (viewController.presentedViewController != nil) {
+            var tempViewController = viewController.presentedViewController
+            
+            if (tempViewController?.isKindOfClass(UITabBarController) != nil) {
+                tempViewController = (tempViewController as! UITabBarController).selectedViewController
+                
+                if (tempViewController?.isKindOfClass(UINavigationController) != nil) {
+                    viewController = (tempViewController as! UINavigationController).visibleViewController!
+                }
+                else {
+                    viewController = tempViewController!
+                }
+            }
+            else {
+                viewController = tempViewController!
+            }
+        }
+        
+        return viewController
+    }
+    
+    func handleLocalNotifictionForForegroundState(userInfoDict:Dictionary<String, String>?) {
+        RioRootModel.sharedInstance.userInfoDict = userInfoDict
+        if ((self.window?.rootViewController?.isKindOfClass(LoginViewController)) != nil) {
+            let signInViewController: UIViewController = self.window?.rootViewController as! LoginViewController
+            
+            if signInViewController.presentedViewController != nil {
+                let presentedViewController = signInViewController.presentedViewController
+                
+                if (presentedViewController?.isKindOfClass(UITabBarController) != nil) {
+                    let tabBarController = presentedViewController as! UITabBarController
+                    
+                    if (tabBarController.selectedViewController?.isKindOfClass(UINavigationController) != nil) {
+                        let navViewController = tabBarController.selectedViewController as! UINavigationController
+                        let visibleViewController = navViewController.viewControllers.last
+                        if visibleViewController!.presentedViewController != nil {
+                            let tempPresentedViewController = visibleViewController!.presentedViewController
+                            tempPresentedViewController!.dismissViewControllerAnimated(false, completion: nil)
+                        }
+                        
+                        navViewController.popToRootViewControllerAnimated(false)
+                        let viewControllersArray = tabBarController.viewControllers
+                        if tabBarController.selectedIndex != 0 {
+                            let firstViewController = viewControllersArray?.first
+                            if firstViewController!.isKindOfClass(UINavigationController) {
+                                (firstViewController as! UINavigationController).popToRootViewControllerAnimated(false)
+                            }
+                        }
+                        
+                        tabBarController.setViewControllers(viewControllersArray, animated: false)
+                        tabBarController.selectedIndex = 0
+                        NSNotificationCenter.defaultCenter().postNotificationName("localNotificationTapped", object: nil, userInfo:userInfoDict)
+                    }
+                }
+            }
+        }
     }
     
 //    func application(application: UIApplication,
@@ -137,16 +223,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         }
                 })
             }
-    }
-    
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        let alertController = UIAlertController(title: "Received Notification", message: "Blah Blah", preferredStyle: .Alert)
-        let closeAction: UIAlertAction = UIAlertAction(title: "Close", style: .Cancel) { action -> Void in
-        }
-        alertController.addAction(closeAction)
-        let viewController: UIViewController = (self.window?.rootViewController)!
-        viewController.presentViewController(alertController, animated: true, completion: nil)
-
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {

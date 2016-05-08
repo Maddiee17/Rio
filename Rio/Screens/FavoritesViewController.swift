@@ -93,13 +93,25 @@ class FavoritesViewController: UIViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("favCell") as? EventCell
         
         let key = self.disciplineArray[indexPath.section]
-        let localDict = self.splittedDict[key] as! [NSDictionary]
- 
-//        let localDict = self.reminderArray[indexPath.section]
-        cell?.eventVenue.text = localDict[indexPath.row].objectForKey("eventVenue") as? String
-        cell?.eventName.text =  localDict[indexPath.row].objectForKey("eventDetails") as? String
-        cell?.eventTime.text =  localDict[indexPath.row].objectForKey("scheduledDateTime") as? String
-        cell?.eventMedals.text =  localDict[indexPath.row].objectForKey("isMedalAvailable") as? String
+        let localDict = self.splittedDict[key] as? [NSDictionary]
+        let localObj = localDict![indexPath.row]
+        cell?.eventVenue.text = RioUtilities.sharedInstance.getVenueName((localObj.objectForKey("eventVenue") as? String)!)
+        cell?.eventName.text = localObj.objectForKey("eventDetails") as? String
+        let date = localObj.objectForKey("scheduledDateTime") as! NSNumber
+        let dateTimeTuple = RioUtilities.sharedInstance.getDateStringFromTimeInterval(Int(date))
+        cell?.eventTime.text = dateTimeTuple.1
+        cell?.eventDate.text = dateTimeTuple.0
+        let medalAvail = localObj.objectForKey("isMedalAvailable") as? Bool
+        if medalAvail == false {
+            cell?.eventMedals.text = "No"
+            cell!.medalImageView.image = UIImage(named: "ico-nomedal")
+        }
+        else {
+            cell?.eventMedals.text = "Yes"
+            cell?.medalImageView.image = UIImage(named: "ico-medal")
+        }
+        cell?.medalImageView.image = cell?.medalImageView.image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        cell?.medalImageView.tintColor = UIColor.orangeColor()
         cell?.notificationButton.setImage(UIImage(named: "ico-bell-selected"), forState: .Normal)
         return cell!
     }

@@ -73,7 +73,8 @@ class CategoryListViewController: UIViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell")
         if(categoryArrayLocal?.count > 0){
             let model = self.categoryArrayLocal![indexPath.row]
-            cell?.textLabel?.text = model.type
+            let categoryType = model.type?.stringByReplacingOccurrencesOfString("\n", withString: " ")
+            cell?.textLabel?.text = categoryType
             cell?.accessoryType = .DisclosureIndicator
         }
         return cell!

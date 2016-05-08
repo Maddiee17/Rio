@@ -86,14 +86,14 @@ class RioUtilities: NSObject {
         
         let calender = NSCalendar(identifier:NSCalendarIdentifierGregorian)
         let year = Int(arrayForDates[0])
-        let month = Int(arrayForDates[1])
+        let month = Int(arrayForDates[1])! - 3
         let day = Int(arrayForDates[2])
         let hour = Int(arrayForTime[0])!
         let minutes = Int(arrayForTime[1])
         
         let dateComponents = NSDateComponents()
         dateComponents.day = day!
-        dateComponents.month = month!
+        dateComponents.month = month
         dateComponents.year = year!
         dateComponents.hour = hour
         dateComponents.minute = minutes!
@@ -161,4 +161,47 @@ class RioUtilities: NSObject {
         let alert: UIAlertView = UIAlertView(title: titleString, message: messageString, delegate: nil, cancelButtonTitle: "OK")
         alert.show()
     }
+    
+    func getTrimmedTime(startTime:String) -> String
+    {
+        let rangeOfLast = Range(start: startTime.startIndex, end: startTime.endIndex.advancedBy(-3))
+        return startTime[rangeOfLast]
+        
+    }
+    
+    func getTrimmedDate(date:String) -> String
+    {
+        let rangeOfLast = Range(start: date.startIndex.advancedBy(5), end: date.endIndex)
+        return date[rangeOfLast]
+        
+    }
+    
+    func getVenueName(venue : String) -> String
+    {
+        let range = Range(start: venue.startIndex, end: venue.startIndex.advancedBy(4))
+        let venueName = venue[range]
+        if venueName == "Samb" {
+            return "Sambódromo"
+        }
+        else if venueName == "Mara"{
+            return "Maracanãzinho"
+        }
+        else{
+            return venue
+        }
+    }
+    
+    func getDateStringFromTimeInterval(timeInterval: Int) -> (String,String) {
+        let date = NSDate(timeIntervalSince1970: Double(timeInterval) / 1000)
+       // let dateString = date.description
+        let formatter = NSDateFormatter()
+        formatter.timeZone = NSTimeZone.localTimeZone()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        let dateString = formatter.stringFromDate(date)
+        var componentsString = dateString.componentsSeparatedByString("T")
+        let dateComponents = self.getTrimmedDate(componentsString[0])
+        let timeComponemts = self.getTrimmedTime(componentsString[1])
+        return (dateComponents,timeComponemts)
+    }
+
 }

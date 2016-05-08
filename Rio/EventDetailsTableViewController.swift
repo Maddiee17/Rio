@@ -42,8 +42,11 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
             let localDateNTime = RioUtilities.sharedInstance.calculateFireDate(model as! RioEventModel).description
             (model as! RioEventModel).Date = localDateNTime.componentsSeparatedByString(" ")[0]
             (model as! RioEventModel).StartTime = localDateNTime.componentsSeparatedByString(" ")[1]
+            (model as! RioEventModel).DescriptionLong = self.filterDescription(model.DescriptionLong!!)
         }
     }
+    
+    
     
     func setUpLeftBarButton() {
         
@@ -105,65 +108,11 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         let cell = tableView.dequeueReusableCellWithIdentifier("eventCell", forIndexPath: indexPath) as! EventCell
         
         let key = self.datesArray[indexPath.section]
-        
-        
         let localObj = self.splittedDict[key]
-        
-        cell.eventTime.text = getTrimmedTime(localObj![indexPath.row].StartTime!)
-        cell.eventVenue.text = getVenueName(localObj![indexPath.row].VenueName!)
-        cell.eventMedals.text = localObj![indexPath.row].Medal
-        if cell.eventMedals.text == "Yes" {
-            cell.medalImageView.image = UIImage(named: "ico-medal")
-        }
-        else{
-            cell.medalImageView.image = UIImage(named: "ico-nomedal")
-        }
-        cell.eventDate.text = getTrimmedDate(localObj![indexPath.row].Date!)
-        
-        cell.eventName.text = filterDescription(localObj![indexPath.row].DescriptionLong!)
-        if (notificationEnabledCells.contains(localObj![indexPath.row].Sno!)) {
-            cell.notificationButton.setImage(UIImage(named: "ico-bell-selected"), forState: .Normal)
-            cell.notificationButton.tag = 2
-        }
-        else{
-            cell.notificationButton.setImage(UIImage(named: "ico-bell"), forState: .Normal)
-            cell.notificationButton.tag = 1
-        }
-        
+        cell.initWithEventObject(localObj![indexPath.row], notificationEnabledCell: self.notificationEnabledCells, selectedEvent: self.selectedEvent!)
         cell.delegate = self
-//        cell.eventImage.image = UIImage(named: "ico-wrestle")
         return cell
     }
-    
-    func getTrimmedTime(startTime:String) -> String
-    {
-        let rangeOfLast = Range(start: startTime.startIndex, end: startTime.endIndex.advancedBy(-3))
-        return startTime[rangeOfLast]
-        
-    }
-    
-    func getTrimmedDate(date:String) -> String
-    {
-        let rangeOfLast = Range(start: date.startIndex.advancedBy(5), end: date.endIndex)
-        return date[rangeOfLast]
-        
-    }
-    
-    func getVenueName(venue : String) -> String
-    {
-        let range = Range(start: venue.startIndex, end: venue.startIndex.advancedBy(4))
-        let venueName = venue[range]
-        if venueName == "Samb" {
-            return "Sambódromo"
-        }
-        else if venueName == "Mara"{
-            return "Maracanãzinho"
-        }
-        else{
-            return venue
-        }
-    }
-
     
     func findAddedReminders()
     {
@@ -171,22 +120,6 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
             self.notificationEnabledCells = remidersArray
         }
     }
-    
-    func filterDescription(actualString:String) -> String{
-        
-        var croppedString = ""
-        let array = actualString.componentsSeparatedByString("|")
-        var i = 0
-        for (i = 0; i<array.count; i += 1) {
-            
-            if(array[i].containsString(selectedEvent!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()))){
-                croppedString += array[i]
-            }
-        }
-        
-        return croppedString
-    }
-    
     
     func notificationButtonTapped(forCell:EventCell)
     {
@@ -246,12 +179,14 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
     {
         for eventModel in self.eventsFilteredArray
         {
+            let localObj = eventModel as! RioEventModel
+            print(localObj.Date!)
             if self.datesArray.contains((eventModel as! RioEventModel).Date!) == false {
                 self.datesArray.append((eventModel.Date)!!)
             }
         }
         for date in self.datesArray {
-            let predicate = NSPredicate(format: "Date CONTAINS[cd] %@", date)
+            let predicate = NSPredicate(format: "Date = %@", date)
             let valuesArray = self.eventsFilteredArray.filteredArrayUsingPredicate(predicate) as! [RioEventModel]
             print(valuesArray)
             splittedDict.updateValue(valuesArray, forKey: date)
@@ -259,5 +194,25 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         print(self.datesArray)
     }
     
+    func filterDescription(actualString:String) -> String{
+        
+        var croppedString = ""
+        let array = actualString.componentsSeparatedByString("|")
+        var i = 0
+        for (i = 0; i<array.count; i += 1) {
+            
+            //            if array[i].containsString("victory") || array[i].characters.count <= 8 {
+            //                continue
+            //            }
+            if(array[i].containsString(selectedEvent!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()))){
+                croppedString += array[i]
+            }
+            //            if array.count != 1 && i != array.count - 1  {
+            //                croppedString += ","
+            //            }
+        }
+        
+        return croppedString
+    }
 }
 

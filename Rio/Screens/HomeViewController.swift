@@ -137,6 +137,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                         KVNProgress.showErrorWithStatus("Error fetching Tweets")
                     }
                     self.refreshControl?.endRefreshing()
+                    self.categoriesButton.userInteractionEnabled = true
                     print(error)
                 }
                 
@@ -160,6 +161,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                     })
                 }
                 else {
+                    self.categoriesButton.userInteractionEnabled = true
                     KVNProgress.showErrorWithStatus("Error fetching Tweets")
                 }
                 print(error)
