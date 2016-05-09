@@ -105,7 +105,6 @@
 		9C3C7F391C65FE7C00E98DA6 /* RioResultSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioResultSet.swift; sourceTree = "<group>"; };
 		9C3C7F3B1C65FEFB00E98DA6 /* RioDatabaseInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioDatabaseInteractor.swift; sourceTree = "<group>"; };
 		9C3C7F3D1C66475600E98DA6 /* RioEventModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioEventModel.swift; sourceTree = "<group>"; };
-		9C555E2A1CC16B0E005F1F2D /* Rio.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Rio.entitlements; sourceTree = "<group>"; };
 		9C555E2B1CC214C5005F1F2D /* LeftNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftNavViewController.swift; sourceTree = "<group>"; };
 		9C555E2D1CC23D0B005F1F2D /* DrawerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerViewController.swift; sourceTree = "<group>"; };
 		9C555E2F1CC4D37C005F1F2D /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
@@ -234,7 +233,6 @@
 			isa = PBXGroup;
 			children = (
 				9ADB1AE01CCCB39300D0973C /* Utilities */,
-				9C555E2A1CC16B0E005F1F2D /* Rio.entitlements */,
 				9CD5459A1CBAB08A007F6D8F /* WSManager */,
 				9CFF12A61CBA1A7900287147 /* SupportingFiles */,
 				9CFF12A51CBA1A5A00287147 /* Categories */,
@@ -412,7 +410,7 @@
 						DevelopmentTeam = JEWCC68TZJ;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -686,7 +684,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Rio/Rio.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Rio/Info.plist;
@@ -707,7 +704,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Rio/Rio.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Rio/Info.plist;

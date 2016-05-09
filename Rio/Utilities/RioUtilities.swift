@@ -97,6 +97,7 @@ class RioUtilities: NSObject {
         dateComponents.year = year!
         dateComponents.hour = hour
         dateComponents.minute = minutes!
+        dateComponents.second = 0
         dateComponents.timeZone = NSTimeZone.localTimeZone()
         let UTCDate = calender!.dateFromComponents(dateComponents)
         

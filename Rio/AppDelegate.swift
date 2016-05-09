@@ -69,9 +69,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         customizeNavigationBar()
         getImagesURL()
         
-        if let notification:UILocalNotification = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? UILocalNotification {
-            RioRootModel.sharedInstance.userInfoDict = notification.userInfo as? Dictionary<String, String>
-            RioRootModel.sharedInstance.applicationBecameActiveBecauseOfNotification = true
+        if let _ = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] {
+            NSLog("app Launched with notification posted ******")
+            RioRootModel.sharedInstance.isPushedFromNotification = true
+            self.application(application, didReceiveRemoteNotification:(launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey])! as! [NSObject : AnyObject])
         }
         return true
     }
@@ -86,11 +87,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]){
     
-            let userInfoDict = userInfo as? Dictionary<String, String>
-            let message = userInfo["alert"]
+        var messageFromPayload : String?
+        var bodyFromPayload : String?
+        if let aps = userInfo["aps"] as? NSDictionary {
+            if let alert = aps["alert"] as? NSDictionary {
+                if let message = alert["title"] as? NSString {
+                    messageFromPayload = message as String
+                    bodyFromPayload = alert["body"] as! String
+                    RioRootModel.sharedInstance.userInfoDict = alert as [NSObject : AnyObject]
+                }
+            } else if let alert = aps["alert"] as? NSString {
+                //Do stuff
+                messageFromPayload = alert as String
+            }
             
             if (UIApplication.sharedApplication().applicationState == .Active) {
-                let alertController = UIAlertController(title: "Reminder Alert", message: message, preferredStyle: .Alert)
+                let alertController = UIAlertController(title: messageFromPayload, message: bodyFromPayload, preferredStyle: .Alert)
                 let closeAction: UIAlertAction = UIAlertAction(title: "Close", style: .Cancel) { action -> Void in
                 }
                 alertController.addAction(closeAction)
@@ -98,71 +110,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 viewController.presentViewController(alertController, animated: true, completion: nil)
             }
             else {
-               // self.handleLocalNotifictionForForegroundState(userInfoDict)
+                self.handleLocalNotifictionForForegroundState()
+//                let userInfo = ["category":messageFromPayload!] as [NSObject : AnyObject]
+                RioRootModel.sharedInstance.isPushedFromNotification = true
+                NSLog("Notification posted ******")
+                print("Notification posted ***********")
+//                NSNotificationCenter.defaultCenter().postNotificationName("localNotificationTapped", object: nil, userInfo:userInfo)
+                //self.handleLocalNotifictionForForegroundState(messageFromPayload!)
             }
         }
-
-    func getTopViewController() -> UIViewController {
-        let signInVC =  self.window?.rootViewController as! LoginViewController
-        
-        var viewController: UIViewController = signInVC
-        
-        while (viewController.presentedViewController != nil) {
-            var tempViewController = viewController.presentedViewController
-            
-            if (tempViewController?.isKindOfClass(UITabBarController) != nil) {
-                tempViewController = (tempViewController as! UITabBarController).selectedViewController
-                
-                if (tempViewController?.isKindOfClass(UINavigationController) != nil) {
-                    viewController = (tempViewController as! UINavigationController).visibleViewController!
-                }
-                else {
-                    viewController = tempViewController!
-                }
-            }
-            else {
-                viewController = tempViewController!
-            }
-        }
-        
-        return viewController
     }
-    
-    func handleLocalNotifictionForForegroundState(userInfoDict:Dictionary<String, String>?) {
-        RioRootModel.sharedInstance.userInfoDict = userInfoDict
-        if ((self.window?.rootViewController?.isKindOfClass(LoginViewController)) != nil) {
-            let signInViewController: UIViewController = self.window?.rootViewController as! LoginViewController
-            
-            if signInViewController.presentedViewController != nil {
-                let presentedViewController = signInViewController.presentedViewController
-                
-                if (presentedViewController?.isKindOfClass(UITabBarController) != nil) {
-                    let tabBarController = presentedViewController as! UITabBarController
-                    
-                    if (tabBarController.selectedViewController?.isKindOfClass(UINavigationController) != nil) {
-                        let navViewController = tabBarController.selectedViewController as! UINavigationController
-                        let visibleViewController = navViewController.viewControllers.last
-                        if visibleViewController!.presentedViewController != nil {
-                            let tempPresentedViewController = visibleViewController!.presentedViewController
-                            tempPresentedViewController!.dismissViewControllerAnimated(false, completion: nil)
-                        }
-                        
-                        navViewController.popToRootViewControllerAnimated(false)
-                        let viewControllersArray = tabBarController.viewControllers
-                        if tabBarController.selectedIndex != 0 {
-                            let firstViewController = viewControllersArray?.first
-                            if firstViewController!.isKindOfClass(UINavigationController) {
-                                (firstViewController as! UINavigationController).popToRootViewControllerAnimated(false)
-                            }
-                        }
-                        
-                        tabBarController.setViewControllers(viewControllersArray, animated: false)
-                        tabBarController.selectedIndex = 0
-                        NSNotificationCenter.defaultCenter().postNotificationName("localNotificationTapped", object: nil, userInfo:userInfoDict)
-                    }
-                }
-            }
-        }
+
+    func handleLocalNotifictionForForegroundState() {
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let userProfileVC = storyBoard.instantiateViewControllerWithIdentifier("UserProfileVC")
+        self.window?.rootViewController = userProfileVC
     }
     
 //    func application(application: UIApplication,

@@ -119,16 +119,19 @@ class WSManager: NSObject {
         self.performURLSessionForTaskForRequest(request, successBlock: { (response) -> Void in
             
             let results: NSDictionary = RioUtilities.sharedInstance.convertDataToDict(response as! NSData)
-            let urlArray = results["imageVOs"] as! NSArray
-            var imagesDataArray = [NSData]()
-            for imagesDict in urlArray{
-                let imageURL = (imagesDict as! NSDictionary).objectForKey("imageSelfLink") as! String
-                self.fetchImageFromURL(imageURL, successBlock: { (responseData) in
-                    print(responseData)
-                    imagesDataArray.append(responseData)
-                })
+            if let urlArray = results["imageVOs"] as? NSArray{
+                
+                var imagesDataArray = [NSData]()
+                for imagesDict in urlArray{
+                    let imageURL = (imagesDict as! NSDictionary).objectForKey("imageSelfLink") as! String
+                    self.fetchImageFromURL(imageURL, successBlock: { (responseData) in
+                        print(responseData)
+                        imagesDataArray.append(responseData)
+                    })
+                }
+                RioRootModel.sharedInstance.imagesURLArray = imagesDataArray
             }
-            RioRootModel.sharedInstance.imagesURLArray = imagesDataArray
+            
         }) { (error) in
             RioRootModel.sharedInstance.imagesURLArray = []
             print(error)
@@ -164,6 +167,9 @@ class WSManager: NSObject {
                     serialNosArray = RioUtilities.sharedInstance.filterSerialNoFromAddedReminders(reminders)
                     successBlock(serialNosArray!)
                 }
+                else{
+                    successBlock([String]())
+            }
 
         }) { (error) -> Void in
             print(error)
@@ -304,7 +310,9 @@ class WSManager: NSObject {
                 if(error == nil){
                     print(response)
                     UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                    successBlock(data!)
+                    if let responseData = data{
+                        successBlock(responseData)
+                    }
                 }
                 else {
                     errorBlock(error!)

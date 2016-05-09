@@ -22,6 +22,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     var refreshControl : UIRefreshControl?
     var hideLoadingIndicator = false
     var lastOffset : CGPoint?
+    var isPushedFromNotification = false
+    var eventForNotification : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +34,18 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
 //        self.shyNavBarManager.extensionView = slideShow
 //        self.shyNavBarManager.stickyExtensionView = false
 //        self.shyNavBarManager.extensionView.frame = CGRectMake(0, 0, self.view.frame.size.width, 100)
-        setUpData()
+        if RioRootModel.sharedInstance.isPushedFromNotification == false
+        {
+            setUpData()
+        }
         self.refreshControl = UIRefreshControl()
         self.refreshControl!.addTarget(self, action: #selector(HomeViewController.refreshData), forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(self.refreshControl!)
+        if RioRootModel.sharedInstance.isPushedFromNotification == true
+        {
+            NSLog("Home VC Called **************************")
+            categoriesButtonTapped()
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -66,8 +76,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         UIApplication.sharedApplication().keyWindow?.viewWithTag(1)?.removeFromSuperview()
         let categoriesVC = self.storyboard?.instantiateViewControllerWithIdentifier("CategoryListViewController")
         self.mm_drawerController.centerViewController = categoriesVC
-        self.navigationController?.pushViewController(categoriesVC!, animated: true)
-
     }
     
     func setUpSlideShow(){

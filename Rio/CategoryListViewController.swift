@@ -15,6 +15,8 @@ class CategoryListViewController: UIViewController {
     var categoryArrayLocal : [RioCategoryModel]?
     var eventArray : [RioEventModel]?
     var categorySelected : String?
+    var eventForNotification : String?
+    var indexForNotification : Int?
     
     @IBOutlet weak var categoryTableView: UITableView!
     
@@ -38,6 +40,30 @@ class CategoryListViewController: UIViewController {
         self.mm_drawerController.toggleDrawerSide(.Left, animated: true, completion: { _ in })
     }
 
+    func handleNotification() {
+        
+        if RioRootModel.sharedInstance.isPushedFromNotification == true {
+            
+            let userInfoDict = RioRootModel.sharedInstance.userInfoDict
+            if let category = userInfoDict!["title"] as? String {
+                
+                eventForNotification = category
+                for (index,categoryModel) in (self.categoryArrayLocal?.enumerate())! {
+                    
+                    if categoryModel.type == eventForNotification {
+                        indexForNotification = index
+                        let indexPath = NSIndexPath(forRow: index, inSection: 0)
+                        self.tableView(self.categoryTableView, didSelectRowAtIndexPath: indexPath)
+                        break
+                    }
+                }
+            }
+            
+        }
+
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -55,6 +81,7 @@ class CategoryListViewController: UIViewController {
                     self.categoryArrayLocal = results
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.categoryTableView.reloadData()
+                        self.handleNotification()
                     })
                 }
             }
@@ -82,8 +109,14 @@ class CategoryListViewController: UIViewController {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        categorySelected = (tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text)!
+        
+        if RioRootModel.sharedInstance.isPushedFromNotification == true {
+            self.performSegueWithIdentifier("subCategorySegue", sender: self)
+        }
+        else{
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            categorySelected = (tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text)!
+        }
         
 //        let categoryForLike = String(format: "SELECT * from Event WHERE Discipline LIKE '%%%@%%'", categorySelected)
 //        
@@ -111,10 +144,16 @@ class CategoryListViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        let indexPathOfSelectedRow = self.categoryTableView.indexPathForSelectedRow
-        let selectedCell = self.categoryTableView.cellForRowAtIndexPath(indexPathOfSelectedRow!)
+        if RioRootModel.sharedInstance.isPushedFromNotification == false
+        {
+            let indexPathOfSelectedRow = self.categoryTableView.indexPathForSelectedRow
+            let selectedCell = self.categoryTableView.cellForRowAtIndexPath(indexPathOfSelectedRow!)
+            eventForNotification = selectedCell?.textLabel?.text
+
+        }
         let subCategoryVC = segue.destinationViewController as! SubCategoryViewController
-        subCategoryVC.categorySelected = selectedCell?.textLabel?.text
+        subCategoryVC.categorySelected = eventForNotification
+        RioRootModel.sharedInstance.isPushedFromNotification = false
     }
     
     func fireLocalNotification(filteredArray:NSArray)

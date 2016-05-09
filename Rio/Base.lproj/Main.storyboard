@@ -32,7 +32,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="3aj-B8-W7x" kind="show" id="aQl-I3-Dor"/>
+                                            <segue destination="3aj-B8-W7x" kind="show" identifier="subCategorySegue" id="aQl-I3-Dor"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -974,19 +974,20 @@
                                 <exclude reference="W6H-tn-sPA"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="zLN-Rd-JOf"/>
+                                <exclude reference="UON-xn-cj7"/>
+                                <exclude reference="k2X-dX-GNH"/>
+                                <exclude reference="8Hm-mA-Mf5"/>
+                                <exclude reference="dVB-5H-m4L"/>
+                                <exclude reference="juh-sm-iU2"/>
                                 <exclude reference="4n5-eJ-H4E"/>
                                 <exclude reference="6UT-xk-7RG"/>
                                 <exclude reference="bdn-bY-MB5"/>
                                 <exclude reference="hFt-K0-ftA"/>
-                                <exclude reference="UON-xn-cj7"/>
-                                <exclude reference="k2X-dX-GNH"/>
                                 <exclude reference="Exa-f5-ti1"/>
                                 <exclude reference="PTR-dc-G6S"/>
                                 <exclude reference="W9j-TD-zsG"/>
                                 <exclude reference="a5c-WB-CDZ"/>
-                                <exclude reference="8Hm-mA-Mf5"/>
-                                <exclude reference="dVB-5H-m4L"/>
-                                <exclude reference="juh-sm-iU2"/>
                                 <exclude reference="9oY-j2-C9u"/>
                                 <exclude reference="YTI-3W-xaZ"/>
                                 <exclude reference="A8l-lU-wSl"/>
@@ -996,7 +997,6 @@
                                 <exclude reference="pzR-00-FwO"/>
                                 <exclude reference="sNJ-FB-YC6"/>
                                 <exclude reference="YLz-bt-C4J"/>
-                                <exclude reference="zLN-Rd-JOf"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -1011,19 +1011,20 @@
                                 <include reference="W6H-tn-sPA"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="zLN-Rd-JOf"/>
+                                <include reference="UON-xn-cj7"/>
+                                <include reference="k2X-dX-GNH"/>
+                                <include reference="8Hm-mA-Mf5"/>
+                                <include reference="dVB-5H-m4L"/>
+                                <include reference="juh-sm-iU2"/>
                                 <include reference="4n5-eJ-H4E"/>
                                 <include reference="6UT-xk-7RG"/>
                                 <include reference="bdn-bY-MB5"/>
                                 <include reference="hFt-K0-ftA"/>
-                                <include reference="UON-xn-cj7"/>
-                                <include reference="k2X-dX-GNH"/>
                                 <include reference="Exa-f5-ti1"/>
                                 <include reference="PTR-dc-G6S"/>
                                 <include reference="W9j-TD-zsG"/>
                                 <include reference="a5c-WB-CDZ"/>
-                                <include reference="8Hm-mA-Mf5"/>
-                                <include reference="dVB-5H-m4L"/>
-                                <include reference="juh-sm-iU2"/>
                                 <include reference="9oY-j2-C9u"/>
                                 <include reference="YTI-3W-xaZ"/>
                                 <include reference="A8l-lU-wSl"/>
@@ -1033,7 +1034,6 @@
                                 <include reference="pzR-00-FwO"/>
                                 <include reference="sNJ-FB-YC6"/>
                                 <include reference="YLz-bt-C4J"/>
-                                <include reference="zLN-Rd-JOf"/>
                             </mask>
                         </variation>
                     </view>
@@ -1053,7 +1053,7 @@
         <!--Home View Controller-->
         <scene sceneID="Yt8-BS-YCe">
             <objects>
-                <viewController id="mIB-1a-yFz" customClass="HomeViewController" customModule="Rio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeVC" id="mIB-1a-yFz" customClass="HomeViewController" customModule="Rio" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="erC-vL-1id"/>
                         <viewControllerLayoutGuide type="bottom" id="qIB-vP-y1S"/>

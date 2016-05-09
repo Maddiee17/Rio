@@ -14,6 +14,7 @@ class UserProfileViewController: UIViewController {
     var dataBaseInteractor = RioDatabaseInteractor()
     var userProfileArray : [RioUserProfileModel]?
     let manager = WSManager.sharedInstance
+    let isPushedFromNotification = false
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var avatarImage: UIImageView?
@@ -22,6 +23,8 @@ class UserProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
         //self.avatarImage = UIImageView(frame: CGRectMake((self.profileImageBackgroundView.frame.width)/2 ,(self.profileImageBackgroundView.frame.height)/2, 50, 50))
         self.avatarImage!.layer.cornerRadius = 5.0
         self.avatarImage?.clipsToBounds = true
@@ -53,6 +56,38 @@ class UserProfileViewController: UIViewController {
             
             fetchUserProfilePic()
         }
+        
+        if RioRootModel.sharedInstance.isPushedFromNotification == true
+        {
+            self.presentVC()
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector:"presentVC:", name: "localNotificationTapped", object: nil)
+
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        
+//        NSNotificationCenter.defaultCenter().removeObserver(self, name: "localNotificationTapped", object: nil)
+    }
+    
+    func presentVC()
+    {
+//        let userInfo = notification.userInfo
+//        let category =  userInfo!["category"] as! String
+        NSLog("Present VC Called ******************")
+        print("Present VC Called ******************")
+        /*
+        if category != "" {
+            let homeViewViewController = self.storyboard?.instantiateViewControllerWithIdentifier("homeVC") as! HomeViewController
+            homeViewViewController.isPushedFromNotification = true
+            homeViewViewController.eventForNotification = category
+            self.presentViewController(homeViewViewController, animated: true, completion: nil)
+        } */
+//        RioRootModel.sharedInstance.isPushedFromNotification = true
+        self.performSegueWithIdentifier("DRAWER_SEGUE", sender: self)
     }
     
     func fetchImage(url:String) {

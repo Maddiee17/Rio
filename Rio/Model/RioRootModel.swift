@@ -23,16 +23,21 @@ class RioRootModel: NSObject {
     var backgroundQueue = NSOperationQueue()
     var imagesURLArray = [NSData]()
     var emergencyTweetData : NSArray?
-    var userInfoDict : Dictionary<String, String>?
-    var applicationBecameActiveBecauseOfNotification: Bool? = false
+    var userInfoDict : [NSObject : AnyObject]?
+//    var applicationBecameActiveBecauseOfNotification: Bool? = false
+    var isPushedFromNotification = false
     
     func appendSnoToNotificationEnabledArray(sno:String) -> [String] {
+        
         if let _ =  RioRootModel.sharedInstance.addedReminderArray{
             self.addedReminderArray?.append(sno)
             return self.addedReminderArray!
         }
-        
-        return [String]()
+        else {
+            self.addedReminderArray = [String]()
+            self.addedReminderArray?.append(sno)
+            return self.addedReminderArray!
+        }
     }
     
     func removeSnoFromNotificationEnabledArray(sno:String) -> [String] {
