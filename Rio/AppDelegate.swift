@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
                 let userProfileVC = storyBoard.instantiateViewControllerWithIdentifier("UserProfileVC")
                 self.window?.rootViewController = userProfileVC
-                self.fetchReminderInBackground()
+//                self.fetchReminderInBackground()
             }
         }
 
@@ -74,6 +74,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             RioRootModel.sharedInstance.isPushedFromNotification = true
             self.application(application, didReceiveRemoteNotification:(launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey])! as! [NSObject : AnyObject])
         }
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
+            self.resetBadgeCount()
+        }
+
+
+
         return true
     }
     
@@ -140,11 +147,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         RioRootModel.sharedInstance.backgroundQueue.addOperation(operation)
     }
     
-    func fetchReminderInBackground()
-    {
-        let getReminderOperation = GetReminderOperation()
-        RioRootModel.sharedInstance.backgroundQueue.addOperation(getReminderOperation)
-    }
+//    func fetchReminderInBackground()
+//    {
+//        let getReminderOperation = GetReminderOperation()
+//        RioRootModel.sharedInstance.backgroundQueue.addOperation(getReminderOperation)
+//    }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         
@@ -222,6 +229,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         FBSDKAppEvents.activateApp()
+        resetBadgeCount()
+    }
+    
+    func resetBadgeCount()
+    {
+        if UIApplication.sharedApplication().applicationIconBadgeNumber != 0
+        {
+            if let emailIdValue = self.userProfile?.first?.emailId {
+                wsManager.resetBagdeCount(emailIdValue)
+            }
+        }
+        
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
     }
 
     func applicationWillTerminate(application: UIApplication) {
