@@ -53,6 +53,7 @@ class RioUtilities: NSObject {
         dateComponents.year = year!
         dateComponents.hour = hour
         dateComponents.minute = minutes!
+        dateComponents.second = 0
         dateComponents.timeZone = NSTimeZone(name: "UTC")
         let UTCDate = calender!.dateFromComponents(dateComponents)
         let dateLocal = self.getLocalDate(UTCDate!)
@@ -66,13 +67,13 @@ class RioUtilities: NSObject {
         var timeInterval = NSTimeInterval(NSTimeZone.localTimeZone().secondsFromGMT)
         let timeZoneObj = NSTimeZone.localTimeZone()
         var localdate = utcDate.dateByAddingTimeInterval(timeInterval)
-        let isDayLightSavingOn = timeZoneObj.isDaylightSavingTimeForDate(localdate)
-        if(isDayLightSavingOn == true)
-        {
-            let dayLightTimeInterval = timeZoneObj.daylightSavingTimeOffsetForDate(localdate)
-            timeInterval -= dayLightTimeInterval
-        }
-        localdate = utcDate.dateByAddingTimeInterval(timeInterval)
+//        let isDayLightSavingOn = timeZoneObj.isDaylightSavingTimeForDate(localdate)
+//        if(isDayLightSavingOn == true)
+//        {
+//            let dayLightTimeInterval = timeZoneObj.daylightSavingTimeOffsetForDate(localdate)
+//            timeInterval -= dayLightTimeInterval
+//        }
+//        localdate = utcDate.dateByAddingTimeInterval(timeInterval)
         return localdate
     }
     
