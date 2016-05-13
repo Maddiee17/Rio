@@ -17,7 +17,6 @@ class SubCategoryViewController: UIViewController {
     var eventArray : [RioEventModel]?
     var selectedEvent : String?
     
-    @IBOutlet var categoryDetailsHeader: SubCategoryHeaderView!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
