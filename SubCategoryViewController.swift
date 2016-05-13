@@ -17,6 +17,7 @@ class SubCategoryViewController: UIViewController {
     var eventArray : [RioEventModel]?
     var selectedEvent : String?
     
+    @IBOutlet var categoryDetailsHeader: SubCategoryHeaderView!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -28,11 +29,9 @@ class SubCategoryViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.title = "Teams"
         self.setUpLeftBarButton()
-        
-        
-        
         let tblView =  UIView(frame: CGRectZero)
         self.tableView.tableFooterView = tblView
+        self.tableView.rowHeight = UITableViewAutomaticDimension
 
     }
 
@@ -53,6 +52,11 @@ class SubCategoryViewController: UIViewController {
         self.navigationController?.popViewControllerAnimated(true)
     }
 
+    func setUpHeaderView()
+    {
+        
+    
+    }
     // MARK: - DB Fetch
     
     func fetchCategoryModel()
@@ -85,24 +89,49 @@ class SubCategoryViewController: UIViewController {
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return self.subCategoryArray?.count ?? 0
+        if let count = self.subCategoryArray?.count{
+            return count + 4
+        }
+        else{
+            return  0
+        }
+        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("subcategorycell")
+        let cell = tableView.dequeueReusableCellWithIdentifier("subcategorycell") as! SubCategoryTableViewCell
         if(subCategoryArray?.count > 0){
-            cell?.textLabel?.text = (subCategoryArray![indexPath.row] as String).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-            cell?.accessoryType = .DisclosureIndicator
+            
+            cell.userInteractionEnabled = false
+            cell.accessoryType = .None
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 10000, bottom: 0,right: 0)
+            switch indexPath.row {
+            case 0:
+                cell.titleLabel.attributedText = self.getAttributedString("AIM OF THE GAME", description: (subCategoryModelLocal?.Aim)!)//String(format: "Aim : %@", (subCategoryModelLocal?.Aim)!)
+            case 1:
+                cell.titleLabel.attributedText = self.getAttributedString("WHY SHOULD YOU WATCH THIS", description: (subCategoryModelLocal?.Why)!)//String(format: "Why : %@", (subCategoryModelLocal?.Why)!)
+            case 2:
+                cell.titleLabel.attributedText = self.getAttributedString("OLYMPIC DEBUT", description: (subCategoryModelLocal?.Debut)!)//String(format: "Debut : %@", (subCategoryModelLocal?.Debut)!)
+            case 3:
+                cell.titleLabel.attributedText = self.getAttributedString("TOP MEDALIST", description: (subCategoryModelLocal?.Top)!)//String(format: "Toppers : %@", (subCategoryModelLocal?.Top)!)
+                cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0,right: 0)
+            default:
+                cell.titleLabel.text = (subCategoryArray![indexPath.row - 4] as String).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0,right: 0)
+                cell.accessoryType = .DisclosureIndicator
+                cell.userInteractionEnabled = true
+            }
+            
         }
-        return cell!
+        return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let eventSelected = (tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text)!
-        let eventSplitted = eventSelected.componentsSeparatedByString(" ")
+        let eventSelected = (tableView.cellForRowAtIndexPath(indexPath) as! SubCategoryTableViewCell).titleLabel.text
+        _ = eventSelected!.componentsSeparatedByString(" ")
         
                 let sqlStmt = "SELECT * from Event WHERE Discipline = ? GROUP BY SessionCode"
         
@@ -110,7 +139,7 @@ class SubCategoryViewController: UIViewController {
                     self.dataManager.fetchEventsFromDB(sqlStmt, categorySelected: self.categorySelected!) { (results) -> Void in
                         self.eventArray = results
 //                        let predicate = NSPredicate(format: "DescriptionLong CONTAINS[d] %@", eventSplitted[0].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()))
-                        let newArray = self.filterArrayBasedOnCategory(eventSelected)
+                        let newArray = self.filterArrayBasedOnCategory(eventSelected!)
                         NSLog("Event array count %d",(newArray.count))
                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
                             let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
@@ -125,6 +154,31 @@ class SubCategoryViewController: UIViewController {
         
     }
     
+    func getAttributedString(title:String, description:String) -> NSMutableAttributedString
+    {
+        var toBeAppendedString : NSMutableAttributedString?
+        
+        let titleLabelString : NSMutableAttributedString = self.createAttributedString(title, textStyle: UIFontTextStyleFootnote, color:UIColor.purpleColor(), trait: "")
+        
+        toBeAppendedString = self.createAttributedString(description, textStyle: UIFontTextStyleCaption2, color:UIColor.darkGrayColor(), trait: "")
+       
+        
+        titleLabelString.appendAttributedString(NSAttributedString(string:"\n" + "\n"))
+        titleLabelString.appendAttributedString(toBeAppendedString!)
+        
+        return titleLabelString
+    }
+    
+    func createAttributedString(baseString:String, textStyle:String, color:UIColor, trait:String) -> NSMutableAttributedString {
+        let baseAttrString = NSMutableAttributedString(string: baseString)
+        let baseAttrRange = NSMakeRange(0, baseAttrString.length)
+        let attributedFont = UIFont.systemFontOfSize(15)
+        let fontDictionary = [NSFontAttributeName : attributedFont, NSForegroundColorAttributeName : color]
+        baseAttrString.setAttributes(fontDictionary, range: baseAttrRange)
+        return baseAttrString
+    }
+
+
     
     func filterArrayBasedOnCategory(eventSelected:String) -> NSArray
     {
@@ -145,8 +199,8 @@ class SubCategoryViewController: UIViewController {
         return (self.eventArray! as NSArray).filteredArrayUsingPredicate(predicate!)
     }
 
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
-        
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    {
         return 70
     }
 

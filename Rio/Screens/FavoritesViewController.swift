@@ -16,6 +16,7 @@ class FavoritesViewController: UIViewController {
     var centreLabel: UILabel?
     var disciplineArray = [String]()
     var splittedDict = Dictionary<String , Array<AnyObject>>()
+    let imagesMapping = ["Archery": "1", "Athletics" : "2", "Badminton" : "3", "Basketball" : "4", "Volleyball - Beach": "5", "Boxing": "6", "Canoe slalom" : "7", "Canoe sprint": "8", "Cycling BMX": "9", "Cycling mountain bike": "10", "Cycling road" : "11", "Cycling track" : "12", "Diving" : "13" , "Equestrian dressage" : "14", "Equestrian eventing" : "15", "Equestrian jumping" : "16", "Fencing" : "17", "Football" : "18", "Golf" : "19", "Gymnastics- Artistic" : "20", "Gymnastics- Rhythmic" : "21", "Handball" : "22", "Hockey" : "23", "Judo" : "24", "Modern pentathlon" : "25", "Rowing" : "26", "Rugby" : "27", "Sailing" :"28", "Shooting" : "29", "Swimming" : "30", "Synchronised swimming" : "31", "Table tennis" : "32", "Taekwondo": "33", "Tennis" :"34", "Gymnastics- Trampoline" : "35", "Triathlon" : "36", "Volleyball": "37", "Water polo" : "38", "Weightlifting" : "39", "Wrestling - Freestyle" : "40", "Wrestling - Greco- roman" : "41"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -133,10 +134,27 @@ class FavoritesViewController: UIViewController {
         return 50
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? // fixed font style. use custom view (UILabel) if you want something different
+//    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? // fixed font style. use custom view (UILabel) if you want something different
+//    {
+//        return self.disciplineArray[section]
+//    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? // custom view for header. will be adjusted to default or specified header height
     {
-        return self.disciplineArray[section]
+        let view = UIView(frame: CGRectMake(0, 0 , self.view.frame.width, 100))
+        let sectionTitle = self.disciplineArray[section]
+        let imageName = String(format: "60x60_%@", self.imagesMapping[sectionTitle]!)
+        let image = UIImageView(image: UIImage(named: imageName))
+        image.frame = CGRectMake(10, 10, 20, 20)
+        
+        let label = UILabel(frame: CGRectMake (50, 0, self.view.frame.width ,40))
+        label.text = sectionTitle
+        view.backgroundColor = UIColor.whiteColor()
+        view.addSubview(image)
+        view.addSubview(label)
+        return view
     }
+
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {

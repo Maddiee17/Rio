@@ -42,18 +42,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let objDBManager = RioDatabaseManager.sharedInstance
         objDBManager.initDatabase()
         
-        dataBaseInteractor.fetchUserProfile { (results) -> Void in
-            
-            if(results.count > 0){
-                self.userProfile = results
-                NSUserDefaults.standardUserDefaults().setObject(self.userProfile?.first!.userId, forKey: "userId")
-                NSUserDefaults.standardUserDefaults().synchronize()
-                let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-                let userProfileVC = storyBoard.instantiateViewControllerWithIdentifier("UserProfileVC")
-                self.window?.rootViewController = userProfileVC
-//                self.fetchReminderInBackground()
-            }
-        }
+//        dataBaseInteractor.fetchUserProfile { (results) -> Void in
+//            
+//            if(results.count > 0){
+//                self.userProfile = results
+//                NSUserDefaults.standardUserDefaults().setObject(self.userProfile?.first!.userId, forKey: "userId")
+//                NSUserDefaults.standardUserDefaults().synchronize()
+//                let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+//                let userProfileVC = storyBoard.instantiateViewControllerWithIdentifier("UserProfileVC")
+//                self.window?.rootViewController = userProfileVC
+////                self.fetchReminderInBackground()
+//            }
+//        }
 
         // Initialize Google sign-in
         var configureError: NSError?

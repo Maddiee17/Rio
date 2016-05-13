@@ -103,6 +103,8 @@ class CategoryListViewController: UIViewController {
             let categoryType = model.type?.stringByReplacingOccurrencesOfString("\n", withString: " ")
             cell?.textLabel?.text = categoryType
             cell?.accessoryType = .DisclosureIndicator
+            let imageName = String(format: "60x60_%d",indexPath.row + 1)
+            cell?.imageView?.image = UIImage(named: imageName)
         }
         return cell!
     }
