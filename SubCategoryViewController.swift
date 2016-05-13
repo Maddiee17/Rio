@@ -26,7 +26,7 @@ class SubCategoryViewController: UIViewController {
         let view = UIView(frame: CGRectZero)
         self.tableView.tableHeaderView = view
         // Do any additional setup after loading the view.
-        self.title = "Teams"
+        self.title = String(format: "%@ Details", categorySelected!)
         self.setUpLeftBarButton()
         let tblView =  UIView(frame: CGRectZero)
         self.tableView.tableFooterView = tblView
@@ -120,6 +120,7 @@ class SubCategoryViewController: UIViewController {
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0,right: 0)
                 cell.accessoryType = .DisclosureIndicator
                 cell.userInteractionEnabled = true
+                cell.titleLabel.textColor = UIColor.darkGrayColor()
             }
             
         }

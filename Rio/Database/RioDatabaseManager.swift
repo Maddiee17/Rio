@@ -198,8 +198,10 @@ class RioDatabaseManager {
             
             let results:FMResultSet? = database.executeQuery(sqlStmt, withArgumentsInArray: [sno])
             while((results!.next()) != false){
-                let reminderId = results!.stringForColumn("Notification") as String
-                successBlock(reminderId)
+                if let result = results{
+                    let reminderId = result.stringForColumn("Notification") as String
+                    successBlock(reminderId)
+                }
             }
             results!.close()
 
