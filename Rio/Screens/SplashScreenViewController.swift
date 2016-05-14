@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class SplashScreenViewController: UIViewController {
 
     var dataBaseInteractor = RioDatabaseInteractor()
@@ -50,7 +51,15 @@ class SplashScreenViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         confettiView.startConfetti()
-        self.performSelector(#selector(SplashScreenViewController.checkForUserProfile), withObject: nil, afterDelay: 3.0)
+        
+        if(NSUserDefaults.standardUserDefaults().stringForKey(kIsFirstLaunch) == nil)
+        {
+            NSUserDefaults.standardUserDefaults().setValue("true", forKey: kIsFirstLaunch)
+            self.performSelector(#selector(SplashScreenViewController.showOnboarding), withObject: nil, afterDelay: 3.0)
+        }
+        else {
+            self.performSelector(#selector(SplashScreenViewController.checkForUserProfile), withObject: nil, afterDelay: 3.0)
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -59,6 +68,35 @@ class SplashScreenViewController: UIViewController {
             confettiView.stopConfetti()
         }
     }
+    
+    func showOnboarding()
+    {
+        var onboardVC : OnboardingViewController?
+        
+        let firstPage = OnboardingContentViewController(title: "Page Title", body: "Page body goes here.", image: UIImage(named: "ico-bell-selected"), buttonText: "Text For Button") { () -> Void in
+            // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
+        }
+        
+        let secondPage = OnboardingContentViewController(title: "Page Title", body: "Page body goes here.", image: UIImage(named: "ico-bell-selected"), buttonText: "Text For Button") { () -> Void in
+            // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
+        }
+        
+        let thirdPage = OnboardingContentViewController(title: "Page Title", body: "Page body goes here.", image: UIImage(named: "ico-bell-selected"), buttonText: "Get Started") { () -> Void in
+            
+            let loginVC = self.storyboard?.instantiateViewControllerWithIdentifier("LoginVC")
+            let onBoardVCC = self.navigationController?.viewControllers.last
+            onBoardVCC?.presentViewController(loginVC!, animated: true, completion: nil)
+        }
+        
+        onboardVC = OnboardingViewController(backgroundImage: UIImage(named: "stripes.jpg"), contents: [firstPage, secondPage, thirdPage])
+        onboardVC!.shouldFadeTransitions = true
+        onboardVC!.fadePageControlOnLastPage = true
+        onboardVC!.fadeSkipButtonOnLastPage = true
+        onboardVC!.shouldBlurBackground = true
+        
+        self.navigationController?.pushViewController(onboardVC!, animated: true)//presentViewController(onboardVC!, animated: true, completion: nil)
+    }
+    
     
     func checkForUserProfile()
     {

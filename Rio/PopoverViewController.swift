@@ -34,12 +34,33 @@ class PopoverViewController: UIViewController {
         else{
             self.titleLabel?.text = "Remove Reminder"
         }
+        
+        setupObservers()
+    }
+    
+    func setupObservers()
+    {
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(PopoverViewController.reminderAddedSuccessfully), name: "reminderAddedSuccess", object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(PopoverViewController.reminderAddedFailed), name: "reminderAddedFailure", object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(PopoverViewController.reminderAddedSuccessfully), name: "reminderRemovedSuccess", object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PopoverViewController.reminderRemoveFailed), name: "removeReminderFailure", object: nil)
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+//        NSNotificationCenter.defaultCenter().removeObserver(self, name: "reminderAddedSuccess", object: nil)
+//        NSNotificationCenter.defaultCenter().removeObserver(self, name: "reminderAddedFailure", object: nil)
+//        NSNotificationCenter.defaultCenter().removeObserver(self, name: "reminderRemovedSuccess", object: nil)
+//        NSNotificationCenter.defaultCenter().removeObserver(self, name: "removeReminderFailure", object: nil)
+    }
+
     
     @IBAction func addReminderSwitch(sender: AnyObject)
     {
@@ -57,12 +78,18 @@ class PopoverViewController: UIViewController {
                 let operation = RemoveReminderOperation(reminderId: reminderId, serialNo: (selectedEventModel?.Sno)!)
                 RioRootModel.sharedInstance.backgroundQueue.addOperation(operation)
             })
-
         }
+        
+        self.reminderAddedSuccessfully()
+
+    }
+    
+    
+    func reminderAddedSuccessfully()
+    {
         let userInfoDict = ["cell":self.sourceView as! AnyObject, "type": String(format : "%d",(sourceView?.notificationButton.tag)!)]
         NSNotificationCenter.defaultCenter().postNotificationName("refreshTable", object: nil, userInfo:userInfoDict)
     }
-    
     
 
     /*

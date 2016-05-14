@@ -26,13 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
-
-        if(NSUserDefaults.standardUserDefaults().stringForKey(kIsFirstLaunch) == nil)
-        {
-            NSUserDefaults.standardUserDefaults().setValue("true", forKey: kIsFirstLaunch)
-            UIApplication.sharedApplication().cancelAllLocalNotifications()
-        }
-        
         UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert , .Badge, .Sound], categories: nil))
         UIApplication.sharedApplication().registerForRemoteNotifications()
 

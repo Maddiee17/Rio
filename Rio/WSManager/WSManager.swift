@@ -246,8 +246,26 @@ class WSManager: NSObject {
             
             let results: NSDictionary = RioUtilities.sharedInstance.convertDataToDict(response as! NSData)
             print(results)
-            let reminderId = results.objectForKey("reminderId") as! String
-            self.dataBaseManager.updateReminderIdInDB(reminderId, serialNo: eventModel.Sno!)
+            if let resultsValue = results.objectForKey("response"){
+                if((resultsValue.valueForKey("statusCode")) as! NSNumber == 200){
+                    let reminderId = results.objectForKey("reminderId") as! String
+                    self.dataBaseManager.updateReminderIdInDB(reminderId, serialNo: eventModel.Sno!)
+//                    dispatch_async(dispatch_get_main_queue(), {
+//                        NSNotificationCenter.defaultCenter().postNotificationName("reminderAddedSuccess", object: nil, userInfo:nil)
+//                    })
+
+                }
+                else {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        NSNotificationCenter.defaultCenter().postNotificationName("reminderAddedFailure", object: nil, userInfo:nil)
+                    })
+                }
+            }
+            else {
+                dispatch_async(dispatch_get_main_queue(), {
+                    NSNotificationCenter.defaultCenter().postNotificationName("reminderAddedFailure", object: nil, userInfo:nil)
+                })
+            }
             
         }) { (error) -> Void in
             print(error)
@@ -266,10 +284,28 @@ class WSManager: NSObject {
         
         self.performURLSessionForTaskForRequest(request, successBlock: { (response) in
             print(response)
-            self.dataBaseManager.updateReminderIdInDB("", serialNo:serialNo)
-//            dispatch_async(dispatch_get_main_queue(), {
-//                NSNotificationCenter.defaultCenter().postNotificationName("refreshTable", object: nil, userInfo:nil)
-//            })
+            let results: NSDictionary = RioUtilities.sharedInstance.convertDataToDict(response as! NSData)
+            print(results)
+            if let resultsValue = results.objectForKey("response"){
+                if((resultsValue.valueForKey("statusCode")) as! NSNumber == 200){
+                    self.dataBaseManager.updateReminderIdInDB("", serialNo:serialNo)
+//                    dispatch_async(dispatch_get_main_queue(), {
+//                        NSNotificationCenter.defaultCenter().postNotificationName("reminderRemovedSuccess", object: nil, userInfo:nil)
+//                    })
+                    
+                }
+                else {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        NSNotificationCenter.defaultCenter().postNotificationName("removeReminderFailure", object: nil, userInfo:nil)
+                    })
+                }
+            }
+            else {
+                dispatch_async(dispatch_get_main_queue(), {
+                    NSNotificationCenter.defaultCenter().postNotificationName("removeReminderFailure", object: nil, userInfo:nil)
+                })
+            }
+            
         }) { (error) in
             print(error)
         }

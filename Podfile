@@ -17,5 +17,8 @@ pod 'TwitterKit'
 pod 'TwitterCore'
 pod 'KASlideShow'
 pod 'MMDrawerController', '~> 0.5.7'
+pod 'Onboard'
+pod 'Toast', '~> 3.0'
+
 end
 

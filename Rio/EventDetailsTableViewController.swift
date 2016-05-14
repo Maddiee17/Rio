@@ -13,7 +13,7 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
     var eventsFilteredArray = []
     var selectedEvent : String?
     var frameForButton : CGRect?
-    var cellView : UITableViewCell?
+    var cellView : EventCell?
     var notificationButtonTappedCellModel : RioEventModel?
     var notificationEnabledCells = [String]()
     var popoverController : UIViewController?
@@ -26,7 +26,6 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         super.viewDidLoad()
         setUpLeftBarButton()
         findAddedReminders()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(EventDetailsTableViewController.reloadData(_:)), name: "refreshTable", object: nil)
         
         tableView.sectionHeaderHeight = 5.0;
         tableView.sectionFooterHeight = 5.0;
@@ -34,7 +33,20 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         self.title = "Event Details"
         replaceWithLocalDate()
         sortDataBasedOnDate()
+        setupObservers()
     }
+    
+    func setupObservers()
+    {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(EventDetailsTableViewController.reloadData(_:)), name: "refreshTable", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(EventDetailsTableViewController.showErrorToast(_:)), name: "dontRefreshTable", object: nil)
+        
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(EventDetailsTableViewController.reminderAddedFailed), name: "reminderAddedFailure", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventDetailsTableViewController.reminderRemoveFailed), name: "removeReminderFailure", object: nil)
+
+    }
+    
     func replaceWithLocalDate()
     {
         for model in self.eventsFilteredArray
@@ -45,8 +57,6 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
             (model as! RioEventModel).DescriptionLong = self.filterDescription(model.DescriptionLong!!)
         }
     }
-    
-    
     
     func setUpLeftBarButton() {
         
@@ -70,6 +80,9 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         super.viewWillDisappear(animated)
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "refreshTable", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "dontRefreshTable", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "reminderAddedFailure", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "removeReminderFailure", object: nil)
     }
     
     // MARK: - Table view data source
@@ -158,6 +171,37 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         }
         self.tableView.reloadRowsAtIndexPaths([indexPathOfCell!], withRowAnimation: .Automatic)
         self.popoverController?.dismissViewControllerAnimated(true, completion: nil)
+        //showSuccessToast(cellTag)
+    }
+    
+    func reminderAddedFailed()
+    {
+        cellView?.notificationButton.setImage(UIImage(named: "ico-bell"), forState: .Normal)
+        let userInfoDict = ["cell":self.cellView as! AnyObject, "type": "2"]
+        NSNotificationCenter.defaultCenter().postNotificationName("dontRefreshTable", object: nil, userInfo:userInfoDict)
+    }
+    
+    func reminderRemoveFailed()
+    {
+        cellView?.notificationButton.setImage(UIImage(named: "ico-bell-selected"), forState: .Normal)
+        let userInfoDict = ["cell":self.cellView as! AnyObject, "type": "1"]
+        NSNotificationCenter.defaultCenter().postNotificationName("dontRefreshTable", object: nil, userInfo:userInfoDict)
+    }
+
+    func showErrorToast(notification:NSNotification)
+    {
+        self.reloadData(notification)
+        self.view.makeToast("Please try again!!")
+    }
+    
+    func showSuccessToast(tag:String)
+    {
+        if tag == "1" {
+            self.view.makeToast("Reminder added successfully!!")
+        }
+        else{
+            self.view.makeToast("Reminder removed!!")
+        }
     }
     
     // MARK: - Navigation
