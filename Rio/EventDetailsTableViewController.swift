@@ -18,6 +18,7 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
     var notificationEnabledCells = [String]()
     var popoverController : UIViewController?
     var datesArray = [String]()
+    var selectedIndex : NSIndexPath?
     var splittedDict = Dictionary<String , Array<RioEventModel>>()
     
     @IBOutlet weak var tableView : UITableView!
@@ -39,10 +40,10 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
     func setupObservers()
     {
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(EventDetailsTableViewController.reloadData(_:)), name: "refreshTable", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(EventDetailsTableViewController.showErrorToast(_:)), name: "dontRefreshTable", object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(EventDetailsTableViewController.showErrorToast(_:)), name: "dontRefreshTable", object: nil)
         
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(EventDetailsTableViewController.reminderAddedFailed), name: "reminderAddedFailure", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(EventDetailsTableViewController.reminderAddedFailed(_:)), name: "reminderAddedFailure", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EventDetailsTableViewController.reminderRemoveFailed), name: "removeReminderFailure", object: nil)
 
     }
@@ -142,10 +143,10 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         //        let popVC = storyBoard.instantiateViewControllerWithIdentifier("popover")
         //        popVC.modalPresentationStyle = .Popover
         //        self.presentViewController(popVC, animated: true, completion: nil)
-        let indexPath = self.tableView.indexPathForCell(forCell)
-        let sectionTitle = self.datesArray[(indexPath?.section)!]
+        selectedIndex = self.tableView.indexPathForCell(forCell)
+        let sectionTitle = self.datesArray[(selectedIndex?.section)!]
         let modelArray = self.splittedDict[sectionTitle]
-        notificationButtonTappedCellModel = modelArray![(indexPath?.row)!]
+        notificationButtonTappedCellModel = modelArray![(selectedIndex?.row)!]
         WSManager.sharedInstance.notificationButtonTappedModel = notificationButtonTappedCellModel!
         self.performSegueWithIdentifier("popoverSegue", sender: self)
     }
@@ -156,9 +157,9 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
     
     func reloadData(notification:NSNotification)
     {
-        let cellView = (notification.userInfo! as NSDictionary).objectForKey("cell") as! EventCell
-        let cellTag = (notification.userInfo! as NSDictionary).objectForKey("type") as! String
-        let indexPathOfCell = self.tableView.indexPathForCell(cellView)
+        cellView = (notification.userInfo! as NSDictionary).objectForKey("cell") as? EventCell
+        let cellTag = (notification.userInfo! as NSDictionary).objectForKey("type") as? String
+        let indexPathOfCell = self.tableView.indexPathForCell(cellView!)
         let sectionTitle = self.datesArray[(indexPathOfCell?.section)!]
         let modelArray = self.splittedDict[sectionTitle]
 
@@ -174,23 +175,38 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         //showSuccessToast(cellTag)
     }
     
-    func reminderAddedFailed()
+    func reminderAddedFailed(notification:NSNotification)
     {
-        cellView?.notificationButton.setImage(UIImage(named: "ico-bell"), forState: .Normal)
-        let userInfoDict = ["cell":self.cellView as! AnyObject, "type": "2"]
-        NSNotificationCenter.defaultCenter().postNotificationName("dontRefreshTable", object: nil, userInfo:userInfoDict)
+        let index = notification.userInfo!["index"] as! NSIndexPath
+        let cell = self.tableView.cellForRowAtIndexPath(index) as! EventCell
+        cell.notificationButton.setImage(UIImage(named: "ico-bell"), forState: .Normal)
+        
+        let sectionTitle = self.datesArray[(index.section)]
+        let modelArray = self.splittedDict[sectionTitle]
+
+        let eventObj = modelArray![(index.row)]
+        self.notificationEnabledCells = RioRootModel.sharedInstance.removeSnoFromNotificationEnabledArray(eventObj.Sno!)
+        self.tableView.reloadRowsAtIndexPaths([index], withRowAnimation: .Automatic)
+        showErrorToast()
     }
     
-    func reminderRemoveFailed()
+    func reminderRemoveFailed(notification:NSNotification)
     {
-        cellView?.notificationButton.setImage(UIImage(named: "ico-bell-selected"), forState: .Normal)
-        let userInfoDict = ["cell":self.cellView as! AnyObject, "type": "1"]
-        NSNotificationCenter.defaultCenter().postNotificationName("dontRefreshTable", object: nil, userInfo:userInfoDict)
+        let index = notification.userInfo!["index"] as! NSIndexPath
+        let cell = self.tableView.cellForRowAtIndexPath(index) as! EventCell
+        cell.notificationButton.setImage(UIImage(named: "ico-bell-selected"), forState: .Normal)
+        
+        let sectionTitle = self.datesArray[(index.section)]
+        let modelArray = self.splittedDict[sectionTitle]
+        
+        let eventObj = modelArray![(index.row)]
+        self.notificationEnabledCells = RioRootModel.sharedInstance.appendSnoToNotificationEnabledArray(eventObj.Sno!)
+        self.tableView.reloadRowsAtIndexPaths([index], withRowAnimation: .Automatic)
+        showErrorToast()
     }
 
-    func showErrorToast(notification:NSNotification)
+    func showErrorToast()
     {
-        self.reloadData(notification)
         self.view.makeToast("Please try again!!")
     }
     
@@ -211,6 +227,7 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         if segue.identifier == "popoverSegue"
         {
             self.popoverController = segue.destinationViewController
+            (self.popoverController as! PopoverViewController).selectedIndexPath = selectedIndex
             let popoverPresentationController = segue.destinationViewController.popoverPresentationController
             popoverPresentationController!.sourceView = self.cellView
             popoverPresentationController!.sourceRect = self.frameForButton!

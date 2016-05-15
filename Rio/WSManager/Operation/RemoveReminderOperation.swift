@@ -13,11 +13,13 @@ class RemoveReminderOperation: NSOperation {
     var reminderId : String?
     var serialNo : String?
     var manager = WSManager.sharedInstance
+    var index : NSIndexPath?
     
-    init(reminderId : String, serialNo:String){
+    init(reminderId : String, serialNo:String, indexpath:NSIndexPath){
         
         self.serialNo = serialNo
         self.reminderId = reminderId
+        self.index = indexpath
         super.init()
         
     }
@@ -34,7 +36,7 @@ class RemoveReminderOperation: NSOperation {
     
     func sync(){
         
-        manager.removeReminder(reminderId!, serialNo: serialNo!)
+        manager.removeReminder(reminderId!, serialNo: serialNo!, index: self.index!)
     }
     
     override func cancel() {

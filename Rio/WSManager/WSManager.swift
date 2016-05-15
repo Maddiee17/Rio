@@ -227,7 +227,7 @@ class WSManager: NSObject {
         
     }
     
-    func addReminderForEvent(eventModel:RioEventModel)
+    func addReminderForEvent(eventModel:RioEventModel, indexpath:NSIndexPath)
     {
         let addReminderURL = String(format: kBaseURL, kAddReminderURL)
         let request = NSMutableURLRequest(URL: NSURL(string: addReminderURL)!)
@@ -257,13 +257,13 @@ class WSManager: NSObject {
                 }
                 else {
                     dispatch_async(dispatch_get_main_queue(), {
-                        NSNotificationCenter.defaultCenter().postNotificationName("reminderAddedFailure", object: nil, userInfo:nil)
+                        NSNotificationCenter.defaultCenter().postNotificationName("reminderAddedFailure", object: nil, userInfo:["index" : indexpath])
                     })
                 }
             }
             else {
                 dispatch_async(dispatch_get_main_queue(), {
-                    NSNotificationCenter.defaultCenter().postNotificationName("reminderAddedFailure", object: nil, userInfo:nil)
+                    NSNotificationCenter.defaultCenter().postNotificationName("reminderAddedFailure", object: nil, userInfo:["index" : indexpath])
                 })
             }
             
@@ -273,7 +273,7 @@ class WSManager: NSObject {
         
     }
     
-    func removeReminder(reminderId:String,serialNo:String)
+    func removeReminder(reminderId:String,serialNo:String, index:NSIndexPath)
     {
         let rmReminderURL = String(format: kBaseURL, kRemoveReminderURL)
         let removeReminderURL = String(format: rmReminderURL, reminderId)
@@ -296,13 +296,13 @@ class WSManager: NSObject {
                 }
                 else {
                     dispatch_async(dispatch_get_main_queue(), {
-                        NSNotificationCenter.defaultCenter().postNotificationName("removeReminderFailure", object: nil, userInfo:nil)
+                        NSNotificationCenter.defaultCenter().postNotificationName("removeReminderFailure", object: nil, userInfo:["index" : index])
                     })
                 }
             }
             else {
                 dispatch_async(dispatch_get_main_queue(), {
-                    NSNotificationCenter.defaultCenter().postNotificationName("removeReminderFailure", object: nil, userInfo:nil)
+                    NSNotificationCenter.defaultCenter().postNotificationName("removeReminderFailure", object: nil, userInfo:["index" : index])
                 })
             }
             

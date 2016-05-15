@@ -21,12 +21,14 @@ class PopoverViewController: UIViewController {
     var selectedEventModel : RioEventModel?
     var sourceView : EventCell? = nil
     var delegate : reminderCellDelegate?
+    var selectedIndexPath : NSIndexPath?
     var dataBaseInteractor = RioDatabaseInteractor()
     @IBOutlet weak var titleLabel : UILabel?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(selectedIndexPath)
        sourceView = self.popoverPresentationController?.sourceView as? EventCell
         if sourceView?.notificationButton.tag == 1 {
             self.titleLabel?.text = "Add Reminder"
@@ -68,14 +70,14 @@ class PopoverViewController: UIViewController {
             
             sourceView?.notificationButton.setImage(UIImage(named: "ico-bell-selected"), forState: .Normal)
             let selectedEventModel = manager.notificationButtonTappedModel
-            let operation = AddReminderOperation(eventModel: selectedEventModel!)
+            let operation = AddReminderOperation(eventModel: selectedEventModel!, indexPath: selectedIndexPath!)
             RioRootModel.sharedInstance.backgroundQueue.addOperation(operation)
         }
         else{
             sourceView?.notificationButton.setImage(UIImage(named: "ico-bell"), forState: .Normal)
             let selectedEventModel = manager.notificationButtonTappedModel
             dataBaseInteractor.getReminderId((selectedEventModel?.Sno)!, successBlock: { (reminderId) in
-                let operation = RemoveReminderOperation(reminderId: reminderId, serialNo: (selectedEventModel?.Sno)!)
+                let operation = RemoveReminderOperation(reminderId: reminderId, serialNo: (selectedEventModel?.Sno)!, indexpath: self.selectedIndexPath!)
                 RioRootModel.sharedInstance.backgroundQueue.addOperation(operation)
             })
         }

@@ -58,7 +58,8 @@ class SplashScreenViewController: UIViewController {
             self.performSelector(#selector(SplashScreenViewController.showOnboarding), withObject: nil, afterDelay: 3.0)
         }
         else {
-            self.performSelector(#selector(SplashScreenViewController.checkForUserProfile), withObject: nil, afterDelay: 3.0)
+            self.performSelector(#selector(SplashScreenViewController.checkForUserProfile
+                ), withObject: nil, afterDelay: 3.0)
         }
     }
     
@@ -73,22 +74,34 @@ class SplashScreenViewController: UIViewController {
     {
         var onboardVC : OnboardingViewController?
         
-        let firstPage = OnboardingContentViewController(title: "Page Title", body: "Page body goes here.", image: UIImage(named: "ico-bell-selected"), buttonText: "Text For Button") { () -> Void in
+        let firstPage = OnboardingContentViewController(title: "Welcome to Olympedia", body: "The unofficial olympics application. Here you can find all the details about each and every game and set reminders for your favorites", image: UIImage(named: "ico-rocket"), buttonText: "") { () -> Void in
             // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
         }
         
-        let secondPage = OnboardingContentViewController(title: "Page Title", body: "Page body goes here.", image: UIImage(named: "ico-bell-selected"), buttonText: "Text For Button") { () -> Void in
+        let secondPage = OnboardingContentViewController(title: "Be Social!!", body: "Get all the live news of \"Olympics\" from twitter. Retweet them right from here", image: UIImage(named: "ico-twitter"), buttonText: "") { () -> Void in
             // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
         }
+
+        let attachment = NSTextAttachment()
+        attachment.image = UIImage(named: "addReminder.png")
+        attachment.bounds = CGRectMake(0, 0, self.view.frame.size.width - 100, 70)
+        let attachmentString = NSAttributedString(attachment: attachment)
+        let myString = NSMutableAttributedString(string: "Game reminders or Push notifications are directly sent to your phone. Adding reminders is simple as one plus one. Just add them like these \n\n")
+        myString.appendAttributedString(attachmentString)
         
-        let thirdPage = OnboardingContentViewController(title: "Page Title", body: "Page body goes here.", image: UIImage(named: "ico-bell-selected"), buttonText: "Get Started") { () -> Void in
+        let fourthPage = OnboardingContentViewController(title: "Reminders", body: "", image: UIImage(named: "ico-alarm"), buttonText: "Get Started") { () -> Void in
             
             let loginVC = self.storyboard?.instantiateViewControllerWithIdentifier("LoginVC")
             let onBoardVCC = self.navigationController?.viewControllers.last
-            onBoardVCC?.presentViewController(loginVC!, animated: true, completion: nil)
+            onBoardVCC?.presentViewController(loginVC!, animated: true, completion: { 
+                UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert , .Badge, .Sound], categories: nil))
+                UIApplication.sharedApplication().registerForRemoteNotifications()
+            })
         }
         
-        onboardVC = OnboardingViewController(backgroundImage: UIImage(named: "stripes.jpg"), contents: [firstPage, secondPage, thirdPage])
+        fourthPage.bodyLabel.attributedText = myString
+        
+        onboardVC = OnboardingViewController(backgroundImage: UIImage(named: "stripes.jpg"), contents: [firstPage, secondPage,fourthPage])
         onboardVC!.shouldFadeTransitions = true
         onboardVC!.fadePageControlOnLastPage = true
         onboardVC!.fadeSkipButtonOnLastPage = true

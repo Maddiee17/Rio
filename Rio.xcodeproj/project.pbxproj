@@ -49,10 +49,7 @@
 		9CC0784F1CBFA3F50010888D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC0784E1CBFA3F50010888D /* HomeViewController.swift */; };
 		9CC078511CBFA7AF0010888D /* TweetsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC078501CBFA7AF0010888D /* TweetsCell.swift */; };
 		9CC078531CBFAB6E0010888D /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CC078521CBFAB6E0010888D /* Twitter.framework */; };
-		9CC0785B1CC0CE1E0010888D /* page.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC0785A1CC0CE1E0010888D /* page.png */; };
-		9CC0785D1CC0D6370010888D /* stadium.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC0785C1CC0D6370010888D /* stadium.png */; };
 		9CD5459C1CBAB129007F6D8F /* WSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD5459B1CBAB129007F6D8F /* WSManager.swift */; };
-		9CFF12A21CB90DA400287147 /* olympic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9CFF12A11CB90DA400287147 /* olympic.jpg */; };
 		9CFF12A41CB9566000287147 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CFF12A31CB9566000287147 /* GoogleService-Info.plist */; };
 		9CFF12A81CBA1B2D00287147 /* RioColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF12A71CBA1B2D00287147 /* RioColor.swift */; };
 		9CFF12AA1CBA2F9B00287147 /* stripes.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9CFF12A91CBA2F9B00287147 /* stripes.jpg */; };
@@ -66,6 +63,8 @@
 		F6D6E5C51CDBC0470046AF4A /* RioOrdinalInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D6E5C41CDBC0470046AF4A /* RioOrdinalInt.swift */; };
 		F6F9D8B91CE5B92400856A90 /* diamond.png in Resources */ = {isa = PBXBuildFile; fileRef = F6F9D8B81CE5B92400856A90 /* diamond.png */; };
 		F6F9D8BD1CE6007600856A90 /* SubCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F9D8BC1CE6007600856A90 /* SubCategoryTableViewCell.swift */; };
+		F6F9D8C91CE87A4700856A90 /* addReminder.png in Resources */ = {isa = PBXBuildFile; fileRef = F6F9D8C81CE87A4700856A90 /* addReminder.png */; };
+		F6F9D8CD1CE8A94000856A90 /* icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = F6F9D8CC1CE8A94000856A90 /* icon-29.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -121,10 +120,7 @@
 		9CC0784E1CBFA3F50010888D /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9CC078501CBFA7AF0010888D /* TweetsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsCell.swift; sourceTree = "<group>"; };
 		9CC078521CBFAB6E0010888D /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
-		9CC0785A1CC0CE1E0010888D /* page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page.png; sourceTree = "<group>"; };
-		9CC0785C1CC0D6370010888D /* stadium.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stadium.png; sourceTree = "<group>"; };
 		9CD5459B1CBAB129007F6D8F /* WSManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WSManager.swift; sourceTree = "<group>"; };
-		9CFF12A11CB90DA400287147 /* olympic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = olympic.jpg; path = ../olympic.jpg; sourceTree = "<group>"; };
 		9CFF12A31CB9566000287147 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9CFF12A71CBA1B2D00287147 /* RioColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioColor.swift; sourceTree = "<group>"; };
 		9CFF12A91CBA2F9B00287147 /* stripes.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = stripes.jpg; sourceTree = "<group>"; };
@@ -139,6 +135,8 @@
 		F6D6E5C41CDBC0470046AF4A /* RioOrdinalInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioOrdinalInt.swift; sourceTree = "<group>"; };
 		F6F9D8B81CE5B92400856A90 /* diamond.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diamond.png; sourceTree = "<group>"; };
 		F6F9D8BC1CE6007600856A90 /* SubCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategoryTableViewCell.swift; sourceTree = "<group>"; };
+		F6F9D8C81CE87A4700856A90 /* addReminder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addReminder.png; sourceTree = "<group>"; };
+		F6F9D8CC1CE8A94000856A90 /* icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-29.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,20 +362,19 @@
 		9CFF12A61CBA1A7900287147 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				9CC0785A1CC0CE1E0010888D /* page.png */,
 				F6F9D8B81CE5B92400856A90 /* diamond.png */,
 				9CFF12A91CBA2F9B00287147 /* stripes.jpg */,
+				F6F9D8CC1CE8A94000856A90 /* icon-29.png */,
 				9C3C7F1A1C63E1EF00E98DA6 /* libsqlite3.tbd */,
 				9C3C7F1E1C63E28900E98DA6 /* Rio-Bridging-Header.h */,
 				9C3C7F081C63E09B00E98DA6 /* AppDelegate.swift */,
 				9CFF12A31CB9566000287147 /* GoogleService-Info.plist */,
 				9C3C7F0C1C63E09B00E98DA6 /* Main.storyboard */,
-				9CC0785C1CC0D6370010888D /* stadium.png */,
-				9CFF12A11CB90DA400287147 /* olympic.jpg */,
 				9C3C7F111C63E09B00E98DA6 /* LaunchScreen.storyboard */,
 				9C3C7F141C63E09B00E98DA6 /* Info.plist */,
 				9C3C7F0F1C63E09B00E98DA6 /* Assets.xcassets */,
 				F60982E61CD3F45F004D8B4B /* String+Localization.swift */,
+				F6F9D8C81CE87A4700856A90 /* addReminder.png */,
 				F60982E41CD3F3D0004D8B4B /* Localizable.strings */,
 			);
 			path = SupportingFiles;
@@ -465,17 +462,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CC0785D1CC0D6370010888D /* stadium.png in Resources */,
 				9C3C7F311C63EC2500E98DA6 /* Rio_DB.sqlite in Resources */,
 				9C3C7F131C63E09B00E98DA6 /* LaunchScreen.storyboard in Resources */,
-				9CC0785B1CC0CE1E0010888D /* page.png in Resources */,
 				9C3C7F101C63E09B00E98DA6 /* Assets.xcassets in Resources */,
 				F60982E51CD3F3D0004D8B4B /* Localizable.strings in Resources */,
 				F6F9D8B91CE5B92400856A90 /* diamond.png in Resources */,
-				9CFF12A21CB90DA400287147 /* olympic.jpg in Resources */,
 				9CFF12AA1CBA2F9B00287147 /* stripes.jpg in Resources */,
+				F6F9D8C91CE87A4700856A90 /* addReminder.png in Resources */,
 				9C3C7F0E1C63E09B00E98DA6 /* Main.storyboard in Resources */,
 				9CFF12A41CB9566000287147 /* GoogleService-Info.plist in Resources */,
+				F6F9D8CD1CE8A94000856A90 /* icon-29.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

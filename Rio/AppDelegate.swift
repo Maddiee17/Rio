@@ -26,11 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
-        UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert , .Badge, .Sound], categories: nil))
-        UIApplication.sharedApplication().registerForRemoteNotifications()
+//        UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert , .Badge, .Sound], categories: nil))
+//        UIApplication.sharedApplication().registerForRemoteNotifications()
 
-        let count = UIApplication.sharedApplication().scheduledLocalNotifications
-        print(count?.count)
+//        let count = UIApplication.sharedApplication().scheduledLocalNotifications
+//        print(count?.count)
         
         let objDBManager = RioDatabaseManager.sharedInstance
         objDBManager.initDatabase()

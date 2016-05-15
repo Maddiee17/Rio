@@ -1234,56 +1234,63 @@
                                     <segue destination="0Ca-nZ-xXd" kind="presentation" identifier="userProfileSegue" id="1E0-Kg-PAL"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rio 2016" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwT-qs-rWb">
-                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="150"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch.png" translatesAutoresizingMaskIntoConstraints="NO" id="c5A-cJ-ozy">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Wdg-xG-FWF"/>
+                                    <constraint firstAttribute="width" constant="100" id="olX-yM-trR"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Wdg-xG-FWF"/>
+                                        <exclude reference="olX-yM-trR"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Wdg-xG-FWF"/>
+                                        <include reference="olX-yM-trR"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fwT-qs-rWb" firstAttribute="trailing" secondItem="8jn-hE-Gj0" secondAttribute="trailingMargin" id="4Zl-xv-aL4"/>
+                            <constraint firstItem="c5A-cJ-ozy" firstAttribute="centerX" secondItem="8jn-hE-Gj0" secondAttribute="centerX" id="4gO-ir-Wg2"/>
                             <constraint firstItem="tR8-ge-63D" firstAttribute="leading" secondItem="8dh-qZ-btw" secondAttribute="trailing" constant="31" id="Ea5-GP-7jY"/>
-                            <constraint firstItem="CF9-D8-P9N" firstAttribute="top" secondItem="fwT-qs-rWb" secondAttribute="bottom" constant="38" id="O5N-uU-cPo"/>
-                            <constraint firstItem="fwT-qs-rWb" firstAttribute="leading" secondItem="8jn-hE-Gj0" secondAttribute="leadingMargin" id="Oqb-RO-vlD"/>
                             <constraint firstItem="8dh-qZ-btw" firstAttribute="bottom" secondItem="CF9-D8-P9N" secondAttribute="top" id="ZwQ-Iw-oS9"/>
                             <constraint firstAttribute="trailing" secondItem="tR8-ge-63D" secondAttribute="trailing" id="a9K-a4-9jw"/>
+                            <constraint firstItem="c5A-cJ-ozy" firstAttribute="centerY" secondItem="8jn-hE-Gj0" secondAttribute="centerY" id="of8-Zx-W58"/>
                             <constraint firstItem="8dh-qZ-btw" firstAttribute="baseline" secondItem="tR8-ge-63D" secondAttribute="baseline" id="uoj-sA-bQS"/>
-                            <constraint firstItem="fwT-qs-rWb" firstAttribute="top" secondItem="wcD-ph-PI4" secondAttribute="bottom" constant="8" symbolic="YES" id="vS7-MA-w69"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="tR8-ge-63D"/>
                                 <exclude reference="8dh-qZ-btw"/>
-                                <exclude reference="fwT-qs-rWb"/>
+                                <exclude reference="c5A-cJ-ozy"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="O5N-uU-cPo"/>
+                                <exclude reference="4gO-ir-Wg2"/>
+                                <exclude reference="of8-Zx-W58"/>
                                 <exclude reference="ZwQ-Iw-oS9"/>
                                 <exclude reference="uoj-sA-bQS"/>
                                 <exclude reference="Ea5-GP-7jY"/>
                                 <exclude reference="a9K-a4-9jw"/>
-                                <exclude reference="4Zl-xv-aL4"/>
-                                <exclude reference="Oqb-RO-vlD"/>
-                                <exclude reference="vS7-MA-w69"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="tR8-ge-63D"/>
                                 <include reference="8dh-qZ-btw"/>
-                                <include reference="fwT-qs-rWb"/>
+                                <include reference="c5A-cJ-ozy"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="O5N-uU-cPo"/>
+                                <include reference="4gO-ir-Wg2"/>
+                                <include reference="of8-Zx-W58"/>
                                 <include reference="ZwQ-Iw-oS9"/>
                                 <include reference="uoj-sA-bQS"/>
                                 <include reference="Ea5-GP-7jY"/>
                                 <include reference="a9K-a4-9jw"/>
-                                <include reference="4Zl-xv-aL4"/>
-                                <include reference="Oqb-RO-vlD"/>
-                                <include reference="vS7-MA-w69"/>
                             </mask>
                         </variation>
                     </view>
@@ -1790,6 +1797,7 @@
         <image name="ico-bell" width="20" height="20"/>
         <image name="ico-medal" width="20" height="20"/>
         <image name="ico-profile" width="150" height="150"/>
+        <image name="launch.png" width="490" height="490"/>
         <image name="stripes.jpg" width="960" height="639"/>
     </resources>
     <inferredMetricsTieBreakers>
