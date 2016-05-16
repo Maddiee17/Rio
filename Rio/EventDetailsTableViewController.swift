@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPopoverPresentationControllerDelegate {
+class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPopoverPresentationControllerDelegate,UIGestureRecognizerDelegate {
     
     var eventsFilteredArray = []
     var selectedEvent : String?
@@ -35,6 +35,11 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         replaceWithLocalDate()
         sortDataBasedOnDate()
         setupObservers()
+        
+        if (self.navigationController?.respondsToSelector(Selector("interactivePopGestureRecognizer")) != nil) {
+            self.navigationController!.interactivePopGestureRecognizer!.enabled = true;
+            self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        }
     }
     
     func setupObservers()
@@ -97,6 +102,14 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         // #warning Incomplete implementation, return the number of rows
         let key = self.datesArray[section]
         return (self.splittedDict[key]?.count) ?? 0
+    }
+    
+    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool
+    {
+            if (self.navigationController?.respondsToSelector(Selector("interactivePopGestureRecognizer")) != nil && gestureRecognizer == self.navigationController?.interactivePopGestureRecognizer) {
+                return true
+            }
+        return false
     }
     
 //    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? // custom view for header. will be adjusted to default or specified header height

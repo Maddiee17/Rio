@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SubCategoryViewController: UIViewController {
+class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
 
     var categorySelected : String?
     var dataManager = RioDatabaseInteractor()
@@ -32,6 +32,12 @@ class SubCategoryViewController: UIViewController {
         self.tableView.tableFooterView = tblView
         self.tableView.rowHeight = UITableViewAutomaticDimension
 
+        
+        if (self.navigationController?.respondsToSelector(Selector("interactivePopGestureRecognizer")) != nil) {
+            self.navigationController!.interactivePopGestureRecognizer!.enabled = true;
+//            self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,6 +45,12 @@ class SubCategoryViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self;
+
+    }
     func setUpLeftBarButton() {
         
         let btnBackImage = UIImage(named: "ico-left-arrow")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
@@ -50,12 +62,21 @@ class SubCategoryViewController: UIViewController {
     {
         self.navigationController?.popViewControllerAnimated(true)
     }
-
-    func setUpHeaderView()
-    {
-        
     
+    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool
+    {
+        if (self.navigationController?.respondsToSelector(Selector("interactivePopGestureRecognizer")) != nil && gestureRecognizer == self.navigationController?.interactivePopGestureRecognizer) {
+            return true
+        }
+        return false
     }
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool
+    {
+        return true
+    }
+
+
     // MARK: - DB Fetch
     
     func fetchCategoryModel()
@@ -186,7 +207,7 @@ class SubCategoryViewController: UIViewController {
         let eventSplitted = eventSelected.componentsSeparatedByString(" ")
 
         switch categorySelected! {
-        case "Boxing", "Athletics", "Canoe slalom", "Canoe sprint", "Cycling track", "Cycling road", "Diving", "Fencing", "Judo", "Rowing", "Archery", "Synchronised swimming":
+        case "Boxing", "Athletics", "Canoe slalom", "Canoe sprint", "Cycling track", "Cycling road", "Diving", "Fencing", "Judo", "Rowing", "Archery", "Synchronised swimming", "Sailing" ,"Swimming", "Weightlifting", "Wrestling - Freestyle", "Wrestling - Greco- roman":
             predicate = NSPredicate(format: "DescriptionLong CONTAINS[d] %@", eventSelected)
             selectedEvent = eventSelected
             

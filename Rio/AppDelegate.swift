@@ -26,27 +26,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
-//        UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert , .Badge, .Sound], categories: nil))
-//        UIApplication.sharedApplication().registerForRemoteNotifications()
+  //      UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert , .Badge, .Sound], categories: nil))
+        UIApplication.sharedApplication().registerForRemoteNotifications()
 
-//        let count = UIApplication.sharedApplication().scheduledLocalNotifications
-//        print(count?.count)
-        
         let objDBManager = RioDatabaseManager.sharedInstance
         objDBManager.initDatabase()
         
-//        dataBaseInteractor.fetchUserProfile { (results) -> Void in
-//            
-//            if(results.count > 0){
-//                self.userProfile = results
-//                NSUserDefaults.standardUserDefaults().setObject(self.userProfile?.first!.userId, forKey: "userId")
-//                NSUserDefaults.standardUserDefaults().synchronize()
+        dataBaseInteractor.fetchUserProfile { (results) -> Void in
+            
+            if(results.count > 0){
+                self.userProfile = results
+                NSUserDefaults.standardUserDefaults().setObject(self.userProfile?.first!.userId, forKey: "userId")
+                NSUserDefaults.standardUserDefaults().synchronize()
 //                let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 //                let userProfileVC = storyBoard.instantiateViewControllerWithIdentifier("UserProfileVC")
 //                self.window?.rootViewController = userProfileVC
-////                self.fetchReminderInBackground()
-//            }
-//        }
+//                self.fetchReminderInBackground()
+            }
+        }
 
         // Initialize Google sign-in
         var configureError: NSError?

@@ -1270,12 +1270,12 @@
                                 <exclude reference="c5A-cJ-ozy"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="4gO-ir-Wg2"/>
-                                <exclude reference="of8-Zx-W58"/>
                                 <exclude reference="ZwQ-Iw-oS9"/>
                                 <exclude reference="uoj-sA-bQS"/>
                                 <exclude reference="Ea5-GP-7jY"/>
                                 <exclude reference="a9K-a4-9jw"/>
+                                <exclude reference="4gO-ir-Wg2"/>
+                                <exclude reference="of8-Zx-W58"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -1285,12 +1285,12 @@
                                 <include reference="c5A-cJ-ozy"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="4gO-ir-Wg2"/>
-                                <include reference="of8-Zx-W58"/>
                                 <include reference="ZwQ-Iw-oS9"/>
                                 <include reference="uoj-sA-bQS"/>
                                 <include reference="Ea5-GP-7jY"/>
                                 <include reference="a9K-a4-9jw"/>
+                                <include reference="4gO-ir-Wg2"/>
+                                <include reference="of8-Zx-W58"/>
                             </mask>
                         </variation>
                     </view>
@@ -1777,7 +1777,6 @@
         <!--Navigation Controller-->
         <scene sceneID="VKK-UI-5Qk">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9cx-xS-UEy" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="sP8-64-GzO" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Q4e-XV-brh">
@@ -1789,6 +1788,7 @@
                         <segue destination="acA-I2-ua7" kind="relationship" relationship="rootViewController" id="dLK-pV-BYx"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9cx-xS-UEy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1911" y="231.75"/>
         </scene>

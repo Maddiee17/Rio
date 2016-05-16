@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoryListViewController: UIViewController {
+class CategoryListViewController: UIViewController,UIGestureRecognizerDelegate {
     
     @IBOutlet var timerView: CountdownTimerView!
     var dataManager = RioDatabaseInteractor()
@@ -28,9 +28,19 @@ class CategoryListViewController: UIViewController {
         self.shyNavBarManager.stickyExtensionView = true
         setupLeftMenuButton()
         fetchCategoryModel()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+
     }
     
+    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool
+    {
+        if (self.navigationController?.respondsToSelector(Selector("interactivePopGestureRecognizer")) != nil && gestureRecognizer == self.navigationController?.interactivePopGestureRecognizer) {
+            return false
+        }
+        return true
+    }
+
     func setupLeftMenuButton() {
         let leftDrawerButton = MMDrawerBarButtonItem(target: self, action: #selector(HomeViewController.leftDrawerButtonPress(_:)))
         self.navigationItem.leftBarButtonItem = leftDrawerButton
