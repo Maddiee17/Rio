@@ -86,7 +86,7 @@ class SplashScreenViewController: UIViewController {
         attachment.image = UIImage(named: "addReminder.png")
         attachment.bounds = CGRectMake(0, 0, self.view.frame.size.width - 100, 70)
         let attachmentString = NSAttributedString(attachment: attachment)
-        let myString = NSMutableAttributedString(string: "Game reminders or Push notifications are directly sent to your phone. Adding reminders is simple as one plus one. Just add them like these \n\n")
+        let myString = NSMutableAttributedString(string: "Add reminders for your favourites, Just like these \n\n")
         myString.appendAttributedString(attachmentString)
         
         let fourthPage = OnboardingContentViewController(title: "Reminders", body: "", image: UIImage(named: "ico-alarm"), buttonText: "Get Started") { () -> Void in
@@ -101,7 +101,7 @@ class SplashScreenViewController: UIViewController {
         
         fourthPage.bodyLabel.attributedText = myString
         
-        onboardVC = OnboardingViewController(backgroundImage: UIImage(named: "stripes.jpg"), contents: [firstPage, secondPage,fourthPage])
+        onboardVC = OnboardingViewController(backgroundImage: UIImage(named: "launch.png"), contents: [firstPage, secondPage,fourthPage])
         onboardVC!.shouldFadeTransitions = true
         onboardVC!.fadePageControlOnLastPage = true
         onboardVC!.fadeSkipButtonOnLastPage = true

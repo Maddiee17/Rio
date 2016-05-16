@@ -180,7 +180,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
     
     func updateDBWithData()
     {
-
         dataBaseManager.insertUserProfileValues(userDataDict!)
     }
     
@@ -216,5 +215,44 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
         }
     }
     
+    @IBAction func skipLoginTapped(sender: UIButton)
+    {
+        var paramsDict : NSDictionary?
+        let notificationId = NSUserDefaults.standardUserDefaults().stringForKey("notificationId") ?? ""
+        
+        if NSUserDefaults.standardUserDefaults().objectForKey("guestEmail") == nil {
+            NSUserDefaults.standardUserDefaults().setObject(NSUUID().UUIDString, forKey: "guestEmail")
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+        
+        paramsDict = ["emailId" :  NSUserDefaults.standardUserDefaults().objectForKey("guestEmail")!, "name" : "Guest", "facebookId" :"", "photoUrl" : "", "notificationId" :notificationId, "advanceNotificationTime" : "0000000"] as NSDictionary
+        
+        let endPointUrl = String(format: kBaseLoginURL, "facebookOauthLogin")
+        let urlRequest = NSMutableURLRequest(URL: NSURL(string: endPointUrl)!)
+        urlRequest.HTTPMethod = "POST"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        urlRequest.HTTPBody = RioUtilities.sharedInstance.convertDictToData(paramsDict!)
+        
+        KVNProgress.showWithStatus("Creating Guest Account...")
+        NSUserDefaults.standardUserDefaults().setObject("true", forKey: "isGuest")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        self.wsManager.performURLSessionForTaskForRequest(urlRequest, successBlock: { (responseData) in
+            print(responseData)
+            self.getDictFromData(responseData as! NSData)
+            let responseDict = self.userDataDict?.objectForKey("response") as! NSDictionary
+            if (responseDict.objectForKey("statusCode") as! Int == 200){
+                self.updateDBWithData()
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.navigateToProfile()
+                })
+            }
+
+            }) { (error) in
+                print(error)
+        }
+        
+        
+    }
 
 }

@@ -52,8 +52,8 @@
 		9CD5459C1CBAB129007F6D8F /* WSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD5459B1CBAB129007F6D8F /* WSManager.swift */; };
 		9CFF12A41CB9566000287147 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CFF12A31CB9566000287147 /* GoogleService-Info.plist */; };
 		9CFF12A81CBA1B2D00287147 /* RioColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF12A71CBA1B2D00287147 /* RioColor.swift */; };
-		9CFF12AA1CBA2F9B00287147 /* stripes.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9CFF12A91CBA2F9B00287147 /* stripes.jpg */; };
 		F604D4501CE8E1DC00FC98FE /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = F604D44F1CE8E1DC00FC98FE /* launch.png */; };
+		F604D4561CEA538900FC98FE /* oo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F604D4551CEA538900FC98FE /* oo.jpg */; };
 		F60982E11CD3901A004D8B4B /* UpdateReminderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60982E01CD3901A004D8B4B /* UpdateReminderOperation.swift */; };
 		F60982E31CD3EE9F004D8B4B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60982E21CD3EE9F004D8B4B /* Reachability.swift */; };
 		F60982E51CD3F3D0004D8B4B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F60982E41CD3F3D0004D8B4B /* Localizable.strings */; };
@@ -123,9 +123,9 @@
 		9CD5459B1CBAB129007F6D8F /* WSManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WSManager.swift; sourceTree = "<group>"; };
 		9CFF12A31CB9566000287147 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9CFF12A71CBA1B2D00287147 /* RioColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioColor.swift; sourceTree = "<group>"; };
-		9CFF12A91CBA2F9B00287147 /* stripes.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = stripes.jpg; sourceTree = "<group>"; };
 		D28A1B99929314AF130632D3 /* libPods-Rio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Rio.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F604D44F1CE8E1DC00FC98FE /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
+		F604D4551CEA538900FC98FE /* oo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oo.jpg; sourceTree = "<group>"; };
 		F60982E01CD3901A004D8B4B /* UpdateReminderOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateReminderOperation.swift; sourceTree = "<group>"; };
 		F60982E21CD3EE9F004D8B4B /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		F60982E41CD3F3D0004D8B4B /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -363,11 +363,11 @@
 			isa = PBXGroup;
 			children = (
 				F6F9D8B81CE5B92400856A90 /* diamond.png */,
-				9CFF12A91CBA2F9B00287147 /* stripes.jpg */,
 				9C3C7F1A1C63E1EF00E98DA6 /* libsqlite3.tbd */,
 				9C3C7F1E1C63E28900E98DA6 /* Rio-Bridging-Header.h */,
 				F604D44F1CE8E1DC00FC98FE /* launch.png */,
 				9C3C7F081C63E09B00E98DA6 /* AppDelegate.swift */,
+				F604D4551CEA538900FC98FE /* oo.jpg */,
 				9CFF12A31CB9566000287147 /* GoogleService-Info.plist */,
 				9C3C7F0C1C63E09B00E98DA6 /* Main.storyboard */,
 				9C3C7F111C63E09B00E98DA6 /* LaunchScreen.storyboard */,
@@ -467,7 +467,7 @@
 				9C3C7F101C63E09B00E98DA6 /* Assets.xcassets in Resources */,
 				F60982E51CD3F3D0004D8B4B /* Localizable.strings in Resources */,
 				F6F9D8B91CE5B92400856A90 /* diamond.png in Resources */,
-				9CFF12AA1CBA2F9B00287147 /* stripes.jpg in Resources */,
+				F604D4561CEA538900FC98FE /* oo.jpg in Resources */,
 				F604D4501CE8E1DC00FC98FE /* launch.png in Resources */,
 				F6F9D8C91CE87A4700856A90 /* addReminder.png in Resources */,
 				9C3C7F0E1C63E09B00E98DA6 /* Main.storyboard in Resources */,

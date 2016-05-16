@@ -109,12 +109,19 @@ class CategoryListViewController: UIViewController,UIGestureRecognizerDelegate {
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell")
         if(categoryArrayLocal?.count > 0){
+            
             let model = self.categoryArrayLocal![indexPath.row]
+            var imageName : String?
             let categoryType = model.type?.stringByReplacingOccurrencesOfString("\n", withString: " ")
+            if categoryType == "Marathon swimming" {
+                imageName = "60x60_30"
+            }
+            else {
+                imageName = String(format: "60x60_%d",indexPath.row + 1)
+            }
             cell?.textLabel?.text = categoryType
             cell?.accessoryType = .DisclosureIndicator
-            let imageName = String(format: "60x60_%d",indexPath.row + 1)
-            cell?.imageView?.image = UIImage(named: imageName)
+            cell?.imageView?.image = UIImage(named: imageName!)
             cell?.textLabel?.textColor = UIColor.darkGrayColor()
         }
         return cell!
