@@ -23,7 +23,7 @@ class CategoryListViewController: UIViewController,UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.shyNavBarManager.scrollView = self.categoryTableView;
+        self.shyNavBarManager.scrollView = self.categoryTableView
         self.shyNavBarManager.extensionView = timerView
         self.shyNavBarManager.stickyExtensionView = true
         setupLeftMenuButton()
@@ -43,6 +43,7 @@ class CategoryListViewController: UIViewController,UIGestureRecognizerDelegate {
 
     func setupLeftMenuButton() {
         let leftDrawerButton = MMDrawerBarButtonItem(target: self, action: #selector(HomeViewController.leftDrawerButtonPress(_:)))
+        leftDrawerButton.tintColor = UIColor.darkGrayColor()
         self.navigationItem.leftBarButtonItem = leftDrawerButton
     }
     
@@ -122,7 +123,7 @@ class CategoryListViewController: UIViewController,UIGestureRecognizerDelegate {
             cell?.textLabel?.text = categoryType
             cell?.accessoryType = .DisclosureIndicator
             cell?.imageView?.image = UIImage(named: imageName!)
-            cell?.textLabel?.textColor = UIColor.darkGrayColor()
+            cell?.textLabel?.textColor = UIColor(hex:0x2c3e50)
         }
         return cell!
     }
@@ -155,7 +156,7 @@ class CategoryListViewController: UIViewController,UIGestureRecognizerDelegate {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
         
-        return 70
+        return 60
     }
 
     

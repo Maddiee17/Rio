@@ -22,9 +22,7 @@ class CountdownTimerView: UIVisualEffectView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.timerLabel.font = UIFont(name: "HelveticaNeue", size: 30)
-        self.timerLabel.textColor = UIColor.orangeColor()
-
+        self.timerLabel.font = UIFont(name: "HelveticaNeue", size: 20)
         let dateComponents = NSDateComponents()
         dateComponents.day = 05;
         dateComponents.month = 8;

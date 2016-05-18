@@ -29,6 +29,9 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLeftMenuButton()
+        
+        self.tableView.backgroundColor = UIColor(hex : 0xecf0f1)
+
     }
 
     func didBecomeActive() {

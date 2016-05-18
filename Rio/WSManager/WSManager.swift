@@ -28,7 +28,7 @@ let kBaseURL = "http://ec2-52-37-90-104.us-west-2.compute.amazonaws.com/olympics
 
 let kTopFiveImages = "image/getTopFiveImages"
 
-let kResetBagdeCountURL = "/user/resetBadgeCount?emailId=@"
+let kResetBagdeCountURL = "user/resetBadgeCount?emailId=%@"
 
 let kRequestTimeOutInterval = 30.0
 
@@ -60,7 +60,8 @@ class WSManager: NSObject {
     func resetBagdeCount(emailId:String)
     {
         let finalURL = String(format: kResetBagdeCountURL, emailId)
-        let request = NSMutableURLRequest(URL: NSURL(string:finalURL)!)
+        let final = String(format: kBaseURL, finalURL)
+        let request = NSMutableURLRequest(URL: NSURL(string:final)!)
         request.HTTPMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")

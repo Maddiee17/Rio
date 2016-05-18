@@ -22,6 +22,13 @@ class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.shyNavBarManager.scrollView = self.tableView
+        
+//        self.shyNavBarManager.stickyNavigationBar = false
+//        self.shyNavBarManager.stickyExtensionView = false
+//        self.shyNavBarManager.fadeBehavior = .Subviews
+
+        
         fetchCategoryModel()
         let view = UIView(frame: CGRectZero)
         self.tableView.tableHeaderView = view
@@ -31,6 +38,8 @@ class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
         let tblView =  UIView(frame: CGRectZero)
         self.tableView.tableFooterView = tblView
         self.tableView.rowHeight = UITableViewAutomaticDimension
+        
+
 
         
         if (self.navigationController?.respondsToSelector(Selector("interactivePopGestureRecognizer")) != nil) {
@@ -55,6 +64,7 @@ class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
         
         let btnBackImage = UIImage(named: "ico-left-arrow")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         let btnBack = UIBarButtonItem(image: btnBackImage, style: .Plain, target: self, action: #selector(SubCategoryViewController.backButtonTapped(_:)))
+        btnBack.tintColor = UIColor.darkGrayColor()
         self.navigationItem.leftBarButtonItem = btnBack
     }
     
@@ -141,7 +151,7 @@ class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0,right: 0)
                 cell.accessoryType = .DisclosureIndicator
                 cell.userInteractionEnabled = true
-                cell.titleLabel.textColor = UIColor.darkGrayColor()
+                cell.textLabel?.textColor = UIColor(hex:0x2c3e50)
             }
             
         }
@@ -179,7 +189,7 @@ class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
     {
         var toBeAppendedString : NSMutableAttributedString?
         
-        let titleLabelString : NSMutableAttributedString = self.createAttributedString(title, textStyle: UIFontTextStyleFootnote, color:UIColor.purpleColor(), trait: "")
+        let titleLabelString : NSMutableAttributedString = self.createAttributedString(title, textStyle: UIFontTextStyleFootnote, color:UIColor(hex : 0x2c3e50), trait: "bold")
         
         toBeAppendedString = self.createAttributedString(description, textStyle: UIFontTextStyleCaption2, color:UIColor.darkGrayColor(), trait: "")
        
@@ -193,8 +203,14 @@ class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
     func createAttributedString(baseString:String, textStyle:String, color:UIColor, trait:String) -> NSMutableAttributedString {
         let baseAttrString = NSMutableAttributedString(string: baseString)
         let baseAttrRange = NSMakeRange(0, baseAttrString.length)
-        let attributedFont = UIFont.systemFontOfSize(15)
-        let fontDictionary = [NSFontAttributeName : attributedFont, NSForegroundColorAttributeName : color]
+        var attributedFont : UIFont?
+        if trait == "bold" {
+           attributedFont  = UIFont.boldSystemFontOfSize(16)
+        }
+        else {
+        attributedFont = UIFont.systemFontOfSize(15)
+        }
+        let fontDictionary = [NSFontAttributeName : attributedFont!, NSForegroundColorAttributeName : color]
         baseAttrString.setAttributes(fontDictionary, range: baseAttrRange)
         return baseAttrString
     }
@@ -207,7 +223,7 @@ class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
         let eventSplitted = eventSelected.componentsSeparatedByString(" ")
 
         switch categorySelected! {
-        case "Boxing", "Athletics", "Canoe slalom", "Canoe sprint", "Cycling track", "Cycling road", "Diving", "Fencing", "Judo", "Rowing", "Archery", "Synchronised swimming", "Sailing" ,"Swimming", "Weightlifting", "Wrestling - Freestyle", "Wrestling - Greco- roman":
+        case "Boxing", "Athletics", "Canoe slalom", "Canoe sprint", "Cycling track", "Cycling road", "Diving", "Fencing", "Judo", "Rowing", "Archery", "Synchronised swimming", "Sailing" ,"Swimming", "Weightlifting", "Wrestling - Freestyle", "Wrestling - Greco- roman", "Shooting":
             predicate = NSPredicate(format: "DescriptionLong CONTAINS[d] %@", eventSelected)
             selectedEvent = eventSelected
             
@@ -222,7 +238,7 @@ class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
 
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
-        return 70
+        return 60
     }
 
 

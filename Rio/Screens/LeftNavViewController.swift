@@ -14,6 +14,8 @@ class LeftNavViewController: UITableViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        self.tableView.backgroundColor = UIColor(hex : 0xecf0f1)
     }
 
     override func didReceiveMemoryWarning() {

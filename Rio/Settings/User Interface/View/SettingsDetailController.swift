@@ -43,6 +43,9 @@ class SettingsDetailController: UITableViewController {
         super.viewDidLoad()
         setUpIndexPath()
         setUpLeftBarButton()
+        
+        self.tableView.backgroundColor = UIColor(hex : 0xecf0f1)
+
     }
     
     override func viewWillAppear(animated: Bool) {

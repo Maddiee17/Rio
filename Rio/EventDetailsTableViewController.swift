@@ -31,6 +31,9 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         tableView.sectionHeaderHeight = 5.0;
         tableView.sectionFooterHeight = 5.0;
         
+        self.shyNavBarManager.scrollView = self.tableView
+
+        
         self.title = "Event Details"
         replaceWithLocalDate()
         sortDataBasedOnDate()

@@ -41,36 +41,52 @@ class RioUtilities: NSObject {
     {
         let date = rioEventModel.Date
         let startTime = rioEventModel.StartTime
-        let arrayForTime = startTime?.componentsSeparatedByString(":")
-        let arrayForDates = date?.componentsSeparatedByString("-")
+//        let arrayForTime = startTime?.componentsSeparatedByString(":")
+//        let arrayForDates = date?.componentsSeparatedByString("-")
+//        
+//        let calender = NSCalendar(identifier:NSCalendarIdentifierGregorian)
+//        let year = Int(arrayForDates![2])
+//        let month = Int(arrayForDates![1])
+//        let day = Int(arrayForDates![0])
+//        let hour = Int(arrayForTime![0])! + 3  //UTC - 3 is Rio Time, Default notification is 1Hr before
+//        let minutes = Int(arrayForTime![1])
+//        
+//        let dateComponents = NSDateComponents()
+//        dateComponents.day = day!
+//        dateComponents.month = month!
+//        dateComponents.year = year!
+//        dateComponents.hour = hour
+//        dateComponents.minute = minutes!
+//        dateComponents.second = 0
+//        dateComponents.timeZone = NSTimeZone(name: "UTC")
+//        let UTCDate = calender!.dateFromComponents(dateComponents)
+//        let dateLocal = self.getLocalDate(UTCDate!)
+//        
+//        let formatter = NSDateFormatter()
+//        formatter.dateStyle = .LongStyle
+//        formatter.timeZone = NSTimeZone.localTimeZone()
+//        let localDate = formatter.dateFromString()
+//        
+//        return dateLocal
         
-        let calender = NSCalendar(identifier:NSCalendarIdentifierGregorian)
-        let year = Int(arrayForDates![2])
-        let month = Int(arrayForDates![1])
-        let day = Int(arrayForDates![0])
-        let hour = Int(arrayForTime![0])! + 3  //UTC - 3 is Rio Time, Default notification is 1Hr before
-        let minutes = Int(arrayForTime![1])
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+        formatter.timeZone = NSTimeZone.init(abbreviation: "BRT")
+        //formatter.locale = NSLocale.currentLocale()
         
-        let dateComponents = NSDateComponents()
-        dateComponents.day = day!
-        dateComponents.month = month!
-        dateComponents.year = year!
-        dateComponents.hour = hour
-        dateComponents.minute = minutes!
-        dateComponents.second = 0
-        dateComponents.timeZone = NSTimeZone(name: "UTC")
-        let UTCDate = calender!.dateFromComponents(dateComponents)
-        let dateLocal = self.getLocalDate(UTCDate!)
+        let finalDate = date! + " " + startTime! + ":00"
+        let objDate = formatter.dateFromString(finalDate)
         
-        return dateLocal
+        
+        return getLocalDate(objDate!)
     }
     
     
     func getLocalDate(utcDate:NSDate) -> NSDate
     {
-        var timeInterval = NSTimeInterval(NSTimeZone.localTimeZone().secondsFromGMT)
-        let timeZoneObj = NSTimeZone.localTimeZone()
-        var localdate = utcDate.dateByAddingTimeInterval(timeInterval)
+        let timeInterval = NSTimeInterval(NSTimeZone.localTimeZone().secondsFromGMT)
+//        let timeZoneObj = NSTimeZone.localTimeZone()
+        let localdate = utcDate.dateByAddingTimeInterval(timeInterval)
 //        let isDayLightSavingOn = timeZoneObj.isDaylightSavingTimeForDate(localdate)
 //        if(isDayLightSavingOn == true)
 //        {
@@ -84,26 +100,35 @@ class RioUtilities: NSObject {
     
     func getDateFromComponents(startTime:String, date:String) -> NSDate
     {
-        let date = date
-        let startTime = startTime
-        let arrayForTime = startTime.componentsSeparatedByString(":")
-        let arrayForDates = date.componentsSeparatedByString("-")
+//        let date = date
+//        let startTime = startTime
+//        let arrayForTime = startTime.componentsSeparatedByString(":")
+//        let arrayForDates = date.componentsSeparatedByString("-")
+//        
+//        let calender = NSCalendar(identifier:NSCalendarIdentifierGregorian)
+//        let year = Int(arrayForDates[0])
+//        let month = Int(arrayForDates[1])! - 3
+//        let day = Int(arrayForDates[2])
+//        let hour = Int(arrayForTime[0])!
+//        let minutes = Int(arrayForTime[1])
+//        
+//        let dateComponents = NSDateComponents()
+//        dateComponents.day = day!
+//        dateComponents.month = month
+//        dateComponents.year = year!
+//        dateComponents.hour = hour
+//        dateComponents.minute = minutes!
+//        dateComponents.second = 0
+//        let UTCDate = calender!.dateFromComponents(dateComponents)
         
-        let calender = NSCalendar(identifier:NSCalendarIdentifierGregorian)
-        let year = Int(arrayForDates[0])
-        let month = Int(arrayForDates[1])! - 3
-        let day = Int(arrayForDates[2])
-        let hour = Int(arrayForTime[0])!
-        let minutes = Int(arrayForTime[1])
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//        formatter.timeZone = NSTimeZone.localTimeZone()
+        //formatter.locale = NSLocale.currentLocale()
         
-        let dateComponents = NSDateComponents()
-        dateComponents.day = day!
-        dateComponents.month = month
-        dateComponents.year = year!
-        dateComponents.hour = hour
-        dateComponents.minute = minutes!
-        dateComponents.second = 0
-        let UTCDate = calender!.dateFromComponents(dateComponents)
+        let finalDate = date + " " + startTime
+        let UTCDate = formatter.dateFromString(finalDate)
+
         
         return UTCDate!
     }

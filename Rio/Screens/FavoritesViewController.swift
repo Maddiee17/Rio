@@ -112,7 +112,8 @@ class FavoritesViewController: UIViewController {
             cell?.medalImageView.image = UIImage(named: "ico-medal")
         }
         cell?.medalImageView.image = cell?.medalImageView.image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-        cell?.medalImageView.tintColor = UIColor.orangeColor()
+        cell?.medalImageView.tintColor = UIColor(hex :0x2c3e50)
+        cell?.notificationButton.tintColor = UIColor(hex : 0x2c3e50)
         cell?.notificationButton.setImage(UIImage(named: "ico-bell-selected"), forState: .Normal)
         return cell!
     }

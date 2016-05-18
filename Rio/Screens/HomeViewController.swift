@@ -56,8 +56,9 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     func addButton() {
         
         categoriesButton = UIButton(frame: CGRectMake(0, self.view.frame.size.height + 20 , self.view.frame.size.width, 44))
-        categoriesButton.backgroundColor = UIColor.orangeColor()
+        categoriesButton.backgroundColor = UIColor(hex: 0xecf0f1)
         categoriesButton.setTitle("Categories", forState: .Normal)
+        categoriesButton.setTitleColor(UIColor(hex: 0x2c3e50), forState: .Normal)
         categoriesButton.addTarget(self, action: #selector(HomeViewController.categoriesButtonTapped), forControlEvents: .TouchUpInside)
         categoriesButton.tag = 1
         categoriesButton.userInteractionEnabled = false
@@ -96,6 +97,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     func setupLeftMenuButton() {
         let leftDrawerButton = MMDrawerBarButtonItem(target: self, action: #selector(HomeViewController.leftDrawerButtonPress(_:)))
+        leftDrawerButton.tintColor = UIColor.darkGrayColor()
         self.navigationItem.leftBarButtonItem = leftDrawerButton
     }
     

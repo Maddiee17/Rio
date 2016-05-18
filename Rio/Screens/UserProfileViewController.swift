@@ -29,11 +29,12 @@ class UserProfileViewController: UIViewController {
         self.avatarImage!.layer.cornerRadius = 5.0
         self.avatarImage?.clipsToBounds = true
         self.navigationController?.navigationBarHidden = true
-        self.goAheadButton.layer.cornerRadius = 20.0
-        self.goAheadButton.layer.borderColor = UIColor.orangeColor().CGColor
+        self.goAheadButton.layer.cornerRadius = 25.0
+        self.goAheadButton.layer.borderColor = UIColor(hex : 0x2c3e50).CGColor
         self.goAheadButton.layer.borderWidth = 1.0
-//        self.avatarImage?.layer.borderWidth = 2.0
-//        self.avatarImage?.layer.borderColor = UIColor.orangeColor().CGColor
+        self.avatarImage?.layer.cornerRadius = 25.0
+        self.avatarImage?.layer.borderWidth = 1.0
+        self.avatarImage?.layer.borderColor =  UIColor(hex : 0x2c3e50).CGColor
         //self.profileImageBackgroundView.addSubview(self.avatarImage!)
         
         if(userDataDict != nil){
@@ -52,17 +53,31 @@ class UserProfileViewController: UIViewController {
                 }
             })
         }
-        if (Reachability.isConnectedToNetwork()){
-            
-            fetchUserProfilePic()
-        }
+//        if (Reachability.isConnectedToNetwork()){
+//            
+//            fetchUserProfilePic()
+//        }
         
         if RioRootModel.sharedInstance.isPushedFromNotification == true
         {
             self.presentVC()
         }
+        self.resetBadgeCount()
     }
     
+    
+    func resetBadgeCount()
+    {
+        if UIApplication.sharedApplication().applicationIconBadgeNumber != 0
+        {
+            if let emailIdValue = self.userProfileArray?.first?.emailId {
+                manager.resetBagdeCount(emailIdValue)
+            }
+        }
+        
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+    }
+
     override func viewWillAppear(animated: Bool) {
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector:"presentVC:", name: "localNotificationTapped", object: nil)
 
@@ -99,17 +114,6 @@ class UserProfileViewController: UIViewController {
                 })
             })
         })
-    }
-
-    func fetchUserProfilePic() {
-        
-        if (FBSDKAccessToken.currentAccessToken() != nil) {
-            
-            let fbId = userDataDict?.objectForKey("facebookId") ?? ((userProfileArray?.first)! as RioUserProfileModel).facebookId
-         let request = FBSDKGraphRequest.init(graphPath: String(format: "http://graph.facebook.com/%@/picture?type=large",fbId as! String), parameters: nil, HTTPMethod: "GET")
-            request.startWithCompletionHandler({ (connection, result, error) in
-            })
-        }
     }
     
     override func didReceiveMemoryWarning() {

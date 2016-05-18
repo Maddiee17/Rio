@@ -66,7 +66,8 @@ class EventCell: UITableViewCell {
         self.eventName.sizeToFit()
 
         self.medalImageView.image = self.medalImageView.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-        self.medalImageView.tintColor = UIColor.orangeColor()
+        self.medalImageView.tintColor = UIColor(hex :0x2c3e50)
+        self.notificationButton.tintColor = UIColor(hex : 0x2c3e50)
 
     }
     
