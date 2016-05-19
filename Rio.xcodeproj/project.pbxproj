@@ -54,6 +54,7 @@
 		9CFF12A81CBA1B2D00287147 /* RioColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF12A71CBA1B2D00287147 /* RioColor.swift */; };
 		F604D4501CE8E1DC00FC98FE /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = F604D44F1CE8E1DC00FC98FE /* launch.png */; };
 		F604D4561CEA538900FC98FE /* oo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F604D4551CEA538900FC98FE /* oo.jpg */; };
+		F605C7C71CEE366A00B21F9F /* CategoryInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F605C7C61CEE366A00B21F9F /* CategoryInfoViewController.swift */; };
 		F60982E11CD3901A004D8B4B /* UpdateReminderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60982E01CD3901A004D8B4B /* UpdateReminderOperation.swift */; };
 		F60982E31CD3EE9F004D8B4B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60982E21CD3EE9F004D8B4B /* Reachability.swift */; };
 		F60982E51CD3F3D0004D8B4B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F60982E41CD3F3D0004D8B4B /* Localizable.strings */; };
@@ -126,6 +127,7 @@
 		D28A1B99929314AF130632D3 /* libPods-Rio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Rio.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F604D44F1CE8E1DC00FC98FE /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
 		F604D4551CEA538900FC98FE /* oo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oo.jpg; sourceTree = "<group>"; };
+		F605C7C61CEE366A00B21F9F /* CategoryInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryInfoViewController.swift; sourceTree = "<group>"; };
 		F60982E01CD3901A004D8B4B /* UpdateReminderOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateReminderOperation.swift; sourceTree = "<group>"; };
 		F60982E21CD3EE9F004D8B4B /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		F60982E41CD3F3D0004D8B4B /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 				9C555E2D1CC23D0B005F1F2D /* DrawerViewController.swift */,
 				9C555E2F1CC4D37C005F1F2D /* FavoritesViewController.swift */,
 				F683D24E1CE4C1E500C247C9 /* SplashScreenViewController.swift */,
+				F605C7C61CEE366A00B21F9F /* CategoryInfoViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 				9C3C7F3A1C65FE7C00E98DA6 /* RioResultSet.swift in Sources */,
 				9C3C7F2C1C63E28900E98DA6 /* FMDatabaseQueue.m in Sources */,
 				9AEE10EA1CC6BD79003EB5AA /* AddReminderOperation.swift in Sources */,
+				F605C7C71CEE366A00B21F9F /* CategoryInfoViewController.swift in Sources */,
 				9ADB1AE41CCCCFC000D0973C /* RioModelMapper.swift in Sources */,
 				9C260A4A1CB443CE00CB42EE /* PopoverViewController.swift in Sources */,
 				9A64BD2C1CC95F5000C9703F /* RemoveReminderOperation.swift in Sources */,

@@ -65,9 +65,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.application(application, didReceiveRemoteNotification:(launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey])! as! [NSObject : AnyObject])
         }
         
-
-
-
         return true
     }
     
@@ -122,23 +119,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = userProfileVC
     }
     
-//    func application(application: UIApplication,
-//        openURL url: NSURL, options: [String: AnyObject]) -> Bool {
-//            return GIDSignIn.sharedInstance().handleURL(url,
-//                sourceApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as? String,
-//                annotation: options[UIApplicationOpenURLOptionsAnnotationKey])
-//    }
-    
     func getImagesURL() {
         let operation = GetImagesOperation()
         RioRootModel.sharedInstance.backgroundQueue.addOperation(operation)
     }
-    
-//    func fetchReminderInBackground()
-//    {
-//        let getReminderOperation = GetReminderOperation()
-//        RioRootModel.sharedInstance.backgroundQueue.addOperation(getReminderOperation)
-//    }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         
@@ -157,7 +141,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            }
 //
 //        }
-        self.updateDeviceToken(deviceTokenStr, emailId: emailIdValue)
+        updateDeviceToken(deviceTokenStr, emailId: emailIdValue)
         }
         
         print(deviceTokenStr)
@@ -165,21 +149,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func updateDeviceToken(deviceToken : String, emailId : String)
     {
-        
-        NSUserDefaults.standardUserDefaults().setObject(deviceToken, forKey: "notificationId")
-        NSUserDefaults.standardUserDefaults().synchronize()
-        
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
-                self.wsManager.updateDeviceToken(deviceToken, email: emailId, successBlock: { (response) in
-                    print(response)
-                    }, errorBlock: { (error) in
-                        print(error)
-                        self.retryCount += 1
-                        if(self.retryCount < 4){
-                            self.updateDeviceToken(deviceToken, emailId: emailId)
-                        }
-                })
-            }
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
+            self.wsManager.updateDeviceToken(deviceToken, email: emailId, successBlock: { (response) in
+                print(response)
+                }, errorBlock: { (error) in
+                    print(error)
+                    self.retryCount += 1
+                    if(self.retryCount < 4){
+                        self.updateDeviceToken(deviceToken, emailId: emailId)
+                    }
+            })
+        }
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {

@@ -10,12 +10,19 @@ import UIKit
 
 class LeftNavViewController: UITableViewController {
     
+    @IBOutlet var timerView: CountdownTimerView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
         self.tableView.backgroundColor = UIColor(hex : 0xecf0f1)
+       // self.shyNavBarManager.scrollView = self.tableView
+        //self.shyNavBarManager.extensionView = timerView
+        //self.shyNavBarManager.stickyExtensionView = true
+        
+        self.tableView.tableHeaderView = timerView
     }
 
     override func didReceiveMemoryWarning() {

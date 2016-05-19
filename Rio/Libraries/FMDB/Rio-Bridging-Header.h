@@ -3,7 +3,6 @@
 //
 
 #import "FMDB.h"
-#import "TLYShyNavBarManager.h"
 #import "MZTimerLabel.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>

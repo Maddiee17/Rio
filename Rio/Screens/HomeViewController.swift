@@ -36,7 +36,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
 //        self.shyNavBarManager.extensionView.frame = CGRectMake(0, 0, self.view.frame.size.width, 100)
         if RioRootModel.sharedInstance.isPushedFromNotification == false
         {
-            setUpData()
+        //    setUpData()
         }
         self.refreshControl = UIRefreshControl()
         self.refreshControl!.addTarget(self, action: #selector(HomeViewController.refreshData), forControlEvents: UIControlEvents.ValueChanged)

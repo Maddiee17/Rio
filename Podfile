@@ -5,7 +5,6 @@
 
 target 'Rio' do
     
-pod 'TLYShyNavBar'
 pod 'MZTimerLabel'
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'

@@ -133,6 +133,37 @@ class RioUtilities: NSObject {
         return UTCDate!
     }
     
+    
+    func getAttributedString(title:String, description:String) -> NSMutableAttributedString
+    {
+        var toBeAppendedString : NSMutableAttributedString?
+        
+        let titleLabelString : NSMutableAttributedString = self.createAttributedString(title, textStyle: UIFontTextStyleFootnote, color:UIColor(hex : 0x2c3e50), trait: "bold")
+        
+        toBeAppendedString = self.createAttributedString(description, textStyle: UIFontTextStyleCaption2, color:UIColor.darkGrayColor(), trait: "")
+        
+        
+        titleLabelString.appendAttributedString(NSAttributedString(string:"\n" + "\n"))
+        titleLabelString.appendAttributedString(toBeAppendedString!)
+        
+        return titleLabelString
+    }
+    
+    func createAttributedString(baseString:String, textStyle:String, color:UIColor, trait:String) -> NSMutableAttributedString {
+        let baseAttrString = NSMutableAttributedString(string: baseString)
+        let baseAttrRange = NSMakeRange(0, baseAttrString.length)
+        var attributedFont : UIFont?
+        if trait == "bold" {
+            attributedFont  = UIFont.boldSystemFontOfSize(16)
+        }
+        else {
+            attributedFont = UIFont.systemFontOfSize(15)
+        }
+        let fontDictionary = [NSFontAttributeName : attributedFont!, NSForegroundColorAttributeName : color]
+        baseAttrString.setAttributes(fontDictionary, range: baseAttrRange)
+        return baseAttrString
+    }
+    
     //    func calculateFireDate(rioEventModel:RioEventModel) -> NSDate
     //    {
     //        let date = "15-4-2016"

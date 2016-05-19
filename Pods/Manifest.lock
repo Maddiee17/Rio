@@ -53,7 +53,6 @@ PODS:
     - MMDrawerController/Core
   - MZTimerLabel (0.5.4)
   - Onboard (2.2.0)
-  - TLYShyNavBar (1.0.0)
   - Toast (3.0)
   - TwitterCore (2.0.2):
     - Fabric
@@ -71,7 +70,6 @@ DEPENDENCIES:
   - MMDrawerController (~> 0.5.7)
   - MZTimerLabel
   - Onboard
-  - TLYShyNavBar
   - Toast (~> 3.0)
   - TwitterCore
   - TwitterKit
@@ -95,7 +93,6 @@ SPEC CHECKSUMS:
   MMDrawerController: 7a4cf8e25596bf2434e03ce50d22a8608ddee6a1
   MZTimerLabel: cd9bfb9304540ef2a9e163384fca9c978f0dbf83
   Onboard: c46261255c0bcbe26ab2823782764c96fca7a33e
-  TLYShyNavBar: d313a1c50c58cb7af744829120eaa33ca8a998ce
   Toast: 32c59229abfcf41850162b83bb9259dc84372473
   TwitterCore: 0f44d8980a6879d5205dcb4e010d15e643e56fa0
   TwitterKit: c4e40f289a3d7cc9fab9f241edd7502385468b65

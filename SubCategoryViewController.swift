@@ -17,36 +17,43 @@ class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
     var eventArray : [RioEventModel]?
     var selectedEvent : String?
     
+
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.shyNavBarManager.scrollView = self.tableView
-        
-//        self.shyNavBarManager.stickyNavigationBar = false
-//        self.shyNavBarManager.stickyExtensionView = false
-//        self.shyNavBarManager.fadeBehavior = .Subviews
-
-        
         fetchCategoryModel()
         let view = UIView(frame: CGRectZero)
         self.tableView.tableHeaderView = view
         // Do any additional setup after loading the view.
-        self.title = String(format: "%@ Details", categorySelected!)
+        self.title = categorySelected
         self.setUpLeftBarButton()
         let tblView =  UIView(frame: CGRectZero)
         self.tableView.tableFooterView = tblView
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
-
+        setupInfoButton()
 
         
         if (self.navigationController?.respondsToSelector(Selector("interactivePopGestureRecognizer")) != nil) {
             self.navigationController!.interactivePopGestureRecognizer!.enabled = true;
 //            self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         }
-
+    }
+    
+    func setupInfoButton() {
+        
+        let barButton = UIBarButtonItem(image: UIImage(named: "info"), style: .Done, target: self, action: #selector(SubCategoryViewController.infoButtonTapped))
+        barButton.tintColor = UIColor.darkGrayColor()
+        self.navigationItem.rightBarButtonItem = barButton
+    }
+    
+    func infoButtonTapped() {
+        
+        let navigationController = self.storyboard?.instantiateViewControllerWithIdentifier("CategoryInfoVC") as? UINavigationController
+        (navigationController?.viewControllers[0] as! CategoryInfoViewController).subCategoryModel = subCategoryModelLocal!
+        self.presentViewController(navigationController!, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -120,7 +127,7 @@ class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         if let count = self.subCategoryArray?.count{
-            return count + 4
+            return count
         }
         else{
             return  0
@@ -136,24 +143,12 @@ class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
             cell.userInteractionEnabled = false
             cell.accessoryType = .None
             cell.separatorInset = UIEdgeInsets(top: 0, left: 10000, bottom: 0,right: 0)
-            switch indexPath.row {
-            case 0:
-                cell.titleLabel.attributedText = self.getAttributedString("AIM OF THE GAME", description: (subCategoryModelLocal?.Aim)!)//String(format: "Aim : %@", (subCategoryModelLocal?.Aim)!)
-            case 1:
-                cell.titleLabel.attributedText = self.getAttributedString("WHY SHOULD YOU WATCH THIS", description: (subCategoryModelLocal?.Why)!)//String(format: "Why : %@", (subCategoryModelLocal?.Why)!)
-            case 2:
-                cell.titleLabel.attributedText = self.getAttributedString("OLYMPIC DEBUT", description: (subCategoryModelLocal?.Debut)!)//String(format: "Debut : %@", (subCategoryModelLocal?.Debut)!)
-            case 3:
-                cell.titleLabel.attributedText = self.getAttributedString("TOP MEDALIST", description: (subCategoryModelLocal?.Top)!)//String(format: "Toppers : %@", (subCategoryModelLocal?.Top)!)
-                cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0,right: 0)
-            default:
-                cell.titleLabel.text = (subCategoryArray![indexPath.row - 4] as String).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-                cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0,right: 0)
-                cell.accessoryType = .DisclosureIndicator
-                cell.userInteractionEnabled = true
-                cell.textLabel?.textColor = UIColor(hex:0x2c3e50)
-            }
             
+            cell.titleLabel.text = (subCategoryArray![indexPath.row] as String).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0,right: 0)
+            cell.accessoryType = .DisclosureIndicator
+            cell.userInteractionEnabled = true
+            cell.textLabel?.textColor = UIColor(hex:0x2c3e50)
         }
         return cell
     }
@@ -183,36 +178,6 @@ class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
         
                 }
         
-    }
-    
-    func getAttributedString(title:String, description:String) -> NSMutableAttributedString
-    {
-        var toBeAppendedString : NSMutableAttributedString?
-        
-        let titleLabelString : NSMutableAttributedString = self.createAttributedString(title, textStyle: UIFontTextStyleFootnote, color:UIColor(hex : 0x2c3e50), trait: "bold")
-        
-        toBeAppendedString = self.createAttributedString(description, textStyle: UIFontTextStyleCaption2, color:UIColor.darkGrayColor(), trait: "")
-       
-        
-        titleLabelString.appendAttributedString(NSAttributedString(string:"\n" + "\n"))
-        titleLabelString.appendAttributedString(toBeAppendedString!)
-        
-        return titleLabelString
-    }
-    
-    func createAttributedString(baseString:String, textStyle:String, color:UIColor, trait:String) -> NSMutableAttributedString {
-        let baseAttrString = NSMutableAttributedString(string: baseString)
-        let baseAttrRange = NSMakeRange(0, baseAttrString.length)
-        var attributedFont : UIFont?
-        if trait == "bold" {
-           attributedFont  = UIFont.boldSystemFontOfSize(16)
-        }
-        else {
-        attributedFont = UIFont.systemFontOfSize(15)
-        }
-        let fontDictionary = [NSFontAttributeName : attributedFont!, NSForegroundColorAttributeName : color]
-        baseAttrString.setAttributes(fontDictionary, range: baseAttrRange)
-        return baseAttrString
     }
 
 

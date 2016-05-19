@@ -17,21 +17,39 @@ class CategoryListViewController: UIViewController,UIGestureRecognizerDelegate {
     var categorySelected : String?
     var eventForNotification : String?
     var indexForNotification : Int?
+    var filteredCategory : [RioCategoryModel]?
     
     @IBOutlet weak var categoryTableView: UITableView!
+    
+    let searchController = UISearchController(searchResultsController: nil)
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.shyNavBarManager.scrollView = self.categoryTableView
-        self.shyNavBarManager.extensionView = timerView
-        self.shyNavBarManager.stickyExtensionView = true
+      
         setupLeftMenuButton()
         fetchCategoryModel()
         
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-
+        
+        //Search Bar
+        
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        self.categoryTableView.tableHeaderView = searchController.searchBar
+        self.categoryTableView.contentOffset = CGPointMake(0, self.categoryTableView.tableHeaderView!.frame.size.height)
     }
+    
+    func filterContentForSearchText(searchText: String) {
+        filteredCategory = self.categoryArrayLocal!.filter { category in
+            return category.type!.lowercaseString.containsString(searchText.lowercaseString)
+        }
+        
+        categoryTableView.reloadData()
+    }
+
     
     func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool
     {
@@ -103,7 +121,12 @@ class CategoryListViewController: UIViewController,UIGestureRecognizerDelegate {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return self.categoryArrayLocal?.count ?? 0
+        if searchController.active && searchController.searchBar.text != "" {
+            return filteredCategory!.count
+        }
+        else {
+            return self.categoryArrayLocal?.count ?? 0
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
@@ -111,9 +134,16 @@ class CategoryListViewController: UIViewController,UIGestureRecognizerDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell")
         if(categoryArrayLocal?.count > 0){
             
-            let model = self.categoryArrayLocal![indexPath.row]
+            var model : RioCategoryModel?
+            if searchController.active && searchController.searchBar.text != "" {
+                model = filteredCategory![indexPath.row]
+            }
+            else {
+                model = self.categoryArrayLocal![indexPath.row]
+
+            }
             var imageName : String?
-            let categoryType = model.type?.stringByReplacingOccurrencesOfString("\n", withString: " ")
+            let categoryType = model!.type?.stringByReplacingOccurrencesOfString("\n", withString: " ")
             if categoryType == "Marathon swimming" {
                 imageName = "60x60_30"
             }
@@ -253,4 +283,11 @@ class CategoryListViewController: UIViewController,UIGestureRecognizerDelegate {
         return localdate
     }
 }
+
+extension CategoryListViewController: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+}
+
 
