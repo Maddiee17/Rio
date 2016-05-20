@@ -150,18 +150,38 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
     
     func notificationButtonTapped(forCell:EventCell)
     {
-        cellView = forCell
-        frameForButton = forCell.notificationButton.frame
-        //        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        //        let popVC = storyBoard.instantiateViewControllerWithIdentifier("popover")
-        //        popVC.modalPresentationStyle = .Popover
-        //        self.presentViewController(popVC, animated: true, completion: nil)
-        selectedIndex = self.tableView.indexPathForCell(forCell)
-        let sectionTitle = self.datesArray[(selectedIndex?.section)!]
-        let modelArray = self.splittedDict[sectionTitle]
-        notificationButtonTappedCellModel = modelArray![(selectedIndex?.row)!]
-        WSManager.sharedInstance.notificationButtonTappedModel = notificationButtonTappedCellModel!
-        self.performSegueWithIdentifier("popoverSegue", sender: self)
+        if(RioUtilities.sharedInstance.notificationStatus() == kYes)
+        {
+            cellView = forCell
+            frameForButton = forCell.notificationButton.frame
+            selectedIndex = self.tableView.indexPathForCell(forCell)
+            let sectionTitle = self.datesArray[(selectedIndex?.section)!]
+            let modelArray = self.splittedDict[sectionTitle]
+            notificationButtonTappedCellModel = modelArray![(selectedIndex?.row)!]
+            WSManager.sharedInstance.notificationButtonTappedModel = notificationButtonTappedCellModel!
+            self.performSegueWithIdentifier("popoverSegue", sender: self)
+        }
+        else {
+            showAlert()
+        }
+    }
+    
+    
+    func showAlert()
+    {
+        let message = "Turn on notifications in Settings to receive game reminders"
+        let alertController: UIAlertController = UIAlertController(title: "", message: message, preferredStyle: .Alert)
+        let closeAction: UIAlertAction = UIAlertAction(title: "Settings" , style: .Cancel) { action -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                UIApplication.sharedApplication().openURL(NSURL(string:UIApplicationOpenSettingsURLString)!);
+            })
+        }
+        let viewAction: UIAlertAction = UIAlertAction(title: "OK", style: .Default) { action -> Void in
+        }
+        alertController.addAction(closeAction)
+        alertController.addAction(viewAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+        
     }
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {

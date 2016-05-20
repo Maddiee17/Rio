@@ -11,6 +11,7 @@ import UIKit
 class LeftNavViewController: UITableViewController {
     
     @IBOutlet var timerView: CountdownTimerView!
+    var dataBaseInteractor = RioDatabaseInteractor()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,16 @@ class LeftNavViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int // Default is 1 if not implemented
+    {
+        if NSUserDefaults.standardUserDefaults().objectForKey("isGuest") as? String == "true"{
+            return 1
+        }
+        else{
+            return 2
+        }
+    }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         self.mm_drawerController.toggleDrawerSide(.Left, animated: true, completion: nil)
@@ -45,7 +56,6 @@ class LeftNavViewController: UITableViewController {
                 self.mm_drawerController.centerViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SettingsViewController")
             case 3:
                 self.mm_drawerController.centerViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CategoryListViewController")
-                
             default:
                 break
             }
@@ -53,7 +63,7 @@ class LeftNavViewController: UITableViewController {
         else {
             switch indexPath.row {
             case 0:
-                self.mm_drawerController.toggleDrawerSide(.Left, animated: true, completion: nil)
+                self.mm_drawerController.centerViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LoginVC")//toggleDrawerSide(.Left, animated: true, completion: nil)
                 self.logoutUser()
             default:
                 break
@@ -66,9 +76,11 @@ class LeftNavViewController: UITableViewController {
     func logoutUser()  {
         FBSDKLoginManager().logOut()
         GIDSignIn.sharedInstance().signOut()
-        let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        let loginVC = storyBoard.instantiateViewControllerWithIdentifier("LoginVC")
-        self.navigationController?.presentViewController(loginVC, animated: true, completion: nil)
+        dataBaseInteractor.clearUserProfileTable()
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("userId")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        RioRootModel.sharedInstance.addedReminderArray?.removeAll()
+        RioRootModel.sharedInstance.favoritesArray = NSArray()
     }
     
     /*

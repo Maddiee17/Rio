@@ -65,7 +65,6 @@
 		F6D6E5C51CDBC0470046AF4A /* RioOrdinalInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D6E5C41CDBC0470046AF4A /* RioOrdinalInt.swift */; };
 		F6F9D8B91CE5B92400856A90 /* diamond.png in Resources */ = {isa = PBXBuildFile; fileRef = F6F9D8B81CE5B92400856A90 /* diamond.png */; };
 		F6F9D8BD1CE6007600856A90 /* SubCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F9D8BC1CE6007600856A90 /* SubCategoryTableViewCell.swift */; };
-		F6F9D8C91CE87A4700856A90 /* addReminder.png in Resources */ = {isa = PBXBuildFile; fileRef = F6F9D8C81CE87A4700856A90 /* addReminder.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,7 +137,6 @@
 		F6D6E5C41CDBC0470046AF4A /* RioOrdinalInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioOrdinalInt.swift; sourceTree = "<group>"; };
 		F6F9D8B81CE5B92400856A90 /* diamond.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diamond.png; sourceTree = "<group>"; };
 		F6F9D8BC1CE6007600856A90 /* SubCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategoryTableViewCell.swift; sourceTree = "<group>"; };
-		F6F9D8C81CE87A4700856A90 /* addReminder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addReminder.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -377,7 +375,6 @@
 				9C3C7F141C63E09B00E98DA6 /* Info.plist */,
 				9C3C7F0F1C63E09B00E98DA6 /* Assets.xcassets */,
 				F60982E61CD3F45F004D8B4B /* String+Localization.swift */,
-				F6F9D8C81CE87A4700856A90 /* addReminder.png */,
 				F60982E41CD3F3D0004D8B4B /* Localizable.strings */,
 			);
 			path = SupportingFiles;
@@ -472,7 +469,6 @@
 				F6F9D8B91CE5B92400856A90 /* diamond.png in Resources */,
 				F604D4561CEA538900FC98FE /* oo.jpg in Resources */,
 				F604D4501CE8E1DC00FC98FE /* launch.png in Resources */,
-				F6F9D8C91CE87A4700856A90 /* addReminder.png in Resources */,
 				9C3C7F0E1C63E09B00E98DA6 /* Main.storyboard in Resources */,
 				9CFF12A41CB9566000287147 /* GoogleService-Info.plist in Resources */,
 			);

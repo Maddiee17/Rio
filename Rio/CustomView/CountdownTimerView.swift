@@ -22,7 +22,7 @@ class CountdownTimerView: UIVisualEffectView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.timerLabel.font = UIFont(name: "HelveticaNeue", size: 20)
+        self.timerLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
         let dateComponents = NSDateComponents()
         dateComponents.day = 05;
         dateComponents.month = 8;
@@ -38,6 +38,9 @@ class CountdownTimerView: UIVisualEffectView {
         countDownLabel.setCountDownToDate(openingCeremonyDate)
         countDownLabel.timeFormat = "DD:HH:MM:ss"
         countDownLabel.start()
+        
+        self.backgroundColor = UIColor(hex : 0xecf0f1)
+
     }
     
 //    timerExample3 = [[MZTimerLabel alloc] initWithLabel:_lblTimerExample3 andTimerType:MZTimerLabelTypeTimer];

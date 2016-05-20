@@ -30,13 +30,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         self.title = "Live Feeds"
         setupLeftMenuButton()
-//        self.shyNavBarManager.scrollView = self.tableView;
-//        self.shyNavBarManager.extensionView = slideShow
-//        self.shyNavBarManager.stickyExtensionView = false
-//        self.shyNavBarManager.extensionView.frame = CGRectMake(0, 0, self.view.frame.size.width, 100)
+
         if RioRootModel.sharedInstance.isPushedFromNotification == false
         {
-        //    setUpData()
+            setUpData()
         }
         self.refreshControl = UIRefreshControl()
         self.refreshControl!.addTarget(self, action: #selector(HomeViewController.refreshData), forControlEvents: UIControlEvents.ValueChanged)
@@ -152,6 +149,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                 }
                 
             }) { (error) -> Void in
+                self.categoriesButton.userInteractionEnabled = true
                 self.refreshControl?.endRefreshing()
                 self.retryCount += 1
                 if self.retryCount < 4 {
@@ -240,14 +238,16 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
 
      func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool)
      {
-        if !decelerate {
+        if !decelerate && self.mm_drawerController.openSide == .None {
             showCategoriesButton()
         }
     }
     
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) // called when scroll view grinds to a halt
     {
-       showCategoriesButton()
+        if self.mm_drawerController.openSide == .None{
+            showCategoriesButton()
+        }
     }
 
 

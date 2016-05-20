@@ -83,7 +83,7 @@ class SplashScreenViewController: UIViewController {
         }
 
         let attachment = NSTextAttachment()
-        attachment.image = UIImage(named: "addReminder.png")
+        attachment.image = UIImage(named: "addReminder")
         attachment.bounds = CGRectMake(0, 0, self.view.frame.size.width - 100, 70)
         let attachmentString = NSAttributedString(attachment: attachment)
         let myString = NSMutableAttributedString(string: "Add reminders for your favourites, Just like these \n\n")

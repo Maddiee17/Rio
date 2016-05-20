@@ -264,5 +264,23 @@ class RioUtilities: NSObject {
         let timeComponemts = self.getTrimmedTime(componentsString[1])
         return (dateComponents,timeComponemts)
     }
+    
+    func notificationStatus() -> String
+    {
+        if let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
+        {
+            if settings.types == .None
+            {
+                return kNo
+            }
+            else
+            {
+                return kYes
+            }
+        }
+        
+        return kNo
+    }
+
 
 }

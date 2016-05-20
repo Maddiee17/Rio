@@ -123,12 +123,12 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
     func showAlert()
     {
         var message : String?
-        if(notificationStatus() == kNo)
+        if(RioUtilities.sharedInstance.notificationStatus() == kNo)
         {
-            message = "Turn on notifications in Settings to receive reminders"
+            message = "Turn on notifications in Settings to receive game reminders"
         }
         else {
-            message = "Turn off notifications in Settings to not receive reminders"
+            message = "Turn off notifications in Settings to not receive game reminders"
         }
         let alertController: UIAlertController = UIAlertController(title: "", message: message, preferredStyle: .Alert)
         let closeAction: UIAlertAction = UIAlertAction(title: "Settings" , style: .Cancel) { action -> Void in
@@ -144,23 +144,6 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
         
     }
     
-    func notificationStatus() -> String
-    {
-        if let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
-        {
-            if settings.types == .None
-            {
-                return kNo
-            }
-            else
-            {
-                return kYes
-            }
-        }
-
-        return kNo
-    }
-
     func selectedValueForAlert(value:String)
     {
         
@@ -196,7 +179,8 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
             {
             case 0:
                 cell!.textLabel?.text = "Notification"
-                cell!.detailTextLabel?.text = notificationStatus()
+                cell!.detailTextLabel?.text = RioUtilities.sharedInstance.notificationStatus()
+
             case 1:
                 cell!.textLabel?.text = "Alert"
                 cell!.detailTextLabel?.text = NSUserDefaults.standardUserDefaults().stringForKey(kAlertFirstDate) ?? kEventStart
