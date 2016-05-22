@@ -45,7 +45,7 @@ class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
     func setupInfoButton() {
         
         let barButton = UIBarButtonItem(image: UIImage(named: "info"), style: .Done, target: self, action: #selector(SubCategoryViewController.infoButtonTapped))
-        barButton.tintColor = UIColor.darkGrayColor()
+        barButton.tintColor = UIColor(hex:0xD21F69)
         self.navigationItem.rightBarButtonItem = barButton
     }
     

@@ -34,7 +34,6 @@ class CategoryListViewController: UIViewController,UIGestureRecognizerDelegate {
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         
         //Search Bar
-        
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
@@ -87,11 +86,8 @@ class CategoryListViewController: UIViewController,UIGestureRecognizerDelegate {
                     }
                 }
             }
-            
         }
-
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -145,14 +141,15 @@ class CategoryListViewController: UIViewController,UIGestureRecognizerDelegate {
             var imageName : String?
             let categoryType = model!.type?.stringByReplacingOccurrencesOfString("\n", withString: " ")
             if categoryType == "Marathon swimming" {
-                imageName = "60x60_30"
+                imageName = "Swimming"
             }
             else {
-                imageName = String(format: "60x60_%d",indexPath.row + 1)
+                imageName = categoryType
             }
             cell?.textLabel?.text = categoryType
             cell?.accessoryType = .DisclosureIndicator
-            cell?.imageView?.image = UIImage(named: imageName!)
+            cell?.imageView?.image = UIImage(named: imageName!)!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+            cell?.imageView?.tintColor = UIColor(hex:0xD21F69)
             cell?.textLabel?.textColor = UIColor(hex:0x2c3e50)
         }
         return cell!
@@ -189,8 +186,6 @@ class CategoryListViewController: UIViewController,UIGestureRecognizerDelegate {
         return 60
     }
 
-    
-    
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)

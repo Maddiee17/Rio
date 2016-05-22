@@ -140,10 +140,9 @@ class WSManager: NSObject {
             if let urlArray = results["imageVOs"] as? NSArray{
                 
                 var imagesDataArray = [NSData]()
-                for imagesDict in urlArray{
+                for (index , imagesDict) in urlArray.enumerate(){
                     let imageURL = (imagesDict as! NSDictionary).objectForKey("imageSelfLink") as! String
                     self.fetchImageFromURL(imageURL, successBlock: { (responseData) in
-                        print(responseData)
                         imagesDataArray.append(responseData)
                     })
                 }

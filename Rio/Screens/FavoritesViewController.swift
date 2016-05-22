@@ -17,6 +17,7 @@ class FavoritesViewController: UIViewController {
     var disciplineArray = [String]()
     var splittedDict = Dictionary<String , Array<AnyObject>>()
     
+    @IBOutlet weak var noRemindersLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,7 @@ class FavoritesViewController: UIViewController {
         setupLeftMenuButton()
         tableView.sectionHeaderHeight = 5.0;
         tableView.sectionFooterHeight = 5.0;
-        self.title = "Added Reminders"
+        self.title = "Favourites"
     }
     
     func setUp() {
@@ -58,15 +59,17 @@ class FavoritesViewController: UIViewController {
     }
     
     func noDataLabel()  {
-        centreLabel?.removeFromSuperview()
-        centreLabel = UILabel(frame: CGRectMake(0, 0, 300, 50))
-        centreLabel!.translatesAutoresizingMaskIntoConstraints = true
-        centreLabel!.numberOfLines = 2
-        centreLabel!.text = "No Reminders Added"
-        self.view.addSubview(centreLabel!)
+//        centreLabel?.removeFromSuperview()
+//        centreLabel = UILabel(frame: CGRectMake(0,0, 300, 50))
+//        centreLabel!.translatesAutoresizingMaskIntoConstraints = true
+//        centreLabel!.text = "No Reminders Added"
+//        centreLabel!.center = self.view.center
+//        centreLabel!.autoresizingMask = [UIViewAutoresizing.FlexibleLeftMargin, UIViewAutoresizing.FlexibleRightMargin, UIViewAutoresizing.FlexibleTopMargin, UIViewAutoresizing.FlexibleBottomMargin]
+//
+//        self.view.addSubview(centreLabel!)
         
-        centreLabel!.center = CGPointMake(self.view.bounds.midX, self.view.bounds.midY)
-        centreLabel!.autoresizingMask = [UIViewAutoresizing.FlexibleLeftMargin, UIViewAutoresizing.FlexibleRightMargin, UIViewAutoresizing.FlexibleTopMargin, UIViewAutoresizing.FlexibleBottomMargin]
+        self.tableView.hidden = true
+        noRemindersLabel.hidden = false
     }
     
     func sortArray(reminderArray:NSArray) -> NSArray{
@@ -77,6 +80,7 @@ class FavoritesViewController: UIViewController {
     
     func setupLeftMenuButton() {
         let leftDrawerButton = MMDrawerBarButtonItem(target: self, action: #selector(HomeViewController.leftDrawerButtonPress(_:)))
+        leftDrawerButton.tintColor = UIColor.darkGrayColor()
         self.navigationItem.leftBarButtonItem = leftDrawerButton
     }
     
@@ -144,10 +148,9 @@ class FavoritesViewController: UIViewController {
     {
         let view = UIView(frame: CGRectMake(0, 0 , self.view.frame.width, 100))
         let sectionTitle = self.disciplineArray[section]
-        let imageName = String(format: "60x60_%@", imagesMapping[sectionTitle]!)
-        let image = UIImageView(image: UIImage(named: imageName))
+        let image = UIImageView(image: UIImage(named: sectionTitle)?.imageWithRenderingMode(.AlwaysTemplate))
         image.frame = CGRectMake(10, 10, 20, 20)
-        
+        image.tintColor = UIColor(hex:0xD21F69)
         let label = UILabel(frame: CGRectMake (50, 0, self.view.frame.width ,40))
         label.text = sectionTitle
         view.backgroundColor = UIColor.whiteColor()

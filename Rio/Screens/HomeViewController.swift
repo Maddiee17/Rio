@@ -31,10 +31,18 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         self.title = "Live Feeds"
         setupLeftMenuButton()
 
-        if RioRootModel.sharedInstance.isPushedFromNotification == false
+        if RioRootModel.sharedInstance.emergencyTweetData == nil
         {
             setUpData()
         }
+        else {
+            self.tweetData = RioRootModel.sharedInstance.emergencyTweetData
+            self.tableView.hidden = false
+            self.tableView.reloadData()
+            setUpSlideShow()
+            slideShow.start()
+        }
+        
         self.refreshControl = UIRefreshControl()
         self.refreshControl!.addTarget(self, action: #selector(HomeViewController.refreshData), forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(self.refreshControl!)

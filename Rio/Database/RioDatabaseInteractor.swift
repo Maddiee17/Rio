@@ -14,7 +14,7 @@ class RioDatabaseInteractor: NSObject
     
     func fetchCategoryFromDB (completionBlock : ([RioCategoryModel] -> Void))
     {
-        let sqlStmt = "SELECT * from Category"
+        let sqlStmt = "SELECT * from Category ORDER BY type ASC"
         var categoryArray = [RioCategoryModel]()
         
         dataBaseManager.fetchCategories(sqlStmt) { (results) -> Void in

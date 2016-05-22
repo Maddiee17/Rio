@@ -513,6 +513,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ain't No Reminders Here. Please add some!!!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2nm-Gd-PYY">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.82352941180000006" green="0.1215686275" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="A8q-GO-Qa8">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -530,9 +536,6 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="1" id="upI-wF-TQC"/>
                                                     </constraints>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="147" y="8" width="1" height="50"/>
-                                                    </variation>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pmw-HA-eqK">
                                                     <rect key="frame" x="459" y="8" width="79" height="21"/>
@@ -543,18 +546,12 @@
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="156" y="8" width="40" height="21"/>
-                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKu-LJ-FTu">
                                                     <rect key="frame" x="459" y="38" width="79" height="21"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="156" y="38" width="40" height="21"/>
-                                                    </variation>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="ico-medal" translatesAutoresizingMaskIntoConstraints="NO" id="8RP-cg-8Ok">
                                                     <rect key="frame" x="8" y="24" width="16" height="16"/>
@@ -569,9 +566,6 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="ugh-Rh-734"/>
                                                     </constraints>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="8" y="67" width="224" height="1"/>
-                                                    </variation>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Medal :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wsz-a4-xpU">
                                                     <rect key="frame" x="7" y="76" width="38.5" height="14"/>
@@ -610,9 +604,6 @@
                                                     </constraints>
                                                     <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal" backgroundImage="ico-bell"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="212" y="23" width="20" height="20"/>
-                                                    </variation>
                                                     <connections>
                                                         <action selector="notificationButtonTapped:" destination="qz8-ko-gYI" eventType="touchUpInside" id="Afp-CU-fbn"/>
                                                     </connections>
@@ -623,8 +614,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="2WB-wO-q5J"/>
                                                     </constraints>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="0.0" y="93" width="240" height="11.5"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <exclude reference="2WB-wO-q5J"/>
                                                         </mask>
@@ -635,9 +625,6 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="32" y="8" width="107" height="50"/>
-                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -750,11 +737,16 @@
                         <constraints>
                             <constraint firstItem="A8q-GO-Qa8" firstAttribute="top" secondItem="2vt-S2-qg4" secondAttribute="bottom" id="5vy-Gx-XA3"/>
                             <constraint firstAttribute="trailing" secondItem="A8q-GO-Qa8" secondAttribute="trailing" id="A8z-Oa-kM0"/>
+                            <constraint firstItem="2nm-Gd-PYY" firstAttribute="leading" secondItem="XAA-JW-M6a" secondAttribute="leadingMargin" constant="-33" id="Mky-i1-Wxb"/>
                             <constraint firstItem="A8q-GO-Qa8" firstAttribute="bottom" secondItem="bfc-jp-gkL" secondAttribute="top" id="PiX-10-ASk"/>
+                            <constraint firstItem="2nm-Gd-PYY" firstAttribute="centerX" secondItem="XAA-JW-M6a" secondAttribute="centerX" id="Q0W-ha-1it"/>
+                            <constraint firstItem="2nm-Gd-PYY" firstAttribute="centerY" secondItem="XAA-JW-M6a" secondAttribute="centerY" id="q8X-nr-gb4"/>
                             <constraint firstItem="A8q-GO-Qa8" firstAttribute="leading" secondItem="XAA-JW-M6a" secondAttribute="leading" id="sFI-es-tJz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2nm-Gd-PYY" secondAttribute="trailing" constant="-34.5" id="ucR-l0-6fc"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
+                                <exclude reference="2nm-Gd-PYY"/>
                                 <exclude reference="A8q-GO-Qa8"/>
                             </mask>
                             <mask key="constraints">
@@ -762,10 +754,15 @@
                                 <exclude reference="A8z-Oa-kM0"/>
                                 <exclude reference="PiX-10-ASk"/>
                                 <exclude reference="sFI-es-tJz"/>
+                                <exclude reference="Mky-i1-Wxb"/>
+                                <exclude reference="Q0W-ha-1it"/>
+                                <exclude reference="q8X-nr-gb4"/>
+                                <exclude reference="ucR-l0-6fc"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
+                                <include reference="2nm-Gd-PYY"/>
                                 <include reference="A8q-GO-Qa8"/>
                             </mask>
                             <mask key="constraints">
@@ -773,11 +770,16 @@
                                 <include reference="A8z-Oa-kM0"/>
                                 <include reference="PiX-10-ASk"/>
                                 <include reference="sFI-es-tJz"/>
+                                <include reference="Mky-i1-Wxb"/>
+                                <include reference="Q0W-ha-1it"/>
+                                <include reference="q8X-nr-gb4"/>
+                                <include reference="ucR-l0-6fc"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="hMz-cO-Q9p"/>
                     <connections>
+                        <outlet property="noRemindersLabel" destination="2nm-Gd-PYY" id="lm5-tE-CRh"/>
                         <outlet property="tableView" destination="A8q-GO-Qa8" id="afj-mi-UFC"/>
                     </connections>
                 </viewController>
@@ -952,7 +954,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jac-ZP-NUd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9550.5" y="-129.75"/>
+            <point key="canvasLocation" x="12919.5" y="-102.75"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="gor-BZ-g5t">
@@ -1816,7 +1818,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="Countdown   ">
                                         <attributes>
-                                            <color key="NSColor" red="0.82437900641025641" green="0.12290708295912832" blue="0.4130677719989308" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="NSColor" red="0.82352941176470584" green="0.12156862745098039" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" size="24" name="HelveticaNeue-Light"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -2131,7 +2133,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eBo-ng-elG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="13506" y="178.5"/>
+            <point key="canvasLocation" x="14121" y="217.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Nqw-ne-9HX">

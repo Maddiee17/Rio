@@ -79,6 +79,7 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
     
     func setupLeftMenuButton() {
         let leftDrawerButton = MMDrawerBarButtonItem(target: self, action: #selector(HomeViewController.leftDrawerButtonPress(_:)))
+        leftDrawerButton.tintColor = UIColor.darkGrayColor()
         self.navigationItem.leftBarButtonItem = leftDrawerButton
     }
     
