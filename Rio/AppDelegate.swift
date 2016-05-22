@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        getServerDBVersion()
+
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
   //      UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert , .Badge, .Sound], categories: nil))
@@ -117,6 +119,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         let userProfileVC = storyBoard.instantiateViewControllerWithIdentifier("UserProfileVC")
         self.window?.rootViewController = userProfileVC
+    }
+    
+    func getServerDBVersion() {
+        
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
+            self.wsManager.getServerDBVersion()
+     //   }
     }
     
     func getImagesURL() {

@@ -30,6 +30,8 @@ let kTopFiveImages = "image/getTopFiveImages"
 
 let kResetBagdeCountURL = "user/resetBadgeCount?emailId=%@"
 
+let kDbVersionURL = "sqlfile/getSqlDetails"
+
 let kRequestTimeOutInterval = 30.0
 
 
@@ -71,6 +73,31 @@ class WSManager: NSObject {
                 print(error)
         }
 
+    }
+    
+    func getServerDBVersion()//(successBlock:(String) -> Void, errorBlock:(String) -> Void)
+    {
+        let URL = NSURL(string: String(format: kBaseURL, kDbVersionURL))
+        
+        //        let request = NSMutableURLRequest(URL: NSURL(string:URL)!)
+        //        request.HTTPMethod = "GET"
+        //        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        //        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        //        self.performURLSessionForTaskForRequest(request, successBlock: { (response) in
+        //            print(response)
+        //            let results: NSDictionary = RioUtilities.sharedInstance.convertDataToDict(response as! NSData)
+        //            let version = results.objectForKey("versionNumber")?.stringValue
+        //            NSUserDefaults.standardUserDefaults().setValue(version, forKey: "ServerDBVersion")
+        ////            successBlock(version!)
+        //        }) { (error) in
+        //            print(error)
+        ////            errorBlock("Some Error")
+        //        }
+        let data = NSData(contentsOfURL: URL!)
+        let results: NSDictionary = RioUtilities.sharedInstance.convertDataToDict(data!)
+        let version = results.objectForKey("versionNumber")?.stringValue
+        NSUserDefaults.standardUserDefaults().setValue(version, forKey: "ServerDBVersion")
+        
     }
     
     func updateDeviceToken(deviceToken:String, email:String, successBlock : ((AnyObject) -> Void), errorBlock:((AnyObject) ->Void)) {

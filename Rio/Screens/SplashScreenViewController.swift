@@ -14,6 +14,7 @@ class SplashScreenViewController: UIViewController {
     var dataBaseInteractor = RioDatabaseInteractor()
     var confettiView: SAConfettiView!
     var userProfile : [RioUserProfileModel]?
+    var manger = WSManager.sharedInstance
     
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -54,14 +55,56 @@ class SplashScreenViewController: UIViewController {
         
         if(NSUserDefaults.standardUserDefaults().stringForKey(kIsFirstLaunch) == nil)
         {
+            NSUserDefaults.standardUserDefaults().setValue("1", forKey: "DBVersion")
             NSUserDefaults.standardUserDefaults().setValue("true", forKey: kIsFirstLaunch)
-            self.performSelector(#selector(SplashScreenViewController.showOnboarding), withObject: nil, afterDelay: 3.0)
+            NSUserDefaults.standardUserDefaults().synchronize()
+            if checkDBVersion() {
+                self.performSegueWithIdentifier("Download_Segue", sender: self)
+                NSUserDefaults.standardUserDefaults().setValue("true", forKey: "NewDBAvailableAndFirstLaunch")
+                NSUserDefaults.standardUserDefaults().setValue("false", forKey: "NewDBAvailableAndSubsLaunch")
+            }
+            else {
+                self.performSelector(#selector(SplashScreenViewController.showOnboarding), withObject: nil, afterDelay: 3.0)
+            }
         }
         else {
-            self.performSelector(#selector(SplashScreenViewController.checkForUserProfile
-                ), withObject: nil, afterDelay: 3.0)
+            if checkDBVersion() {
+                self.performSegueWithIdentifier("Download_Segue", sender: self)
+                NSUserDefaults.standardUserDefaults().setValue("true", forKey: "NewDBAvailableAndSubsLaunch")
+                NSUserDefaults.standardUserDefaults().setValue("false", forKey: "NewDBAvailableAndFirstLaunch")
+            }
+            else {
+                self.performSelector(#selector(SplashScreenViewController.checkForUserProfile
+                    ), withObject: nil, afterDelay: 3.0)
+            }
         }
     }
+    
+    func checkDBVersion() -> Bool {
+        
+        let localDbVersion = NSUserDefaults.standardUserDefaults().objectForKey("DBVersion") as! String
+        let serverDbVersion = NSUserDefaults.standardUserDefaults().objectForKey("ServerDBVersion") as! String
+        
+        if localDbVersion != serverDbVersion
+        {
+            return true
+        }
+        return false
+    }
+    
+//    func getServerDBVersion() {
+//        
+//        //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
+//        dispatch_async(dispatch_get_main_queue()) { 
+//            self.manger.getServerDBVersion({ (version) in
+//                print(version)
+//            }) { (error) in
+//                print(error)
+//            }
+//        }
+//        
+//        //   }
+//    }
     
     override func viewWillDisappear(animated: Bool) {
         

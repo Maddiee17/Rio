@@ -52,6 +52,7 @@
 		9CD5459C1CBAB129007F6D8F /* WSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD5459B1CBAB129007F6D8F /* WSManager.swift */; };
 		9CFF12A41CB9566000287147 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CFF12A31CB9566000287147 /* GoogleService-Info.plist */; };
 		9CFF12A81CBA1B2D00287147 /* RioColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF12A71CBA1B2D00287147 /* RioColor.swift */; };
+		F6025AC11CF2252E00F2D129 /* DownloadingDBVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6025AC01CF2252E00F2D129 /* DownloadingDBVC.swift */; };
 		F604D4501CE8E1DC00FC98FE /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = F604D44F1CE8E1DC00FC98FE /* launch.png */; };
 		F604D4561CEA538900FC98FE /* oo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F604D4551CEA538900FC98FE /* oo.jpg */; };
 		F605C7C71CEE366A00B21F9F /* CategoryInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F605C7C61CEE366A00B21F9F /* CategoryInfoViewController.swift */; };
@@ -124,6 +125,7 @@
 		9CFF12A31CB9566000287147 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9CFF12A71CBA1B2D00287147 /* RioColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioColor.swift; sourceTree = "<group>"; };
 		D28A1B99929314AF130632D3 /* libPods-Rio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Rio.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6025AC01CF2252E00F2D129 /* DownloadingDBVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadingDBVC.swift; sourceTree = "<group>"; };
 		F604D44F1CE8E1DC00FC98FE /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
 		F604D4551CEA538900FC98FE /* oo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oo.jpg; sourceTree = "<group>"; };
 		F605C7C61CEE366A00B21F9F /* CategoryInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryInfoViewController.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				9C555E2F1CC4D37C005F1F2D /* FavoritesViewController.swift */,
 				F683D24E1CE4C1E500C247C9 /* SplashScreenViewController.swift */,
 				F605C7C61CEE366A00B21F9F /* CategoryInfoViewController.swift */,
+				F6025AC01CF2252E00F2D129 /* DownloadingDBVC.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6025AC11CF2252E00F2D129 /* DownloadingDBVC.swift in Sources */,
 				F683D24D1CE4C14100C247C9 /* SAConfettiView.swift in Sources */,
 				9CC0784D1CBF78970010888D /* TwitterAppAuth.swift in Sources */,
 				9C3C7F351C65E91E00E98DA6 /* RioDatabaseManager.swift in Sources */,
