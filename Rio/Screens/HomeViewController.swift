@@ -66,7 +66,12 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         categoriesButton.setTitleColor(UIColor(hex: 0x2c3e50), forState: .Normal)
         categoriesButton.addTarget(self, action: #selector(HomeViewController.categoriesButtonTapped), forControlEvents: .TouchUpInside)
         categoriesButton.tag = 1
-        categoriesButton.userInteractionEnabled = false
+        if self.tweetData == nil {
+            categoriesButton.userInteractionEnabled = false
+        }
+        else {
+            categoriesButton.userInteractionEnabled = true
+        }
         UIApplication.sharedApplication().keyWindow?.addSubview(categoriesButton)
     }
     

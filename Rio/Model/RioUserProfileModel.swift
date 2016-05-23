@@ -10,24 +10,20 @@ import UIKit
 
 class RioUserProfileModel: NSObject {
 
-    var createdDate : Int?
     var emailId : String?
     var facebookId : String?
     var googleId : AnyObject?
-    var modifiedDate : Int?
     var name : String?
     var notificationId : String?
     var photoUrl : String?
     var userId : String?
     
     
-    func initWithValues(createdDate:Int, email:String, fbId:String, gId: String, modifiedDate:Int, name:String, notificationId: String, photoUrl:String, userId:String)
+    func initWithValues(email:String, fbId:String, gId: String, name:String, notificationId: String, photoUrl:String, userId:String)
     {
-        self.createdDate = createdDate
         self.emailId = email
         self.facebookId = fbId
         self.googleId = gId
-        self.modifiedDate = modifiedDate
         self.name = name
         self.notificationId = notificationId
         self.photoUrl = photoUrl

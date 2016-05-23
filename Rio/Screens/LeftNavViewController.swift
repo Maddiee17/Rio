@@ -78,6 +78,7 @@ class LeftNavViewController: UITableViewController {
         GIDSignIn.sharedInstance().signOut()
         dataBaseInteractor.clearUserProfileTable()
         NSUserDefaults.standardUserDefaults().removeObjectForKey("userId")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(kAlertFirstDate)
         NSUserDefaults.standardUserDefaults().synchronize()
         RioRootModel.sharedInstance.addedReminderArray?.removeAll()
         RioRootModel.sharedInstance.favoritesArray = NSArray()

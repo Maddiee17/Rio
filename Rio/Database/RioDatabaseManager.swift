@@ -157,7 +157,7 @@ class RioDatabaseManager {
             queue?.inDatabase(){ database in
 
             let results = database.executeUpdate(sqlStmt, withArgumentsInArray: [dataDict
-                .objectForKey("userId")!, dataDict.objectForKey("emailId")!, dataDict.objectForKey("photoUrl")!, dataDict.objectForKey("name")!, dataDict.objectForKey("googleId")!, dataDict.objectForKey("facebookId")!, dataDict.objectForKey("notificationId")!, dataDict.valueForKey("photoUrl")!,dataDict.valueForKey("createdDate")!, dataDict.valueForKey("modifiedDate")!])
+                .objectForKey("userId")!, dataDict.objectForKey("emailId")!, dataDict.objectForKey("photoUrl")!, dataDict.objectForKey("name")!, dataDict.objectForKey("googleId")!, dataDict.objectForKey("facebookId")!, dataDict.objectForKey("notificationId")!, dataDict.valueForKey("photoUrl")!])
             
             if (!results) {
                 print("Error: insertUserProfileValues:  \(database.lastErrorMessage())")

@@ -225,7 +225,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
             NSUserDefaults.standardUserDefaults().synchronize()
         }
         
-        paramsDict = ["emailId" :  NSUserDefaults.standardUserDefaults().objectForKey("guestEmail")!, "name" : "Guest", "facebookId" :"", "photoUrl" : "", "notificationId" :notificationId, "advanceNotificationTime" : "0000000"] as NSDictionary
+        paramsDict = ["emailId" :  NSUserDefaults.standardUserDefaults().objectForKey("guestEmail")!, "name" : "Guest", "facebookId" :"", "googleId" : "","photoUrl" : "", "notificationId" :notificationId, "advanceNotificationTime" : "0000000"] as NSDictionary
         
         let endPointUrl = String(format: kBaseLoginURL, "facebookOauthLogin")
         let urlRequest = NSMutableURLRequest(URL: NSURL(string: endPointUrl)!)

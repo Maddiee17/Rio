@@ -14,7 +14,7 @@ class DownloadingDBVC: UIViewController {
     var downloadTask: NSURLSessionDownloadTask?
     let url = NSURL(string: "http://ec2-52-37-90-104.us-west-2.compute.amazonaws.com/olympics-scheduler/sqlfile/downloadSqlFile")
     var dataBaseInteractor = RioDatabaseInteractor()
-    var userProfile : [RioUserProfileModel]?
+    var userProfileDownloadModel : [RioUserProfileModel]?
 
     lazy var downloadsSession: NSURLSession = {
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -104,34 +104,26 @@ class DownloadingDBVC: UIViewController {
         self.navigationController?.pushViewController(onboardVC!, animated: true)//presentViewController(onboardVC!, animated: true, completion: nil)
     }
     
-    func checkForUserProfile(destinationURL :NSURL)
+    func checkForUserProfile()
     {
         dataBaseInteractor.fetchUserProfile { (results) -> Void in
             
             if(results.count > 0){
-                self.userProfile = results
-                NSUserDefaults.standardUserDefaults().setObject(self.userProfile?.first!.userId, forKey: "userId")
-                NSUserDefaults.standardUserDefaults().synchronize()
-                let fileManager = NSFileManager.defaultManager()
-                do{
-                    try fileManager.removeItemAtURL(destinationURL)
-                }
-                catch{
-                   // Non-fatal: file probably doesn't exis
-                }
+                self.userProfileDownloadModel = results
             }
-            
         }
     }
     
     
     func insertUserProfileValues()
     {
-        //[dataDict
-//        .objectForKey("userId")!, dataDict.objectForKey("emailId")!, dataDict.objectForKey("photoUrl")!, dataDict.objectForKey("name")!, dataDict.objectForKey("googleId")!, dataDict.objectForKey("facebookId")!, dataDict.objectForKey("notificationId")!, dataDict.valueForKey("photoUrl")!,dataDict.valueForKey("createdDate")!, dataDict.valueForKey("modifiedDate")!]
-        
-        let dict = ["userId" : self.userProfile?.first?.userId, "emailId" : ""]
-        
+        let userProfileModel = self.userProfileDownloadModel?.first
+        self.dataBaseInteractor.insertValuesFromModel(userProfileModel!)
+    }
+    
+    func initDataBase() {
+        let objDBManager = RioDatabaseManager.sharedInstance
+        objDBManager.initDatabase()
     }
 
 }
@@ -142,44 +134,43 @@ extension DownloadingDBVC : NSURLSessionDownloadDelegate{
             destinationURL = localFilePathForUrl(originalURL) {
             
             print(destinationURL)
-            
-            // 2
-            let fileManager = NSFileManager.defaultManager()
-//            do {
-            checkForUserProfile(destinationURL)
-//            } catch {
-//                // Non-fatal: file probably doesn't exist
-//            }
-            do {
-                try fileManager.copyItemAtURL(location, toURL: destinationURL)
-                let isFirstLaunch = NSUserDefaults.standardUserDefaults().objectForKey("NewDBAvailableAndFirstLaunch") as!String
-                let isSubsLaunch = NSUserDefaults.standardUserDefaults().objectForKey("NewDBAvailableAndSubsLaunch") as!String
-
-                if isFirstLaunch == "true"{
+            checkForUserProfile()
+                let fileManager = NSFileManager.defaultManager()
+                do{
+                    try fileManager.removeItemAtURL(destinationURL)
+                    
+                    try fileManager.copyItemAtURL(location, toURL: destinationURL)
+                    
+                    initDataBase()
+                    if self.userProfileDownloadModel?.count > 0 {
+                        
+                        insertUserProfileValues()
+                    }
+                    let isFirstLaunch = NSUserDefaults.standardUserDefaults().objectForKey("NewDBAvailableAndFirstLaunch") as!String
+                    let isSubsLaunch = NSUserDefaults.standardUserDefaults().objectForKey("NewDBAvailableAndSubsLaunch") as!String
+                    
+                    if isFirstLaunch == "true"{
+                        
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.showOnboarding()
+                        })
+                    }
+                    
+                    if isSubsLaunch == "true" {
+                        dispatch_async(dispatch_get_main_queue(), {
+                            
+                            self.performSegueWithIdentifier("AfterDownload_ProfileSegue", sender: self)
+                        })
+                    }
                     
                     let serverDbVersion = NSUserDefaults.standardUserDefaults().objectForKey("ServerDBVersion") as! String
-                    
                     NSUserDefaults.standardUserDefaults().setObject(serverDbVersion, forKey: "DBVersion")
                     NSUserDefaults.standardUserDefaults().synchronize()
-                    
-                    dispatch_async(dispatch_get_main_queue(), { 
-                        self.showOnboarding()
-                    })
-                    
-                    let objDBManager = RioDatabaseManager.sharedInstance
-                    objDBManager.initDatabase()
-                }
-                
-                if isSubsLaunch == "true" {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        
-                        self.performSegueWithIdentifier("AfterDownload_ProfileSegue", sender: self)
-                    })
-                }
 
-            } catch let error as NSError {
-                print("Could not copy file to disk: \(error.localizedDescription)")
-            }
+                }
+                catch{
+                    // Non-fatal: file probably doesn't exis
+                }
         }
         
     }
