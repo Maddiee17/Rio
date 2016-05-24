@@ -234,25 +234,27 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.HTTPBody = RioUtilities.sharedInstance.convertDictToData(paramsDict!)
         
-        KVNProgress.showWithStatus("Creating Guest Account...")
-        NSUserDefaults.standardUserDefaults().setObject("true", forKey: "isGuest")
-        NSUserDefaults.standardUserDefaults().synchronize()
-        self.wsManager.performURLSessionForTaskForRequest(urlRequest, successBlock: { (responseData) in
-            print(responseData)
-            self.getDictFromData(responseData as! NSData)
-            let responseDict = self.userDataDict?.objectForKey("response") as! NSDictionary
-            if (responseDict.objectForKey("statusCode") as! Int == 200){
-                self.updateDBWithData()
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.navigateToProfile()
-                })
-            }
-
+        if Reachability.isConnectedToNetwork() {
+            
+            KVNProgress.showWithStatus("Creating Guest Account...")
+            NSUserDefaults.standardUserDefaults().setObject("true", forKey: "isGuest")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            self.wsManager.performURLSessionForTaskForRequest(urlRequest, successBlock: { (responseData) in
+                print(responseData)
+                self.getDictFromData(responseData as! NSData)
+                let responseDict = self.userDataDict?.objectForKey("response") as! NSDictionary
+                if (responseDict.objectForKey("statusCode") as! Int == 200){
+                    self.updateDBWithData()
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.navigateToProfile()
+                    })
+                }
+                
             }) { (error) in
                 print(error)
+            }
         }
-        
-        
+        RioUtilities.sharedInstance.displayAlertView("Network Error".localized, messageString: "Network Error Message".localized)
     }
 
 }

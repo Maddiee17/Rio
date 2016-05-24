@@ -77,27 +77,13 @@ class WSManager: NSObject {
     
     func getServerDBVersion()//(successBlock:(String) -> Void, errorBlock:(String) -> Void)
     {
-        let URL = NSURL(string: String(format: kBaseURL, kDbVersionURL))
-        
-        //        let request = NSMutableURLRequest(URL: NSURL(string:URL)!)
-        //        request.HTTPMethod = "GET"
-        //        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        //        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        //        self.performURLSessionForTaskForRequest(request, successBlock: { (response) in
-        //            print(response)
-        //            let results: NSDictionary = RioUtilities.sharedInstance.convertDataToDict(response as! NSData)
-        //            let version = results.objectForKey("versionNumber")?.stringValue
-        //            NSUserDefaults.standardUserDefaults().setValue(version, forKey: "ServerDBVersion")
-        ////            successBlock(version!)
-        //        }) { (error) in
-        //            print(error)
-        ////            errorBlock("Some Error")
-        //        }
-        let data = NSData(contentsOfURL: URL!)
-        let results: NSDictionary = RioUtilities.sharedInstance.convertDataToDict(data!)
-        let version = results.objectForKey("versionNumber")?.stringValue
-        NSUserDefaults.standardUserDefaults().setValue(version, forKey: "ServerDBVersion")
-        
+        if Reachability.isConnectedToNetwork() {
+            let URL = NSURL(string: String(format: kBaseURL, kDbVersionURL))
+            let data = NSData(contentsOfURL: URL!)
+            let results: NSDictionary = RioUtilities.sharedInstance.convertDataToDict(data!)
+            let version = results.objectForKey("versionNumber")?.stringValue
+            NSUserDefaults.standardUserDefaults().setValue(version, forKey: "ServerDBVersion")
+        }
     }
     
     func updateDeviceToken(deviceToken:String, email:String, successBlock : ((AnyObject) -> Void), errorBlock:((AnyObject) ->Void)) {
@@ -167,7 +153,7 @@ class WSManager: NSObject {
             if let urlArray = results["imageVOs"] as? NSArray{
                 
                 var imagesDataArray = [NSData]()
-                for (index , imagesDict) in urlArray.enumerate(){
+                for (_ , imagesDict) in urlArray.enumerate(){
                     let imageURL = (imagesDict as! NSDictionary).objectForKey("imageSelfLink") as! String
                     self.fetchImageFromURL(imageURL, successBlock: { (responseData) in
                         imagesDataArray.append(responseData)
@@ -401,7 +387,9 @@ class WSManager: NSObject {
             task.resume()
         }
         else{
-            RioUtilities.sharedInstance.displayAlertView("Network Error".localized, messageString: "Network Error Message".localized)
+            dispatch_async(dispatch_get_main_queue(), { 
+                RioUtilities.sharedInstance.displayAlertView("Network Error".localized, messageString: "Network Error Message".localized)
+            })
         }
     }
 }

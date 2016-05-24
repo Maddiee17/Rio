@@ -33,16 +33,9 @@ class SplashScreenViewController: UIViewController {
                                UIColor(red:0.30, green:0.76, blue:0.85, alpha:1.0),
                                UIColor(red:0.58, green:0.39, blue:0.55, alpha:1.0)]
         
-        // Set intensity (from 0 - 1, default intensity is 0.5)
         confettiView.intensity = 1
-        
-        // Set type
         confettiView.type = .Diamond
         
-        // For custom image
-        // confettiView.type = .Image(UIImage(named: "diamond")!)
-        
-        // Add subview
         UIView.animateWithDuration(0.2, delay: 0, options: .CurveEaseIn, animations: {
             self.view.addSubview(self.confettiView)
             }, completion: nil)
@@ -82,29 +75,18 @@ class SplashScreenViewController: UIViewController {
     
     func checkDBVersion() -> Bool {
         
-        let localDbVersion = NSUserDefaults.standardUserDefaults().objectForKey("DBVersion") as! String
-        let serverDbVersion = NSUserDefaults.standardUserDefaults().objectForKey("ServerDBVersion") as! String
+        let localDbVersion = NSUserDefaults.standardUserDefaults().objectForKey("DBVersion") as? String
+        let serverDbVersion = NSUserDefaults.standardUserDefaults().objectForKey("ServerDBVersion") as? String
         
+        if serverDbVersion == nil {
+            return false
+        }
         if localDbVersion != serverDbVersion
         {
             return true
         }
         return false
     }
-    
-//    func getServerDBVersion() {
-//        
-//        //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
-//        dispatch_async(dispatch_get_main_queue()) { 
-//            self.manger.getServerDBVersion({ (version) in
-//                print(version)
-//            }) { (error) in
-//                print(error)
-//            }
-//        }
-//        
-//        //   }
-//    }
     
     override func viewWillDisappear(animated: Bool) {
         
