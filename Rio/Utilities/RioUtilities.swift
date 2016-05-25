@@ -11,6 +11,7 @@ import UIKit
 
 class RioUtilities: NSObject {
     
+    var isAlertAlreadyDisplayed = false
     class var sharedInstance : RioUtilities{
         
         struct Singleton {
@@ -216,8 +217,12 @@ class RioUtilities: NSObject {
     }
     
     func displayAlertView(titleString: String, messageString: String) {
-        let alert: UIAlertView = UIAlertView(title: titleString, message: messageString, delegate: nil, cancelButtonTitle: "OK")
-        alert.show()
+        
+        if !isAlertAlreadyDisplayed {
+            let alert: UIAlertView = UIAlertView(title: titleString, message: messageString, delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+            isAlertAlreadyDisplayed = true
+        }
     }
     
     func getTrimmedTime(startTime:String) -> String

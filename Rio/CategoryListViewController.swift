@@ -41,6 +41,14 @@ class CategoryListViewController: UIViewController,UIGestureRecognizerDelegate {
         self.categoryTableView.contentOffset = CGPointMake(0, self.categoryTableView.tableHeaderView!.frame.size.height)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.mm_drawerController.openDrawerGestureModeMask = .All
+        self.mm_drawerController.closeDrawerGestureModeMask = .All
+
+    }
+    
     func filterContentForSearchText(searchText: String) {
         filteredCategory = self.categoryArrayLocal!.filter { category in
             return category.type!.lowercaseString.containsString(searchText.lowercaseString)

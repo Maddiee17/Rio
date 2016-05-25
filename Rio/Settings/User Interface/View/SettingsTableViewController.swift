@@ -58,6 +58,10 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
         else{
             oldHrs = "1 Hour Before"
         }
+        
+        self.mm_drawerController.openDrawerGestureModeMask = .All
+        self.mm_drawerController.closeDrawerGestureModeMask = .All
+
     }
     
     func resetToOldTime()

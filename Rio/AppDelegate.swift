@@ -123,9 +123,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func getServerDBVersion() {
         
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
-            self.wsManager.getServerDBVersion()
-     //   }
+        self.wsManager.getServerDBVersion()
     }
     
     func getImagesURL() {

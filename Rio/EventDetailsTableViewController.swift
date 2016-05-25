@@ -42,6 +42,13 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.mm_drawerController.openDrawerGestureModeMask = .None
+        self.mm_drawerController.closeDrawerGestureModeMask = .None
+
+    }
     func setupObservers()
     {
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(EventDetailsTableViewController.reloadData(_:)), name: "refreshTable", object: nil)
@@ -69,6 +76,7 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         let btnBackImage = UIImage(named: "ico-left-arrow")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         let btnBack = UIBarButtonItem(image: btnBackImage, style: .Plain, target: self, action: #selector(EventDetailsTableViewController.backButtonTapped(_:)))
         self.navigationItem.leftBarButtonItem = btnBack
+        
     }
     
     func backButtonTapped(sender:AnyObject)

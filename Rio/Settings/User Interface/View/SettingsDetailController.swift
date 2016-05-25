@@ -28,7 +28,7 @@ Popoulate the setting detail view controller
  */
 
 
-class SettingsDetailController: UITableViewController {
+class SettingsDetailController: UITableViewController, UIGestureRecognizerDelegate {
     
     var firstAlertValue : String?
     var secondAlertValue : String?
@@ -46,11 +46,19 @@ class SettingsDetailController: UITableViewController {
         
         self.tableView.backgroundColor = UIColor(hex : 0xecf0f1)
 
+        if (self.navigationController?.respondsToSelector(Selector("interactivePopGestureRecognizer")) != nil) {
+            self.navigationController!.interactivePopGestureRecognizer!.enabled = true;
+            self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        }
+
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setUpData()
+        
+        self.mm_drawerController.openDrawerGestureModeMask = .None
+        self.mm_drawerController.closeDrawerGestureModeMask = .None
  }
     
     func setUpLeftBarButton() {
@@ -70,6 +78,13 @@ class SettingsDetailController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool
+    {
+        if (self.navigationController?.respondsToSelector(Selector("interactivePopGestureRecognizer")) != nil && gestureRecognizer == self.navigationController?.interactivePopGestureRecognizer) {
+            return true
+        }
+        return false
+    }
 
     // MARK: - Table view data source
 

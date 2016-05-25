@@ -171,14 +171,16 @@ class WSManager: NSObject {
     func getReminders(successBlock:((AnyObject) -> Void), errorBlock:((AnyObject) -> Void))
     {
         print(NSUserDefaults.standardUserDefaults().stringForKey("userId"))
-        let getReminderURL = String(format: kBaseURL, kGetReminderURL)
-        let request = NSMutableURLRequest(URL: NSURL(string: String(format: getReminderURL, NSUserDefaults.standardUserDefaults().stringForKey("userId")!))!)
-        request.HTTPMethod = "GET"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        self.performURLSessionForTaskForRequest(request, successBlock: { (response) -> Void in
+        if let userIdValue = NSUserDefaults.standardUserDefaults().stringForKey("userId"){
             
-            print(response)
+            let getReminderURL = String(format: kBaseURL, kGetReminderURL)
+            let request = NSMutableURLRequest(URL: NSURL(string: String(format: getReminderURL, userIdValue))!)
+            request.HTTPMethod = "GET"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.setValue("application/json", forHTTPHeaderField: "Accept")
+            self.performURLSessionForTaskForRequest(request, successBlock: { (response) -> Void in
+                
+                print(response)
                 let results: NSDictionary = RioUtilities.sharedInstance.convertDataToDict(response as! NSData)
                 print(results)
                 var serialNosArray : [String]?
@@ -199,12 +201,14 @@ class WSManager: NSObject {
                 }
                 else{
                     successBlock([String]())
+                }
+                
+            }) { (error) -> Void in
+                print(error)
             }
 
-        }) { (error) -> Void in
-            print(error)
         }
-
+        
         
     }
     

@@ -66,24 +66,26 @@ class PopoverViewController: UIViewController {
     
     @IBAction func addReminderSwitch(sender: AnyObject)
     {
-        if self.sourceView?.notificationButton.tag == 1 {
+        if Reachability.isConnectedToNetwork() {
             
-            sourceView?.notificationButton.setImage(UIImage(named: "ico-bell-selected"), forState: .Normal)
-            let selectedEventModel = manager.notificationButtonTappedModel
-            let operation = AddReminderOperation(eventModel: selectedEventModel!, indexPath: selectedIndexPath!)
-            RioRootModel.sharedInstance.backgroundQueue.addOperation(operation)
-        }
-        else{
-            sourceView?.notificationButton.setImage(UIImage(named: "ico-bell"), forState: .Normal)
-            let selectedEventModel = manager.notificationButtonTappedModel
-            dataBaseInteractor.getReminderId((selectedEventModel?.Sno)!, successBlock: { (reminderId) in
-                let operation = RemoveReminderOperation(reminderId: reminderId, serialNo: (selectedEventModel?.Sno)!, indexpath: self.selectedIndexPath!)
+            if self.sourceView?.notificationButton.tag == 1 {
+                
+                sourceView?.notificationButton.setImage(UIImage(named: "ico-bell-selected"), forState: .Normal)
+                let selectedEventModel = manager.notificationButtonTappedModel
+                let operation = AddReminderOperation(eventModel: selectedEventModel!, indexPath: selectedIndexPath!)
                 RioRootModel.sharedInstance.backgroundQueue.addOperation(operation)
-            })
+            }
+            else{
+                sourceView?.notificationButton.setImage(UIImage(named: "ico-bell"), forState: .Normal)
+                let selectedEventModel = manager.notificationButtonTappedModel
+                dataBaseInteractor.getReminderId((selectedEventModel?.Sno)!, successBlock: { (reminderId) in
+                    let operation = RemoveReminderOperation(reminderId: reminderId, serialNo: (selectedEventModel?.Sno)!, indexpath: self.selectedIndexPath!)
+                    RioRootModel.sharedInstance.backgroundQueue.addOperation(operation)
+                })
+            }
+            
+            self.reminderAddedSuccessfully()
         }
-        
-        self.reminderAddedSuccessfully()
-
     }
     
     

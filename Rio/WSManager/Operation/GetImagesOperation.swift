@@ -3,7 +3,7 @@
 //  Rio
 //
 //  Created by Madhur Mohta on 01/05/2016.
-//  Copyright © 2016 Pearson_3. All rights reserved.
+//  Copyright © 2016 Madhur Mohta. All rights reserved.
 //
 
 import UIKit

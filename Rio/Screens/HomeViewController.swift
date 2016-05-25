@@ -56,6 +56,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         addButton()
+        
+        self.mm_drawerController.openDrawerGestureModeMask = .All
+        self.mm_drawerController.closeDrawerGestureModeMask = .All
+
     }
     
     func addButton() {

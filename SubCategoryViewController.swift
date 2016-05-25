@@ -28,7 +28,7 @@ class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
         self.tableView.tableHeaderView = view
         // Do any additional setup after loading the view.
         self.title = categorySelected
-        self.setUpLeftBarButton()
+        setUpLeftBarButton()
         let tblView =  UIView(frame: CGRectZero)
         self.tableView.tableFooterView = tblView
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -40,6 +40,12 @@ class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
             self.navigationController!.interactivePopGestureRecognizer!.enabled = true;
 //            self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         }
+        
+        if RioRootModel.sharedInstance.isPushedFromNotification == true
+        {
+            infoButtonTapped()
+        }
+
     }
     
     func setupInfoButton() {
@@ -64,6 +70,8 @@ class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
+        self.mm_drawerController.openDrawerGestureModeMask = .None
+        self.mm_drawerController.closeDrawerGestureModeMask = .None
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self;
 
     }
@@ -188,7 +196,7 @@ class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
         let eventSplitted = eventSelected.componentsSeparatedByString(" ")
 
         switch categorySelected! {
-        case "Boxing", "Athletics", "Canoe slalom", "Canoe sprint", "Cycling track", "Cycling road", "Diving", "Fencing", "Judo", "Rowing", "Archery", "Synchronised swimming", "Sailing" ,"Swimming", "Weightlifting", "Wrestling - Freestyle", "Wrestling - Greco- roman", "Shooting":
+        case "Boxing", "Athletics", "Canoe slalom", "Canoe sprint", "Cycling track", "Cycling road", "Diving", "Fencing", "Judo", "Rowing", "Archery", "Synchronised swimming", "Sailing" ,"Swimming", "Weightlifting", "Wrestling - Freestyle", "Wrestling - Greco- roman", "Shooting", "Taekwondo", "Gymnastics - Rhythmic":
             predicate = NSPredicate(format: "DescriptionLong CONTAINS[d] %@", eventSelected)
             selectedEvent = eventSelected
             

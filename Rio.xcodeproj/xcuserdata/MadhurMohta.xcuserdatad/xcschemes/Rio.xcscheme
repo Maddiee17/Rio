@@ -17,7 +17,7 @@
                BlueprintIdentifier = "9C3C7F041C63E09B00E98DA6"
                BuildableName = "Rio.app"
                BlueprintName = "Rio"
-               ReferencedContainer = "container:Rio.xcodeproj">
+               ReferencedContainer = "container:Olympifire.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
             BlueprintIdentifier = "9C3C7F041C63E09B00E98DA6"
             BuildableName = "Rio.app"
             BlueprintName = "Rio"
-            ReferencedContainer = "container:Rio.xcodeproj">
+            ReferencedContainer = "container:Olympifire.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -58,7 +58,7 @@
             BlueprintIdentifier = "9C3C7F041C63E09B00E98DA6"
             BuildableName = "Rio.app"
             BlueprintName = "Rio"
-            ReferencedContainer = "container:Rio.xcodeproj">
+            ReferencedContainer = "container:Olympifire.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -77,7 +77,7 @@
             BlueprintIdentifier = "9C3C7F041C63E09B00E98DA6"
             BuildableName = "Rio.app"
             BlueprintName = "Rio"
-            ReferencedContainer = "container:Rio.xcodeproj">
+            ReferencedContainer = "container:Olympifire.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
