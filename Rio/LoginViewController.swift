@@ -254,7 +254,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
                 print(error)
             }
         }
-        RioUtilities.sharedInstance.displayAlertView("Network Error".localized, messageString: "Network Error Message".localized)
+        else {
+            RioUtilities.sharedInstance.displayAlertView("Network Error".localized, messageString: "Network Error Message".localized)
+        }
     }
 
 }

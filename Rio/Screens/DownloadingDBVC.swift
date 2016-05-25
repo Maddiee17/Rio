@@ -68,7 +68,7 @@ class DownloadingDBVC: UIViewController {
     {
         var onboardVC : OnboardingViewController?
         
-        let firstPage = OnboardingContentViewController(title: "Welcome to Olympedia", body: "The unofficial olympics application. Here you can find all the details about each and every game and set reminders for your favorites", image: UIImage(named: "ico-rocket"), buttonText: "") { () -> Void in
+        let firstPage = OnboardingContentViewController(title: "Welcome to \n Olympifire - \n The 2016 Olympics Notifier", body: "Never miss your favourite game", image: UIImage(named: "ico-rocket"), buttonText: "") { () -> Void in
             // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
         }
         
@@ -78,7 +78,7 @@ class DownloadingDBVC: UIViewController {
         
         let attachment = NSTextAttachment()
         attachment.image = UIImage(named: "addReminder")
-        attachment.bounds = CGRectMake(0, 0, self.view.frame.size.width - 100, 70)
+        attachment.bounds = CGRectMake(0, 0, self.view.frame.size.width - 50, 70)
         let attachmentString = NSAttributedString(attachment: attachment)
         let myString = NSMutableAttributedString(string: "Add reminders for your favourites, Just like these \n\n")
         myString.appendAttributedString(attachmentString)
@@ -94,6 +94,8 @@ class DownloadingDBVC: UIViewController {
         }
         
         fourthPage.bodyLabel.attributedText = myString
+        firstPage.titleLabel.attributedText = NSAttributedString(string: "Welcome to \n Olympifire - \n The 2016 Olympics Notifier")
+        
         
         onboardVC = OnboardingViewController(backgroundImage: UIImage(named: "launch.png"), contents: [firstPage, secondPage,fourthPage])
         onboardVC!.shouldFadeTransitions = true

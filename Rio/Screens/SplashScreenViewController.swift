@@ -99,7 +99,7 @@ class SplashScreenViewController: UIViewController {
     {
         var onboardVC : OnboardingViewController?
         
-        let firstPage = OnboardingContentViewController(title: "Welcome to Olympedia", body: "The unofficial olympics application. Here you can find all the details about each and every game and set reminders for your favorites", image: UIImage(named: "ico-rocket"), buttonText: "") { () -> Void in
+        let firstPage = OnboardingContentViewController(title: "Welcome to Olympifire - The 2016 Olympics Notifier", body: "Never miss your favourite Olympic game.", image: UIImage(named: "ico-rocket"), buttonText: "") { () -> Void in
             // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
         }
         
@@ -109,7 +109,7 @@ class SplashScreenViewController: UIViewController {
 
         let attachment = NSTextAttachment()
         attachment.image = UIImage(named: "addReminder")
-        attachment.bounds = CGRectMake(0, 0, self.view.frame.size.width - 100, 70)
+        attachment.bounds = CGRectMake(0, 0, self.view.frame.size.width - 50, 70)
         let attachmentString = NSAttributedString(attachment: attachment)
         let myString = NSMutableAttributedString(string: "Add reminders for your favourites, Just like these \n\n")
         myString.appendAttributedString(attachmentString)

@@ -11,7 +11,7 @@
         <!--Olympic Categories-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="CategoryListViewController" customModule="Rio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="CategoryListViewController" customModule="Olympifire" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -57,7 +57,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <visualEffectView opaque="NO" contentMode="scaleToFill" id="aDF-7I-d5C" customClass="CountdownTimerView" customModule="Rio" customModuleProvider="target">
+                <visualEffectView opaque="NO" contentMode="scaleToFill" id="aDF-7I-d5C" customClass="CountdownTimerView" customModule="Olympifire" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="594" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="76e-Iq-Iw6">
@@ -150,7 +150,7 @@
         <!--Sub Category View Controller-->
         <scene sceneID="8OH-x7-zwf">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="3aj-B8-W7x" customClass="SubCategoryViewController" customModule="Rio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="3aj-B8-W7x" customClass="SubCategoryViewController" customModule="Olympifire" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XX1-83-qEw"/>
                         <viewControllerLayoutGuide type="bottom" id="Ce7-Td-7Sa"/>
@@ -163,7 +163,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="subcategorycell" rowHeight="60" id="VhR-g5-CPw" customClass="SubCategoryTableViewCell" customModule="Rio" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="subcategorycell" rowHeight="60" id="VhR-g5-CPw" customClass="SubCategoryTableViewCell" customModule="Olympifire" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VhR-g5-CPw" id="pt0-09-SqV">
@@ -239,7 +239,7 @@
         <!--Event Details Table View Controller-->
         <scene sceneID="Lxs-Np-x93">
             <objects>
-                <viewController storyboardIdentifier="EventDetailVC" id="fUN-Se-ER1" customClass="EventDetailsTableViewController" customModule="Rio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EventDetailVC" id="fUN-Se-ER1" customClass="EventDetailsTableViewController" customModule="Olympifire" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EPe-uV-rp9"/>
                         <viewControllerLayoutGuide type="bottom" id="Egb-H3-Zzb"/>
@@ -262,7 +262,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.81176470590000005" green="0.81176470590000005" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="eventCell" rowHeight="105" id="Bc8-w7-r0J" customClass="EventCell" customModule="Rio" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="eventCell" rowHeight="105" id="Bc8-w7-r0J" customClass="EventCell" customModule="Olympifire" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bc8-w7-r0J" id="3JS-um-dBe">
@@ -504,7 +504,7 @@
         <!--Favorites View Controller-->
         <scene sceneID="3ru-vN-h97">
             <objects>
-                <viewController id="EKG-FC-KrM" customClass="FavoritesViewController" customModule="Rio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="EKG-FC-KrM" customClass="FavoritesViewController" customModule="Olympifire" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2vt-S2-qg4"/>
                         <viewControllerLayoutGuide type="bottom" id="bfc-jp-gkL"/>
@@ -513,7 +513,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ain't No Reminders Here. Please add some!!!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2nm-Gd-PYY">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ain't no Reminders here. Add some!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2nm-Gd-PYY">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.82352941180000006" green="0.1215686275" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -523,7 +523,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="favCell" rowHeight="105" id="qz8-ko-gYI" customClass="EventCell" customModule="Rio" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="favCell" rowHeight="105" id="qz8-ko-gYI" customClass="EventCell" customModule="Olympifire" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="105"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qz8-ko-gYI" id="1oH-x7-dWv">
@@ -809,7 +809,7 @@
         <!--Category Info View Controller-->
         <scene sceneID="cV5-hX-6gE">
             <objects>
-                <viewController id="Vhv-te-8kA" customClass="CategoryInfoViewController" customModule="Rio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Vhv-te-8kA" customClass="CategoryInfoViewController" customModule="Olympifire" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pTH-uo-5FA"/>
                         <viewControllerLayoutGuide type="bottom" id="5Ho-5x-LeL"/>
@@ -822,7 +822,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="subcategorycell" rowHeight="60" id="rBh-4E-qHI" customClass="SubCategoryTableViewCell" customModule="Rio" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="subcategorycell" rowHeight="60" id="rBh-4E-qHI" customClass="SubCategoryTableViewCell" customModule="Olympifire" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rBh-4E-qHI" id="q3e-PD-Vlu">
@@ -931,7 +931,7 @@
         <!--Popover View Controller-->
         <scene sceneID="obz-xQ-Xyb">
             <objects>
-                <viewController id="Gmr-Le-yXh" customClass="PopoverViewController" customModule="Rio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Gmr-Le-yXh" customClass="PopoverViewController" customModule="Olympifire" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Cri-Hn-bZv"/>
                         <viewControllerLayoutGuide type="bottom" id="Tag-LV-Ip0"/>
@@ -978,7 +978,7 @@
         <!--Login View Controller-->
         <scene sceneID="gor-BZ-g5t">
             <objects>
-                <viewController id="zka-4N-bWL" customClass="LoginViewController" customModule="Rio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zka-4N-bWL" customClass="LoginViewController" customModule="Olympifire" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Vpq-s0-cIZ"/>
                         <viewControllerLayoutGuide type="bottom" id="aR0-9I-lqK"/>
@@ -1007,7 +1007,7 @@
                                     <action selector="skipLoginTapped:" destination="zka-4N-bWL" eventType="touchUpInside" id="Dz0-ga-cwn"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Olympedia" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNp-mI-qvr">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Olympifire" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNp-mI-qvr">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="94" id="Lbf-Su-i7N"/>
@@ -1094,7 +1094,7 @@
         <!--User Profile View Controller-->
         <scene sceneID="Ypp-Ht-mR3">
             <objects>
-                <viewController id="Wpw-Mg-uJr" customClass="UserProfileViewController" customModule="Rio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Wpw-Mg-uJr" customClass="UserProfileViewController" customModule="Olympifire" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WtV-nU-msX"/>
                         <viewControllerLayoutGuide type="bottom" id="pdE-C9-nh9"/>
@@ -1151,7 +1151,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to the Olympics Scheduler" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FVk-AN-zca">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Olympifire" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FVk-AN-zca">
                                 <rect key="frame" x="160" y="377" width="282" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="GIW-Yy-4sN"/>
@@ -1179,6 +1179,9 @@
                                 <state key="normal" title="logout">
                                     <color key="titleColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="28" y="8" width="44" height="30"/>
+                                </variation>
                                 <connections>
                                     <action selector="logOutTapped:" destination="Wpw-Mg-uJr" eventType="touchUpInside" id="lDc-Lh-Prz"/>
                                 </connections>
@@ -1206,6 +1209,9 @@
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="W6H-tn-sPA">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="175" y="10" width="50" height="50"/>
+                                        </variation>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1222,7 +1228,8 @@
                                         <exclude reference="WUo-1p-bEn"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="94" width="400" height="70"/>
                                     <mask key="subviews">
                                         <include reference="W6H-tn-sPA"/>
                                     </mask>
@@ -1341,7 +1348,7 @@
         <!--DownloadingDBVC-->
         <scene sceneID="LV7-f2-4wg">
             <objects>
-                <viewController id="zTX-vt-I82" customClass="DownloadingDBVC" customModule="Rio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zTX-vt-I82" customClass="DownloadingDBVC" customModule="Olympifire" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="brz-Dt-ks0"/>
                         <viewControllerLayoutGuide type="bottom" id="qtH-w4-lq1"/>
@@ -1433,7 +1440,7 @@
         <!--Home View Controller-->
         <scene sceneID="Yt8-BS-YCe">
             <objects>
-                <viewController storyboardIdentifier="homeVC" id="mIB-1a-yFz" customClass="HomeViewController" customModule="Rio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeVC" id="mIB-1a-yFz" customClass="HomeViewController" customModule="Olympifire" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="erC-vL-1id"/>
                         <viewControllerLayoutGuide type="bottom" id="qIB-vP-y1S"/>
@@ -1549,7 +1556,7 @@
         <!--Splash Screen View Controller-->
         <scene sceneID="45j-U2-hxu">
             <objects>
-                <viewController id="acA-I2-ua7" customClass="SplashScreenViewController" customModule="Rio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="acA-I2-ua7" customClass="SplashScreenViewController" customModule="Olympifire" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wcD-ph-PI4"/>
                         <viewControllerLayoutGuide type="bottom" id="CF9-D8-P9N"/>
@@ -1713,7 +1720,7 @@
         <!--Left Nav View Controller-->
         <scene sceneID="u4Y-se-jCc">
             <objects>
-                <tableViewController storyboardIdentifier="LeftNavViewController" id="mMT-7k-Egx" customClass="LeftNavViewController" customModule="Rio" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="LeftNavViewController" id="mMT-7k-Egx" customClass="LeftNavViewController" customModule="Olympifire" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="rHW-AQ-jFi">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1928,7 +1935,7 @@
                         <outlet property="timerView" destination="pFH-Nq-a3t" id="76v-G5-M13"/>
                     </connections>
                 </tableViewController>
-                <visualEffectView opaque="NO" contentMode="scaleToFill" id="pFH-Nq-a3t" customClass="CountdownTimerView" customModule="Rio" customModuleProvider="target">
+                <visualEffectView opaque="NO" contentMode="scaleToFill" id="pFH-Nq-a3t" customClass="CountdownTimerView" customModule="Olympifire" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="594" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="tRk-TZ-hUZ">
@@ -2065,7 +2072,7 @@
         <!--Settings-->
         <scene sceneID="2qF-Kz-PPG">
             <objects>
-                <tableViewController id="BQN-dL-bcT" customClass="SettingsTableViewController" customModule="Rio" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="BQN-dL-bcT" customClass="SettingsTableViewController" customModule="Olympifire" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="dac-TJ-LYS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2114,7 +2121,7 @@
         <!--Settings Detail Controller-->
         <scene sceneID="ahm-6s-DvP">
             <objects>
-                <tableViewController storyboardIdentifier="SettingsDetailViewController" id="fkA-it-iQ5" customClass="SettingsDetailController" customModule="Rio" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SettingsDetailViewController" id="fkA-it-iQ5" customClass="SettingsDetailController" customModule="Olympifire" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Hh5-7B-sUE">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2308,6 +2315,6 @@
         <image name="user" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="efi-bm-LfT"/>
+        <segue reference="tgb-Gk-Xju"/>
     </inferredMetricsTieBreakers>
 </document>

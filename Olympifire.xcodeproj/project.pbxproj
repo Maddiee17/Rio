@@ -83,7 +83,7 @@
 		9C260A5B1CB457B800CB42EE /* SettingsDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDetailController.swift; sourceTree = "<group>"; };
 		9C260A5C1CB457B800CB42EE /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		9C260A731CB6C2C900CB42EE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../LoginViewController.swift; sourceTree = "<group>"; };
-		9C3C7F051C63E09B00E98DA6 /* Rio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C3C7F051C63E09B00E98DA6 /* Olympifire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Olympifire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C3C7F081C63E09B00E98DA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
 		9C3C7F0A1C63E09B00E98DA6 /* CategoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryListViewController.swift; path = ../CategoryListViewController.swift; sourceTree = "<group>"; };
 		9C3C7F0D1C63E09B00E98DA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -232,7 +232,7 @@
 		9C3C7F061C63E09B00E98DA6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9C3C7F051C63E09B00E98DA6 /* Rio.app */,
+				9C3C7F051C63E09B00E98DA6 /* Olympifire.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -394,9 +394,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9C3C7F041C63E09B00E98DA6 /* Rio */ = {
+		9C3C7F041C63E09B00E98DA6 /* Olympifire */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9C3C7F171C63E09B00E98DA6 /* Build configuration list for PBXNativeTarget "Rio" */;
+			buildConfigurationList = 9C3C7F171C63E09B00E98DA6 /* Build configuration list for PBXNativeTarget "Olympifire" */;
 			buildPhases = (
 				B639523616703B8DFF0CD9EA /* Check Pods Manifest.lock */,
 				9C3C7F011C63E09B00E98DA6 /* Sources */,
@@ -410,9 +410,9 @@
 			);
 			dependencies = (
 			);
-			name = Rio;
+			name = Olympifire;
 			productName = Rio;
-			productReference = 9C3C7F051C63E09B00E98DA6 /* Rio.app */;
+			productReference = 9C3C7F051C63E09B00E98DA6 /* Olympifire.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -442,7 +442,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9C3C7F001C63E09B00E98DA6 /* Build configuration list for PBXProject "Rio" */;
+			buildConfigurationList = 9C3C7F001C63E09B00E98DA6 /* Build configuration list for PBXProject "Olympifire" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -455,7 +455,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9C3C7F041C63E09B00E98DA6 /* Rio */,
+				9C3C7F041C63E09B00E98DA6 /* Olympifire */,
 			);
 		};
 /* End PBXProject section */
@@ -714,7 +714,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.maddiee.Rio;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Olympifire;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Rio/Libraries/FMDB/Rio-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -734,7 +734,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.maddiee.Rio;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Olympifire;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Rio/Libraries/FMDB/Rio-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -744,7 +744,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9C3C7F001C63E09B00E98DA6 /* Build configuration list for PBXProject "Rio" */ = {
+		9C3C7F001C63E09B00E98DA6 /* Build configuration list for PBXProject "Olympifire" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9C3C7F151C63E09B00E98DA6 /* Debug */,
@@ -753,7 +753,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9C3C7F171C63E09B00E98DA6 /* Build configuration list for PBXNativeTarget "Rio" */ = {
+		9C3C7F171C63E09B00E98DA6 /* Build configuration list for PBXNativeTarget "Olympifire" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9C3C7F181C63E09B00E98DA6 /* Debug */,
