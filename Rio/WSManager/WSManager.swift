@@ -75,7 +75,7 @@ class WSManager: NSObject {
 
     }
     
-    func getServerDBVersion()//(successBlock:(String) -> Void, errorBlock:(String) -> Void)
+    func getServerDBVersion()
     {
         if Reachability.isConnectedToNetwork() {
             let URL = NSURL(string: String(format: kBaseURL, kDbVersionURL))

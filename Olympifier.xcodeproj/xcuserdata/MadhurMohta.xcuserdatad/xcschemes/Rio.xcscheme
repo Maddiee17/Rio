@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9C3C7F041C63E09B00E98DA6"
-               BuildableName = "OlympiFire.temp_caseinsensitive_rename.app"
-               BlueprintName = "Olympifire"
-               ReferencedContainer = "container:Olympifire.xcodeproj">
+               BuildableName = "Olympifire.app"
+               BlueprintName = "Olympifier"
+               ReferencedContainer = "container:Olympifier.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9C3C7F041C63E09B00E98DA6"
-            BuildableName = "OlympiFire.temp_caseinsensitive_rename.app"
-            BlueprintName = "Olympifire"
-            ReferencedContainer = "container:Olympifire.xcodeproj">
+            BuildableName = "Olympifire.app"
+            BlueprintName = "Olympifier"
+            ReferencedContainer = "container:Olympifier.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9C3C7F041C63E09B00E98DA6"
-            BuildableName = "OlympiFire.temp_caseinsensitive_rename.app"
-            BlueprintName = "Olympifire"
-            ReferencedContainer = "container:Olympifire.xcodeproj">
+            BuildableName = "Olympifire.app"
+            BlueprintName = "Olympifier"
+            ReferencedContainer = "container:Olympifier.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9C3C7F041C63E09B00E98DA6"
-            BuildableName = "OlympiFire.temp_caseinsensitive_rename.app"
-            BlueprintName = "Olympifire"
-            ReferencedContainer = "container:Olympifire.xcodeproj">
+            BuildableName = "Olympifire.app"
+            BlueprintName = "Olympifier"
+            ReferencedContainer = "container:Olympifier.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

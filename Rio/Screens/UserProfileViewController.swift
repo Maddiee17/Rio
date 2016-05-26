@@ -20,6 +20,7 @@ class UserProfileViewController: UIViewController {
     @IBOutlet weak var avatarImage: UIImageView?
     @IBOutlet weak var goAheadButton : UIButton!
     @IBOutlet weak var profileImageBackgroundView: UIView!
+    @IBOutlet weak var logoutButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +64,14 @@ class UserProfileViewController: UIViewController {
             self.presentVC()
         }
         self.resetBadgeCount()
+        
+        let isGuest = NSUserDefaults.standardUserDefaults().objectForKey("isGuest") as? String
+        
+        if let isGuestValue = isGuest{
+            if isGuestValue == "true" {
+                logoutButton.hidden = true
+            }
+        }
     }
     
     
@@ -125,6 +134,7 @@ class UserProfileViewController: UIViewController {
     {
         FBSDKLoginManager().logOut()
         GIDSignIn.sharedInstance().signOut()
+        GIDSignIn.sharedInstance().disconnect()
         dataBaseInteractor.clearUserProfileTable()
         NSUserDefaults.standardUserDefaults().removeObjectForKey("userId")
         NSUserDefaults.standardUserDefaults().removeObjectForKey(kAlertFirstDate)

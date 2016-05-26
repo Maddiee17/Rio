@@ -75,10 +75,13 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
     
     // MARK: - Google Delegates
     
+    func signInWillDispatch(signIn: GIDSignIn!, error: NSError!) {
+        KVNProgress.showWithStatus("Logging you in..")
+    }
+    
     func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
         withError error: NSError!) {
             if (error == nil) {
-                KVNProgress.showWithStatus("Logging you in..")
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = true
                 // Perform any operations on signed in user here.
                 let userId = user.userID                  // For client-side use only!
@@ -94,6 +97,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
                 self.completeLoginCalls(userDict,isFacebookLogin: false)
             } else {
                 print("\(error.localizedDescription)")
+                KVNProgress.dismiss()
+
             }
     }
 

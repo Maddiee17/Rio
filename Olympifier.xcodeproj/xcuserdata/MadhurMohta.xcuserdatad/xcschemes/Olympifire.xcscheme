@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9C3C7F041C63E09B00E98DA6"
                BuildableName = "Olympifire.app"
-               BlueprintName = "Olympifire"
-               ReferencedContainer = "container:Olympifire.xcodeproj">
+               BlueprintName = "Olympifier"
+               ReferencedContainer = "container:Olympifier.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9C3C7F041C63E09B00E98DA6"
             BuildableName = "Olympifire.app"
-            BlueprintName = "Olympifire"
-            ReferencedContainer = "container:Olympifire.xcodeproj">
+            BlueprintName = "Olympifier"
+            ReferencedContainer = "container:Olympifier.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -57,8 +57,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9C3C7F041C63E09B00E98DA6"
             BuildableName = "Olympifire.app"
-            BlueprintName = "Olympifire"
-            ReferencedContainer = "container:Olympifire.xcodeproj">
+            BlueprintName = "Olympifier"
+            ReferencedContainer = "container:Olympifier.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -76,8 +76,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9C3C7F041C63E09B00E98DA6"
             BuildableName = "Olympifire.app"
-            BlueprintName = "Olympifire"
-            ReferencedContainer = "container:Olympifire.xcodeproj">
+            BlueprintName = "Olympifier"
+            ReferencedContainer = "container:Olympifier.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
