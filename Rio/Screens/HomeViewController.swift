@@ -52,15 +52,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             categoriesButtonTapped()
         }
         
-        self.mm_drawerController.setGestureCompletionBlock { (drawer, gesture) in
-            
-            if self.mm_drawerController.openSide == .None{
-                self.showCategoriesButton()
-            }
-            else{
-                self.hideCategoriesButton()
-            }
-        }
 
     }
     
@@ -71,6 +62,15 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         self.mm_drawerController.openDrawerGestureModeMask = .All
         self.mm_drawerController.closeDrawerGestureModeMask = .All
 
+        self.mm_drawerController.setGestureCompletionBlock { (drawer, gesture) in
+            
+            if self.mm_drawerController.openSide == .None{
+                self.showCategoriesButton()
+            }
+            else{
+                self.hideCategoriesButton()
+            }
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {

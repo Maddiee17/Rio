@@ -66,6 +66,8 @@
 		F6D6E5C51CDBC0470046AF4A /* RioOrdinalInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D6E5C41CDBC0470046AF4A /* RioOrdinalInt.swift */; };
 		F6F9D8B91CE5B92400856A90 /* diamond.png in Resources */ = {isa = PBXBuildFile; fileRef = F6F9D8B81CE5B92400856A90 /* diamond.png */; };
 		F6F9D8BD1CE6007600856A90 /* SubCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F9D8BC1CE6007600856A90 /* SubCategoryTableViewCell.swift */; };
+		F6FADC131CF8C7E0009975FE /* CreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FADC121CF8C7E0009975FE /* CreditsViewController.swift */; };
+		F6FADC151CF8DB54009975FE /* CreditsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FADC141CF8DB54009975FE /* CreditsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -139,6 +141,8 @@
 		F6D6E5C41CDBC0470046AF4A /* RioOrdinalInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioOrdinalInt.swift; sourceTree = "<group>"; };
 		F6F9D8B81CE5B92400856A90 /* diamond.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diamond.png; sourceTree = "<group>"; };
 		F6F9D8BC1CE6007600856A90 /* SubCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategoryTableViewCell.swift; sourceTree = "<group>"; };
+		F6FADC121CF8C7E0009975FE /* CreditsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsViewController.swift; sourceTree = "<group>"; };
+		F6FADC141CF8DB54009975FE /* CreditsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,6 +307,7 @@
 				9C6AAC2A1C9481B200BB0585 /* EventCell.swift */,
 				9CC078501CBFA7AF0010888D /* TweetsCell.swift */,
 				F6F9D8BC1CE6007600856A90 /* SubCategoryTableViewCell.swift */,
+				F6FADC141CF8DB54009975FE /* CreditsTableViewCell.swift */,
 			);
 			path = CustomCell;
 			sourceTree = "<group>";
@@ -323,6 +328,7 @@
 				F683D24E1CE4C1E500C247C9 /* SplashScreenViewController.swift */,
 				F605C7C61CEE366A00B21F9F /* CategoryInfoViewController.swift */,
 				F6025AC01CF2252E00F2D129 /* DownloadingDBVC.swift */,
+				F6FADC121CF8C7E0009975FE /* CreditsViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -552,6 +558,7 @@
 				9CBC43241C6CD56700A08437 /* CountdownTimerView.swift in Sources */,
 				9ABE7F851CCCAD1600CE3E72 /* GetReminderOperation.swift in Sources */,
 				9C3C7F3A1C65FE7C00E98DA6 /* RioResultSet.swift in Sources */,
+				F6FADC151CF8DB54009975FE /* CreditsTableViewCell.swift in Sources */,
 				9C3C7F2C1C63E28900E98DA6 /* FMDatabaseQueue.m in Sources */,
 				9AEE10EA1CC6BD79003EB5AA /* AddReminderOperation.swift in Sources */,
 				F605C7C71CEE366A00B21F9F /* CategoryInfoViewController.swift in Sources */,
@@ -564,6 +571,7 @@
 				9C6AAC2B1C9481B200BB0585 /* EventCell.swift in Sources */,
 				9CBC43281C6F1A4000A08437 /* RioSubCategoryModel.swift in Sources */,
 				9C3C7F381C65FD5800E98DA6 /* RioCategoryModel.swift in Sources */,
+				F6FADC131CF8C7E0009975FE /* CreditsViewController.swift in Sources */,
 				F6F9D8BD1CE6007600856A90 /* SubCategoryTableViewCell.swift in Sources */,
 				F60982E11CD3901A004D8B4B /* UpdateReminderOperation.swift in Sources */,
 				9CFF12A81CBA1B2D00287147 /* RioColor.swift in Sources */,

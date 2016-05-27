@@ -109,7 +109,7 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 2
+        return 3
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
@@ -122,6 +122,10 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
         }
         else if(indexPath.section == 0 && indexPath.row == 0){
             showAlert()
+        }
+        else {
+            let creditsVC = self.storyboard?.instantiateViewControllerWithIdentifier("CreditsViewController") as! CreditsViewController
+            self.navigationController?.pushViewController(creditsVC, animated: true)
         }
     }
     
@@ -190,6 +194,10 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
                 cell!.textLabel?.text = "Alert"
                 cell!.detailTextLabel?.text = NSUserDefaults.standardUserDefaults().stringForKey(kAlertFirstDate) ?? kEventStart
                 cell!.accessoryType = .DisclosureIndicator
+            case 2:
+                cell!.textLabel?.text = "Credits"
+                cell!.accessoryType = .DisclosureIndicator
+
             default:
                 cell!.textLabel?.text = ""
             }

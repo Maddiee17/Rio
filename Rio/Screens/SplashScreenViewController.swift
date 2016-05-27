@@ -99,7 +99,7 @@ class SplashScreenViewController: UIViewController {
     {
         var onboardVC : OnboardingViewController?
         
-        let firstPage = OnboardingContentViewController(title: "Welcome to Olympifire - The 2016 Olympics Notifier", body: "Never miss your favourite Olympic game.", image: UIImage(named: "ico-rocket"), buttonText: "") { () -> Void in
+        let firstPage = OnboardingContentViewController(title: "Welcome to Olympifire - The 2016 Olympics Notifier", body: "Never miss your favourite Olympic game. Get timely reminders", image: UIImage(named: "ico-rocket"), buttonText: "") { () -> Void in
             // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
         }
         
@@ -107,12 +107,13 @@ class SplashScreenViewController: UIViewController {
             // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
         }
 
+        var myString : NSMutableAttributedString?
         let attachment = NSTextAttachment()
         attachment.image = UIImage(named: "addReminder")
         attachment.bounds = CGRectMake(0, 0, self.view.frame.size.width - 50, 70)
         let attachmentString = NSAttributedString(attachment: attachment)
-        let myString = NSMutableAttributedString(string: "Add reminders for your favourites, Just like these \n\n")
-        myString.appendAttributedString(attachmentString)
+        myString = NSMutableAttributedString(string: "Notification options for game start, 1 hour before and more. Add reminders for your favourites, Just like these \n\n")
+        myString!.appendAttributedString(attachmentString)
         
         let fourthPage = OnboardingContentViewController(title: "Reminders", body: "", image: UIImage(named: "ico-alarm"), buttonText: "Get Started") { () -> Void in
             
@@ -124,13 +125,28 @@ class SplashScreenViewController: UIViewController {
             })
         }
         
-        fourthPage.bodyLabel.attributedText = myString
-        
         onboardVC = OnboardingViewController(backgroundImage: UIImage(named: "launch.png"), contents: [firstPage, secondPage,fourthPage])
         onboardVC!.shouldFadeTransitions = true
         onboardVC!.fadePageControlOnLastPage = true
         onboardVC!.fadeSkipButtonOnLastPage = true
         onboardVC!.shouldBlurBackground = true
+
+        
+        if UIScreen.mainScreen().sizeType == .iPhone4 {
+            
+            onboardVC!.topPadding = 8
+            onboardVC!.underIconPadding = 8
+            onboardVC!.underTitlePadding = 8
+            onboardVC!.bottomPadding = 8
+            onboardVC!.underPageControlPadding = 5
+            
+            myString = NSMutableAttributedString(string: "Notification options for game start, 1 hour before and more. Add reminders for your favourites    ")
+        }
+
+        
+        fourthPage.bodyLabel.attributedText = myString
+        
+        
         
         self.navigationController?.pushViewController(onboardVC!, animated: true)//presentViewController(onboardVC!, animated: true, completion: nil)
     }
@@ -172,4 +188,21 @@ class SplashScreenViewController: UIViewController {
     }
     */
 
+}
+
+extension UIScreen {
+    
+    enum SizeType: CGFloat {
+        case Unknown = 0.0
+        case iPhone4 = 960.0
+        case iPhone5 = 1136.0
+        case iPhone6 = 1334.0
+        case iPhone6Plus = 1920.0
+    }
+    
+    var sizeType: SizeType {
+        let height = nativeBounds.height
+        guard let sizeType = SizeType(rawValue: height) else { return .Unknown }
+        return sizeType
+    }
 }
