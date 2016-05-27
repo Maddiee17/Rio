@@ -40,12 +40,6 @@ class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
             self.navigationController!.interactivePopGestureRecognizer!.enabled = true;
 //            self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         }
-        
-        if RioRootModel.sharedInstance.isPushedFromNotification == true
-        {
-            infoButtonTapped()
-        }
-
     }
     
     func setupInfoButton() {
@@ -116,10 +110,19 @@ class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
                     self.getSubCategoryValues()
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.tableView.reloadData()
+                        self.handleNotification()
                     })
                 }
                 
             })})
+    }
+    
+    func handleNotification()
+    {
+        if RioRootModel.sharedInstance.isPushedFromNotification == true
+        {
+            infoButtonTapped()
+        }
     }
     
     func getSubCategoryValues()
