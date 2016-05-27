@@ -31,7 +31,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         self.title = "Live Feeds"
         setupLeftMenuButton()
 
-        if RioRootModel.sharedInstance.emergencyTweetData == nil
+        if RioRootModel.sharedInstance.emergencyTweetData == nil && RioRootModel.sharedInstance.isPushedFromNotification == false
         {
             setUpData()
         }
@@ -51,6 +51,17 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             NSLog("Home VC Called **************************")
             categoriesButtonTapped()
         }
+        
+        self.mm_drawerController.setGestureCompletionBlock { (drawer, gesture) in
+            
+            if self.mm_drawerController.openSide == .None{
+                self.showCategoriesButton()
+            }
+            else{
+                self.hideCategoriesButton()
+            }
+        }
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -59,6 +70,13 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         self.mm_drawerController.openDrawerGestureModeMask = .All
         self.mm_drawerController.closeDrawerGestureModeMask = .All
+
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.mm_drawerController.setGestureCompletionBlock(nil)
 
     }
     

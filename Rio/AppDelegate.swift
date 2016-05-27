@@ -100,7 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let closeAction: UIAlertAction = UIAlertAction(title: "Close", style: .Cancel) { action -> Void in
                 }
                 alertController.addAction(closeAction)
-                let viewController: UIViewController = (self.window?.rootViewController)!
+                let viewController: UIViewController = getTopViewController()
                 viewController.presentViewController(alertController, animated: true, completion: nil)
             }
             else {
@@ -114,6 +114,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    func getTopViewController() -> UIViewController {
+        let signInVC =  self.window?.rootViewController as! SplashScreenViewController
+        
+        var viewController: UIViewController = signInVC
+        
+        while (viewController.presentedViewController != nil) {
+            var tempViewController = viewController.presentedViewController
+            
+            if (tempViewController?.isKindOfClass(UITabBarController) != nil) {
+                tempViewController = (tempViewController as! UITabBarController).selectedViewController
+                
+                if (tempViewController?.isKindOfClass(UINavigationController) != nil) {
+                    viewController = (tempViewController as! UINavigationController).visibleViewController!
+                }
+                else {
+                    viewController = tempViewController!
+                }
+            }
+            else {
+                viewController = tempViewController!
+            }
+        }
+        
+        return viewController
+    }
+
 
     func handleLocalNotifictionForForegroundState() {
         
