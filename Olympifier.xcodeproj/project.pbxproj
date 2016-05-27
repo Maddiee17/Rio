@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		25226BF315D11CB62451F21F /* libPods-Rio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D28A1B99929314AF130632D3 /* libPods-Rio.a */; };
 		9A64BD2C1CC95F5000C9703F /* RemoveReminderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A64BD2B1CC95F5000C9703F /* RemoveReminderOperation.swift */; };
 		9ABE7F831CCCA90E00CE3E72 /* RioRootModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABE7F821CCCA90E00CE3E72 /* RioRootModel.swift */; };
 		9ABE7F851CCCAD1600CE3E72 /* GetReminderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABE7F841CCCAD1600CE3E72 /* GetReminderOperation.swift */; };
@@ -52,6 +51,7 @@
 		9CD5459C1CBAB129007F6D8F /* WSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD5459B1CBAB129007F6D8F /* WSManager.swift */; };
 		9CFF12A41CB9566000287147 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CFF12A31CB9566000287147 /* GoogleService-Info.plist */; };
 		9CFF12A81CBA1B2D00287147 /* RioColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF12A71CBA1B2D00287147 /* RioColor.swift */; };
+		A5274F21E7BCEB063ED973B6 /* libPods-Olympifier.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32366EF67AFFC5BAB6508BF6 /* libPods-Olympifier.a */; };
 		F6025AC11CF2252E00F2D129 /* DownloadingDBVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6025AC01CF2252E00F2D129 /* DownloadingDBVC.swift */; };
 		F604D4501CE8E1DC00FC98FE /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = F604D44F1CE8E1DC00FC98FE /* launch.png */; };
 		F604D4561CEA538900FC98FE /* oo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F604D4551CEA538900FC98FE /* oo.jpg */; };
@@ -69,8 +69,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		56F6BCCD5CB43216D9391B2F /* Pods-Rio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Rio/Pods-Rio.debug.xcconfig"; sourceTree = "<group>"; };
-		68A67BE1B0016B64C37786DF /* Pods-Rio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rio.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rio/Pods-Rio.release.xcconfig"; sourceTree = "<group>"; };
+		32366EF67AFFC5BAB6508BF6 /* libPods-Olympifier.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Olympifier.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BDCA8EB36899A6503EB4E25 /* Pods-Olympifier.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Olympifier.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Olympifier/Pods-Olympifier.debug.xcconfig"; sourceTree = "<group>"; };
 		9A64BD2B1CC95F5000C9703F /* RemoveReminderOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveReminderOperation.swift; sourceTree = "<group>"; };
 		9ABE7F821CCCA90E00CE3E72 /* RioRootModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioRootModel.swift; sourceTree = "<group>"; };
 		9ABE7F841CCCAD1600CE3E72 /* GetReminderOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetReminderOperation.swift; sourceTree = "<group>"; };
@@ -124,7 +124,7 @@
 		9CD5459B1CBAB129007F6D8F /* WSManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WSManager.swift; sourceTree = "<group>"; };
 		9CFF12A31CB9566000287147 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9CFF12A71CBA1B2D00287147 /* RioColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioColor.swift; sourceTree = "<group>"; };
-		D28A1B99929314AF130632D3 /* libPods-Rio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Rio.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0CE337E590B077182D208C5 /* Pods-Olympifier.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Olympifier.release.xcconfig"; path = "Pods/Target Support Files/Pods-Olympifier/Pods-Olympifier.release.xcconfig"; sourceTree = "<group>"; };
 		F6025AC01CF2252E00F2D129 /* DownloadingDBVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadingDBVC.swift; sourceTree = "<group>"; };
 		F604D44F1CE8E1DC00FC98FE /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
 		F604D4551CEA538900FC98FE /* oo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oo.jpg; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 			files = (
 				9CC078531CBFAB6E0010888D /* Twitter.framework in Frameworks */,
 				9C3C7F1B1C63E1EF00E98DA6 /* libsqlite3.tbd in Frameworks */,
-				25226BF315D11CB62451F21F /* libPods-Rio.a in Frameworks */,
+				A5274F21E7BCEB063ED973B6 /* libPods-Olympifier.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,18 +159,9 @@
 			isa = PBXGroup;
 			children = (
 				9CC078521CBFAB6E0010888D /* Twitter.framework */,
-				D28A1B99929314AF130632D3 /* libPods-Rio.a */,
+				32366EF67AFFC5BAB6508BF6 /* libPods-Olympifier.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		66D59471D56CA46661602BD4 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				56F6BCCD5CB43216D9391B2F /* Pods-Rio.debug.xcconfig */,
-				68A67BE1B0016B64C37786DF /* Pods-Rio.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		9ADB1AE01CCCB39300D0973C /* Utilities */ = {
@@ -224,8 +215,8 @@
 			children = (
 				9C3C7F071C63E09B00E98DA6 /* Rio */,
 				9C3C7F061C63E09B00E98DA6 /* Products */,
-				66D59471D56CA46661602BD4 /* Pods */,
 				14571FC318F8762193C35495 /* Frameworks */,
+				B6A7DE1DD123D969FD2AB353 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -383,6 +374,15 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
+		B6A7DE1DD123D969FD2AB353 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5BDCA8EB36899A6503EB4E25 /* Pods-Olympifier.debug.xcconfig */,
+				D0CE337E590B077182D208C5 /* Pods-Olympifier.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F683D24B1CE4C12800C247C9 /* Emitter */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,13 +398,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9C3C7F171C63E09B00E98DA6 /* Build configuration list for PBXNativeTarget "Olympifier" */;
 			buildPhases = (
-				B639523616703B8DFF0CD9EA /* Check Pods Manifest.lock */,
+				09515D2BCC2EC5F3808B5ACE /* Check Pods Manifest.lock */,
 				9C3C7F011C63E09B00E98DA6 /* Sources */,
 				9C3C7F021C63E09B00E98DA6 /* Frameworks */,
 				9C3C7F031C63E09B00E98DA6 /* Resources */,
-				F41CD5B961EAB9A281CAF8A6 /* Embed Pods Frameworks */,
-				32AE8DAE2945A2EB37FDCC2A /* Copy Pods Resources */,
 				9CC078541CBFAF950010888D /* ShellScript */,
+				D01E1FAFE72DDFA75EC9E789 /* Embed Pods Frameworks */,
+				F5D274816F8AD517588105C9 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -480,19 +480,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		32AE8DAE2945A2EB37FDCC2A /* Copy Pods Resources */ = {
+		09515D2BCC2EC5F3808B5ACE /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
+			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Rio/Pods-Rio-resources.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9CC078541CBFAF950010888D /* ShellScript */ = {
@@ -508,22 +508,7 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 7116a89e8aceaffacd29dcbdee666aab4d0ed4d4 2112f6a96181a058380a0fdfac90110f1cddb9930ee7dd6fe14b4f1168ebe3e0";
 		};
-		B639523616703B8DFF0CD9EA /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		F41CD5B961EAB9A281CAF8A6 /* Embed Pods Frameworks */ = {
+		D01E1FAFE72DDFA75EC9E789 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -535,7 +520,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Rio/Pods-Rio-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Olympifier/Pods-Olympifier-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5D274816F8AD517588105C9 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Olympifier/Pods-Olympifier-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -704,12 +704,13 @@
 		};
 		9C3C7F181C63E09B00E98DA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 56F6BCCD5CB43216D9391B2F /* Pods-Rio.debug.xcconfig */;
+			baseConfigurationReference = 5BDCA8EB36899A6503EB4E25 /* Pods-Olympifier.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = Rio/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -724,7 +725,7 @@
 		};
 		9C3C7F191C63E09B00E98DA6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 68A67BE1B0016B64C37786DF /* Pods-Rio.release.xcconfig */;
+			baseConfigurationReference = D0CE337E590B077182D208C5 /* Pods-Olympifier.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

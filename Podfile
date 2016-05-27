@@ -3,8 +3,8 @@
 # Uncomment this line if you're using Swift
 # use_frameworks!
 
-target 'Rio' do
-    
+target 'Olympifier' do
+
 pod 'MZTimerLabel'
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
@@ -18,6 +18,7 @@ pod 'KASlideShow'
 pod 'MMDrawerController', '~> 0.5.7'
 pod 'Onboard'
 pod 'Toast', '~> 3.0'
+pod 'Crashlytics'
 
 end
 

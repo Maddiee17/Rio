@@ -11,6 +11,7 @@ let kIsFirstLaunch = "isFirstLaunch"
 
 import Fabric
 import TwitterKit
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -57,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print(error)
         }
         
-        Fabric.with([Twitter.self])
+        Fabric.with([Twitter.self, Crashlytics.self])
         customizeNavigationBar()
         getImagesURL()
         
