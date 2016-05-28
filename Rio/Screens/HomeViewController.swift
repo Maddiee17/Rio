@@ -30,6 +30,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         self.title = "Live Feeds"
         setupLeftMenuButton()
+        addButton()
+
 
         if RioRootModel.sharedInstance.emergencyTweetData == nil && RioRootModel.sharedInstance.isPushedFromNotification == false
         {
@@ -48,7 +50,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         self.tableView.addSubview(self.refreshControl!)
         if RioRootModel.sharedInstance.isPushedFromNotification == true
         {
-            NSLog("Home VC Called **************************")
+            NSLog("Home VC Load View **************************")
             categoriesButtonTapped()
         }
         
@@ -57,8 +59,9 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        addButton()
         
+        NSLog("Home VC ViewWillAppear **************************")
+
         self.mm_drawerController.openDrawerGestureModeMask = .All
         self.mm_drawerController.closeDrawerGestureModeMask = .All
 
@@ -95,6 +98,9 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             categoriesButton.userInteractionEnabled = true
         }
         UIApplication.sharedApplication().keyWindow?.addSubview(categoriesButton)
+        
+        NSLog("Home VC addButton **************************")
+
     }
     
     //
@@ -106,6 +112,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     func categoriesButtonTapped()
     {
+        NSLog("Home VC CategoryButtonTapped **************************")
+
         UIApplication.sharedApplication().keyWindow?.viewWithTag(1)?.removeFromSuperview()
         let categoriesVC = self.storyboard?.instantiateViewControllerWithIdentifier("CategoryListViewController")
         self.mm_drawerController.centerViewController = categoriesVC
@@ -125,12 +133,16 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                 slideShow.addImage(image)
             }
         }
+        NSLog("Home VC SetupSlideShow **************************")
+
     }
     
     func setupLeftMenuButton() {
         let leftDrawerButton = MMDrawerBarButtonItem(target: self, action: #selector(HomeViewController.leftDrawerButtonPress(_:)))
         leftDrawerButton.tintColor = UIColor.darkGrayColor()
         self.navigationItem.leftBarButtonItem = leftDrawerButton
+        NSLog("Home VC LeftMenuButton **************************")
+
     }
     
     func leftDrawerButtonPress(leftDrawerButtonPress: AnyObject) {

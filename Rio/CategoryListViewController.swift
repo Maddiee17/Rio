@@ -39,6 +39,12 @@ class CategoryListViewController: UIViewController,UIGestureRecognizerDelegate {
         definesPresentationContext = true
         self.categoryTableView.tableHeaderView = searchController.searchBar
         self.categoryTableView.contentOffset = CGPointMake(0, self.categoryTableView.tableHeaderView!.frame.size.height)
+        
+        if RioRootModel.sharedInstance.isPushedFromNotification == true
+        {
+            NSLog("Category List VC Called **************************")
+        }
+
     }
     
     override func viewWillAppear(animated: Bool) {

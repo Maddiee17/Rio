@@ -54,6 +54,13 @@ class UserProfileViewController: UIViewController {
                 }
             })
         }
+        
+        let modelName = UIDevice.currentDevice().modelName
+        
+        if modelName == "iPhone 4" || modelName == "iPhone 4s"
+        {
+            nameLabel.hidden = true
+        }
 //        if (Reachability.isConnectedToNetwork()){
 //            
 //            fetchUserProfilePic()

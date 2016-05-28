@@ -23,6 +23,7 @@ class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupInfoButton()
         fetchCategoryModel()
         let view = UIView(frame: CGRectZero)
         self.tableView.tableHeaderView = view
@@ -33,7 +34,6 @@ class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
         self.tableView.tableFooterView = tblView
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
-        setupInfoButton()
 
         
         if (self.navigationController?.respondsToSelector(Selector("interactivePopGestureRecognizer")) != nil) {
