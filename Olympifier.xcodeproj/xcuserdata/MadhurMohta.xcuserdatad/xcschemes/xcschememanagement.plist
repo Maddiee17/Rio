@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>OlympifierWatch (Notification).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>14</integer>
+		</dict>
+		<key>OlympifierWatch.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>13</integer>
+		</dict>
 		<key>Olympifire.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +28,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>9C3C7F041C63E09B00E98DA6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F6DC6DB91D07417200F1D916</key>
 		<dict>
 			<key>primary</key>
 			<true/>

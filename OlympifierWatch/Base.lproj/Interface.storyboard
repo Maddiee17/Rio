@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RaK-o4-lba">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="10032"/>
+    </dependencies>
+    <scenes>
+        <!--Event-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller identifier="Event" id="AgC-eL-Hgc" customClass="EventDetailsInterfaceController" customModule="Olympifier">
+                    <items>
+                        <group width="1" alignment="left" id="vcj-P5-W8A">
+                            <items>
+                                <imageView width="20" height="20" alignment="left" id="klx-PO-BDO"/>
+                                <group alignment="left" layout="vertical" spacing="0.0" id="99d-cM-vXt">
+                                    <items>
+                                        <label alignment="left" text="Men 1/8 eliminations" numberOfLines="0" id="WJg-cF-cxa"/>
+                                        <group width="1" alignment="left" id="Vye-yi-fnI">
+                                            <items>
+                                                <label alignment="left" text="8-08" id="Mph-XX-Gj6"/>
+                                                <label alignment="left" text="15:00" id="QNN-Bo-K87"/>
+                                            </items>
+                                        </group>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
+                        <group width="1" alignment="left" id="Dga-A0-g5W">
+                            <items>
+                                <label alignment="left" text="Medal :" id="i3o-fa-KNf"/>
+                                <label alignment="left" text="No" id="wr0-fj-hYR"/>
+                            </items>
+                        </group>
+                        <group width="1" alignment="left" id="yIS-lS-lIj">
+                            <items>
+                                <label alignment="left" text="Venue :" id="uSF-IV-Ykz"/>
+                                <label alignment="left" text="Sambodrome" textAlignment="left" numberOfLines="0" id="6Yq-TX-VqA"/>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="categoryImage" destination="klx-PO-BDO" id="bcl-W3-fbE"/>
+                        <outlet property="eventDate" destination="Mph-XX-Gj6" id="i7c-Bh-9Rg"/>
+                        <outlet property="eventMedal" destination="wr0-fj-hYR" id="yPj-iY-mWs"/>
+                        <outlet property="eventTime" destination="QNN-Bo-K87" id="HBy-gg-bpu"/>
+                        <outlet property="eventTitle" destination="WJg-cF-cxa" id="hbD-Oi-rY7"/>
+                        <outlet property="eventVenue" destination="6Yq-TX-VqA" id="N1h-hl-Ni7"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="695" y="347"/>
+        </scene>
+        <!--splash-->
+        <scene sceneID="XDp-LR-pMQ">
+            <objects>
+                <controller identifier="splash" id="RaK-o4-lba" customClass="SplashInterfaceController" customModule="Olympifier">
+                    <items>
+                        <group width="1" alignment="left" id="Kjb-6F-7PC">
+                            <items>
+                                <imageView width="1" height="1" alignment="left" image="launch.png" id="jyT-t5-36L"/>
+                            </items>
+                        </group>
+                    </items>
+                    <color key="backgroundColor" red="0.1764705882352941" green="0.24313725490196078" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="252" y="347"/>
+        </scene>
+        <!--Category-->
+        <scene sceneID="ayK-Xy-5A2">
+            <objects>
+                <controller identifier="Category" id="pcj-eR-l4W" customClass="CategoryInterfaceController" customModule="Olympifier">
+                    <items>
+                        <table alignment="left" id="aX8-dX-XRv">
+                            <items>
+                                <tableRow id="0lB-dz-imq">
+                                    <group key="rootItem" width="1" alignment="left" id="yCY-5l-Ec8">
+                                        <items>
+                                            <imageView width="20" height="20" alignment="left" id="sma-xD-j3B"/>
+                                            <label alignment="left" text="Label" numberOfLines="0" id="yBe-zj-UxY"/>
+                                        </items>
+                                    </group>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="tableView" destination="aX8-dX-XRv" id="6uN-wS-lmc"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="474" y="347"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" id="IdU-wH-bcW"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
+                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="220" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="ZPc-GJ-vnh">
+            <objects>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="OlympifierWatch" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="643"/>
+        </scene>
+    </scenes>
+</document>

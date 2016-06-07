@@ -42,7 +42,7 @@
                                 </variation>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.1764705882352941" green="0.24313725490196078" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="SZr-1t-21s" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="7jV-iH-4Ll"/>
                             <constraint firstItem="SZr-1t-21s" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="CVB-nQ-whb"/>
@@ -71,6 +71,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launch.png" width="490" height="490"/>
+        <image name="launch.png" width="512" height="512"/>
     </resources>
 </document>

@@ -53,7 +53,6 @@
 		9CFF12A81CBA1B2D00287147 /* RioColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF12A71CBA1B2D00287147 /* RioColor.swift */; };
 		A5274F21E7BCEB063ED973B6 /* libPods-Olympifier.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32366EF67AFFC5BAB6508BF6 /* libPods-Olympifier.a */; };
 		F6025AC11CF2252E00F2D129 /* DownloadingDBVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6025AC01CF2252E00F2D129 /* DownloadingDBVC.swift */; };
-		F604D4501CE8E1DC00FC98FE /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = F604D44F1CE8E1DC00FC98FE /* launch.png */; };
 		F604D4561CEA538900FC98FE /* oo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F604D4551CEA538900FC98FE /* oo.jpg */; };
 		F605C7C71CEE366A00B21F9F /* CategoryInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F605C7C61CEE366A00B21F9F /* CategoryInfoViewController.swift */; };
 		F60982E11CD3901A004D8B4B /* UpdateReminderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60982E01CD3901A004D8B4B /* UpdateReminderOperation.swift */; };
@@ -64,11 +63,75 @@
 		F683D24D1CE4C14100C247C9 /* SAConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F683D24C1CE4C14100C247C9 /* SAConfettiView.swift */; };
 		F683D24F1CE4C1E500C247C9 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F683D24E1CE4C1E500C247C9 /* SplashScreenViewController.swift */; };
 		F6D6E5C51CDBC0470046AF4A /* RioOrdinalInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D6E5C41CDBC0470046AF4A /* RioOrdinalInt.swift */; };
+		F6DC6DBE1D07417200F1D916 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6DC6DBC1D07417200F1D916 /* Interface.storyboard */; };
+		F6DC6DC01D07417200F1D916 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DC6DBF1D07417200F1D916 /* Assets.xcassets */; };
+		F6DC6DC71D07417200F1D916 /* OlympifierWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F6DC6DC61D07417200F1D916 /* OlympifierWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F6DC6DCE1D07417200F1D916 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DC6DCD1D07417200F1D916 /* InterfaceController.swift */; };
+		F6DC6DD01D07417200F1D916 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DC6DCF1D07417200F1D916 /* ExtensionDelegate.swift */; };
+		F6DC6DD21D07417200F1D916 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DC6DD11D07417200F1D916 /* NotificationController.swift */; };
+		F6DC6DD41D07417200F1D916 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DC6DD31D07417200F1D916 /* Assets.xcassets */; };
+		F6DC6DD81D07417200F1D916 /* OlympifierWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = F6DC6DBA1D07417200F1D916 /* OlympifierWatch.app */; };
+		F6DC6DE11D07429000F1D916 /* Rio_DB.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 9C3C7F301C63EC2500E98DA6 /* Rio_DB.sqlite */; };
+		F6DC6DE21D0742A200F1D916 /* RioCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3C7F371C65FD5800E98DA6 /* RioCategoryModel.swift */; };
+		F6DC6DE31D0742A400F1D916 /* RioEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3C7F3D1C66475600E98DA6 /* RioEventModel.swift */; };
+		F6DC6DE41D0742A700F1D916 /* RioSubCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBC43271C6F1A4000A08437 /* RioSubCategoryModel.swift */; };
+		F6DC6DE51D0742A900F1D916 /* RioUserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C22A3B31CB839B3009AC334 /* RioUserProfileModel.swift */; };
+		F6DC6DE61D0742AC00F1D916 /* RioRootModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABE7F821CCCA90E00CE3E72 /* RioRootModel.swift */; };
+		F6DC6DEB1D0743A700F1D916 /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = F6DC6DEA1D0743A700F1D916 /* launch.png */; };
+		F6DC6DEC1D0743A700F1D916 /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = F6DC6DEA1D0743A700F1D916 /* launch.png */; };
+		F6DC6DF31D075BCB00F1D916 /* SplashInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DC6DF21D075BCB00F1D916 /* SplashInterfaceController.swift */; };
+		F6DC6DF41D075BCB00F1D916 /* SplashInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DC6DF21D075BCB00F1D916 /* SplashInterfaceController.swift */; };
+		F6DC6DF61D075BDC00F1D916 /* CategoryInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DC6DF51D075BDC00F1D916 /* CategoryInterfaceController.swift */; };
+		F6DC6DF71D075BDC00F1D916 /* CategoryInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DC6DF51D075BDC00F1D916 /* CategoryInterfaceController.swift */; };
+		F6DC6DF91D075DF700F1D916 /* EventDetailsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DC6DF81D075DF700F1D916 /* EventDetailsInterfaceController.swift */; };
+		F6DC6DFA1D075DF700F1D916 /* EventDetailsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DC6DF81D075DF700F1D916 /* EventDetailsInterfaceController.swift */; };
 		F6F9D8B91CE5B92400856A90 /* diamond.png in Resources */ = {isa = PBXBuildFile; fileRef = F6F9D8B81CE5B92400856A90 /* diamond.png */; };
 		F6F9D8BD1CE6007600856A90 /* SubCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F9D8BC1CE6007600856A90 /* SubCategoryTableViewCell.swift */; };
 		F6FADC131CF8C7E0009975FE /* CreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FADC121CF8C7E0009975FE /* CreditsViewController.swift */; };
 		F6FADC151CF8DB54009975FE /* CreditsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FADC141CF8DB54009975FE /* CreditsTableViewCell.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F6DC6DC81D07417200F1D916 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9C3C7EFD1C63E09B00E98DA6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F6DC6DC51D07417200F1D916;
+			remoteInfo = "OlympifierWatch Extension";
+		};
+		F6DC6DD61D07417200F1D916 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9C3C7EFD1C63E09B00E98DA6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F6DC6DB91D07417200F1D916;
+			remoteInfo = OlympifierWatch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F6DC6DDE1D07417200F1D916 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F6DC6DC71D07417200F1D916 /* OlympifierWatch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6DC6DE01D07417200F1D916 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				F6DC6DD81D07417200F1D916 /* OlympifierWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		32366EF67AFFC5BAB6508BF6 /* libPods-Olympifier.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Olympifier.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,7 +191,6 @@
 		9CFF12A71CBA1B2D00287147 /* RioColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioColor.swift; sourceTree = "<group>"; };
 		D0CE337E590B077182D208C5 /* Pods-Olympifier.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Olympifier.release.xcconfig"; path = "Pods/Target Support Files/Pods-Olympifier/Pods-Olympifier.release.xcconfig"; sourceTree = "<group>"; };
 		F6025AC01CF2252E00F2D129 /* DownloadingDBVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadingDBVC.swift; sourceTree = "<group>"; };
-		F604D44F1CE8E1DC00FC98FE /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
 		F604D4551CEA538900FC98FE /* oo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oo.jpg; sourceTree = "<group>"; };
 		F605C7C61CEE366A00B21F9F /* CategoryInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryInfoViewController.swift; sourceTree = "<group>"; };
 		F60982E01CD3901A004D8B4B /* UpdateReminderOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateReminderOperation.swift; sourceTree = "<group>"; };
@@ -139,6 +201,21 @@
 		F683D24C1CE4C14100C247C9 /* SAConfettiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAConfettiView.swift; sourceTree = "<group>"; };
 		F683D24E1CE4C1E500C247C9 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		F6D6E5C41CDBC0470046AF4A /* RioOrdinalInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioOrdinalInt.swift; sourceTree = "<group>"; };
+		F6DC6DBA1D07417200F1D916 /* OlympifierWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OlympifierWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6DC6DBD1D07417200F1D916 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		F6DC6DBF1D07417200F1D916 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F6DC6DC11D07417200F1D916 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F6DC6DC61D07417200F1D916 /* OlympifierWatch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "OlympifierWatch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6DC6DCC1D07417200F1D916 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		F6DC6DCD1D07417200F1D916 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		F6DC6DCF1D07417200F1D916 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		F6DC6DD11D07417200F1D916 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		F6DC6DD31D07417200F1D916 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F6DC6DD51D07417200F1D916 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F6DC6DEA1D0743A700F1D916 /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
+		F6DC6DF21D075BCB00F1D916 /* SplashInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashInterfaceController.swift; sourceTree = "<group>"; };
+		F6DC6DF51D075BDC00F1D916 /* CategoryInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryInterfaceController.swift; sourceTree = "<group>"; };
+		F6DC6DF81D075DF700F1D916 /* EventDetailsInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailsInterfaceController.swift; sourceTree = "<group>"; };
 		F6F9D8B81CE5B92400856A90 /* diamond.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diamond.png; sourceTree = "<group>"; };
 		F6F9D8BC1CE6007600856A90 /* SubCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		F6FADC121CF8C7E0009975FE /* CreditsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +230,13 @@
 				9CC078531CBFAB6E0010888D /* Twitter.framework in Frameworks */,
 				9C3C7F1B1C63E1EF00E98DA6 /* libsqlite3.tbd in Frameworks */,
 				A5274F21E7BCEB063ED973B6 /* libPods-Olympifier.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6DC6DC31D07417200F1D916 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,6 +302,8 @@
 			isa = PBXGroup;
 			children = (
 				9C3C7F071C63E09B00E98DA6 /* Rio */,
+				F6DC6DBB1D07417200F1D916 /* OlympifierWatch */,
+				F6DC6DCA1D07417200F1D916 /* OlympifierWatch Extension */,
 				9C3C7F061C63E09B00E98DA6 /* Products */,
 				14571FC318F8762193C35495 /* Frameworks */,
 				B6A7DE1DD123D969FD2AB353 /* Pods */,
@@ -228,6 +314,8 @@
 			isa = PBXGroup;
 			children = (
 				9C3C7F051C63E09B00E98DA6 /* Olympifier.app */,
+				F6DC6DBA1D07417200F1D916 /* OlympifierWatch.app */,
+				F6DC6DC61D07417200F1D916 /* OlympifierWatch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -366,8 +454,8 @@
 				F6F9D8B81CE5B92400856A90 /* diamond.png */,
 				9C3C7F1A1C63E1EF00E98DA6 /* libsqlite3.tbd */,
 				9C3C7F1E1C63E28900E98DA6 /* Rio-Bridging-Header.h */,
-				F604D44F1CE8E1DC00FC98FE /* launch.png */,
 				9C3C7F081C63E09B00E98DA6 /* AppDelegate.swift */,
+				F6DC6DEA1D0743A700F1D916 /* launch.png */,
 				F604D4551CEA538900FC98FE /* oo.jpg */,
 				9CFF12A31CB9566000287147 /* GoogleService-Info.plist */,
 				9C3C7F0C1C63E09B00E98DA6 /* Main.storyboard */,
@@ -397,6 +485,40 @@
 			path = Emitter;
 			sourceTree = "<group>";
 		};
+		F6DC6DBB1D07417200F1D916 /* OlympifierWatch */ = {
+			isa = PBXGroup;
+			children = (
+				F6DC6DBC1D07417200F1D916 /* Interface.storyboard */,
+				F6DC6DBF1D07417200F1D916 /* Assets.xcassets */,
+				F6DC6DC11D07417200F1D916 /* Info.plist */,
+			);
+			path = OlympifierWatch;
+			sourceTree = "<group>";
+		};
+		F6DC6DCA1D07417200F1D916 /* OlympifierWatch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F6DC6DCD1D07417200F1D916 /* InterfaceController.swift */,
+				F6DC6DF21D075BCB00F1D916 /* SplashInterfaceController.swift */,
+				F6DC6DF51D075BDC00F1D916 /* CategoryInterfaceController.swift */,
+				F6DC6DF81D075DF700F1D916 /* EventDetailsInterfaceController.swift */,
+				F6DC6DCF1D07417200F1D916 /* ExtensionDelegate.swift */,
+				F6DC6DD11D07417200F1D916 /* NotificationController.swift */,
+				F6DC6DD31D07417200F1D916 /* Assets.xcassets */,
+				F6DC6DD51D07417200F1D916 /* Info.plist */,
+				F6DC6DCB1D07417200F1D916 /* Supporting Files */,
+			);
+			path = "OlympifierWatch Extension";
+			sourceTree = "<group>";
+		};
+		F6DC6DCB1D07417200F1D916 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F6DC6DCC1D07417200F1D916 /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -411,15 +533,51 @@
 				9CC078541CBFAF950010888D /* ShellScript */,
 				D01E1FAFE72DDFA75EC9E789 /* Embed Pods Frameworks */,
 				F5D274816F8AD517588105C9 /* Copy Pods Resources */,
+				F6DC6DE01D07417200F1D916 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F6DC6DD71D07417200F1D916 /* PBXTargetDependency */,
 			);
 			name = Olympifier;
 			productName = Rio;
 			productReference = 9C3C7F051C63E09B00E98DA6 /* Olympifier.app */;
 			productType = "com.apple.product-type.application";
+		};
+		F6DC6DB91D07417200F1D916 /* OlympifierWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F6DC6DDF1D07417200F1D916 /* Build configuration list for PBXNativeTarget "OlympifierWatch" */;
+			buildPhases = (
+				F6DC6DB81D07417200F1D916 /* Resources */,
+				F6DC6DDE1D07417200F1D916 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F6DC6DC91D07417200F1D916 /* PBXTargetDependency */,
+			);
+			name = OlympifierWatch;
+			productName = OlympifierWatch;
+			productReference = F6DC6DBA1D07417200F1D916 /* OlympifierWatch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		F6DC6DC51D07417200F1D916 /* OlympifierWatch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F6DC6DDD1D07417200F1D916 /* Build configuration list for PBXNativeTarget "OlympifierWatch Extension" */;
+			buildPhases = (
+				F6DC6DC21D07417200F1D916 /* Sources */,
+				F6DC6DC31D07417200F1D916 /* Frameworks */,
+				F6DC6DC41D07417200F1D916 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "OlympifierWatch Extension";
+			productName = "OlympifierWatch Extension";
+			productReference = F6DC6DC61D07417200F1D916 /* OlympifierWatch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -427,7 +585,7 @@
 		9C3C7EFD1C63E09B00E98DA6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Pearson_3;
 				TargetAttributes = {
@@ -446,6 +604,13 @@
 							};
 						};
 					};
+					F6DC6DB91D07417200F1D916 = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = JEWCC68TZJ;
+					};
+					F6DC6DC51D07417200F1D916 = {
+						CreatedOnToolsVersion = 7.3;
+					};
 				};
 			};
 			buildConfigurationList = 9C3C7F001C63E09B00E98DA6 /* Build configuration list for PBXProject "Olympifier" */;
@@ -462,6 +627,8 @@
 			projectRoot = "";
 			targets = (
 				9C3C7F041C63E09B00E98DA6 /* Olympifier */,
+				F6DC6DB91D07417200F1D916 /* OlympifierWatch */,
+				F6DC6DC51D07417200F1D916 /* OlympifierWatch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -477,9 +644,28 @@
 				F60982E51CD3F3D0004D8B4B /* Localizable.strings in Resources */,
 				F6F9D8B91CE5B92400856A90 /* diamond.png in Resources */,
 				F604D4561CEA538900FC98FE /* oo.jpg in Resources */,
-				F604D4501CE8E1DC00FC98FE /* launch.png in Resources */,
+				F6DC6DEB1D0743A700F1D916 /* launch.png in Resources */,
 				9C3C7F0E1C63E09B00E98DA6 /* Main.storyboard in Resources */,
 				9CFF12A41CB9566000287147 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6DC6DB81D07417200F1D916 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6DC6DC01D07417200F1D916 /* Assets.xcassets in Resources */,
+				F6DC6DBE1D07417200F1D916 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6DC6DC41D07417200F1D916 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6DC6DEC1D0743A700F1D916 /* launch.png in Resources */,
+				F6DC6DE11D07429000F1D916 /* Rio_DB.sqlite in Resources */,
+				F6DC6DD41D07417200F1D916 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,12 +743,14 @@
 				9C3C7F351C65E91E00E98DA6 /* RioDatabaseManager.swift in Sources */,
 				9CBC43241C6CD56700A08437 /* CountdownTimerView.swift in Sources */,
 				9ABE7F851CCCAD1600CE3E72 /* GetReminderOperation.swift in Sources */,
+				F6DC6DF31D075BCB00F1D916 /* SplashInterfaceController.swift in Sources */,
 				9C3C7F3A1C65FE7C00E98DA6 /* RioResultSet.swift in Sources */,
 				F6FADC151CF8DB54009975FE /* CreditsTableViewCell.swift in Sources */,
 				9C3C7F2C1C63E28900E98DA6 /* FMDatabaseQueue.m in Sources */,
 				9AEE10EA1CC6BD79003EB5AA /* AddReminderOperation.swift in Sources */,
 				F605C7C71CEE366A00B21F9F /* CategoryInfoViewController.swift in Sources */,
 				9ADB1AE41CCCCFC000D0973C /* RioModelMapper.swift in Sources */,
+				F6DC6DF61D075BDC00F1D916 /* CategoryInterfaceController.swift in Sources */,
 				9C260A4A1CB443CE00CB42EE /* PopoverViewController.swift in Sources */,
 				9A64BD2C1CC95F5000C9703F /* RemoveReminderOperation.swift in Sources */,
 				9C260A691CB457B800CB42EE /* SettingsTableViewController.swift in Sources */,
@@ -570,6 +758,7 @@
 				9C260A681CB457B800CB42EE /* SettingsDetailController.swift in Sources */,
 				9C6AAC2B1C9481B200BB0585 /* EventCell.swift in Sources */,
 				9CBC43281C6F1A4000A08437 /* RioSubCategoryModel.swift in Sources */,
+				F6DC6DF91D075DF700F1D916 /* EventDetailsInterfaceController.swift in Sources */,
 				9C3C7F381C65FD5800E98DA6 /* RioCategoryModel.swift in Sources */,
 				F6FADC131CF8C7E0009975FE /* CreditsViewController.swift in Sources */,
 				F6F9D8BD1CE6007600856A90 /* SubCategoryTableViewCell.swift in Sources */,
@@ -603,7 +792,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F6DC6DC21D07417200F1D916 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6DC6DD21D07417200F1D916 /* NotificationController.swift in Sources */,
+				F6DC6DD01D07417200F1D916 /* ExtensionDelegate.swift in Sources */,
+				F6DC6DE51D0742A900F1D916 /* RioUserProfileModel.swift in Sources */,
+				F6DC6DE21D0742A200F1D916 /* RioCategoryModel.swift in Sources */,
+				F6DC6DE61D0742AC00F1D916 /* RioRootModel.swift in Sources */,
+				F6DC6DE31D0742A400F1D916 /* RioEventModel.swift in Sources */,
+				F6DC6DF41D075BCB00F1D916 /* SplashInterfaceController.swift in Sources */,
+				F6DC6DFA1D075DF700F1D916 /* EventDetailsInterfaceController.swift in Sources */,
+				F6DC6DF71D075BDC00F1D916 /* CategoryInterfaceController.swift in Sources */,
+				F6DC6DCE1D07417200F1D916 /* InterfaceController.swift in Sources */,
+				F6DC6DE41D0742A700F1D916 /* RioSubCategoryModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F6DC6DC91D07417200F1D916 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F6DC6DC51D07417200F1D916 /* OlympifierWatch Extension */;
+			targetProxy = F6DC6DC81D07417200F1D916 /* PBXContainerItemProxy */;
+		};
+		F6DC6DD71D07417200F1D916 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F6DC6DB91D07417200F1D916 /* OlympifierWatch */;
+			targetProxy = F6DC6DD61D07417200F1D916 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		9C3C7F0C1C63E09B00E98DA6 /* Main.storyboard */ = {
@@ -622,6 +842,14 @@
 			);
 			name = LaunchScreen.storyboard;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		F6DC6DBC1D07417200F1D916 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F6DC6DBD1D07417200F1D916 /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -750,6 +978,74 @@
 			};
 			name = Release;
 		};
+		F6DC6DD91D07417200F1D916 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = OlympifierWatch_Extension;
+				INFOPLIST_FILE = OlympifierWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maddiee.Rio.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		F6DC6DDA1D07417200F1D916 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = OlympifierWatch_Extension;
+				INFOPLIST_FILE = OlympifierWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maddiee.Rio.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
+		F6DC6DDB1D07417200F1D916 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = "OlympifierWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.maddiee.Rio.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		F6DC6DDC1D07417200F1D916 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = "OlympifierWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.maddiee.Rio.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -770,6 +1066,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		F6DC6DDD1D07417200F1D916 /* Build configuration list for PBXNativeTarget "OlympifierWatch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6DC6DDB1D07417200F1D916 /* Debug */,
+				F6DC6DDC1D07417200F1D916 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F6DC6DDF1D07417200F1D916 /* Build configuration list for PBXNativeTarget "OlympifierWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6DC6DD91D07417200F1D916 /* Debug */,
+				F6DC6DDA1D07417200F1D916 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
