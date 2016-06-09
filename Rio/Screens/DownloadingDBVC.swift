@@ -68,11 +68,11 @@ class DownloadingDBVC: UIViewController {
     {
         var onboardVC : OnboardingViewController?
         
-        let firstPage = OnboardingContentViewController(title: "Welcome to Olympifire - The 2016 Olympics Notifier", body: "Never miss your favourite Olympic game. Get timely reminders", image: UIImage(named: "ico-rocket"), buttonText: "") { () -> Void in
+        let firstPage = OnboardingContentViewController(title: "Welcome to Olympifire", body: "Never miss a single game of this year's biggest sporting event", image: UIImage(named: "ico-rocket"), buttonText: "") { () -> Void in
             // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
         }
         
-        let secondPage = OnboardingContentViewController(title: "Be Social!!", body: "Get all the live news of \"Olympics\" from twitter. Retweet them right from here", image: UIImage(named: "ico-twitter"), buttonText: "") { () -> Void in
+        let secondPage = OnboardingContentViewController(title: "Be Social!!", body: "Get all the live news from around the world. Retweet them right from here", image: UIImage(named: "ico-twitter"), buttonText: "") { () -> Void in
             // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
         }
         
@@ -94,24 +94,23 @@ class DownloadingDBVC: UIViewController {
             })
         }
         
-        onboardVC = OnboardingViewController(backgroundImage: UIImage(named: "launch.png"), contents: [firstPage, secondPage,fourthPage])
+        onboardVC = OnboardingViewController(backgroundImage: UIImage(named: "launch"), contents: [firstPage, secondPage,fourthPage])
         onboardVC!.shouldFadeTransitions = true
         onboardVC!.fadePageControlOnLastPage = true
         onboardVC!.fadeSkipButtonOnLastPage = true
         onboardVC!.shouldBlurBackground = true
         
-        
         let modelName = UIDevice.currentDevice().modelName
-
-        if modelName == "iPhone 4" || modelName == "iPhone 4s" {
+        
+        if modelName == "iPhone 4" || modelName == "iPhone 4s" || modelName == "iPhone 5" || modelName == "iPhone 5c" || modelName == "iPhone 5s"{
             
-            onboardVC!.topPadding = 8
+            onboardVC!.topPadding = 20
             onboardVC!.underIconPadding = 8
             onboardVC!.underTitlePadding = 8
             onboardVC!.bottomPadding = 8
             onboardVC!.underPageControlPadding = 5
             
-            myString = NSMutableAttributedString(string: "Notification options for game start, 1 hour before and more. Add reminders for your favourites    ")
+            myString = NSMutableAttributedString(string: "Notification options for game start and more. Add reminders for your favourites    ")
         }
         
         

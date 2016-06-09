@@ -53,7 +53,6 @@
 		9CFF12A81CBA1B2D00287147 /* RioColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF12A71CBA1B2D00287147 /* RioColor.swift */; };
 		A5274F21E7BCEB063ED973B6 /* libPods-Olympifier.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32366EF67AFFC5BAB6508BF6 /* libPods-Olympifier.a */; };
 		F6025AC11CF2252E00F2D129 /* DownloadingDBVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6025AC01CF2252E00F2D129 /* DownloadingDBVC.swift */; };
-		F604D4501CE8E1DC00FC98FE /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = F604D44F1CE8E1DC00FC98FE /* launch.png */; };
 		F604D4561CEA538900FC98FE /* oo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F604D4551CEA538900FC98FE /* oo.jpg */; };
 		F605C7C71CEE366A00B21F9F /* CategoryInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F605C7C61CEE366A00B21F9F /* CategoryInfoViewController.swift */; };
 		F60982E11CD3901A004D8B4B /* UpdateReminderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60982E01CD3901A004D8B4B /* UpdateReminderOperation.swift */; };
@@ -128,7 +127,6 @@
 		9CFF12A71CBA1B2D00287147 /* RioColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioColor.swift; sourceTree = "<group>"; };
 		D0CE337E590B077182D208C5 /* Pods-Olympifier.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Olympifier.release.xcconfig"; path = "Pods/Target Support Files/Pods-Olympifier/Pods-Olympifier.release.xcconfig"; sourceTree = "<group>"; };
 		F6025AC01CF2252E00F2D129 /* DownloadingDBVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadingDBVC.swift; sourceTree = "<group>"; };
-		F604D44F1CE8E1DC00FC98FE /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
 		F604D4551CEA538900FC98FE /* oo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oo.jpg; sourceTree = "<group>"; };
 		F605C7C61CEE366A00B21F9F /* CategoryInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryInfoViewController.swift; sourceTree = "<group>"; };
 		F60982E01CD3901A004D8B4B /* UpdateReminderOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateReminderOperation.swift; sourceTree = "<group>"; };
@@ -366,7 +364,6 @@
 				F6F9D8B81CE5B92400856A90 /* diamond.png */,
 				9C3C7F1A1C63E1EF00E98DA6 /* libsqlite3.tbd */,
 				9C3C7F1E1C63E28900E98DA6 /* Rio-Bridging-Header.h */,
-				F604D44F1CE8E1DC00FC98FE /* launch.png */,
 				9C3C7F081C63E09B00E98DA6 /* AppDelegate.swift */,
 				F604D4551CEA538900FC98FE /* oo.jpg */,
 				9CFF12A31CB9566000287147 /* GoogleService-Info.plist */,
@@ -477,7 +474,6 @@
 				F60982E51CD3F3D0004D8B4B /* Localizable.strings in Resources */,
 				F6F9D8B91CE5B92400856A90 /* diamond.png in Resources */,
 				F604D4561CEA538900FC98FE /* oo.jpg in Resources */,
-				F604D4501CE8E1DC00FC98FE /* launch.png in Resources */,
 				9C3C7F0E1C63E09B00E98DA6 /* Main.storyboard in Resources */,
 				9CFF12A41CB9566000287147 /* GoogleService-Info.plist in Resources */,
 			);
@@ -720,7 +716,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = Rio/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.maddiee.Rio;
 				PRODUCT_NAME = Olympifier;
@@ -740,7 +736,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Rio/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.maddiee.Rio;
 				PRODUCT_NAME = Olympifier;
