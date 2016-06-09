@@ -12,9 +12,11 @@ let kIsFirstLaunch = "isFirstLaunch"
 import Fabric
 import TwitterKit
 import Crashlytics
+import WatchConnectivity
 
+@available(iOS 9.0, *)
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
 
     var window: UIWindow?
     var dataBaseInteractor = RioDatabaseInteractor()
@@ -22,9 +24,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var wsManager = WSManager.sharedInstance
     var retryCount = 0
 
+    var session: WCSession? {
+        didSet {
+            if let session = session {
+                session.delegate = self
+                session.activateSession()
+            }
+        }
+    }
+
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        if WCSession.isSupported() {
+            session = WCSession.defaultSession()
+        }
+
         getServerDBVersion()
 
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -237,6 +252,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
+        
+        let objDBManager = RioDatabaseManager.sharedInstance
+        objDBManager.initDatabase()
 
+        if  message["model"] as? String == "category"{
+//            dispatch_async(dispatch_get_main_queue(), { 
+                self.dataBaseInteractor.fetchCategoryFromDB({ (results) in
+                    if results.count > 0{
+                        let dict = ["categoryModel" : results] as NSDictionary
+                        replyHandler(dict as! [String : AnyObject])
+                    }
+                })
+            //})
+        }
+    }
 }
 

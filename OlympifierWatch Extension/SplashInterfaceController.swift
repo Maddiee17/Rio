@@ -8,10 +8,18 @@
 
 import WatchKit
 import Foundation
+import WatchConnectivity
 
+class SplashInterfaceController: WKInterfaceController, WCSessionDelegate {
 
-@available(iOS 8.2, *)
-class SplashInterfaceController: WKInterfaceController {
+    var session: WCSession? {
+        didSet {
+            if let session = session {
+                session.delegate = self
+                session.activateSession()
+            }
+        }
+    }
 
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
@@ -19,6 +27,12 @@ class SplashInterfaceController: WKInterfaceController {
         // Configure interface objects here.
     }
 
+    override func didAppear() {
+        super.didAppear()
+        //session = WCSession.defaultSession()
+        self.presentControllerWithName("Category", context: self)
+    }
+    
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
@@ -29,4 +43,9 @@ class SplashInterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
 
+    func session(session: WCSession, didReceiveMessage message: [String : AnyObject]) {
+        //recieving message from iphone
+        
+        NSLog("This was called")        
+    }
 }

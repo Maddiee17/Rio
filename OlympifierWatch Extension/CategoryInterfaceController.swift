@@ -8,13 +8,22 @@
 
 import WatchKit
 import Foundation
-
+import WatchConnectivity
 
 @available(iOS 8.2, *)
-class CategoryInterfaceController: WKInterfaceController {
+class CategoryInterfaceController: WKInterfaceController, WCSessionDelegate {
 
    
     @IBOutlet var tableView: WKInterfaceTable!
+    
+    var session: WCSession? {
+        didSet {
+            if let session = session {
+                session.delegate = self
+                session.activateSession()
+            }
+        }
+    }
     
     var categoryModel : RioCategoryModel?{
         didSet{
@@ -25,6 +34,25 @@ class CategoryInterfaceController: WKInterfaceController {
             }
         }
     }
+    
+    override func didAppear() {
+        super.didAppear()
+        
+        if WCSession.isSupported()
+        {
+            session = WCSession.defaultSession()
+            session?.sendMessage(["model":"category"], replyHandler: { (response) in
+                
+                print(response)
+                let categoryModel = response["categoryModel"] as! [RioCategoryModel]
+                print(categoryModel.count)
+                }, errorHandler: { (error) in
+                    print("error")
+            })
+            
+        }
+    }
+    
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         

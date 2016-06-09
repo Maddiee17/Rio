@@ -54,15 +54,14 @@
         <!--splash-->
         <scene sceneID="XDp-LR-pMQ">
             <objects>
-                <controller identifier="splash" id="RaK-o4-lba" customClass="SplashInterfaceController" customModule="Olympifier">
+                <controller identifier="splash" id="RaK-o4-lba" customClass="SplashInterfaceController" customModule="OlympifierWatch_Extension">
                     <items>
                         <group width="1" alignment="left" id="Kjb-6F-7PC">
                             <items>
-                                <imageView width="1" height="1" alignment="left" image="launch.png" id="jyT-t5-36L"/>
+                                <imageView alignment="left" image="launch.png" contentMode="scaleAspectFit" id="jyT-t5-36L"/>
                             </items>
                         </group>
                     </items>
-                    <color key="backgroundColor" red="0.1764705882352941" green="0.24313725490196078" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
                 </controller>
             </objects>
             <point key="canvasLocation" x="252" y="347"/>
@@ -70,12 +69,12 @@
         <!--Category-->
         <scene sceneID="ayK-Xy-5A2">
             <objects>
-                <controller identifier="Category" id="pcj-eR-l4W" customClass="CategoryInterfaceController" customModule="Olympifier">
+                <controller identifier="Category" id="pcj-eR-l4W" customClass="CategoryInterfaceController" customModule="OlympifierWatch_Extension">
                     <items>
                         <table alignment="left" id="aX8-dX-XRv">
                             <items>
-                                <tableRow id="0lB-dz-imq">
-                                    <group key="rootItem" width="1" alignment="left" id="yCY-5l-Ec8">
+                                <tableRow identifier="category" id="0lB-dz-imq">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" spacing="6" id="yCY-5l-Ec8">
                                         <items>
                                             <imageView width="20" height="20" alignment="left" id="sma-xD-j3B"/>
                                             <label alignment="left" text="Label" numberOfLines="0" id="yBe-zj-UxY"/>
