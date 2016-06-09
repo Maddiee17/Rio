@@ -60,6 +60,7 @@
 		F60982E51CD3F3D0004D8B4B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F60982E41CD3F3D0004D8B4B /* Localizable.strings */; };
 		F60982E71CD3F45F004D8B4B /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60982E61CD3F45F004D8B4B /* String+Localization.swift */; };
 		F61A5A751CD68183008F5413 /* GetImagesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61A5A741CD68183008F5413 /* GetImagesOperation.swift */; };
+		F6314B711D0A24E300279ED8 /* SettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6314B701D0A24E300279ED8 /* SettingsHeaderView.swift */; };
 		F683D24D1CE4C14100C247C9 /* SAConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F683D24C1CE4C14100C247C9 /* SAConfettiView.swift */; };
 		F683D24F1CE4C1E500C247C9 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F683D24E1CE4C1E500C247C9 /* SplashScreenViewController.swift */; };
 		F6D6E5C51CDBC0470046AF4A /* RioOrdinalInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D6E5C41CDBC0470046AF4A /* RioOrdinalInt.swift */; };
@@ -134,6 +135,7 @@
 		F60982E41CD3F3D0004D8B4B /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		F60982E61CD3F45F004D8B4B /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		F61A5A741CD68183008F5413 /* GetImagesOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetImagesOperation.swift; sourceTree = "<group>"; };
+		F6314B701D0A24E300279ED8 /* SettingsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsHeaderView.swift; sourceTree = "<group>"; };
 		F683D24C1CE4C14100C247C9 /* SAConfettiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAConfettiView.swift; sourceTree = "<group>"; };
 		F683D24E1CE4C1E500C247C9 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		F6D6E5C41CDBC0470046AF4A /* RioOrdinalInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioOrdinalInt.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				9CBC43231C6CD56700A08437 /* CountdownTimerView.swift */,
+				F6314B701D0A24E300279ED8 /* SettingsHeaderView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 			files = (
 				F6025AC11CF2252E00F2D129 /* DownloadingDBVC.swift in Sources */,
 				F683D24D1CE4C14100C247C9 /* SAConfettiView.swift in Sources */,
+				F6314B711D0A24E300279ED8 /* SettingsHeaderView.swift in Sources */,
 				9CC0784D1CBF78970010888D /* TwitterAppAuth.swift in Sources */,
 				9C3C7F351C65E91E00E98DA6 /* RioDatabaseManager.swift in Sources */,
 				9CBC43241C6CD56700A08437 /* CountdownTimerView.swift in Sources */,

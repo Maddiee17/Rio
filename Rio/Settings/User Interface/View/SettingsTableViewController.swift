@@ -9,19 +9,15 @@
 import UIKit
 
 let kNotificationCell = "notificationCell"
-let kYes = "Yes"
-let kNo = "No"
+let kYes = "Enabled"
+let kNo = "Disabled"
 let kDownloadOverCellular = "downloadOverCellular"
 let kSettings = "Settings"
-/**
- 
-It shows the Setting Tableview controller, user can define their own setting
- 
- */
 
 
 class SettingsTableViewController: UITableViewController,SettingsDetailDelegate {
 
+    @IBOutlet var headerView: SettingsHeaderView!
     var performSegue = false
     var firstAlertLabel : String?
     var oldHrs : String?
@@ -31,7 +27,20 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
         setupLeftMenuButton()
         
         self.tableView.backgroundColor = UIColor(hex : 0xecf0f1)
-
+        
+        let data = RioRootModel.sharedInstance.profileImageData
+        
+        if let dataValue = data{
+            self.headerView.profileImage.image = UIImage(data: dataValue)
+        }
+        else {
+            self.headerView.profileImage.image = UIImage(named: "user")
+            self.headerView.profileImage.tintColor = UIColor.darkGrayColor()
+        }
+        
+        self.headerView.userName.text = "  Welcome, " + RioRootModel.sharedInstance.userName!
+        
+        self.tableView.tableHeaderView = self.headerView
     }
 
     func didBecomeActive() {
@@ -104,23 +113,33 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 3
+        return 1
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? // fixed font style. use custom view (UILabel) if you want something different
+    {
+        if section == 0 {
+            return "Notification Settings"
+        }
+        else {
+            return "Others"
+        }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        if(indexPath.section == 0 && indexPath.row == 1)
-        {
-            performSegue = true
-            self.performSegueWithIdentifier("settingSegue", sender: self)
-        }
-        else if(indexPath.section == 0 && indexPath.row == 0){
+//        if(indexPath.section == 0 && indexPath.row == 1)
+//        {
+//            performSegue = true
+//            self.performSegueWithIdentifier("settingSegue", sender: self)
+//        }
+        if(indexPath.section == 0 && indexPath.row == 0){
             showAlert()
         }
         else {
@@ -134,10 +153,10 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
         var message : String?
         if(RioUtilities.sharedInstance.notificationStatus() == kNo)
         {
-            message = "Turn on notifications in Settings to receive game reminders"
+            message = "Visit Settings and enable notifications to receive game reminders"
         }
         else {
-            message = "Turn off notifications in Settings to not receive game reminders"
+            message = "Visit Settings and disable notifications to not receive game reminders"
         }
         let alertController: UIAlertController = UIAlertController(title: "", message: message, preferredStyle: .Alert)
         let closeAction: UIAlertAction = UIAlertAction(title: "Settings" , style: .Cancel) { action -> Void in
@@ -145,7 +164,7 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
                 UIApplication.sharedApplication().openURL(NSURL(string:UIApplicationOpenSettingsURLString)!);
             })
         }
-        let viewAction: UIAlertAction = UIAlertAction(title: "OK", style: .Default) { action -> Void in
+        let viewAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Default) { action -> Void in
         }
         alertController.addAction(closeAction)
         alertController.addAction(viewAction)
@@ -180,26 +199,38 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
         }
         return false
     }
-
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell")
         if(indexPath.section == 0){
             switch(indexPath.row)
             {
             case 0:
-                cell!.textLabel?.text = "Notification"
-                cell!.detailTextLabel?.text = RioUtilities.sharedInstance.notificationStatus()
-
-            case 1:
-                cell!.textLabel?.text = "Alert"
-                cell!.detailTextLabel?.text = NSUserDefaults.standardUserDefaults().stringForKey(kAlertFirstDate) ?? kEventStart
-                cell!.accessoryType = .DisclosureIndicator
-            case 2:
-                cell!.textLabel?.text = "Credits"
-                cell!.accessoryType = .DisclosureIndicator
-
+                cell?.textLabel?.text = "Notifications"
+                cell?.detailTextLabel?.text = RioUtilities.sharedInstance.notificationStatus()
+                cell?.imageView?.image = UIImage(named: "ico-bell-selected")
+                cell?.imageView?.tintColor = UIColor(hex:0xD21F69)
+//            case 1:
+//                cell!.textLabel?.text = "Alert"
+//                cell!.detailTextLabel?.text = NSUserDefaults.standardUserDefaults().stringForKey(kAlertFirstDate) ?? kEventStart
+//                cell!.accessoryType = .DisclosureIndicator
+            
             default:
                 cell!.textLabel?.text = ""
+            }
+        }
+        else {
+            switch(indexPath.row)
+            {
+            case 0:
+                cell?.textLabel?.text = "Credits"
+                cell?.accessoryType = .DisclosureIndicator
+                cell?.imageView?.image = UIImage(named: "cool")
+                cell?.imageView?.tintColor = UIColor(hex:0xD21F69)
+                
+            default:
+                cell!.textLabel?.text = ""
+
             }
         }
         return cell!

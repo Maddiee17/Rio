@@ -27,7 +27,6 @@ class UserProfileViewController: UIViewController {
         
         fetchReminderInBackground()
         //self.avatarImage = UIImageView(frame: CGRectMake((self.profileImageBackgroundView.frame.width)/2 ,(self.profileImageBackgroundView.frame.height)/2, 50, 50))
-        self.avatarImage!.layer.cornerRadius = 5.0
         self.avatarImage?.clipsToBounds = true
         self.navigationController?.navigationBarHidden = true
         self.goAheadButton.layer.cornerRadius = 25.0
@@ -54,6 +53,8 @@ class UserProfileViewController: UIViewController {
                 }
             })
         }
+        
+        RioRootModel.sharedInstance.userName = self.nameLabel.text
         
         let modelName = UIDevice.currentDevice().modelName
         
@@ -127,6 +128,7 @@ class UserProfileViewController: UIViewController {
             self.manager.fetchImageFromURL(url, successBlock: { (data) in
                 dispatch_async(dispatch_get_main_queue(), {
                     self.avatarImage!.image = UIImage(data: data)
+                    RioRootModel.sharedInstance.profileImageData = data
                 })
             })
         })

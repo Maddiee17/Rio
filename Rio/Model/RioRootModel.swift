@@ -26,6 +26,8 @@ class RioRootModel: NSObject {
     var userInfoDict : [NSObject : AnyObject]?
 //    var applicationBecameActiveBecauseOfNotification: Bool? = false
     var isPushedFromNotification = false
+    var profileImageData : NSData?
+    var userName : String?
     
     func appendSnoToNotificationEnabledArray(sno:String) -> [String] {
         
