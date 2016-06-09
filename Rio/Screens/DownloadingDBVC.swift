@@ -68,11 +68,11 @@ class DownloadingDBVC: UIViewController {
     {
         var onboardVC : OnboardingViewController?
         
-        let firstPage = OnboardingContentViewController(title: "Welcome to Olympifire", body: "Never miss a single game of this year's biggest sporting event", image: UIImage(named: "ico-rocket"), buttonText: "") { () -> Void in
+        let firstPage = OnboardingContentViewController(title: "Welcome to Olympifire", body: "Don't miss a single game of this year's biggest sporting event", image: UIImage(named: "ico-rocket"), buttonText: "") { () -> Void in
             // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
         }
         
-        let secondPage = OnboardingContentViewController(title: "Be Social!!", body: "Get all the live news from around the world. Retweet them right from here", image: UIImage(named: "ico-twitter"), buttonText: "") { () -> Void in
+        let secondPage = OnboardingContentViewController(title: "Be Social!!", body: "Get all the live news of \"Rio Games\" from twitter. Retweet them right from here", image: UIImage(named: "ico-twitter"), buttonText: "") { () -> Void in
             // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
         }
         
