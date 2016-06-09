@@ -70,13 +70,16 @@ class RioUtilities: NSObject {
         let formatter = NSDateFormatter()
         formatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
         formatter.timeZone = NSTimeZone.init(abbreviation: "BRT")
-        //formatter.locale = NSLocale.currentLocale()
-        
+        formatter.locale = NSLocale.currentLocale()
         let finalDate = date! + " " + startTime! + ":00"
         let objDate = formatter.dateFromString(finalDate)
         
-        
-        return getLocalDate(objDate!)
+        if let objDateValue = objDate{
+            return getLocalDate(objDateValue)
+        }
+        else {
+            return getLocalDate(NSDate())
+        }
     }
     
     

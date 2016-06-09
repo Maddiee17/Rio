@@ -24,7 +24,7 @@ class PopoverViewController: UIViewController {
     var selectedIndexPath : NSIndexPath?
     var dataBaseInteractor = RioDatabaseInteractor()
     @IBOutlet weak var titleLabel : UILabel?
-    
+    var firstTime = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +68,8 @@ class PopoverViewController: UIViewController {
     {
         if Reachability.isConnectedToNetwork() {
             
+            if !firstTime {
+                firstTime = true
             if self.sourceView?.notificationButton.tag == 1 {
                 
                 sourceView?.notificationButton.setImage(UIImage(named: "ico-bell-selected"), forState: .Normal)
@@ -84,7 +86,8 @@ class PopoverViewController: UIViewController {
                 })
             }
             
-            self.reminderAddedSuccessfully()
+                self.reminderAddedSuccessfully()
+            }
         }
     }
     

@@ -61,6 +61,11 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         super.viewWillAppear(animated)
         
         NSLog("Home VC ViewWillAppear **************************")
+        
+        if RioRootModel.sharedInstance.emergencyTweetData != nil {
+            addButton()
+            self.showCategoriesButton()
+        }
 
         self.mm_drawerController.openDrawerGestureModeMask = .All
         self.mm_drawerController.closeDrawerGestureModeMask = .All
@@ -184,6 +189,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                         self.slideShow.start()
                         self.tableView.hidden = false
                         self.tableView.reloadData()
+                        self.showCategoriesButton()
                     })
                 }
                 catch {

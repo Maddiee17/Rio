@@ -68,7 +68,7 @@ class SplashScreenViewController: UIViewController {
             }
             else {
                 self.performSelector(#selector(SplashScreenViewController.checkForUserProfile
-                    ), withObject: nil, afterDelay: 3.0)
+                    ), withObject: nil, afterDelay: 1.0)
             }
         }
     }
