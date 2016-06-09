@@ -294,6 +294,9 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
             splittedDict.updateValue(valuesArray, forKey: date)
         }
         print(self.datesArray)
+        
+        self.datesArray.sortInPlace({ $0.compare($1) == .OrderedAscending })
+
     }
     
     func filterDescription(actualString:String) -> String{

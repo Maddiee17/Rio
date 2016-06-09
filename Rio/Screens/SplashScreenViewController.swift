@@ -36,9 +36,9 @@ class SplashScreenViewController: UIViewController {
         confettiView.intensity = 1
         confettiView.type = .Diamond
         
-        UIView.animateWithDuration(0.2, delay: 0, options: .CurveEaseIn, animations: {
+//        UIView.animateWithDuration(0.2, delay: 0, options: .CurveEaseIn, animations: {
             self.view.addSubview(self.confettiView)
-            }, completion: nil)
+//            }, completion: nil)
     
     }
     
@@ -57,7 +57,7 @@ class SplashScreenViewController: UIViewController {
                 NSUserDefaults.standardUserDefaults().setValue("false", forKey: "NewDBAvailableAndSubsLaunch")
             }
             else {
-                self.performSelector(#selector(SplashScreenViewController.showOnboarding), withObject: nil, afterDelay: 3.0)
+                self.performSelector(#selector(SplashScreenViewController.showOnboarding), withObject: nil, afterDelay: 1.0)
             }
         }
         else {
