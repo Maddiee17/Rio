@@ -8,44 +8,57 @@
         <!--Event-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller identifier="Event" id="AgC-eL-Hgc" customClass="EventDetailsInterfaceController" customModule="Olympifier">
+                <controller identifier="Event" id="AgC-eL-Hgc" customClass="EventDetailsInterfaceController" customModule="OlympifierWatch_Extension">
                     <items>
-                        <group width="1" alignment="left" id="vcj-P5-W8A">
+                        <table alignment="left" spacing="8" id="UyL-Rl-u4Z">
                             <items>
-                                <imageView width="20" height="20" alignment="left" id="klx-PO-BDO"/>
-                                <group alignment="left" layout="vertical" spacing="0.0" id="99d-cM-vXt">
-                                    <items>
-                                        <label alignment="left" text="Men 1/8 eliminations" numberOfLines="0" id="WJg-cF-cxa"/>
-                                        <group width="1" alignment="left" id="Vye-yi-fnI">
-                                            <items>
-                                                <label alignment="left" text="8-08" id="Mph-XX-Gj6"/>
-                                                <label alignment="left" text="15:00" id="QNN-Bo-K87"/>
-                                            </items>
-                                        </group>
-                                    </items>
-                                </group>
+                                <tableRow identifier="EventCell" id="0Vd-sj-XnX" customClass="EventRowController" customModule="OlympifierWatch_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="1Bc-xS-BRJ">
+                                        <items>
+                                            <group width="1" alignment="left" id="Nj0-ws-7Ia">
+                                                <items>
+                                                    <imageView width="20" height="20" alignment="left" image="Archery" id="hSI-qg-Q26"/>
+                                                    <group alignment="left" layout="vertical" spacing="0.0" id="Glw-1B-P8m">
+                                                        <items>
+                                                            <label alignment="left" text="Men 1/8 eliminations" numberOfLines="0" id="JC5-Xq-47X"/>
+                                                            <group width="91" alignment="left" layout="vertical" spacing="5" id="5mh-Px-TqO">
+                                                                <items>
+                                                                    <label alignment="left" text="8-08-2016" numberOfLines="0" id="iLt-d2-5Tr"/>
+                                                                    <label alignment="left" text="15:00" numberOfLines="0" id="GS3-t0-vco"/>
+                                                                </items>
+                                                            </group>
+                                                        </items>
+                                                    </group>
+                                                </items>
+                                            </group>
+                                            <group width="1" alignment="left" id="Vjv-J8-EWU">
+                                                <items>
+                                                    <label alignment="left" text="Medal :" id="oX4-Wh-x8t"/>
+                                                    <label alignment="left" text="No" id="2Xc-ii-3w7"/>
+                                                </items>
+                                            </group>
+                                            <group width="1" alignment="left" id="F3w-J5-gQB">
+                                                <items>
+                                                    <label alignment="left" text="Venue :" numberOfLines="0" id="EcX-dN-Kcl"/>
+                                                    <label alignment="left" text="Sambodrome" textAlignment="left" numberOfLines="0" id="To5-o7-JyO"/>
+                                                </items>
+                                            </group>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="categoryImage" destination="hSI-qg-Q26" id="hvG-gC-6YE"/>
+                                        <outlet property="eventDate" destination="iLt-d2-5Tr" id="CRu-ad-Dxl"/>
+                                        <outlet property="eventMedal" destination="2Xc-ii-3w7" id="yzt-d8-ajg"/>
+                                        <outlet property="eventTime" destination="GS3-t0-vco" id="CvJ-29-edH"/>
+                                        <outlet property="eventTitle" destination="JC5-Xq-47X" id="IpR-20-I1W"/>
+                                        <outlet property="eventVenue" destination="To5-o7-JyO" id="dCZ-r3-WLA"/>
+                                    </connections>
+                                </tableRow>
                             </items>
-                        </group>
-                        <group width="1" alignment="left" id="Dga-A0-g5W">
-                            <items>
-                                <label alignment="left" text="Medal :" id="i3o-fa-KNf"/>
-                                <label alignment="left" text="No" id="wr0-fj-hYR"/>
-                            </items>
-                        </group>
-                        <group width="1" alignment="left" id="yIS-lS-lIj">
-                            <items>
-                                <label alignment="left" text="Venue :" id="uSF-IV-Ykz"/>
-                                <label alignment="left" text="Sambodrome" textAlignment="left" numberOfLines="0" id="6Yq-TX-VqA"/>
-                            </items>
-                        </group>
+                        </table>
                     </items>
                     <connections>
-                        <outlet property="categoryImage" destination="klx-PO-BDO" id="bcl-W3-fbE"/>
-                        <outlet property="eventDate" destination="Mph-XX-Gj6" id="i7c-Bh-9Rg"/>
-                        <outlet property="eventMedal" destination="wr0-fj-hYR" id="yPj-iY-mWs"/>
-                        <outlet property="eventTime" destination="QNN-Bo-K87" id="HBy-gg-bpu"/>
-                        <outlet property="eventTitle" destination="WJg-cF-cxa" id="hbD-Oi-rY7"/>
-                        <outlet property="eventVenue" destination="6Yq-TX-VqA" id="N1h-hl-Ni7"/>
+                        <outlet property="tableView" destination="UyL-Rl-u4Z" id="UnV-Tc-QwB"/>
                     </connections>
                 </controller>
             </objects>
@@ -58,7 +71,7 @@
                     <items>
                         <group width="1" alignment="left" id="Kjb-6F-7PC">
                             <items>
-                                <imageView alignment="left" image="launch.png" contentMode="scaleAspectFit" id="jyT-t5-36L"/>
+                                <imageView alignment="left" image="launch" contentMode="scaleAspectFit" id="jyT-t5-36L"/>
                             </items>
                         </group>
                     </items>
@@ -71,15 +84,19 @@
             <objects>
                 <controller identifier="Category" id="pcj-eR-l4W" customClass="CategoryInterfaceController" customModule="OlympifierWatch_Extension">
                     <items>
-                        <table alignment="left" id="aX8-dX-XRv">
+                        <table alignment="left" spacing="8" id="aX8-dX-XRv">
                             <items>
-                                <tableRow identifier="category" id="0lB-dz-imq">
+                                <tableRow identifier="category" id="0lB-dz-imq" customClass="CategoryRowController" customModule="OlympifierWatch_Extension">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" spacing="6" id="yCY-5l-Ec8">
                                         <items>
                                             <imageView width="20" height="20" alignment="left" id="sma-xD-j3B"/>
-                                            <label alignment="left" text="Label" numberOfLines="0" id="yBe-zj-UxY"/>
+                                            <label alignment="center" text="Label" numberOfLines="0" id="yBe-zj-UxY"/>
                                         </items>
                                     </group>
+                                    <connections>
+                                        <outlet property="image" destination="sma-xD-j3B" id="uAX-Ei-aiI"/>
+                                        <outlet property="type" destination="yBe-zj-UxY" id="3eC-lq-8YZ"/>
+                                    </connections>
                                 </tableRow>
                             </items>
                         </table>

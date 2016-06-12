@@ -8,22 +8,56 @@
 
 import WatchKit
 import Foundation
-
+import WatchConnectivity
 
 @available(iOS 8.2, *)
-class EventDetailsInterfaceController: WKInterfaceController {
+class EventDetailsInterfaceController: WKInterfaceController, WCSessionDelegate {
 
-    @IBOutlet var categoryImage: WKInterfaceImage!
-    @IBOutlet var eventTitle: WKInterfaceLabel!
-    @IBOutlet var eventDate: WKInterfaceLabel!
-    @IBOutlet var eventTime: WKInterfaceLabel!
-    @IBOutlet var eventMedal: WKInterfaceLabel!
-    @IBOutlet var eventVenue: WKInterfaceLabel!
 
+    @IBOutlet var tableView: WKInterfaceTable!
+    var session : WCSession?
+    var categoryType : String?
+    var eventDetails : NSArray?{
+        
+        didSet{
+            self.tableView.setNumberOfRows((eventDetails?.count)!, withRowType: "EventCell")
+            
+            for index in 0..<tableView.numberOfRows {
+                if let controller = tableView.rowControllerAtIndex(index) as? EventRowController {
+                    controller.eventDict = eventDetails![index] as? NSDictionary
+                }
+            }
+        }
+    }
+    
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
         // Configure interface objects here.
+        
+        if let type = context as? String {
+            self.categoryType = type
+            print(categoryType)
+        }
+        
+        if WCSession.isSupported()
+        {
+            session = WCSession.defaultSession()
+            
+            if WCSession.defaultSession().reachable {
+                
+                session?.sendMessage(["model":"event", "categorySelected" : categoryType!], replyHandler: { (response) in
+                    
+                    print(response)
+                    self.eventDetails = response["eventModel"] as? NSArray
+                    print(self.eventDetails!)
+                    }, errorHandler: { (error) in
+                        print("error")
+                })
+                
+            }
+        }
+
     }
 
     override func willActivate() {

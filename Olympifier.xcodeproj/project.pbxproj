@@ -60,11 +60,13 @@
 		F60982E51CD3F3D0004D8B4B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F60982E41CD3F3D0004D8B4B /* Localizable.strings */; };
 		F60982E71CD3F45F004D8B4B /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60982E61CD3F45F004D8B4B /* String+Localization.swift */; };
 		F61A5A751CD68183008F5413 /* GetImagesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61A5A741CD68183008F5413 /* GetImagesOperation.swift */; };
+		F6314B741D0C7BFA00279ED8 /* CategoryRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6314B731D0C7BFA00279ED8 /* CategoryRowController.swift */; };
+		F6314B761D0C99E100279ED8 /* EventRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6314B751D0C99E100279ED8 /* EventRowController.swift */; };
+		F6314B791D0D7ABE00279ED8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DC6DBF1D07417200F1D916 /* Assets.xcassets */; };
 		F683D24D1CE4C14100C247C9 /* SAConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F683D24C1CE4C14100C247C9 /* SAConfettiView.swift */; };
 		F683D24F1CE4C1E500C247C9 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F683D24E1CE4C1E500C247C9 /* SplashScreenViewController.swift */; };
 		F6D6E5C51CDBC0470046AF4A /* RioOrdinalInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D6E5C41CDBC0470046AF4A /* RioOrdinalInt.swift */; };
 		F6DC6DBE1D07417200F1D916 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6DC6DBC1D07417200F1D916 /* Interface.storyboard */; };
-		F6DC6DC01D07417200F1D916 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DC6DBF1D07417200F1D916 /* Assets.xcassets */; };
 		F6DC6DC71D07417200F1D916 /* OlympifierWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F6DC6DC61D07417200F1D916 /* OlympifierWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F6DC6DD01D07417200F1D916 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DC6DCF1D07417200F1D916 /* ExtensionDelegate.swift */; };
 		F6DC6DD21D07417200F1D916 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DC6DD11D07417200F1D916 /* NotificationController.swift */; };
@@ -192,6 +194,8 @@
 		F60982E41CD3F3D0004D8B4B /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		F60982E61CD3F45F004D8B4B /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		F61A5A741CD68183008F5413 /* GetImagesOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetImagesOperation.swift; sourceTree = "<group>"; };
+		F6314B731D0C7BFA00279ED8 /* CategoryRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryRowController.swift; sourceTree = "<group>"; };
+		F6314B751D0C99E100279ED8 /* EventRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRowController.swift; sourceTree = "<group>"; };
 		F683D24C1CE4C14100C247C9 /* SAConfettiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAConfettiView.swift; sourceTree = "<group>"; };
 		F683D24E1CE4C1E500C247C9 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		F6D6E5C41CDBC0470046AF4A /* RioOrdinalInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioOrdinalInt.swift; sourceTree = "<group>"; };
@@ -494,6 +498,8 @@
 				F6DC6E001D08809B00F1D916 /* SplashInterfaceController.swift */,
 				F6DC6DCF1D07417200F1D916 /* ExtensionDelegate.swift */,
 				F6DC6DD11D07417200F1D916 /* NotificationController.swift */,
+				F6314B731D0C7BFA00279ED8 /* CategoryRowController.swift */,
+				F6314B751D0C99E100279ED8 /* EventRowController.swift */,
 				F6DC6DD31D07417200F1D916 /* Assets.xcassets */,
 				F6DC6DD51D07417200F1D916 /* Info.plist */,
 				F6DC6DCB1D07417200F1D916 /* Supporting Files */,
@@ -644,7 +650,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6DC6DC01D07417200F1D916 /* Assets.xcassets in Resources */,
+				F6314B791D0D7ABE00279ED8 /* Assets.xcassets in Resources */,
 				F6DC6DBE1D07417200F1D916 /* Interface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -787,7 +793,9 @@
 				F6DC6DE51D0742A900F1D916 /* RioUserProfileModel.swift in Sources */,
 				F6DC6DE21D0742A200F1D916 /* RioCategoryModel.swift in Sources */,
 				F6DC6DE61D0742AC00F1D916 /* RioRootModel.swift in Sources */,
+				F6314B761D0C99E100279ED8 /* EventRowController.swift in Sources */,
 				F6DC6DE31D0742A400F1D916 /* RioEventModel.swift in Sources */,
+				F6314B741D0C7BFA00279ED8 /* CategoryRowController.swift in Sources */,
 				F6DC6E011D08809B00F1D916 /* SplashInterfaceController.swift in Sources */,
 				F6DC6DFA1D075DF700F1D916 /* EventDetailsInterfaceController.swift in Sources */,
 				F6DC6DF71D075BDC00F1D916 /* CategoryInterfaceController.swift in Sources */,

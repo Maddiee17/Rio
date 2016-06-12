@@ -36,10 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        if WCSession.isSupported() {
-            session = WCSession.defaultSession()
-        }
-
         getServerDBVersion()
 
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -83,6 +79,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
             self.application(application, didReceiveRemoteNotification:(launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey])! as! [NSObject : AnyObject])
         }
         
+        if WCSession.isSupported() {
+            session = WCSession.defaultSession()
+        }
+
         return true
     }
     
@@ -258,14 +258,60 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         objDBManager.initDatabase()
 
         if  message["model"] as? String == "category"{
-//            dispatch_async(dispatch_get_main_queue(), { 
                 self.dataBaseInteractor.fetchCategoryFromDB({ (results) in
                     if results.count > 0{
-                        let dict = ["categoryModel" : results] as NSDictionary
+                        let responseArray = NSMutableArray()
+                        for model in results {
+                            responseArray.addObject((model as RioCategoryModel).type!)
+                        }
+                        let dict = ["categoryModel" : responseArray] as NSDictionary
                         replyHandler(dict as! [String : AnyObject])
                     }
                 })
-            //})
+        }
+        else if message["model"] as? String == "event"{
+            
+            let sqlStmt = "SELECT * from Event WHERE Discipline = ? GROUP BY SessionCode"
+            let type = message["categorySelected"] as? String
+            self.dataBaseInteractor.fetchEventsFromDB(sqlStmt, categorySelected: type!, completionBlock: { (results) in
+                
+                if results.count > 0
+                {
+                    let responseArray = NSMutableArray()
+                    for model in results {
+                    
+                        let dict = NSMutableDictionary()
+                        dict.setValue(model.Discipline, forKey: "Discipline")
+                        dict.setValue(model.StartTime, forKey: "StartTime")
+                        dict.setValue(model.Description, forKey: "Description")
+                        dict.setValue(model.Medal, forKey: "Medal")
+                        dict.setValue(model.Date, forKey: "Date")
+                        dict.setValue(model.VenueName, forKey: "VenueName")
+
+                        responseArray.addObject(dict)
+                    }
+                    let dict = ["eventModel" : responseArray] as NSDictionary
+                    replyHandler(dict as! [String : AnyObject])
+                }
+                
+            })
+        }
+        else
+        {
+            if self.userProfile?.count > 0
+            {
+                let responseArray = NSMutableArray()
+                for model in self.userProfile! {
+                    
+                    let dict = NSMutableDictionary()
+                    dict.setValue(model.emailId, forKey: "emailId")
+                    dict.setValue(model.userId, forKey: "userId")
+                    responseArray.addObject(dict)
+                }
+                let dict = ["userProfileModel" : responseArray] as NSDictionary
+                replyHandler(dict as! [String : AnyObject])
+            }
+            
         }
     }
 }

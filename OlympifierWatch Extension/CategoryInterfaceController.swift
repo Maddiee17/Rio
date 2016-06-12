@@ -25,12 +25,14 @@ class CategoryInterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
     
-    var categoryModel : RioCategoryModel?{
+    var categoryModel : NSArray?{
         didSet{
+            self.tableView.setNumberOfRows((categoryModel?.count)!, withRowType: "category")
             
-            if let model = categoryModel{
-                
-                
+            for index in 0..<tableView.numberOfRows {
+                if let controller = tableView.rowControllerAtIndex(index) as? CategoryRowController {
+                    controller.categoryType = categoryModel![index] as? String
+                }
             }
         }
     }
@@ -41,22 +43,38 @@ class CategoryInterfaceController: WKInterfaceController, WCSessionDelegate {
         if WCSession.isSupported()
         {
             session = WCSession.defaultSession()
-            session?.sendMessage(["model":"category"], replyHandler: { (response) in
-                
-                print(response)
-                let categoryModel = response["categoryModel"] as! [RioCategoryModel]
-                print(categoryModel.count)
-                }, errorHandler: { (error) in
-                    print("error")
-            })
             
+            if WCSession.defaultSession().reachable {
+                
+                session?.sendMessage(["model":"category"], replyHandler: { (response) in
+                    
+                    print(response)
+                    self.categoryModel = response["categoryModel"] as? NSArray
+                    print(self.categoryModel!)
+                    }, errorHandler: { (error) in
+                        print("error")
+                })
+
+//                let data = self.convertDictToData(["model":"category"])
+//                session?.sendMessageData(data, replyHandler: { (responseData) in
+//                    print(responseData)
+//                    }, errorHandler: { (errorData) in
+//                        print(errorData)
+//                })
+            }
         }
+    }
+    
+    override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
+        let type = categoryModel![rowIndex]
+        presentControllerWithName("Event", context: type)
     }
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
         // Configure interface objects here.
+//        self.tableView.setNumberOfRows(0, withRowType: "category")
     }
 
     override func willActivate() {
