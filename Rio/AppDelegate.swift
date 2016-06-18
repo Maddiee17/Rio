@@ -56,6 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
 //                let userProfileVC = storyBoard.instantiateViewControllerWithIdentifier("UserProfileVC")
 //                self.window?.rootViewController = userProfileVC
 //                self.fetchReminderInBackground()
+                self.fetchReminderInBackground()
             }
         }
 
@@ -197,6 +198,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         print(deviceTokenStr)
     }
     
+    func fetchReminderInBackground()
+    {
+        let getReminderOperation = GetReminderOperation()
+        RioRootModel.sharedInstance.backgroundQueue.addOperation(getReminderOperation)
+    }
+    
+    
     func updateDeviceToken(deviceToken : String, emailId : String)
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
@@ -251,6 +259,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
 
     func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
         
@@ -278,6 +287,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
                 if results.count > 0
                 {
                     let responseArray = NSMutableArray()
+                    for model in results{
+                        
+                        let localDateNTime = RioUtilities.sharedInstance.calculateFireDate(model ).description
+                        model.Date = localDateNTime.componentsSeparatedByString(" ")[0]
+                        model.StartTime = localDateNTime.componentsSeparatedByString(" ")[1]
+                    }
+                    
                     for model in results {
                     
                         let dict = NSMutableDictionary()
@@ -287,6 +303,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
                         dict.setValue(model.Medal, forKey: "Medal")
                         dict.setValue(model.Date, forKey: "Date")
                         dict.setValue(model.VenueName, forKey: "VenueName")
+                        dict.setValue(model.Sno, forKey: "Sno")
+                        dict.setValue(model.Notification, forKey: "reminderId")
 
                         responseArray.addObject(dict)
                     }
@@ -296,6 +314,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
                 
             })
         }
+        else if message["model"] as? String == "reminder"
+        {
+            let remindersArray = RioRootModel.sharedInstance.addedReminderArray
+            if (remindersArray != nil) {
+                let dict = ["remindersArray" : remindersArray!] as NSDictionary
+                replyHandler(dict as! [String : AnyObject])
+            }
+        }
+        else if message["model"] as? String == "updateReminderId" {
+            
+            let Sno = message["Sno"] as! String
+            let reminderId = message["reminderId"] as! String
+            
+            self.dataBaseInteractor.updateReminderIdInDB(reminderId, serialNo: Sno)
+            RioRootModel.sharedInstance.appendSnoToNotificationEnabledArray(Sno)
+        }
+        else if message["model"] as? String == "removeReminderId" {
+            
+            let Sno = message["Sno"] as! String
+            
+            self.dataBaseInteractor.updateReminderIdInDB("", serialNo: Sno)
+            RioRootModel.sharedInstance.removeSnoFromNotificationEnabledArray(Sno)
+        }
+
         else
         {
             if self.userProfile?.count > 0
@@ -314,5 +356,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
             
         }
     }
+    // session?.sendMessage(["model":"updateReminderId", "Sno" : serialNo, "reminderId" : reminderId], replyHandler: { (response) in
+
 }
 

@@ -132,7 +132,7 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
     func showAlert()
     {
         var message : String?
-        if(RioUtilities.sharedInstance.notificationStatus() == kNo)
+        if(notificationStatus() == kNo)
         {
             message = "Turn on notifications in Settings to receive game reminders"
         }
@@ -153,6 +153,23 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
         
     }
     
+    func notificationStatus() -> String
+    {
+        if let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
+        {
+            if settings.types == .None
+            {
+                return kNo
+            }
+            else
+            {
+                return kYes
+            }
+        }
+        
+        return kNo
+    }
+
     func selectedValueForAlert(value:String)
     {
         
@@ -188,7 +205,7 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
             {
             case 0:
                 cell!.textLabel?.text = "Notification"
-                cell!.detailTextLabel?.text = RioUtilities.sharedInstance.notificationStatus()
+                cell!.detailTextLabel?.text = notificationStatus()
 
             case 1:
                 cell!.textLabel?.text = "Alert"

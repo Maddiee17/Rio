@@ -40,6 +40,9 @@ class SplashInterfaceController: WKInterfaceController, WCSessionDelegate {
                     self.userProfileModel = response["userProfileModel"] as? NSArray
                     print(self.userProfileModel!)
                     if self.userProfileModel?.count > 0{
+                        
+                        NSUserDefaults.standardUserDefaults().setValue(self.userProfileModel![0].valueForKey("userId"), forKey: "userId")
+                        NSUserDefaults.standardUserDefaults().synchronize()
                         dispatch_async(dispatch_get_main_queue(), {
                             self.performSelector(#selector(SplashInterfaceController.presentCategories
                                 ), withObject: nil, afterDelay: 1.0)
@@ -54,10 +57,10 @@ class SplashInterfaceController: WKInterfaceController, WCSessionDelegate {
                 })
                 
             }
-        }
-
+        }//
     }
 
+    
     override func didAppear() {
         super.didAppear()
         session = WCSession.defaultSession()

@@ -15,15 +15,15 @@
                                 <tableRow identifier="EventCell" id="0Vd-sj-XnX" customClass="EventRowController" customModule="OlympifierWatch_Extension">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="1Bc-xS-BRJ">
                                         <items>
-                                            <group width="1" alignment="left" id="Nj0-ws-7Ia">
+                                            <group width="120" alignment="left" id="Nj0-ws-7Ia">
                                                 <items>
-                                                    <imageView width="20" height="20" alignment="left" image="Archery" id="hSI-qg-Q26"/>
+                                                    <imageView width="20" height="20" alignment="left" verticalAlignment="center" contentMode="scaleAspectFit" id="hSI-qg-Q26"/>
                                                     <group alignment="left" layout="vertical" spacing="0.0" id="Glw-1B-P8m">
                                                         <items>
-                                                            <label alignment="left" text="Men 1/8 eliminations" numberOfLines="0" id="JC5-Xq-47X"/>
+                                                            <label width="1" alignment="left" text="Men 1/8 eliminations" numberOfLines="0" id="JC5-Xq-47X"/>
                                                             <group width="91" alignment="left" layout="vertical" spacing="5" id="5mh-Px-TqO">
                                                                 <items>
-                                                                    <label alignment="left" text="8-08-2016" numberOfLines="0" id="iLt-d2-5Tr"/>
+                                                                    <label alignment="left" text="8-08" numberOfLines="0" id="iLt-d2-5Tr"/>
                                                                     <label alignment="left" text="15:00" numberOfLines="0" id="GS3-t0-vco"/>
                                                                 </items>
                                                             </group>
@@ -43,6 +43,9 @@
                                                     <label alignment="left" text="Sambodrome" textAlignment="left" numberOfLines="0" id="To5-o7-JyO"/>
                                                 </items>
                                             </group>
+                                            <imageView width="20" height="20" alignment="right" image="ico-bell" id="TdT-3t-Y7d">
+                                                <color key="tintColor" red="0.0" green="0.49803921568627452" blue="0.63921568627450975" alpha="1" colorSpace="calibratedRGB"/>
+                                            </imageView>
                                         </items>
                                     </group>
                                     <connections>
@@ -52,6 +55,7 @@
                                         <outlet property="eventTime" destination="GS3-t0-vco" id="CvJ-29-edH"/>
                                         <outlet property="eventTitle" destination="JC5-Xq-47X" id="IpR-20-I1W"/>
                                         <outlet property="eventVenue" destination="To5-o7-JyO" id="dCZ-r3-WLA"/>
+                                        <outlet property="notificationImage" destination="TdT-3t-Y7d" id="eAI-z8-qF9"/>
                                     </connections>
                                 </tableRow>
                             </items>
@@ -63,6 +67,43 @@
                 </controller>
             </objects>
             <point key="canvasLocation" x="695" y="347"/>
+        </scene>
+        <!--SubCategory-->
+        <scene sceneID="Mt6-e9-7Kh">
+            <objects>
+                <controller identifier="SubCategory" id="dpY-Rc-OY1" customClass="SubCategoryInterfaceController" customModule="OlympifierWatch_Extension">
+                    <items>
+                        <group width="1" alignment="left" id="yeK-mJ-aaH">
+                            <items>
+                                <imageView width="20" height="20" alignment="left" id="Tds-uf-nZy"/>
+                                <label alignment="center" text="Label" id="cN5-Go-jlC"/>
+                            </items>
+                        </group>
+                        <table alignment="left" id="VDO-Es-QHc">
+                            <items>
+                                <tableRow identifier="subCategory" id="YJ3-Bk-U6B" customClass="SubCategoryRowController" customModule="OlympifierWatch_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="fA9-ZG-HVm">
+                                        <items>
+                                            <label alignment="center" verticalAlignment="center" text="Label" id="FJa-rH-qWv"/>
+                                            <imageView width="20" height="20" alignment="left" verticalAlignment="center" id="cWW-xA-ujT"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="image" destination="cWW-xA-ujT" id="njt-qE-AS0"/>
+                                        <outlet property="subCategoryType" destination="FJa-rH-qWv" id="vos-7Z-DNw"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="headerImage" destination="Tds-uf-nZy" id="cOO-sU-hEv"/>
+                        <outlet property="headerLabel" destination="cN5-Go-jlC" id="UBX-E9-FZf"/>
+                        <outlet property="tableView" destination="VDO-Es-QHc" id="o9z-YU-9AS"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="910" y="347"/>
         </scene>
         <!--splash-->
         <scene sceneID="XDp-LR-pMQ">
@@ -89,8 +130,8 @@
                                 <tableRow identifier="category" id="0lB-dz-imq" customClass="CategoryRowController" customModule="OlympifierWatch_Extension">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" spacing="6" id="yCY-5l-Ec8">
                                         <items>
-                                            <imageView width="20" height="20" alignment="left" id="sma-xD-j3B"/>
-                                            <label alignment="center" text="Label" numberOfLines="0" id="yBe-zj-UxY"/>
+                                            <imageView width="20" height="20" alignment="left" verticalAlignment="center" id="sma-xD-j3B"/>
+                                            <label height="50" alignment="center" text="Label" numberOfLines="0" id="yBe-zj-UxY"/>
                                         </items>
                                     </group>
                                     <connections>

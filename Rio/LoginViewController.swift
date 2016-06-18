@@ -55,13 +55,22 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
                         self.completeLoginCalls(result as! Dictionary<String, AnyObject>, isFacebookLogin: true)
                     }
                     else{
-                        RioUtilities.sharedInstance.displayAlertView("Network Error".localized, messageString: "Network Error Message".localized)
+                        self.displayAlertView("Network Error".localized, messageString: "Network Error Message".localized)
                     }
                 }
             })
         }
     }
     
+    func displayAlertView(titleString: String, messageString: String) {
+        
+        if !isAlertAlreadyDisplayed {
+            let alert: UIAlertView = UIAlertView(title: titleString, message: messageString, delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+            isAlertAlreadyDisplayed = true
+        }
+    }
+
 //    func loginButtonWillLogin(loginButton: FBSDKLoginButton!) -> Bool {
 //        if Reachability.isConnectedToNetwork() {
 //            return true
@@ -260,7 +269,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignIn
             }
         }
         else {
-            RioUtilities.sharedInstance.displayAlertView("Network Error".localized, messageString: "Network Error Message".localized)
+            displayAlertView("Network Error".localized, messageString: "Network Error Message".localized)
         }
     }
 

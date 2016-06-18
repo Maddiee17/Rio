@@ -392,8 +392,18 @@ class WSManager: NSObject {
         }
         else{
             dispatch_async(dispatch_get_main_queue(), { 
-                RioUtilities.sharedInstance.displayAlertView("Network Error".localized, messageString: "Network Error Message".localized)
+                self.displayAlertView("Network Error".localized, messageString: "Network Error Message".localized)
             })
         }
     }
+    
+    func displayAlertView(titleString: String, messageString: String) {
+        
+        if !isAlertAlreadyDisplayed {
+            let alert: UIAlertView = UIAlertView(title: titleString, message: messageString, delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+            isAlertAlreadyDisplayed = true
+        }
+    }
+
 }

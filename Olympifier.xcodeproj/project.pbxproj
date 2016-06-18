@@ -60,9 +60,16 @@
 		F60982E51CD3F3D0004D8B4B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F60982E41CD3F3D0004D8B4B /* Localizable.strings */; };
 		F60982E71CD3F45F004D8B4B /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60982E61CD3F45F004D8B4B /* String+Localization.swift */; };
 		F61A5A751CD68183008F5413 /* GetImagesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61A5A741CD68183008F5413 /* GetImagesOperation.swift */; };
+		F61BF8841D15AD5A002A19E8 /* WatchRootModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61BF8831D15AD5A002A19E8 /* WatchRootModel.swift */; };
 		F6314B741D0C7BFA00279ED8 /* CategoryRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6314B731D0C7BFA00279ED8 /* CategoryRowController.swift */; };
 		F6314B761D0C99E100279ED8 /* EventRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6314B751D0C99E100279ED8 /* EventRowController.swift */; };
 		F6314B791D0D7ABE00279ED8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DC6DBF1D07417200F1D916 /* Assets.xcassets */; };
+		F6314B7E1D147BFB00279ED8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DC6DBF1D07417200F1D916 /* Assets.xcassets */; };
+		F6314B7F1D147BFB00279ED8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DC6DBF1D07417200F1D916 /* Assets.xcassets */; };
+		F6314B801D147D2E00279ED8 /* RioColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF12A71CBA1B2D00287147 /* RioColor.swift */; };
+		F6314B851D148E6300279ED8 /* SubCategoryInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6314B841D148E6300279ED8 /* SubCategoryInterfaceController.swift */; };
+		F6314B871D148EBF00279ED8 /* SubCategoryRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6314B861D148EBF00279ED8 /* SubCategoryRowController.swift */; };
+		F6314B881D15215100279ED8 /* RioUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADB1AE11CCCB3AC00D0973C /* RioUtilities.swift */; };
 		F683D24D1CE4C14100C247C9 /* SAConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F683D24C1CE4C14100C247C9 /* SAConfettiView.swift */; };
 		F683D24F1CE4C1E500C247C9 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F683D24E1CE4C1E500C247C9 /* SplashScreenViewController.swift */; };
 		F6D6E5C51CDBC0470046AF4A /* RioOrdinalInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D6E5C41CDBC0470046AF4A /* RioOrdinalInt.swift */; };
@@ -72,7 +79,6 @@
 		F6DC6DD21D07417200F1D916 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DC6DD11D07417200F1D916 /* NotificationController.swift */; };
 		F6DC6DD41D07417200F1D916 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DC6DD31D07417200F1D916 /* Assets.xcassets */; };
 		F6DC6DD81D07417200F1D916 /* OlympifierWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = F6DC6DBA1D07417200F1D916 /* OlympifierWatch.app */; };
-		F6DC6DE11D07429000F1D916 /* Rio_DB.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 9C3C7F301C63EC2500E98DA6 /* Rio_DB.sqlite */; };
 		F6DC6DE21D0742A200F1D916 /* RioCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3C7F371C65FD5800E98DA6 /* RioCategoryModel.swift */; };
 		F6DC6DE31D0742A400F1D916 /* RioEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3C7F3D1C66475600E98DA6 /* RioEventModel.swift */; };
 		F6DC6DE41D0742A700F1D916 /* RioSubCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBC43271C6F1A4000A08437 /* RioSubCategoryModel.swift */; };
@@ -194,8 +200,11 @@
 		F60982E41CD3F3D0004D8B4B /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		F60982E61CD3F45F004D8B4B /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		F61A5A741CD68183008F5413 /* GetImagesOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetImagesOperation.swift; sourceTree = "<group>"; };
+		F61BF8831D15AD5A002A19E8 /* WatchRootModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchRootModel.swift; sourceTree = "<group>"; };
 		F6314B731D0C7BFA00279ED8 /* CategoryRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryRowController.swift; sourceTree = "<group>"; };
 		F6314B751D0C99E100279ED8 /* EventRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRowController.swift; sourceTree = "<group>"; };
+		F6314B841D148E6300279ED8 /* SubCategoryInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategoryInterfaceController.swift; sourceTree = "<group>"; };
+		F6314B861D148EBF00279ED8 /* SubCategoryRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategoryRowController.swift; sourceTree = "<group>"; };
 		F683D24C1CE4C14100C247C9 /* SAConfettiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAConfettiView.swift; sourceTree = "<group>"; };
 		F683D24E1CE4C1E500C247C9 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		F6D6E5C41CDBC0470046AF4A /* RioOrdinalInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RioOrdinalInt.swift; sourceTree = "<group>"; };
@@ -494,12 +503,15 @@
 			isa = PBXGroup;
 			children = (
 				F6DC6DF51D075BDC00F1D916 /* CategoryInterfaceController.swift */,
+				F6314B841D148E6300279ED8 /* SubCategoryInterfaceController.swift */,
 				F6DC6DF81D075DF700F1D916 /* EventDetailsInterfaceController.swift */,
 				F6DC6E001D08809B00F1D916 /* SplashInterfaceController.swift */,
 				F6DC6DCF1D07417200F1D916 /* ExtensionDelegate.swift */,
 				F6DC6DD11D07417200F1D916 /* NotificationController.swift */,
 				F6314B731D0C7BFA00279ED8 /* CategoryRowController.swift */,
 				F6314B751D0C99E100279ED8 /* EventRowController.swift */,
+				F6314B861D148EBF00279ED8 /* SubCategoryRowController.swift */,
+				F61BF8831D15AD5A002A19E8 /* WatchRootModel.swift */,
 				F6DC6DD31D07417200F1D916 /* Assets.xcassets */,
 				F6DC6DD51D07417200F1D916 /* Info.plist */,
 				F6DC6DCB1D07417200F1D916 /* Supporting Files */,
@@ -607,6 +619,7 @@
 					};
 					F6DC6DC51D07417200F1D916 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = JEWCC68TZJ;
 					};
 				};
 			};
@@ -642,6 +655,7 @@
 				F6F9D8B91CE5B92400856A90 /* diamond.png in Resources */,
 				F604D4561CEA538900FC98FE /* oo.jpg in Resources */,
 				9C3C7F0E1C63E09B00E98DA6 /* Main.storyboard in Resources */,
+				F6314B7E1D147BFB00279ED8 /* Assets.xcassets in Resources */,
 				9CFF12A41CB9566000287147 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -659,7 +673,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6DC6DE11D07429000F1D916 /* Rio_DB.sqlite in Resources */,
+				F6314B7F1D147BFB00279ED8 /* Assets.xcassets in Resources */,
 				F6DC6DD41D07417200F1D916 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -788,10 +802,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6314B851D148E6300279ED8 /* SubCategoryInterfaceController.swift in Sources */,
 				F6DC6DD21D07417200F1D916 /* NotificationController.swift in Sources */,
 				F6DC6DD01D07417200F1D916 /* ExtensionDelegate.swift in Sources */,
+				F6314B881D15215100279ED8 /* RioUtilities.swift in Sources */,
 				F6DC6DE51D0742A900F1D916 /* RioUserProfileModel.swift in Sources */,
 				F6DC6DE21D0742A200F1D916 /* RioCategoryModel.swift in Sources */,
+				F61BF8841D15AD5A002A19E8 /* WatchRootModel.swift in Sources */,
 				F6DC6DE61D0742AC00F1D916 /* RioRootModel.swift in Sources */,
 				F6314B761D0C99E100279ED8 /* EventRowController.swift in Sources */,
 				F6DC6DE31D0742A400F1D916 /* RioEventModel.swift in Sources */,
@@ -799,6 +816,8 @@
 				F6DC6E011D08809B00F1D916 /* SplashInterfaceController.swift in Sources */,
 				F6DC6DFA1D075DF700F1D916 /* EventDetailsInterfaceController.swift in Sources */,
 				F6DC6DF71D075BDC00F1D916 /* CategoryInterfaceController.swift in Sources */,
+				F6314B871D148EBF00279ED8 /* SubCategoryRowController.swift in Sources */,
+				F6314B801D147D2E00279ED8 /* RioColor.swift in Sources */,
 				F6DC6DE41D0742A700F1D916 /* RioSubCategoryModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1013,10 +1032,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "OlympifierWatch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.maddiee.Rio.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -1028,10 +1050,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "OlympifierWatch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.maddiee.Rio.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;

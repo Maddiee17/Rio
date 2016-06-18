@@ -67,7 +67,7 @@ class CategoryInterfaceController: WKInterfaceController, WCSessionDelegate {
     
     override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
         let type = categoryModel![rowIndex]
-        presentControllerWithName("Event", context: type)
+        presentControllerWithName("SubCategory", context: type)
     }
     
     override func awakeWithContext(context: AnyObject?) {

@@ -223,9 +223,19 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             }
         }
         else {
-            RioUtilities.sharedInstance.displayAlertView("Network Error".localized, messageString: "Network Error Message".localized)
+            displayAlertView("Network Error".localized, messageString: "Network Error Message".localized)
         }
     }
+    
+    func displayAlertView(titleString: String, messageString: String) {
+        
+        if !isAlertAlreadyDisplayed {
+            let alert: UIAlertView = UIAlertView(title: titleString, message: messageString, delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+            isAlertAlreadyDisplayed = true
+        }
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -25,7 +25,7 @@ class UserProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchReminderInBackground()
+//        fetchReminderInBackground()
         //self.avatarImage = UIImageView(frame: CGRectMake((self.profileImageBackgroundView.frame.width)/2 ,(self.profileImageBackgroundView.frame.height)/2, 50, 50))
         self.avatarImage!.layer.cornerRadius = 5.0
         self.avatarImage?.clipsToBounds = true
@@ -154,12 +154,12 @@ class UserProfileViewController: UIViewController {
     }
     
     
-    func fetchReminderInBackground()
-    {
-        let getReminderOperation = GetReminderOperation()
-        RioRootModel.sharedInstance.backgroundQueue.addOperation(getReminderOperation)
-    }
-
+//    func fetchReminderInBackground()
+//    {
+//        let getReminderOperation = GetReminderOperation()
+//        RioRootModel.sharedInstance.backgroundQueue.addOperation(getReminderOperation)
+//    }
+//
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

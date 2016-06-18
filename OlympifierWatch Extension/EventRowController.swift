@@ -16,7 +16,10 @@ class EventRowController: NSObject {
     @IBOutlet var eventTime: WKInterfaceLabel!
     @IBOutlet var eventMedal: WKInterfaceLabel!
     @IBOutlet var eventVenue: WKInterfaceLabel!
+    @IBOutlet var notificationImage: WKInterfaceImage!
     
+    var notificationEnabledCells : [String]?
+
     var eventDict : NSDictionary?{
         
         didSet{
@@ -27,6 +30,18 @@ class EventRowController: NSObject {
             eventVenue.setText(getVenueName(eventDict!["VenueName"] as! String))
             categoryImage.setImage(UIImage(named: eventDict!["Discipline"] as! String))
             categoryImage.setTintColor(UIColor.redColor())
+            
+            if let notificationSno = self.notificationEnabledCells{
+                
+                if notificationSno.contains((eventDict?.valueForKey("Sno"))! as! String)
+                {
+                    notificationImage.setImage(UIImage(named: "ico-bell-selected"))
+                }
+                else {
+                    notificationImage.setImage(UIImage(named: "ico-bell"))
+                }
+
+            }
         }
     }
     

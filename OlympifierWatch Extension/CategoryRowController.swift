@@ -16,8 +16,11 @@ class CategoryRowController: NSObject {
     var categoryType : String?{
         
         didSet{
+            let arc = UIImage(named: categoryType!)
             
             type.setText(categoryType)
+            image.setImage(arc)
+            image.setTintColor(UIColor(hex:0xD21F69))
         }
     }
 }
