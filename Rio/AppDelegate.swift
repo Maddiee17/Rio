@@ -102,6 +102,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         if let aps = userInfo["aps"] as? NSDictionary {
             if let alert = aps["alert"] as? NSDictionary {
                 if let message = alert["title"] as? NSString {
+                    
+                    if message == "Schedule Update"
+                    {
+                        return
+                    }
                     messageFromPayload = message as String
                     bodyFromPayload = alert["body"] as! String
                     RioRootModel.sharedInstance.userInfoDict = alert as [NSObject : AnyObject]
@@ -112,12 +117,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
             }
             
             if (UIApplication.sharedApplication().applicationState == .Active) {
-                let alertController = UIAlertController(title: messageFromPayload, message: bodyFromPayload, preferredStyle: .Alert)
-                let closeAction: UIAlertAction = UIAlertAction(title: "Close", style: .Cancel) { action -> Void in
-                }
-                alertController.addAction(closeAction)
-                let viewController: UIViewController = getTopViewController()
-                viewController.presentViewController(alertController, animated: true, completion: nil)
+//                let alertController = UIAlertController(title: messageFromPayload, message: bodyFromPayload, preferredStyle: .Alert)
+//                let closeAction: UIAlertAction = UIAlertAction(title: "Close", style: .Cancel) { action -> Void in
+//                }
+//                alertController.addAction(closeAction)
+//                let viewController: UIViewController = getTopViewController()
+//                viewController.presentViewController(alertController, animated: true, completion: nil)
             }
             else {
                 self.handleLocalNotifictionForForegroundState()

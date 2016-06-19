@@ -293,6 +293,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
 
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        self.hideCategoriesButton()
+    }
 
      func scrollViewWillBeginDragging(scrollView: UIScrollView)
      {

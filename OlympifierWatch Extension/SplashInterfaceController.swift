@@ -3,7 +3,7 @@
 //  Olympifier
 //
 //  Created by Madhur Mohta on 08/06/2016.
-//  Copyright © 2016 Pearson_3. All rights reserved.
+//  Copyright © 2016 Madhur Mohta. All rights reserved.
 //
 
 import WatchKit
@@ -45,7 +45,7 @@ class SplashInterfaceController: WKInterfaceController, WCSessionDelegate {
                         NSUserDefaults.standardUserDefaults().synchronize()
                         dispatch_async(dispatch_get_main_queue(), {
                             self.performSelector(#selector(SplashInterfaceController.presentCategories
-                                ), withObject: nil, afterDelay: 1.0)
+                                ), withObject: nil, afterDelay: 0.3)
                         })
                     }
                     else {

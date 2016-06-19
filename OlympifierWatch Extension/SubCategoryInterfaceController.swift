@@ -3,7 +3,7 @@
 //  Olympifier
 //
 //  Created by Madhur Mohta on 18/06/2016.
-//  Copyright © 2016 Pearson_3. All rights reserved.
+//  Copyright © 2016 Madhur Mohta. All rights reserved.
 //
 
 import WatchKit
@@ -48,21 +48,29 @@ class SubCategoryInterfaceController: WKInterfaceController,WCSessionDelegate {
             self.headerImage.setImage(UIImage(named: type))
         }
         
-        if WCSession.isSupported()
-        {
-            session = WCSession.defaultSession()
-            
-            if WCSession.defaultSession().reachable {
+        if self.eventDetails == nil{
+            if WCSession.isSupported()
+            {
+                session = WCSession.defaultSession()
                 
-                session?.sendMessage(["model":"event", "categorySelected" : subCategoryType!], replyHandler: { (response) in
+                if WCSession.defaultSession().reachable {
                     
-                    print(response)
-                    self.eventDetails = response["eventModel"] as? NSMutableArray
-                    self.sortDataBasedOnDate()
-                    print(self.eventDetails!)
-                    }, errorHandler: { (error) in
-                        print("error")
-                })
+                    session?.sendMessage(["model":"event", "categorySelected" : subCategoryType!], replyHandler: { (response) in
+                        
+                        print(response)
+                        self.eventDetails = response["eventModel"] as? NSMutableArray
+                        self.sortDataBasedOnDate()
+                        print(self.eventDetails!)
+                        }, errorHandler: { (error) in
+                            print("error")
+                    })
+                }
+                else {
+                    
+                    let action2 = WKAlertAction(title: "Ok", style: .Destructive) {}
+                    self.presentAlertControllerWithTitle("", message: "iPhone not reachable", preferredStyle: .Alert, actions: [action2]
+                    )
+                }
             }
         }
         

@@ -31,7 +31,6 @@ Popoulate the setting detail view controller
 class SettingsDetailController: UITableViewController, UIGestureRecognizerDelegate {
     
     var firstAlertValue : String?
-    var secondAlertValue : String?
     var checkedIndexPath : NSIndexPath?
     var delegate:SettingsDetailDelegate?
 
@@ -116,7 +115,6 @@ class SettingsDetailController: UITableViewController, UIGestureRecognizerDelega
         placeCheckmark(indexPath)
         selectedIndexPath = indexPath
         delegate?.selectedValueForAlert(cellLabel!)
-        rescheduleNotification()
         self.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -162,16 +160,5 @@ class SettingsDetailController: UITableViewController, UIGestureRecognizerDelega
         let cell = self.tableView.cellForRowAtIndexPath(indexPath)
         print(cell?.textLabel?.text)
         cell?.accessoryType = .None
-    }
-
-    func rescheduleNotification()
-    {
-        if(indexOfCheckMarkForFirstAlert != 0)
-        {
-           // eventHandler?.fetchAssetModelForNotifications()
-        }
-        else{
-            //eventHandler?.cancelAllNotifications()
-        }
     }
 }

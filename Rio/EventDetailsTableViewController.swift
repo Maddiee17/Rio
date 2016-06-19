@@ -99,6 +99,18 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "removeReminderFailure", object: nil)
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let todayDate = NSDate().description.componentsSeparatedByString(" ")[0]
+        if self.datesArray.contains(todayDate) {
+            let index = self.datesArray.indexOf(todayDate)
+            let indexPath = NSIndexPath(forRow: 0, inSection: index!+1)
+            self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
+        }
+        
+    }
+    
     // MARK: - Table view data source
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

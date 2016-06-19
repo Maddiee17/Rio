@@ -90,8 +90,10 @@
                                 <tableRow identifier="subCategory" id="YJ3-Bk-U6B" customClass="SubCategoryRowController" customModule="OlympifierWatch_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="fA9-ZG-HVm">
                                         <items>
-                                            <label alignment="center" verticalAlignment="center" text="Label" id="FJa-rH-qWv"/>
-                                            <imageView width="20" height="20" alignment="left" verticalAlignment="center" id="cWW-xA-ujT"/>
+                                            <label alignment="center" verticalAlignment="center" id="FJa-rH-qWv"/>
+                                            <imageView width="20" height="20" alignment="left" verticalAlignment="center" id="cWW-xA-ujT">
+                                                <color key="tintColor" red="0.82352941180000006" green="0.1215686275" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            </imageView>
                                         </items>
                                     </group>
                                     <connections>
@@ -118,7 +120,7 @@
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="ITR-9Z-ogI">
                             <items>
-                                <label width="1" height="40" alignment="center" verticalAlignment="center" text="Label" textAlignment="center" id="sSR-x9-AEA"/>
+                                <label width="1" height="40" alignment="center" verticalAlignment="center" textAlignment="center" id="sSR-x9-AEA"/>
                             </items>
                         </group>
                         <imageView width="100" height="100" alignment="center" image="Activity" animationDuration="1" id="Kgh-6e-lFw"/>
@@ -155,8 +157,10 @@
                                 <tableRow identifier="category" id="0lB-dz-imq" customClass="CategoryRowController" customModule="OlympifierWatch_Extension">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" spacing="6" id="yCY-5l-Ec8">
                                         <items>
-                                            <imageView width="20" height="20" alignment="left" verticalAlignment="center" id="sma-xD-j3B"/>
-                                            <label height="50" alignment="center" text="Label" textAlignment="center" numberOfLines="0" id="yBe-zj-UxY"/>
+                                            <imageView width="20" height="20" alignment="left" verticalAlignment="center" id="sma-xD-j3B">
+                                                <color key="tintColor" red="0.82352941180000006" green="0.1215686275" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            </imageView>
+                                            <label height="50" alignment="center" textAlignment="center" numberOfLines="0" id="yBe-zj-UxY"/>
                                         </items>
                                     </group>
                                     <connections>
