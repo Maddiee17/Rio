@@ -16,10 +16,17 @@ class CategoryRowController: NSObject {
     var categoryType : String?{
         
         didSet{
-            let arc = UIImage(named: categoryType!)
             
+            categoryType = categoryType!.stringByReplacingOccurrencesOfString("\n", withString: " ")
+            let arc = UIImage(named: categoryType!)
+            if categoryType == "Marathon swimming" {
+                image.setImage(UIImage(named: "Swimming"))
+            }
+            else {
+                image.setImage(arc)
+            }
             type.setText(categoryType)
-            image.setImage(arc)
+
             image.setTintColor(UIColor(hex:0xD21F69))
         }
     }

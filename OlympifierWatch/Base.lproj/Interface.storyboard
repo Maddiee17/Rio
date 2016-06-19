@@ -156,7 +156,7 @@
                                     <group key="rootItem" width="1" height="0.0" alignment="left" spacing="6" id="yCY-5l-Ec8">
                                         <items>
                                             <imageView width="20" height="20" alignment="left" verticalAlignment="center" id="sma-xD-j3B"/>
-                                            <label height="50" alignment="center" text="Label" numberOfLines="0" id="yBe-zj-UxY"/>
+                                            <label height="50" alignment="center" text="Label" textAlignment="center" numberOfLines="0" id="yBe-zj-UxY"/>
                                         </items>
                                     </group>
                                     <connections>
