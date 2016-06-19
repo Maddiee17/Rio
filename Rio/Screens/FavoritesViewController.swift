@@ -54,10 +54,20 @@ class FavoritesViewController: UIViewController {
             }
         }
         else{
-            RioUtilities.sharedInstance.displayAlertView("Network Error".localized, messageString: "Network Error Message".localized)
+            displayAlertView("Network Error".localized, messageString: "Network Error Message".localized)
         }
     }
     
+    
+    func displayAlertView(titleString: String, messageString: String) {
+        
+        if !isAlertAlreadyDisplayed {
+            let alert: UIAlertView = UIAlertView(title: titleString, message: messageString, delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+            isAlertAlreadyDisplayed = true
+        }
+    }
+
     func noDataLabel()  {
 //        centreLabel?.removeFromSuperview()
 //        centreLabel = UILabel(frame: CGRectMake(0,0, 300, 50))

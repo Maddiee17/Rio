@@ -8,10 +8,10 @@
 
 import UIKit
 
+var isAlertAlreadyDisplayed = false
 
 class RioUtilities: NSObject {
     
-    var isAlertAlreadyDisplayed = false
     class var sharedInstance : RioUtilities{
         
         struct Singleton {
@@ -39,34 +39,6 @@ class RioUtilities: NSObject {
     {
         let date = rioEventModel.Date
         let startTime = rioEventModel.StartTime
-//        let arrayForTime = startTime?.componentsSeparatedByString(":")
-//        let arrayForDates = date?.componentsSeparatedByString("-")
-//        
-//        let calender = NSCalendar(identifier:NSCalendarIdentifierGregorian)
-//        let year = Int(arrayForDates![2])
-//        let month = Int(arrayForDates![1])
-//        let day = Int(arrayForDates![0])
-//        let hour = Int(arrayForTime![0])! + 3  //UTC - 3 is Rio Time, Default notification is 1Hr before
-//        let minutes = Int(arrayForTime![1])
-//        
-//        let dateComponents = NSDateComponents()
-//        dateComponents.day = day!
-//        dateComponents.month = month!
-//        dateComponents.year = year!
-//        dateComponents.hour = hour
-//        dateComponents.minute = minutes!
-//        dateComponents.second = 0
-//        dateComponents.timeZone = NSTimeZone(name: "UTC")
-//        let UTCDate = calender!.dateFromComponents(dateComponents)
-//        let dateLocal = self.getLocalDate(UTCDate!)
-//        
-//        let formatter = NSDateFormatter()
-//        formatter.dateStyle = .LongStyle
-//        formatter.timeZone = NSTimeZone.localTimeZone()
-//        let localDate = formatter.dateFromString()
-//        
-//        return dateLocal
-        
         let formatter = NSDateFormatter()
         formatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
         formatter.timeZone = NSTimeZone.init(abbreviation: "BRT")
@@ -219,15 +191,6 @@ class RioUtilities: NSObject {
         return data!
     }
     
-    func displayAlertView(titleString: String, messageString: String) {
-        
-        if !isAlertAlreadyDisplayed {
-            let alert: UIAlertView = UIAlertView(title: titleString, message: messageString, delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
-            isAlertAlreadyDisplayed = true
-        }
-    }
-    
     func getTrimmedTime(startTime:String) -> String
     {
         let rangeOfLast = Range(start: startTime.startIndex, end: startTime.endIndex.advancedBy(-3))
@@ -268,23 +231,6 @@ class RioUtilities: NSObject {
         let dateComponents = self.getTrimmedDate(componentsString[0])
         let timeComponemts = self.getTrimmedTime(componentsString[1])
         return (dateComponents,timeComponemts)
-    }
-    
-    func notificationStatus() -> String
-    {
-        if let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
-        {
-            if settings.types == .None
-            {
-                return kNo
-            }
-            else
-            {
-                return kYes
-            }
-        }
-        
-        return kNo
     }
 
 

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import WatchConnectivity
 
-class RioRootModel: NSObject {
+class RioRootModel: NSObject, WCSessionDelegate {
 
     
     class var sharedInstance: RioRootModel {
@@ -18,8 +19,28 @@ class RioRootModel: NSObject {
         return Singleton.instance
     }
     
+    var session : WCSession?
+    
     var favoritesArray : NSArray?
-    var addedReminderArray : [String]?
+    var addedReminderArray : [String]?{
+        
+        didSet{
+            
+            if WCSession.isSupported()
+            {
+                session = WCSession.defaultSession()
+                
+                if WCSession.defaultSession().reachable {
+                    
+                    session?.sendMessage(["model":"updatedReminderArray", "value" : addedReminderArray!], replyHandler: { (response) in
+                        
+                        }, errorHandler: { (error) in
+                            print("error")
+                    })
+                }
+            }
+        }
+    }
     var backgroundQueue = NSOperationQueue()
     var imagesURLArray = [NSData]()
     var emergencyTweetData : NSArray?
@@ -45,7 +66,10 @@ class RioRootModel: NSObject {
     func removeSnoFromNotificationEnabledArray(sno:String) -> [String] {
         
         let index = self.addedReminderArray!.indexOf(sno)
-        self.addedReminderArray?.removeAtIndex(index!)
+        if let indexValue = index {
+            self.addedReminderArray?.removeAtIndex(indexValue)
+            return self.addedReminderArray!
+        }
         return self.addedReminderArray!
     }
 

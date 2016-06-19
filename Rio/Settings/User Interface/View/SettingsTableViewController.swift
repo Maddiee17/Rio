@@ -151,7 +151,7 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
     func showAlert()
     {
         var message : String?
-        if(RioUtilities.sharedInstance.notificationStatus() == kNo)
+        if(notificationStatus() == kNo)
         {
             message = "Visit Settings and enable notifications to receive game reminders"
         }
@@ -172,6 +172,23 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
         
     }
     
+    func notificationStatus() -> String
+    {
+        if let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
+        {
+            if settings.types == .None
+            {
+                return kNo
+            }
+            else
+            {
+                return kYes
+            }
+        }
+        
+        return kNo
+    }
+
     func selectedValueForAlert(value:String)
     {
         
@@ -206,15 +223,19 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
             switch(indexPath.row)
             {
             case 0:
-                cell?.textLabel?.text = "Notifications"
-                cell?.detailTextLabel?.text = RioUtilities.sharedInstance.notificationStatus()
                 cell?.imageView?.image = UIImage(named: "ico-bell-selected")
                 cell?.imageView?.tintColor = UIColor(hex:0xD21F69)
-//            case 1:
-//                cell!.textLabel?.text = "Alert"
-//                cell!.detailTextLabel?.text = NSUserDefaults.standardUserDefaults().stringForKey(kAlertFirstDate) ?? kEventStart
-//                cell!.accessoryType = .DisclosureIndicator
-            
+                cell!.textLabel?.text = "Notification"
+                cell!.detailTextLabel?.text = notificationStatus()
+
+            case 1:
+                cell!.textLabel?.text = "Alert"
+                cell!.detailTextLabel?.text = NSUserDefaults.standardUserDefaults().stringForKey(kAlertFirstDate) ?? kEventStart
+                cell!.accessoryType = .DisclosureIndicator
+            case 2:
+                cell!.textLabel?.text = "Credits"
+                cell!.accessoryType = .DisclosureIndicator
+
             default:
                 cell!.textLabel?.text = ""
             }

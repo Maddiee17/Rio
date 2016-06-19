@@ -12,15 +12,26 @@ let kIsFirstLaunch = "isFirstLaunch"
 import Fabric
 import TwitterKit
 import Crashlytics
+import WatchConnectivity
 
+@available(iOS 9.0, *)
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
 
     var window: UIWindow?
     var dataBaseInteractor = RioDatabaseInteractor()
     var userProfile : [RioUserProfileModel]?
     var wsManager = WSManager.sharedInstance
     var retryCount = 0
+
+    var session: WCSession? {
+        didSet {
+            if let session = session {
+                session.delegate = self
+                session.activateSession()
+            }
+        }
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -45,6 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                let userProfileVC = storyBoard.instantiateViewControllerWithIdentifier("UserProfileVC")
 //                self.window?.rootViewController = userProfileVC
 //                self.fetchReminderInBackground()
+                self.fetchReminderInBackground()
             }
         }
 
@@ -68,6 +80,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.application(application, didReceiveRemoteNotification:(launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey])! as! [NSObject : AnyObject])
         }
         
+        if WCSession.isSupported() {
+            session = WCSession.defaultSession()
+        }
+
         return true
     }
     
@@ -182,6 +198,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(deviceTokenStr)
     }
     
+    func fetchReminderInBackground()
+    {
+        let getReminderOperation = GetReminderOperation()
+        RioRootModel.sharedInstance.backgroundQueue.addOperation(getReminderOperation)
+    }
+    
+    
     func updateDeviceToken(deviceToken : String, emailId : String)
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
@@ -236,7 +259,108 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
 
+    func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
+        
+        let objDBManager = RioDatabaseManager.sharedInstance
+        objDBManager.initDatabase()
+
+        if  message["model"] as? String == "category"{
+                self.dataBaseInteractor.fetchCategoryFromDB({ (results) in
+                    if results.count > 0{
+                        let responseArray = NSMutableArray()
+                        for model in results {
+                            responseArray.addObject((model as RioCategoryModel).type!)
+                        }
+                        let dict = ["categoryModel" : responseArray] as NSDictionary
+                        replyHandler(dict as! [String : AnyObject])
+                    }
+                })
+        }
+        else if message["model"] as? String == "event"{
+            
+            let sqlStmt = "SELECT * from Event WHERE Discipline = ? GROUP BY SessionCode"
+            let type = message["categorySelected"] as? String
+            self.dataBaseInteractor.fetchEventsFromDB(sqlStmt, categorySelected: type!, completionBlock: { (results) in
+                
+                if results.count > 0
+                {
+                    let responseArray = NSMutableArray()
+                    for model in results{
+                        
+                        let localDateNTime = RioUtilities.sharedInstance.calculateFireDate(model ).description
+                        model.Date = localDateNTime.componentsSeparatedByString(" ")[0]
+                        model.StartTime = localDateNTime.componentsSeparatedByString(" ")[1]
+                    }
+                    
+                    for model in results {
+                    
+                        let dict = NSMutableDictionary()
+                        dict.setValue(model.Discipline, forKey: "Discipline")
+                        dict.setValue(model.StartTime, forKey: "StartTime")
+                        dict.setValue(model.Description, forKey: "Description")
+                        dict.setValue(model.Medal, forKey: "Medal")
+                        dict.setValue(model.Date, forKey: "Date")
+                        dict.setValue(model.VenueName, forKey: "VenueName")
+                        dict.setValue(model.Sno, forKey: "Sno")
+                        dict.setValue(model.Notification, forKey: "reminderId")
+
+                        responseArray.addObject(dict)
+                    }
+                    let dict = ["eventModel" : responseArray] as NSDictionary
+                    replyHandler(dict as! [String : AnyObject])
+                }
+                
+            })
+        }
+        else if message["model"] as? String == "reminder"
+        {
+            let remindersArray = RioRootModel.sharedInstance.addedReminderArray
+            if (remindersArray != nil) {
+                let dict = ["remindersArray" : remindersArray!] as NSDictionary
+                replyHandler(dict as! [String : AnyObject])
+            }
+        }
+        else if message["model"] as? String == "updateReminderId" {
+            
+            let Sno = message["Sno"] as! String
+            let reminderId = message["reminderId"] as! String
+            
+            self.dataBaseInteractor.updateReminderIdInDB(reminderId, serialNo: Sno)
+            RioRootModel.sharedInstance.appendSnoToNotificationEnabledArray(Sno)
+        }
+        else if message["model"] as? String == "removeReminderId" {
+            
+            let Sno = message["Sno"] as! String
+            
+            self.dataBaseInteractor.updateReminderIdInDB("", serialNo: Sno)
+            RioRootModel.sharedInstance.removeSnoFromNotificationEnabledArray(Sno)
+        }
+
+        else
+        {
+            if self.userProfile?.count > 0
+            {
+                let responseArray = NSMutableArray()
+                for model in self.userProfile! {
+                    
+                    let dict = NSMutableDictionary()
+                    dict.setValue(model.emailId, forKey: "emailId")
+                    dict.setValue(model.userId, forKey: "userId")
+                    responseArray.addObject(dict)
+                }
+                let dict = ["userProfileModel" : responseArray] as NSDictionary
+                replyHandler(dict as! [String : AnyObject])
+            }
+            else{
+                let dict = ["userProfileModel" : []] as NSDictionary
+                replyHandler(dict as! [String : AnyObject])
+            }
+            
+        }
+    }
+    // session?.sendMessage(["model":"updateReminderId", "Sno" : serialNo, "reminderId" : reminderId], replyHandler: { (response) in
 
 }
 

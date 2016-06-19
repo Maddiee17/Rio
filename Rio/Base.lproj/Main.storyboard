@@ -2154,12 +2154,12 @@
                             <exclude reference="shX-j1-i38"/>
                         </mask>
                         <mask key="constraints">
-                            <exclude reference="0f8-Pk-ZBO"/>
-                            <exclude reference="loo-2k-Wse"/>
-                            <exclude reference="vUW-GN-pPS"/>
                             <exclude reference="RGW-py-wQb"/>
                             <exclude reference="c0P-YI-UBu"/>
                             <exclude reference="rUE-Pc-hXX"/>
+                            <exclude reference="0f8-Pk-ZBO"/>
+                            <exclude reference="loo-2k-Wse"/>
+                            <exclude reference="vUW-GN-pPS"/>
                         </mask>
                     </variation>
                     <variation key="heightClass=regular-widthClass=compact">
@@ -2168,12 +2168,12 @@
                             <include reference="shX-j1-i38"/>
                         </mask>
                         <mask key="constraints">
-                            <include reference="0f8-Pk-ZBO"/>
-                            <include reference="loo-2k-Wse"/>
-                            <include reference="vUW-GN-pPS"/>
                             <include reference="RGW-py-wQb"/>
                             <include reference="c0P-YI-UBu"/>
                             <include reference="rUE-Pc-hXX"/>
+                            <include reference="0f8-Pk-ZBO"/>
+                            <include reference="loo-2k-Wse"/>
+                            <include reference="vUW-GN-pPS"/>
                         </mask>
                     </variation>
                     <connections>

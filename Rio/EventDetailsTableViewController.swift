@@ -158,7 +158,7 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
     
     func notificationButtonTapped(forCell:EventCell)
     {
-        if(RioUtilities.sharedInstance.notificationStatus() == kYes)
+        if(notificationStatus() == kYes)
         {
             cellView = forCell
             frameForButton = forCell.notificationButton.frame
@@ -174,6 +174,23 @@ class EventDetailsTableViewController: UIViewController,EventCellDelegate, UIPop
         }
     }
     
+    func notificationStatus() -> String
+    {
+        if let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
+        {
+            if settings.types == .None
+            {
+                return kNo
+            }
+            else
+            {
+                return kYes
+            }
+        }
+        
+        return kNo
+    }
+
     
     func showAlert()
     {
