@@ -244,7 +244,7 @@ class WSManager: NSObject {
         
     }
     
-    func addReminderForEvent(eventModel:RioEventModel, indexpath:NSIndexPath)
+    func addReminderForEvent(eventModel:RioEventModel, indexpath:NSIndexPath,completionBlock: ()->Void)
     {
         let addReminderURL = String(format: kBaseURL, kAddReminderURL)
         let request = NSMutableURLRequest(URL: NSURL(string: addReminderURL)!)
@@ -267,30 +267,41 @@ class WSManager: NSObject {
                 if((resultsValue.valueForKey("statusCode")) as! NSNumber == 200){
                     let reminderId = results.objectForKey("reminderId") as! String
                     self.dataBaseManager.updateReminderIdInDB(reminderId, serialNo: eventModel.Sno!)
+                    dispatch_async(dispatch_get_main_queue(), {
+                        completionBlock();
+                    });
+                    
 //                    dispatch_async(dispatch_get_main_queue(), {
 //                        NSNotificationCenter.defaultCenter().postNotificationName("reminderAddedSuccess", object: nil, userInfo:nil)
 //                    })
 
                 }
                 else {
+                    
+                    
                     dispatch_async(dispatch_get_main_queue(), {
+                        
+                        completionBlock();
                         NSNotificationCenter.defaultCenter().postNotificationName("reminderAddedFailure", object: nil, userInfo:["index" : indexpath])
                     })
                 }
             }
             else {
+                
                 dispatch_async(dispatch_get_main_queue(), {
+                    completionBlock();
                     NSNotificationCenter.defaultCenter().postNotificationName("reminderAddedFailure", object: nil, userInfo:["index" : indexpath])
                 })
             }
             
         }) { (error) -> Void in
             print(error)
+            completionBlock();
         }
         
     }
     
-    func removeReminder(reminderId:String,serialNo:String, index:NSIndexPath)
+    func removeReminder(reminderId:String,serialNo:String, index:NSIndexPath,completionBlock: ()->Void)
     {
         let rmReminderURL = String(format: kBaseURL, kRemoveReminderURL)
         let removeReminderURL = String(format: rmReminderURL, reminderId)
@@ -306,25 +317,35 @@ class WSManager: NSObject {
             if let resultsValue = results.objectForKey("response"){
                 if((resultsValue.valueForKey("statusCode")) as! NSNumber == 200){
                     self.dataBaseManager.updateReminderIdInDB("", serialNo:serialNo)
+                    dispatch_async(dispatch_get_main_queue(), {
+                    completionBlock();
+                    });
+                    
 //                    dispatch_async(dispatch_get_main_queue(), {
 //                        NSNotificationCenter.defaultCenter().postNotificationName("reminderRemovedSuccess", object: nil, userInfo:nil)
 //                    })
                     
                 }
                 else {
+                    
                     dispatch_async(dispatch_get_main_queue(), {
+                        completionBlock();
                         NSNotificationCenter.defaultCenter().postNotificationName("removeReminderFailure", object: nil, userInfo:["index" : index])
                     })
                 }
             }
             else {
+                
                 dispatch_async(dispatch_get_main_queue(), {
+                    completionBlock();
                     NSNotificationCenter.defaultCenter().postNotificationName("removeReminderFailure", object: nil, userInfo:["index" : index])
                 })
             }
             
         }) { (error) in
             print(error)
+            completionBlock();
+            
         }
     }
     

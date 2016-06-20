@@ -12,13 +12,18 @@ class AddReminderOperation: NSOperation {
 
     var evenModel : RioEventModel?
     var manager = WSManager.sharedInstance
+    var operationCompletionBlock:(Void)->Void
+    
     var indexPath : NSIndexPath?
     
-    init(eventModel : RioEventModel, indexPath : NSIndexPath?){
+    init(eventModel : RioEventModel, indexPath : NSIndexPath?, completionBlock : ()-> Void){
+        
         
         self.evenModel = eventModel
         self.indexPath = indexPath
+        self.operationCompletionBlock = completionBlock
         super.init()
+        
         
     }
     
@@ -35,7 +40,7 @@ class AddReminderOperation: NSOperation {
     
     func sync(){
         
-        manager.addReminderForEvent(self.evenModel!, indexpath: self.indexPath!)
+        manager.addReminderForEvent(self.evenModel!, indexpath: self.indexPath!,completionBlock: self.operationCompletionBlock)
         
     }
     

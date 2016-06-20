@@ -41,11 +41,11 @@ class RioRootModel: NSObject, WCSessionDelegate {
             }
         }
     }
-    var backgroundQueue = NSOperationQueue()
+    let backgroundQueue = NSOperationQueue()
+    let addRemoveReminderQueue = NSOperationQueue();
     var imagesURLArray = [NSData]()
     var emergencyTweetData : NSArray?
     var userInfoDict : [NSObject : AnyObject]?
-//    var applicationBecameActiveBecauseOfNotification: Bool? = false
     var isPushedFromNotification = false
     var profileImageData : NSData?
     var userName : String?

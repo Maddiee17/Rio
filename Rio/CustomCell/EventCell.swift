@@ -23,6 +23,7 @@ class EventCell: UITableViewCell {
     @IBOutlet weak var eventVenue: UILabel!
     @IBOutlet weak var notificationButton: UIButton!
     @IBOutlet weak var medalImageView: UIImageView!
+    @IBOutlet var loadingIndicatorView: UIActivityIndicatorView!
     var event : String?
     
     override func awakeFromNib() {
@@ -68,28 +69,25 @@ class EventCell: UITableViewCell {
         self.medalImageView.image = self.medalImageView.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
         self.medalImageView.tintColor = UIColor(hex :0xD21F69)
         self.notificationButton.tintColor = UIColor(hex : 0xD21F69)
+        hideLoadingIndicator();
+        
 
     }
     
-//    func filterDescription(actualString:String) -> String{
-//        
-//        var croppedString = ""
-//        let array = actualString.componentsSeparatedByString("|")
-//        var i = 0
-//        for (i = 0; i<array.count; i += 1) {
-//            
-//            //            if array[i].containsString("victory") || array[i].characters.count <= 8 {
-//            //                continue
-//            //            }
-//            if(array[i].containsString(event!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()))){
-//                croppedString += array[i]
-//            }
-//            //            if array.count != 1 && i != array.count - 1  {
-//            //                croppedString += ","
-//            //            }
-//        }
-//        
-//        return croppedString
-//    }
-
+    func hideLoadingIndicator(){
+    
+        self.loadingIndicatorView.stopAnimating()
+        self.loadingIndicatorView.hidden = true
+        self.notificationButton.hidden = false
+    
+    }
+    
+    func showLoadingIndicator(){
+    
+        self.notificationButton.hidden = true
+        self.loadingIndicatorView.hidden = false
+        self.loadingIndicatorView.startAnimating()
+    
+    }
+    
 }

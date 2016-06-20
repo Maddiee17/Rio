@@ -74,19 +74,37 @@ class PopoverViewController: UIViewController {
                 
                 sourceView?.notificationButton.setImage(UIImage(named: "ico-bell-selected"), forState: .Normal)
                 let selectedEventModel = manager.notificationButtonTappedModel
-                let operation = AddReminderOperation(eventModel: selectedEventModel!, indexPath: selectedIndexPath!)
-                RioRootModel.sharedInstance.backgroundQueue.addOperation(operation)
+                let operation = AddReminderOperation(eventModel: selectedEventModel!, indexPath: selectedIndexPath!,completionBlock: {()-> Void in
+                
+                    self.sourceView?.hideLoadingIndicator();
+                    self.reminderAddedSuccessfully();
+                    
+                
+                })
+                self.sourceView?.showLoadingIndicator();
+                RioRootModel.sharedInstance.addRemoveReminderQueue.addOperation(operation)
+                
+                
+                
             }
             else{
                 sourceView?.notificationButton.setImage(UIImage(named: "ico-bell"), forState: .Normal)
                 let selectedEventModel = manager.notificationButtonTappedModel
                 dataBaseInteractor.getReminderId((selectedEventModel?.Sno)!, successBlock: { (reminderId) in
-                    let operation = RemoveReminderOperation(reminderId: reminderId, serialNo: (selectedEventModel?.Sno)!, indexpath: self.selectedIndexPath!)
-                    RioRootModel.sharedInstance.backgroundQueue.addOperation(operation)
+                    let operation = RemoveReminderOperation(reminderId: reminderId, serialNo: (selectedEventModel?.Sno)!, indexpath: self.selectedIndexPath!,completionBlock: {()-> Void in
+                        
+                        self.sourceView?.hideLoadingIndicator();
+                        self.reminderAddedSuccessfully()
+                        
+                        
+                    })
+                    
+                    self.sourceView?.showLoadingIndicator();
+                    RioRootModel.sharedInstance.addRemoveReminderQueue.addOperation(operation)
                 })
             }
             
-                self.reminderAddedSuccessfully()
+                
             }
         }
     }
