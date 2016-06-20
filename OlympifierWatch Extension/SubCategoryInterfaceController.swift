@@ -16,7 +16,14 @@ class SubCategoryInterfaceController: WKInterfaceController,WCSessionDelegate {
     @IBOutlet var tableView: WKInterfaceTable!
     @IBOutlet var headerImage: WKInterfaceImage!
     
-    var session : WCSession?
+    var session: WCSession? {
+        didSet {
+            if let session = session {
+                session.delegate = self
+                session.activateSession()
+            }
+        }
+    }
     var datesArray = [String](){
         
         didSet{
@@ -49,24 +56,34 @@ class SubCategoryInterfaceController: WKInterfaceController,WCSessionDelegate {
         }
         
         if self.eventDetails == nil{
+            
+            
             if WCSession.isSupported()
             {
                 session = WCSession.defaultSession()
                 
-                if WCSession.defaultSession().reachable {
+                if session!.reachable {
                     
+                    showProgressView("Fetching...")
+
                     session?.sendMessage(["model":"event", "categorySelected" : subCategoryType!], replyHandler: { (response) in
                         
                         print(response)
+                        dispatch_async(dispatch_get_main_queue(), {
+                            NSNotificationCenter.defaultCenter().postNotificationName("dismissProgress", object: nil, userInfo:nil)
+                        })
                         self.eventDetails = response["eventModel"] as? NSMutableArray
                         self.sortDataBasedOnDate()
                         print(self.eventDetails!)
+                        
                         }, errorHandler: { (error) in
                             print("error")
+                            dispatch_async(dispatch_get_main_queue(), {
+                                NSNotificationCenter.defaultCenter().postNotificationName("dismissProgress", object: nil, userInfo:nil)
+                        })
                     })
                 }
                 else {
-                    
                     let action2 = WKAlertAction(title: "Ok", style: .Destructive) {}
                     self.presentAlertControllerWithTitle("", message: "iPhone not reachable", preferredStyle: .Alert, actions: [action2]
                     )
@@ -94,6 +111,11 @@ class SubCategoryInterfaceController: WKInterfaceController,WCSessionDelegate {
         }
     }
     
+    func showProgressView(text : String)
+    {
+        self.presentControllerWithName("progress", context: text)
+    }
+
     func sortDataBasedOnDate()
     {
         for eventModel in self.eventDetails!
@@ -110,6 +132,9 @@ class SubCategoryInterfaceController: WKInterfaceController,WCSessionDelegate {
             print(valuesArray)
             self.splittedDict.setValue(valuesArray, forKey: date)
         }
+        
+        self.datesArray.sortInPlace({ $0.compare($1) == .OrderedAscending })
+
         print(self.splittedDict)
     }
     
