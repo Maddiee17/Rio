@@ -65,7 +65,7 @@ class SplashInterfaceController: WKInterfaceController, WCSessionDelegate {
         
         let action2 = WKAlertAction(title: "Ok", style: .Destructive) {}
         
-        self.presentAlertControllerWithTitle("", message: "Please Login on the iPhone", preferredStyle: .Alert, actions: [action2]
+        self.presentAlertControllerWithTitle("", message: "Please Login on the iPhone, Kill this app and launch the app again !!", preferredStyle: .Alert, actions: [action2]
         )
 
         

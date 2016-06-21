@@ -50,7 +50,7 @@ class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
     }
     
     func infoButtonTapped() {
-        
+        print("inside infoButtonTapped")
         let navigationController = self.storyboard?.instantiateViewControllerWithIdentifier("CategoryInfoVC") as? UINavigationController
         (navigationController?.viewControllers[0] as! CategoryInfoViewController).subCategoryModel = subCategoryModelLocal!
         self.presentViewController(navigationController!, animated: true, completion: nil)
@@ -103,11 +103,12 @@ class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
             
             self.dataManager.fetchSubCategoryFromDB(self.categorySelected!, completionBlock: { (results) -> Void in
-                
+                print("inside fetchCategoryModel")
                 if(results.count > 0)
                 {
                     self.subCategoryModelLocal = results.first
                     self.getSubCategoryValues()
+                    print("inside fetchCategoryModel inside closure")
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.tableView.reloadData()
                         self.handleNotification()
@@ -119,8 +120,9 @@ class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
     
     func handleNotification()
     {
-        if RioRootModel.sharedInstance.isPushedFromNotification == true
+        if RioRootModel.sharedInstance.isPushedFromNotification == true && RioRootModel.sharedInstance.isReminderNotification == false
         {
+            print("inside handleNotification")
             infoButtonTapped()
         }
     }

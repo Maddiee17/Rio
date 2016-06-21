@@ -47,6 +47,7 @@ class RioRootModel: NSObject, WCSessionDelegate {
     var emergencyTweetData : NSArray?
     var userInfoDict : [NSObject : AnyObject]?
     var isPushedFromNotification = false
+    var isReminderNotification = false
     var profileImageData : NSData?
     var userName : String?
     

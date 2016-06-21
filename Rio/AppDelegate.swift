@@ -105,10 +105,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
                     
                     if message == "Schedule Update"
                     {
+                        RioRootModel.sharedInstance.isPushedFromNotification = false
                         return
                     }
+                    if message == "Set Reminders"
+                    {
+                        RioRootModel.sharedInstance.isReminderNotification = true
+                    }
+
                     messageFromPayload = message as String
-                    bodyFromPayload = alert["body"] as! String
+                    bodyFromPayload = alert["body"] as? String
                     RioRootModel.sharedInstance.userInfoDict = alert as [NSObject : AnyObject]
                 }
             } else if let alert = aps["alert"] as? NSString {

@@ -84,22 +84,27 @@ class CategoryListViewController: UIViewController,UIGestureRecognizerDelegate {
 
     func handleNotification() {
         
-        if RioRootModel.sharedInstance.isPushedFromNotification == true {
+        if RioRootModel.sharedInstance.isPushedFromNotification == true && RioRootModel.sharedInstance.isReminderNotification == false {
             
-            let userInfoDict = RioRootModel.sharedInstance.userInfoDict
-            if let category = userInfoDict!["title"] as? String {
+            if let userInfoDictValue = RioRootModel.sharedInstance.userInfoDict{
                 
-                eventForNotification = category
-                for (index,categoryModel) in (self.categoryArrayLocal?.enumerate())! {
+                if let category = userInfoDictValue["title"] as? String {
                     
-                    if categoryModel.type == eventForNotification {
-                        indexForNotification = index
-                        let indexPath = NSIndexPath(forRow: index, inSection: 0)
-                        self.tableView(self.categoryTableView, didSelectRowAtIndexPath: indexPath)
-                        break
+                    eventForNotification = category
+                    for (index,categoryModel) in (self.categoryArrayLocal?.enumerate())! {
+                        
+                        if categoryModel.type == eventForNotification {
+                            indexForNotification = index
+                            let indexPath = NSIndexPath(forRow: index, inSection: 0)
+                            self.tableView(self.categoryTableView, didSelectRowAtIndexPath: indexPath)
+                            break
+                        }
                     }
                 }
             }
+        }
+        else {
+            RioRootModel.sharedInstance.isPushedFromNotification = false
         }
     }
     
@@ -172,7 +177,7 @@ class CategoryListViewController: UIViewController,UIGestureRecognizerDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         
-        if RioRootModel.sharedInstance.isPushedFromNotification == true {
+        if RioRootModel.sharedInstance.isPushedFromNotification == true && RioRootModel.sharedInstance.isReminderNotification == false {
             self.performSegueWithIdentifier("subCategorySegue", sender: self)
         }
         else{
