@@ -126,9 +126,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     func setUpSlideShow(){
 
-        slideShow.delay = 2
+//        slideShow.delay = 2
         slideShow.transitionDuration = 1
         slideShow.transitionType = .Fade
+        slideShow.addGesture(.Swipe)
         slideShow.imagesContentMode = .ScaleAspectFill
         let dataArray = RioRootModel.sharedInstance.imagesURLArray
         if dataArray.count > 0

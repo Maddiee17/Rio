@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class UserProfileViewController: UIViewController {
 
@@ -21,9 +22,15 @@ class UserProfileViewController: UIViewController {
     @IBOutlet weak var goAheadButton : UIButton!
     @IBOutlet weak var profileImageBackgroundView: UIView!
     @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var bannerAd: GADBannerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        bannerAd.adUnitID = "ca-app-pub-9377831525423293/3112670162"
+        bannerAd.rootViewController = self
+        let request = GADRequest()
+        bannerAd.loadRequest(request)
         
         fetchReminderInBackground()
         //self.avatarImage = UIImageView(frame: CGRectMake((self.profileImageBackgroundView.frame.width)/2 ,(self.profileImageBackgroundView.frame.height)/2, 50, 50))

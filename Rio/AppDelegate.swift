@@ -178,7 +178,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     
     func getServerDBVersion() {
         
-        self.wsManager.getServerDBVersion()
+        if Reachability.isConnectedToNetwork(){
+            self.wsManager.getServerDBVersion()
+        }
+        else{
+            return
+        }
     }
     
     func getImagesURL() {

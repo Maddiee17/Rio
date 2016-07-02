@@ -105,6 +105,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 Fabric: Copyright 2015 Twitter, Inc. All Rights Reserved. Use of this software is subject to the terms and conditions of the Fabric Software and Services Agreement located at https://fabric.io/terms. OSS: http://get.fabric.io/terms/opensource.txt
 
+## Firebase
+
+Copyright 2016 Google Inc.
+
 ## FirebaseAnalytics
 
 Copyright 2016 Google Inc.
@@ -112,6 +116,10 @@ Copyright 2016 Google Inc.
 ## FirebaseInstanceID
 
 Copyright 2016 Google Inc.
+
+## Google-Mobile-Ads-SDK
+
+Copyright 2011 Google Inc. All Rights Reserved.
 
 ## Google
 

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'AEFA731656A78C13A9BA5FA3'
+               BlueprintIdentifier = 'F109297E593D67BD99D0E75A'
                BlueprintName = 'KASlideShow'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libKASlideShow.a'>

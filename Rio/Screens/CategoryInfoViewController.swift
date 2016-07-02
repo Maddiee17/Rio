@@ -7,16 +7,22 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class CategoryInfoViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var bannerView: GADBannerView!
     var subCategoryModel : RioSubCategoryModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        bannerView.adUnitID = "ca-app-pub-9377831525423293/5228531763"
+        bannerView.rootViewController = self
+        let request = GADRequest()
+        bannerView.loadRequest(request)
         
         let tblView =  UIView(frame: CGRectZero)
         self.tableView.tableFooterView = tblView

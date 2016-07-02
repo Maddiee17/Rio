@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
 
@@ -19,10 +20,16 @@ class SubCategoryViewController: UIViewController,UIGestureRecognizerDelegate {
     
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var bannerView: GADBannerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        bannerView.adUnitID = "ca-app-pub-9377831525423293/4589403360"
+        bannerView.rootViewController = self
+        let request = GADRequest()
+        bannerView.loadRequest(request)
+
         setupInfoButton()
         fetchCategoryModel()
         let view = UIView(frame: CGRectZero)

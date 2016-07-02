@@ -21,7 +21,8 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
     var performSegue = false
     var firstAlertLabel : String?
     var oldHrs : String?
-
+    var isExpanded = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLeftMenuButton()
@@ -118,7 +119,15 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 1
+        if section == 0 && !isExpanded {
+            return 2
+        }
+        else if section == 0 && isExpanded{
+            return 6
+        }
+        else{
+            return 1
+        }
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? // fixed font style. use custom view (UILabel) if you want something different
@@ -134,18 +143,50 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-//        if(indexPath.section == 0 && indexPath.row == 1)
-//        {
-//            performSegue = true
-//            self.performSegueWithIdentifier("settingSegue", sender: self)
-//        }
-        if(indexPath.section == 0 && indexPath.row == 0){
+        if(indexPath.section == 0 && indexPath.row == 1)
+        {
+            if !isExpanded {
+                insertRows(indexPath)
+            }
+            else{
+                collapseSection(indexPath)
+            }
+        }
+        else if(indexPath.section == 0 && indexPath.row == 0){
             showAlert()
         }
         else {
             let creditsVC = self.storyboard?.instantiateViewControllerWithIdentifier("CreditsViewController") as! CreditsViewController
             self.navigationController?.pushViewController(creditsVC, animated: true)
         }
+    }
+    
+    func insertRows(index: NSIndexPath) {
+        isExpanded = true
+        let indexPathsToInsert = getIndexPathsToInsert(index.section)
+        let insertAnimation: UITableViewRowAnimation = .Automatic
+        self.tableView.beginUpdates()
+        self.tableView.insertRowsAtIndexPaths(indexPathsToInsert, withRowAnimation: insertAnimation)
+        self.tableView.endUpdates()
+    }
+    
+    func collapseSection(index: NSIndexPath) {
+        isExpanded = false
+        let indexPathsToDelete = getIndexPathsToInsert(index.section)
+        let deleteAnimation: UITableViewRowAnimation = .Automatic
+        self.tableView.beginUpdates()
+        self.tableView.deleteRowsAtIndexPaths(indexPathsToDelete, withRowAnimation: deleteAnimation)
+        self.tableView.endUpdates()
+    }
+    
+    
+    func getIndexPathsToInsert(sectionIndex: NSInteger) -> [NSIndexPath] {
+        var indexPathsToInsert = [NSIndexPath]()
+        
+        for i in 2..<6 {
+            indexPathsToInsert.append(NSIndexPath(forRow: i, inSection: 0))
+        }
+        return indexPathsToInsert
     }
     
     func showAlert()
@@ -233,9 +274,17 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
                 cell!.detailTextLabel?.text = NSUserDefaults.standardUserDefaults().stringForKey(kAlertFirstDate) ?? kEventStart
                 cell!.accessoryType = .DisclosureIndicator
             case 2:
-                cell!.textLabel?.text = "Credits"
-                cell!.accessoryType = .DisclosureIndicator
+                cell!.textLabel?.text = "Event Start"
+                
+            case 3:
+                cell!.textLabel?.text = "1 Hour Before"
+              
+            case 4:
+                cell!.textLabel?.text = "2 Hour Before"
+            case 5:
+                cell!.textLabel?.text = "3 Hour Before"
 
+                
             default:
                 cell!.textLabel?.text = ""
             }

@@ -19,6 +19,7 @@ pod 'MMDrawerController', '~> 0.5.7'
 pod 'Onboard'
 pod 'Toast', '~> 3.0'
 pod 'Crashlytics'
-
+pod 'Firebase/Core'
+pod 'Firebase/AdMob'
 end
 

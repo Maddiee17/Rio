@@ -14,12 +14,20 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.12.0):
     - FBSDKCoreKit
+  - Firebase/AdMob (3.2.1):
+    - Firebase/Analytics (= 3.2.1)
+    - Google-Mobile-Ads-SDK (= 7.8.1)
+  - Firebase/Analytics (3.2.1):
+    - FirebaseAnalytics (= 3.2.0)
+  - Firebase/Core (3.2.1):
+    - Firebase/Analytics (= 3.2.1)
   - FirebaseAnalytics (3.2.0):
     - FirebaseInstanceID (~> 1.0)
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleSymbolUtilities (~> 1.1)
     - GoogleUtilities (~> 1.3)
   - FirebaseInstanceID (1.0.6)
+  - Google-Mobile-Ads-SDK (7.8.1)
   - Google/Core (3.0.3):
     - FirebaseAnalytics (~> 3.2)
   - Google/SignIn (3.0.3):
@@ -70,6 +78,8 @@ DEPENDENCIES:
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
+  - Firebase/AdMob
+  - Firebase/Core
   - Google/SignIn
   - KASlideShow
   - KVNProgress
@@ -87,9 +97,11 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 6e56d5a2a64a755ad4efb5dbeee8f82fb1b99775
   FBSDKLoginKit: 03f68a8d48c2c8bb81d7eb8097973d483543e1f6
   FBSDKShareKit: df1491f064cffc8ebcc3fc8b71be94cc190c728e
+  Firebase: 6c80ac28d59d06bfd9152a7b6ea17625ca93183d
   FirebaseAnalytics: 6f75b04e6bfb8e0b6e9ef298e04c24eea3b13863
   FirebaseInstanceID: d014d574053a2fe84478f12f7bae96979e7051bb
   Google: 813c467362eabc11385f5a5cc9ad0cb651a58f4e
+  Google-Mobile-Ads-SDK: 3c2a6656117989469bfe7645640aa1de024a4c6c
   GoogleAppUtilities: f1730f91f67767b453c289577040dd3f425ffdc7
   GoogleAuthUtilities: d7a19615cd7627688afcf181737f1011ee8b5a23
   GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
