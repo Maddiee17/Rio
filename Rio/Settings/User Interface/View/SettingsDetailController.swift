@@ -13,8 +13,8 @@ let kNone = "None"
 let kEventStart = "Event Start"
 let kSettingsDetails = "Settings Detail"
 
-let dayValueDict = ["Event Start":"0", "1 Hour Before": "1", "2 Hours Before": "2", "3 Hours Before":"3"]
-let epochValues = [0 : "0000000" , 1 : "3600000" , 2 : "7200000" , 3 : "1080000"]
+let dayValueDict = ["Event Start":"2", "1 Hour Before": "3", "2 Hours Before": "4", "3 Hours Before":"5"]
+let epochValues = [2 : "0000000" , 3 : "3600000" , 4 : "7200000" , 5 : "1080000"]
 
 protocol SettingsDetailDelegate{
     

@@ -23,10 +23,23 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
     var oldHrs : String?
     var isExpanded = false
     
+    var seletedTimeInterval : String?{
+        
+        didSet{
+            updateReminderTimeForUser(seletedTimeInterval!)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLeftMenuButton()
         
+        let alertValue = NSUserDefaults.standardUserDefaults().stringForKey(kAlertFirstDate)
+        
+        if  alertValue == "Notification"{
+            NSUserDefaults.standardUserDefaults().setObject(kEventStart, forKey: kAlertFirstDate)
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
         self.tableView.backgroundColor = UIColor(hex : 0xecf0f1)
         
         let data = RioRootModel.sharedInstance.profileImageData
@@ -40,7 +53,6 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
         }
         
         self.headerView.userName.text = "  Welcome, " + RioRootModel.sharedInstance.userName!
-        
         self.tableView.tableHeaderView = self.headerView
     }
 
@@ -119,8 +131,11 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if section == 0 && !isExpanded {
+        if section == 0 && !isExpanded && (notificationStatus() == kYes) {
             return 2
+        }
+        else if section == 0 && (notificationStatus() == kNo) {
+            return 1
         }
         else if section == 0 && isExpanded{
             return 6
@@ -155,11 +170,26 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
         else if(indexPath.section == 0 && indexPath.row == 0){
             showAlert()
         }
-        else {
+        else if(indexPath.section == 1 && indexPath.row == 0){
             let creditsVC = self.storyboard?.instantiateViewControllerWithIdentifier("CreditsViewController") as! CreditsViewController
             self.navigationController?.pushViewController(creditsVC, animated: true)
         }
+        else {
+            
+            let previousCell = self.tableView.cellForRowAtIndexPath(findIndex())
+            previousCell?.backgroundColor = UIColor.whiteColor()
+            
+            let selectedCell = self.tableView.cellForRowAtIndexPath(indexPath)
+            NSUserDefaults.standardUserDefaults().setObject(selectedCell?.textLabel?.text, forKey: kAlertFirstDate)
+            NSUserDefaults.standardUserDefaults().synchronize()
+
+            let alertCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0))
+            alertCell?.detailTextLabel?.text = selectedCell?.textLabel?.text
+            collapseSection(NSIndexPath(forRow: 1, inSection: 0))
+            seletedTimeInterval = (selectedCell?.textLabel?.text)!
+        }
     }
+    
     
     func insertRows(index: NSIndexPath) {
         isExpanded = true
@@ -270,7 +300,9 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
                 cell!.detailTextLabel?.text = notificationStatus()
 
             case 1:
-                cell!.textLabel?.text = "Alert"
+                cell!.textLabel?.text = "Notification Time"
+                cell?.imageView?.image = UIImage(named: "clock2")
+                cell?.imageView?.tintColor = UIColor(hex:0xD21F69)
                 cell!.detailTextLabel?.text = NSUserDefaults.standardUserDefaults().stringForKey(kAlertFirstDate) ?? kEventStart
                 cell!.accessoryType = .DisclosureIndicator
             case 2:
@@ -280,9 +312,9 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
                 cell!.textLabel?.text = "1 Hour Before"
               
             case 4:
-                cell!.textLabel?.text = "2 Hour Before"
+                cell!.textLabel?.text = "2 Hours Before"
             case 5:
-                cell!.textLabel?.text = "3 Hour Before"
+                cell!.textLabel?.text = "3 Hours Before"
 
                 
             default:
@@ -297,15 +329,40 @@ class SettingsTableViewController: UITableViewController,SettingsDetailDelegate 
                 cell?.accessoryType = .DisclosureIndicator
                 cell?.imageView?.image = UIImage(named: "cool")
                 cell?.imageView?.tintColor = UIColor(hex:0xD21F69)
+                cell?.detailTextLabel?.text = ""
                 
             default:
                 cell!.textLabel?.text = ""
 
             }
         }
+        
+        if indexPath == findIndex() {
+            cell?.accessoryType = .Checkmark
+        }
+        else {
+            if indexPath == NSIndexPath(forRow: 0, inSection: 1) {
+                cell?.accessoryType = .DisclosureIndicator
+            }
+            else {
+                cell?.accessoryType = .None
+            }
+        }
         return cell!
     }
     
+    func findIndex() -> NSIndexPath
+    {
+        let valueSelected = NSUserDefaults.standardUserDefaults().objectForKey(kAlertFirstDate) as? String
+        if valueSelected != nil {
+            let indexPos = Int(dayValueDict[valueSelected!]!)
+            return NSIndexPath(forRow: indexPos!, inSection: 0)
+        }
+        else {
+            return NSIndexPath(forRow: 2, inSection: 0)
+        }
+    }
+   
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "settingSegue"

@@ -80,9 +80,11 @@ class WSManager: NSObject {
         if Reachability.isConnectedToNetwork() {
             let URL = NSURL(string: String(format: kBaseURL, kDbVersionURL))
             let data = NSData(contentsOfURL: URL!)
-            let results: NSDictionary = RioUtilities.sharedInstance.convertDataToDict(data!)
-            let version = results.objectForKey("versionNumber")?.stringValue
-            NSUserDefaults.standardUserDefaults().setValue(version, forKey: "ServerDBVersion")
+            if let dataValue = data{
+                let results: NSDictionary = RioUtilities.sharedInstance.convertDataToDict(dataValue)
+                let version = results.objectForKey("versionNumber")?.stringValue
+                NSUserDefaults.standardUserDefaults().setValue(version, forKey: "ServerDBVersion")
+            }
         }
     }
     
